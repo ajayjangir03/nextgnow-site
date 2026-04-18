@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NextGNow — Tomorrow's Telecom, Today</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #06091A;
+    --bg2:      #0C1028;
+    --bg3:      #111830;
+    --border:   rgba(255,255,255,0.07);
+    --border2:  rgba(255,255,255,0.12);
+    --cyan:     #00D4FF;
+    --cyan-dim: rgba(0,212,255,0.12);
+    --orange:   #FF6B35;
+    --orange-dim: rgba(255,107,53,0.12);
+    --txt:      #E8EEFF;
+    --txt2:     #7A87A4;
+    --txt3:     #4A5568;
+    --green:    #00E5A0;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--txt);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── Background grid pattern ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(6,9,26,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    letter-spacing: -0.5px;
+    color: var(--txt);
+    text-decoration: none;
+  }
+  .logo span { color: var(--cyan); }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--txt2);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+  .nav-cta {
+    background: var(--cyan);
+    color: #000;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity .2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .ticker-label {
+    background: var(--cyan);
+    color: #000;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0 14px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+  .ticker-track {
+    display: flex;
+    gap: 0;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+    padding-left: 40px;
+  }
+  .ticker-track span {
+    font-size: 12px;
+    color: var(--txt2);
+    padding: 0 40px 0 0;
+  }
+  .ticker-track span::before {
+    content: '◆ ';
+    color: var(--cyan);
+    font-size: 8px;
+    margin-right: 8px;
+  }
+  @keyframes ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── LAYOUT WRAPPER ── */
+  .wrapper { max-width: 1180px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 60px 0 0;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-main {
+    padding: 0 40px 48px 0;
+    border-right: 1px solid var(--border);
+  }
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+  .badge-cyan { background: var(--cyan-dim); color: var(--cyan); border: 1px solid rgba(0,212,255,0.2); }
+  .badge-orange { background: var(--orange-dim); color: var(--orange); border: 1px solid rgba(255,107,53,0.2); }
+  .badge-green { background: rgba(0,229,160,0.1); color: var(--green); border: 1px solid rgba(0,229,160,0.2); }
+  .hero-date { font-size: 12px; color: var(--txt3); font-family: 'JetBrains Mono', monospace; }
+
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 62px;
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -1px;
+    color: var(--txt);
+    margin-bottom: 20px;
+    max-width: 640px;
+  }
+  .hero-title em { color: var(--cyan); font-style: normal; }
+
+  .hero-excerpt {
+    font-size: 16px;
+    color: var(--txt2);
+    line-height: 1.7;
+    max-width: 540px;
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .read-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cyan);
+    color: #000;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all .2s;
+  }
+  .read-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+  .read-btn svg { width: 14px; height: 14px; }
+  .read-time {
+    font-size: 12px;
+    color: var(--txt3);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Hero image placeholder */
+  .hero-image {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-img-inner {
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(0,212,255,0.15) 0%, transparent 60%),
+      radial-gradient(circle at 70% 70%, rgba(255,107,53,0.1) 0%, transparent 50%),
+      var(--bg3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    padding: 40px;
+  }
+  .signal-icon {
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .signal-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid var(--cyan);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: pulse-ring 2.5s ease-out infinite;
+  }
+  .signal-ring:nth-child(1) { width: 20px; height: 20px; animation-delay: 0s; }
+  .signal-ring:nth-child(2) { width: 44px; height: 44px; animation-delay: 0.5s; }
+  .signal-ring:nth-child(3) { width: 70px; height: 70px; animation-delay: 1s; }
+  .signal-ring:nth-child(4) { width: 96px; height: 96px; animation-delay: 1.5s; }
+  .signal-dot {
+    position: absolute;
+    width: 10px; height: 10px;
+    background: var(--cyan);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 16px var(--cyan);
+  }
+  @keyframes pulse-ring {
+    0%   { transform: translate(-50%,-50%) scale(0.6); opacity: 0.8; }
+    100% { transform: translate(-50%,-50%) scale(1.8); opacity: 0; }
+  }
+  .hero-img-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--txt3);
+    text-align: center;
+    letter-spacing: 0.06em;
+  }
+
+  /* Hero sidebar */
+  .hero-sidebar {
+    padding: 0 0 48px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .sidebar-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--txt3);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .sidebar-item:hover .si-title { color: var(--cyan); }
+  .si-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .si-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--txt3);
+    min-width: 20px;
+  }
+  .si-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--txt);
+    transition: color .15s;
+  }
+  .si-meta {
+    font-size: 11px;
+    color: var(--txt3);
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── CATEGORY BAR ── */
+  .cat-bar {
+    padding: 20px 0;
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .cat-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--txt3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-right: 8px;
+  }
+  .cat-btn {
+    background: transparent;
+    border: 1px solid var(--border2);
+    color: var(--txt2);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .cat-btn:hover, .cat-btn.active {
+    background: var(--cyan-dim);
+    border-color: rgba(0,212,255,0.3);
+    color: var(--cyan);
+  }
+
+  /* ── ARTICLE GRID ── */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 36px 0 20px;
+  }
+  .section-head h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--txt3);
+  }
+  .view-all {
+    font-size: 12px;
+    color: var(--cyan);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    transition: opacity .2s;
+  }
+  .view-all:hover { opacity: 0.7; }
+
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-bottom: 1px;
+  }
+  .article-card {
+    background: var(--bg);
+    padding: 28px 28px 24px;
+    cursor: pointer;
+    transition: background .15s;
+    display: flex;
+    flex-direction: column;
+  }
+  .article-card:hover { background: var(--bg2); }
+  .ac-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .ac-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--txt);
+    margin-bottom: 10px;
+    transition: color .15s;
+    flex-grow: 1;
+  }
+  .article-card:hover .ac-title { color: var(--cyan); }
+  .ac-excerpt {
+    font-size: 13px;
+    color: var(--txt2);
+    line-height: 1.65;
+    flex-grow: 1;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+  .ac-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+  .ac-date { font-size: 11px; color: var(--txt3); font-family: 'JetBrains Mono', monospace; }
+  .ac-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  .tag-5g { color: var(--cyan); }
+  .tag-6g { color: var(--orange); }
+  .tag-3gpp { color: var(--green); }
+  .tag-oran { color: #A78BFA; }
+  .tag-policy { color: #FBBF24; }
+
+  /* Wide card */
+  .article-grid-wide {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+  }
+  .article-card-wide {
+    background: var(--bg);
+    padding: 28px 32px;
+    cursor: pointer;
+    transition: background .15s;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  .article-card-wide:hover { background: var(--bg2); }
+  .acw-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--border2);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 48px;
+    transition: color .15s;
+  }
+  .article-card-wide:hover .acw-num { color: rgba(0,212,255,0.2); }
+  .acw-content {}
+  .acw-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--txt);
+    margin-bottom: 8px;
+    transition: color .15s;
+  }
+  .article-card-wide:hover .acw-title { color: var(--cyan); }
+  .acw-excerpt {
+    font-size: 13px;
+    color: var(--txt2);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ── AI BADGE SECTION ── */
+  .ai-strip {
+    margin: 48px 0;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 32px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .ai-strip::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--orange), var(--cyan));
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+  @keyframes shimmer {
+    0%   { background-position: 0% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .ai-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--txt);
+    margin-bottom: 8px;
+  }
+  .ai-heading span { color: var(--cyan); }
+  .ai-sub {
+    font-size: 14px;
+    color: var(--txt2);
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 520px;
+  }
+  .ai-stats {
+    display: flex;
+    gap: 40px;
+    flex-shrink: 0;
+  }
+  .ai-stat {}
+  .ai-stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--cyan);
+  }
+  .ai-stat-label {
+    font-size: 12px;
+    color: var(--txt3);
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── CATEGORIES SHOWCASE ── */
+  .cat-showcase {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+  .cat-tile {
+    background: var(--bg2);
+    padding: 24px 20px;
+    cursor: pointer;
+    transition: background .15s;
+    text-align: center;
+  }
+  .cat-tile:hover { background: var(--bg3); }
+  .cat-tile-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .cat-tile-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .cat-tile-count {
+    font-size: 11px;
+    color: var(--txt3);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── SUBSCRIBE ── */
+  .subscribe-section {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 48px;
+    text-align: center;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .subscribe-section::after {
+    content: 'NEXTGNOW';
+    position: absolute;
+    bottom: -20px;
+    right: -10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 120px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.025);
+    letter-spacing: -4px;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .subscribe-section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--txt);
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+  .subscribe-section h2 span { color: var(--cyan); }
+  .subscribe-section p {
+    color: var(--txt2);
+    font-size: 15px;
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+  .subscribe-form {
+    display: flex;
+    gap: 8px;
+    max-width: 440px;
+    margin: 0 auto 16px;
+  }
+  .subscribe-input {
+    flex: 1;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    color: var(--txt);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 12px 16px;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .subscribe-input::placeholder { color: var(--txt3); }
+  .subscribe-input:focus { border-color: var(--cyan); }
+  .subscribe-btn {
+    background: var(--cyan);
+    color: #000;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity .2s;
+    white-space: nowrap;
+  }
+  .subscribe-btn:hover { opacity: 0.85; }
+  .subscribe-note {
+    font-size: 12px;
+    color: var(--txt3);
+  }
+  .linkedin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(10,102,194,0.4);
+    background: rgba(10,102,194,0.1);
+    color: #6BB4F7;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: background .2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .linkedin-btn:hover { background: rgba(10,102,194,0.2); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0;
+  }
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--txt);
+  }
+  .footer-logo span { color: var(--cyan); }
+  .footer-tagline {
+    font-size: 12px;
+    color: var(--txt3);
+    margin-top: 4px;
+  }
+  .footer-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 12px;
+    color: var(--txt3);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--txt2); }
+  .footer-copy {
+    font-size: 12px;
+    color: var(--txt3);
+    font-family: 'JetBrains Mono', monospace;
+    text-align: right;
+  }
+  .footer-copy span { color: var(--cyan); }
+
+  /* ── LIVE PULSE DOT ── */
+  .live-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--green);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .live-dot::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--green);
+    animation: blink 1.5s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ── PAGE LOAD ANIMATION ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-main, .hero-sidebar { animation: fadeUp 0.6s ease both; }
+  .hero-sidebar { animation-delay: 0.1s; }
+  .article-card { animation: fadeUp 0.5s ease both; }
+  .article-card:nth-child(1) { animation-delay: 0.05s; }
+  .article-card:nth-child(2) { animation-delay: 0.10s; }
+  .article-card:nth-child(3) { animation-delay: 0.15s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">NextG<span>Now</span></a>
+  <ul class="nav-links">
+    <li><a href="#">5G</a></li>
+    <li><a href="#">6G</a></li>
+    <li><a href="#">3GPP</a></li>
+    <li><a href="#">Open RAN</a></li>
+    <li><a href="#">Policy</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <button class="nav-cta">Subscribe Free</button>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-label">LIVE</div>
+  <div class="ticker-track">
+    <span>3GPP Release 18 spec freeze approved — Feature complete as of March 2024</span>
+    <span>India targets 1 lakh 5G base stations by end of 2025</span>
+    <span>6G research enters second phase with ITU-R IMT-2030 framework</span>
+    <span>Open RAN deployments grow 40% YoY globally</span>
+    <span>Qualcomm demos 10 Gbps 5G Advanced modem at MWC 2025</span>
+    <span>TRAI releases new spectrum consultation paper for 6 GHz band</span>
+    <span>3GPP Release 19 first features approved — RedCap enhancements included</span>
+    <!-- repeat for seamless loop -->
+    <span>3GPP Release 18 spec freeze approved — Feature complete as of March 2024</span>
+    <span>India targets 1 lakh 5G base stations by end of 2025</span>
+    <span>6G research enters second phase with ITU-R IMT-2030 framework</span>
+    <span>Open RAN deployments grow 40% YoY globally</span>
+    <span>Qualcomm demos 10 Gbps 5G Advanced modem at MWC 2025</span>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="wrapper">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-main">
+      <div class="hero-eyebrow">
+        <span class="badge badge-cyan">Today's Deep Dive</span>
+        <span class="live-dot">Published · Apr 16, 2025</span>
+      </div>
+      <h1 class="hero-title">What is <em>5G Advanced</em> and Why Should You Care?</h1>
+      <p class="hero-excerpt">
+        Think of 5G Advanced as a software upgrade for the 5G network already around you — no new towers, dramatically smarter. 3GPP's Release 18 quietly sets the stage for everything from real-time factory robots to cars that talk to traffic lights.
+      </p>
+      <div class="hero-meta">
+        <a href="#" class="read-btn">
+          Read Article
+          <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <span class="read-time">⏱ 4 min read</span>
+      </div>
+    </div>
+
+    <!-- Hero image placeholder -->
+    <div class="hero-image">
+      <div class="hero-img-inner">
+        <div class="signal-icon">
+          <div class="signal-ring"></div>
+          <div class="signal-ring"></div>
+          <div class="signal-ring"></div>
+          <div class="signal-ring"></div>
+          <div class="signal-dot"></div>
+        </div>
+        <div class="hero-img-label">5G ADVANCED<br>REL-18 · 3GPP</div>
+      </div>
+    </div>
+
+    <!-- Sidebar: recent posts -->
+    <div></div><!-- spacer for grid -->
+    <div class="hero-sidebar">
+      <div class="sidebar-title">Also Today</div>
+      <div class="sidebar-item">
+        <div class="si-eyebrow">
+          <span class="si-num">01</span>
+          <span class="badge badge-orange" style="font-size:10px; padding: 2px 7px;">6G</span>
+        </div>
+        <div class="si-title">The 6G Timeline: What We Know So Far</div>
+        <div class="si-meta">3 min read · Published 08:00 IST</div>
+      </div>
+      <div class="sidebar-item">
+        <div class="si-eyebrow">
+          <span class="si-num">02</span>
+          <span class="badge badge-green" style="font-size:10px; padding: 2px 7px;">3GPP</span>
+        </div>
+        <div class="si-title">Release 19 Approved Features, Explained Simply</div>
+        <div class="si-meta">5 min read · Published 08:00 IST</div>
+      </div>
+      <div class="sidebar-item">
+        <div class="si-eyebrow">
+          <span class="si-num">03</span>
+          <span class="badge badge-cyan" style="font-size:10px; padding: 2px 7px;">Open RAN</span>
+        </div>
+        <div class="si-title">Open RAN vs Traditional RAN: A Plain English Guide</div>
+        <div class="si-meta">4 min read · Published 08:00 IST</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY FILTER BAR -->
+  <div class="cat-bar">
+    <span class="cat-label">Filter:</span>
+    <button class="cat-btn active">All</button>
+    <button class="cat-btn">5G</button>
+    <button class="cat-btn">6G</button>
+    <button class="cat-btn">3GPP Specs</button>
+    <button class="cat-btn">Open RAN</button>
+    <button class="cat-btn">Policy</button>
+    <button class="cat-btn">Explainers</button>
+  </div>
+
+  <!-- ARTICLE GRID -->
+  <div class="section-head">
+    <h2>Latest Articles</h2>
+    <a href="#" class="view-all">View all →</a>
+  </div>
+
+  <div class="article-grid">
+    <div class="article-card">
+      <div class="ac-top">
+        <span class="badge badge-cyan">5G</span>
+      </div>
+      <div class="ac-title">Network Slicing Explained: One Network, Infinite Possibilities</div>
+      <p class="ac-excerpt">Imagine a single highway that can instantly create private lanes for ambulances, self-driving trucks, and regular commuters — each with different speed limits. That's network slicing.</p>
+      <div class="ac-footer">
+        <span class="ac-date">Apr 15</span>
+        <span class="ac-tag tag-5g">5G</span>
+      </div>
+    </div>
+    <div class="article-card">
+      <div class="ac-top">
+        <span class="badge badge-orange">6G</span>
+      </div>
+      <div class="ac-title">Terahertz Spectrum: The Invisible Highway 6G Will Ride</div>
+      <p class="ac-excerpt">There's a vast band of wireless spectrum sitting unused between microwave and infrared light. 6G researchers believe this terahertz gap could deliver speeds that make 5G look like dial-up.</p>
+      <div class="ac-footer">
+        <span class="ac-date">Apr 14</span>
+        <span class="ac-tag tag-6g">6G</span>
+      </div>
+    </div>
+    <div class="article-card">
+      <div class="ac-top">
+        <span class="badge badge-green">3GPP</span>
+      </div>
+      <div class="ac-title">What is RedCap? The "Lite" 5G Device You'll See Everywhere</div>
+      <p class="ac-excerpt">Not every IoT device needs a full 5G modem. RedCap (Reduced Capability) is 3GPP's answer — a smaller, cheaper 5G chip designed for smartwatches, sensors, and industrial trackers.</p>
+      <div class="ac-footer">
+        <span class="ac-date">Apr 13</span>
+        <span class="ac-tag tag-3gpp">3GPP</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-grid-wide">
+    <div class="article-card-wide">
+      <div class="acw-num">04</div>
+      <div class="acw-content">
+        <span class="badge badge-cyan" style="margin-bottom: 10px; display: inline-block;">Open RAN</span>
+        <div class="acw-title">Why Telecom Giants Are Betting Billions on Open RAN</div>
+        <p class="acw-excerpt">Traditional mobile networks are built with proprietary hardware where every component must come from one vendor. Open RAN breaks that lock-in by using open interfaces — letting operators mix hardware from different vendors like Lego bricks.</p>
+      </div>
+    </div>
+    <div class="article-card-wide" style="flex-direction: column; gap: 16px;">
+      <div class="article-card-wide" style="padding: 0; border: none; background: transparent;">
+        <div class="acw-num" style="font-size: 36px; width: 36px;">05</div>
+        <div>
+          <span class="badge badge-cyan" style="margin-bottom:6px; display:inline-block; font-size:10px;">Policy</span>
+          <div class="acw-title" style="font-size: 18px;">India's 5G Rollout: Where Do We Stand?</div>
+        </div>
+      </div>
+      <div style="border-top: 1px solid var(--border); padding-top: 16px; display: flex; gap: 14px; align-items: flex-start;">
+        <div class="acw-num" style="font-size: 36px; width: 36px; color: var(--border2);">06</div>
+        <div>
+          <span class="badge badge-orange" style="margin-bottom:6px; display:inline-block; font-size:10px;">6G</span>
+          <div class="acw-title" style="font-size: 18px;">IMT-2030: The Global Blueprint for 6G</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY NEXTGNOW STRIP -->
+  <div class="ai-strip">
+    <div>
+      <div class="ai-heading">Deep Research. <span>Plain English.</span></div>
+      <p class="ai-sub">Every article on NextGNow is sourced from live 3GPP specs, ITU frameworks, and industry news — then broken down into clear, jargon-free language that anyone can understand, whether you're an engineer or just curious.</p>
+    </div>
+    <div class="ai-stats">
+      <div class="ai-stat">
+        <div class="ai-stat-num">1</div>
+        <div class="ai-stat-label">new post/day</div>
+      </div>
+      <div class="ai-stat">
+        <div class="ai-stat-num">3GPP</div>
+        <div class="ai-stat-label">always tracked</div>
+      </div>
+      <div class="ai-stat">
+        <div class="ai-stat-num">∞</div>
+        <div class="ai-stat-label">topics to explore</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORIES SHOWCASE -->
+  <div class="section-head" style="padding-top: 0;">
+    <h2>Browse by Topic</h2>
+  </div>
+  <div class="cat-showcase">
+    <div class="cat-tile">
+      <span class="cat-tile-icon">📡</span>
+      <span class="cat-tile-name" style="color: var(--cyan);">5G</span>
+      <span class="cat-tile-count">48 articles</span>
+    </div>
+    <div class="cat-tile">
+      <span class="cat-tile-icon">🛰️</span>
+      <span class="cat-tile-name" style="color: var(--orange);">6G</span>
+      <span class="cat-tile-count">23 articles</span>
+    </div>
+    <div class="cat-tile">
+      <span class="cat-tile-icon">📋</span>
+      <span class="cat-tile-name" style="color: var(--green);">3GPP</span>
+      <span class="cat-tile-count">61 articles</span>
+    </div>
+    <div class="cat-tile">
+      <span class="cat-tile-icon">🔓</span>
+      <span class="cat-tile-name" style="color: #A78BFA;">Open RAN</span>
+      <span class="cat-tile-count">19 articles</span>
+    </div>
+    <div class="cat-tile">
+      <span class="cat-tile-icon">🏛️</span>
+      <span class="cat-tile-name" style="color: #FBBF24;">Policy</span>
+      <span class="cat-tile-count">31 articles</span>
+    </div>
+  </div>
+
+  <!-- SUBSCRIBE -->
+  <div class="subscribe-section">
+    <h2>Stay Ahead of the <span>Signal</span></h2>
+    <p>One email per day. One telecom insight. Zero jargon. Free forever.</p>
+    <div class="subscribe-form">
+      <input class="subscribe-input" type="email" placeholder="your@email.com">
+      <button class="subscribe-btn">Subscribe</button>
+    </div>
+    <p class="subscribe-note">No spam. Unsubscribe anytime.</p>
+    <br>
+    <button class="linkedin-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      Follow on LinkedIn for daily updates
+    </button>
+  </div>
+
+</div><!-- /wrapper -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrapper">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">NextG<span>Now</span></div>
+        <div class="footer-tagline">Tomorrow's Telecom, Explained Today</div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Articles</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+      <div class="footer-copy">
+        <span>© 2025 NextGNow</span><br>
+        <span style="color: var(--txt3);">NextGNow.com</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Category filter interaction
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
