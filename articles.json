@@ -1,6 +1,18 @@
 {
   "articles": [
     {
+      "title": "5G Registration Call Flow",
+      "slug": "5g-registration-call-flow",
+      "url": "https://nextgnow.in/articles/5g-registration-call-flow.html",
+      "category": "5G",
+      "excerpt": "5G registration is the automated security handshake between your device and the network, authenticating identity and enabling connectivity in under a second.",
+      "date": "Apr 19, 2026",
+      "tags": [
+        "5G",
+        "telecom"
+      ]
+    },
+    {
       "title": "3GPP Release 21 Timeline Set for 6G Standardization",
       "slug": "3gpp-release-21-timeline-set-for-6g-standardization",
       "url": "https://nextgnow.in/articles/3gpp-release-21-timeline-set-for-6g-standardization.html",
