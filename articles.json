@@ -1,6 +1,18 @@
 {
   "articles": [
     {
+      "title": "VoNR (Voice over New Radio) Call Flow in 5G Standalone",
+      "slug": "vonr-voice-over-new-radio-call-flow-in-5g-standalone",
+      "url": "https://nextgnow.in/articles/vonr-voice-over-new-radio-call-flow-in-5g-standalone.html",
+      "category": "Call Flow",
+      "excerpt": "VoNR Call Flow",
+      "date": "Apr 19, 2026",
+      "tags": [
+        "Call Flow",
+        "telecom"
+      ]
+    },
+    {
       "title": "5G Registration Call Flow",
       "slug": "5g-registration-call-flow",
       "url": "https://nextgnow.in/articles/5g-registration-call-flow.html",
