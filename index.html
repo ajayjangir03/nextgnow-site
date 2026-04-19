@@ -4,489 +4,801 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NextGNow — 5G · 6G · Open RAN · AI Telecom</title>
-<meta name="description" content="Deep technical telecom learning platform covering modern wireless technologies, protocols, call flows, and future network innovations.">
+<meta name="description" content="Deep technical telecom learning platform covering 5G, 6G, Open RAN, 3GPP and AI-driven networks.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
 <style>
+/* ─── RESET & BASE ───────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:#020817;color:#f1f5f9;font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;overflow-x:hidden}
+html{scroll-behavior:smooth;font-size:15px}
+body{background:#030712;color:#e2e8f0;font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden;min-height:100vh}
 
-/* FIXED BADGES */
-.live-badge{position:fixed;top:16px;right:16px;z-index:100;background:#0f172a;border:1px solid #1e293b;padding:8px 14px;border-radius:16px;font-size:12px;display:flex;align-items:center;gap:8px;box-shadow:0 4px 24px rgba(0,0,0,.4)}
-.live-dot-green{width:8px;height:8px;background:#4ade80;border-radius:50%;flex-shrink:0;animation:blink 1.5s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
-.visitor-panel{position:fixed;bottom:16px;right:16px;z-index:100;width:240px;background:#0f172a;border:1px solid #1e293b;border-radius:16px;padding:16px;box-shadow:0 4px 24px rgba(0,0,0,.4);font-size:12px}
-.visitor-panel-title{display:flex;align-items:center;gap:8px;font-weight:600;margin-bottom:12px;color:#f1f5f9}
-.visitor-row{display:flex;justify-content:space-between;color:#94a3b8;padding:4px 0}
-.visitor-bar{height:3px;background:#1e293b;border-radius:2px;margin-top:2px}
-.visitor-bar-fill{height:100%;background:#3b82f6;border-radius:2px;transition:width .6s ease}
+/* ─── DESIGN TOKENS ──────────────────────────────────────── */
+:root{
+  --bg0:#030712; --bg1:#0a0f1e; --bg2:#0f172a; --bg3:#1e293b;
+  --border:#1e293b; --border2:#334155;
+  --blue:#3b82f6; --blue-dim:rgba(59,130,246,.12); --blue-glow:rgba(59,130,246,.25);
+  --cyan:#06b6d4; --cyan-dim:rgba(6,182,212,.1);
+  --purple:#8b5cf6; --purple-dim:rgba(139,92,246,.1);
+  --green:#10b981; --green-dim:rgba(16,185,129,.1);
+  --orange:#f59e0b; --orange-dim:rgba(245,158,11,.1);
+  --red:#ef4444; --red-dim:rgba(239,68,68,.1);
+  --txt0:#f1f5f9; --txt1:#cbd5e1; --txt2:#94a3b8; --txt3:#64748b; --txt4:#475569;
+}
 
-/* HEADER */
-header{border-bottom:1px solid #1e293b;padding:20px 32px;position:sticky;top:0;background:#020817;z-index:90}
-.header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.logo{font-size:22px;font-weight:700;color:#f1f5f9;cursor:pointer;text-decoration:none;letter-spacing:-.3px}
-.logo span{color:#3b82f6}
-.search-btn{background:#3b82f6;color:#fff;border:none;padding:8px 20px;border-radius:12px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s}
-.search-btn:hover{opacity:.85}
+/* ─── GRID MESH BACKGROUND ───────────────────────────────── */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(59,130,246,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(59,130,246,.04) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+body::after{
+  content:'';position:fixed;top:0;left:50%;transform:translateX(-50%);width:800px;height:500px;
+  background:radial-gradient(ellipse at 50% 0%,rgba(59,130,246,.12) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
 
-/* NAV */
-nav{display:flex;gap:28px;flex-wrap:wrap}
+/* ─── CONTAINER ──────────────────────────────────────────── */
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+/* ─── FIXED BADGES ───────────────────────────────────────── */
+.live-badge{
+  position:fixed;top:14px;right:14px;z-index:200;
+  background:rgba(10,15,30,.9);backdrop-filter:blur(12px);
+  border:1px solid var(--border2);padding:7px 14px;border-radius:20px;
+  font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;
+  color:var(--txt1);box-shadow:0 4px 24px rgba(0,0,0,.4);
+}
+.pulse{width:7px;height:7px;background:#22c55e;border-radius:50%;flex-shrink:0;
+  box-shadow:0 0 8px #22c55e;animation:pulse-anim 2s ease-in-out infinite}
+@keyframes pulse-anim{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.2)}}
+
+.visitor-panel{
+  position:fixed;bottom:16px;right:16px;z-index:200;width:230px;
+  background:rgba(10,15,30,.92);backdrop-filter:blur(12px);
+  border:1px solid var(--border2);border-radius:16px;padding:16px;
+  box-shadow:0 8px 32px rgba(0,0,0,.5);font-size:12px;
+}
+.vp-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;font-weight:600;color:var(--txt0)}
+.vp-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;color:var(--txt2)}
+.vp-bar-wrap{height:3px;background:var(--bg3);border-radius:2px;margin:2px 0 6px;overflow:hidden}
+.vp-bar{height:100%;background:var(--blue);border-radius:2px;transition:width .8s ease}
+
+/* ─── HEADER ─────────────────────────────────────────────── */
+header{
+  position:sticky;top:0;z-index:150;
+  background:rgba(3,7,18,.85);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{
+  max-width:1200px;margin:0 auto;padding:0 24px;
+  display:flex;flex-direction:column;gap:0;
+}
+.header-top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 0;border-bottom:1px solid rgba(255,255,255,.04);
+}
+.logo{font-size:20px;font-weight:800;color:var(--txt0);cursor:pointer;text-decoration:none;letter-spacing:-.5px}
+.logo span{color:var(--blue)}
+.header-right{display:flex;align-items:center;gap:10px}
+.search-btn{
+  display:flex;align-items:center;gap:8px;
+  background:var(--bg2);border:1px solid var(--border2);color:var(--txt2);
+  padding:8px 16px;border-radius:10px;font-size:13px;font-weight:500;
+  cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;
+}
+.search-btn:hover{border-color:var(--blue);color:var(--txt0);background:var(--bg3)}
+.search-btn svg{opacity:.6}
+
+/* ─── NAV ────────────────────────────────────────────────── */
+nav{display:flex;gap:2px;padding:8px 0}
 .nav-item{position:relative}
-.nav-link{font-size:13px;color:#94a3b8;cursor:pointer;text-decoration:none;transition:color .2s;padding:4px 0;background:none;border:none;font-family:'Inter',sans-serif}
-.nav-link:hover{color:#f1f5f9}
-.dropdown{position:absolute;top:calc(100% + 10px);left:0;background:#0f172a;border:1px solid #1e293b;border-radius:12px;padding:12px;width:200px;display:none;z-index:200;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.nav-link{
+  display:flex;align-items:center;gap:5px;
+  font-size:13px;font-weight:500;color:var(--txt2);
+  cursor:pointer;padding:6px 12px;border-radius:8px;
+  background:none;border:none;font-family:'Inter',sans-serif;
+  transition:all .15s;white-space:nowrap;
+}
+.nav-link:hover,.nav-link.active{color:var(--txt0);background:var(--bg3)}
+.nav-link svg{width:10px;height:10px;opacity:.6;transition:transform .2s}
+.nav-item:hover .nav-link svg{transform:rotate(180deg)}
+.dropdown{
+  position:absolute;top:calc(100% + 6px);left:0;
+  background:var(--bg1);border:1px solid var(--border2);border-radius:12px;
+  padding:8px;width:210px;display:none;z-index:300;
+  box-shadow:0 16px 48px rgba(0,0,0,.6);
+}
 .nav-item:hover .dropdown{display:block}
-.dropdown a{display:block;padding:7px 10px;font-size:12px;color:#94a3b8;text-decoration:none;border-radius:6px;transition:all .15s}
-.dropdown a:hover{color:#f1f5f9;background:#1e293b}
+.dropdown-item{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 12px;font-size:13px;color:var(--txt2);
+  text-decoration:none;border-radius:8px;transition:all .15s;cursor:pointer;
+}
+.dropdown-item:hover{color:var(--txt0);background:var(--bg3)}
+.dropdown-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);flex-shrink:0}
 
-/* HERO */
-.hero{padding:64px 32px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1280px;margin:0 auto}
-.hero-title{font-size:44px;font-weight:700;line-height:1.15;margin-bottom:20px;letter-spacing:-.5px}
-.hero-title span{color:#3b82f6}
-.hero-sub{color:#94a3b8;font-size:16px;margin-bottom:32px;max-width:480px;line-height:1.7;font-weight:300}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
-.btn-primary{background:#3b82f6;color:#fff;border:none;padding:12px 28px;border-radius:12px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s;text-decoration:none;display:inline-block}
-.btn-primary:hover{opacity:.85}
-.btn-outline{background:transparent;color:#f1f5f9;border:1px solid #334155;padding:12px 28px;border-radius:12px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none;display:inline-block}
-.btn-outline:hover{border-color:#64748b;background:#1e293b}
-.hero-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.hero-card{background:#0f172a;border:1px solid #1e293b;border-radius:16px;padding:24px;transition:border-color .2s;cursor:pointer}
-.hero-card:hover{border-color:#334155}
-.hero-card-icon{width:32px;height:32px;margin-bottom:12px;color:#3b82f6}
-.hero-card h3{font-size:14px;font-weight:600;margin-bottom:8px;color:#f1f5f9}
-.hero-card p{font-size:12px;color:#64748b;line-height:1.6}
+/* ─── HERO ───────────────────────────────────────────────── */
+.hero{padding:72px 0 64px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue-dim);border:1px solid rgba(59,130,246,.25);
+  color:var(--blue);font-size:12px;font-weight:600;
+  padding:6px 14px;border-radius:20px;margin-bottom:24px;letter-spacing:.04em;
+}
+.hero-eyebrow-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse-anim 2s ease-in-out infinite}
+.hero-title{
+  font-size:48px;font-weight:800;line-height:1.1;
+  letter-spacing:-.8px;margin-bottom:20px;color:var(--txt0);
+}
+.hero-title .grad{
+  background:linear-gradient(135deg,#60a5fa 0%,#a78bfa 50%,#34d399 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{font-size:15px;color:var(--txt2);line-height:1.75;margin-bottom:36px;max-width:440px;font-weight:300}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue);color:#fff;border:none;
+  padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;
+  cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;
+  text-decoration:none;box-shadow:0 4px 20px rgba(59,130,246,.3);
+}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(59,130,246,.4)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--txt1);border:1px solid var(--border2);
+  padding:12px 24px;border-radius:10px;font-size:14px;font-weight:500;
+  cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none;
+}
+.btn-ghost:hover{background:var(--bg3);border-color:var(--blue);color:var(--txt0)}
+.hero-stats{display:flex;gap:28px;margin-top:36px;padding-top:28px;border-top:1px solid var(--border)}
+.hero-stat-num{font-size:26px;font-weight:800;color:var(--blue);line-height:1}
+.hero-stat-label{font-size:11px;color:var(--txt3);margin-top:4px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
 
-/* SECTIONS */
-section{max-width:1280px;margin:0 auto;padding:48px 32px}
-.section-title{font-size:28px;font-weight:700;margin-bottom:32px;letter-spacing:-.3px}
+/* Hero right — tech cards */
+.hero-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hcard{
+  background:var(--bg1);border:1px solid var(--border);border-radius:16px;padding:22px;
+  cursor:pointer;transition:all .25s;position:relative;overflow:hidden;
+}
+.hcard::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--blue-dim),transparent);
+  opacity:0;transition:opacity .25s;
+}
+.hcard:hover{border-color:rgba(59,130,246,.4);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.hcard:hover::before{opacity:1}
+.hcard-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:18px}
+.hcard h3{font-size:14px;font-weight:600;color:var(--txt0);margin-bottom:6px}
+.hcard p{font-size:12px;color:var(--txt3);line-height:1.6}
+.icon-blue{background:var(--blue-dim);border:1px solid rgba(59,130,246,.2)}
+.icon-purple{background:var(--purple-dim);border:1px solid rgba(139,92,246,.2)}
+.icon-cyan{background:var(--cyan-dim);border:1px solid rgba(6,182,212,.2)}
+.icon-green{background:var(--green-dim);border:1px solid rgba(16,185,129,.2)}
 
-/* TECH DOMAIN CARDS */
-.domain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.domain-card{background:#0f172a;border:1px solid #1e293b;border-radius:16px;padding:24px;cursor:pointer;transition:all .2s}
-.domain-card:hover{border-color:#3b82f6;transform:translateY(-2px)}
-.domain-card h3{font-size:14px;font-weight:600;margin-bottom:10px;color:#f1f5f9}
-.domain-card p{font-size:12px;color:#64748b;line-height:1.6}
+/* ─── SECTION LABEL ──────────────────────────────────────── */
+.section-label{
+  display:flex;align-items:center;gap:12px;
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--txt3);margin-bottom:24px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.section-title{font-size:30px;font-weight:800;letter-spacing:-.5px;color:var(--txt0);margin-bottom:32px}
 
-/* TODAY'S HIGHLIGHT */
-.highlight-section{background:linear-gradient(135deg,rgba(59,130,246,.15) 0%,rgba(2,8,23,.8) 100%);border-top:1px solid #1e293b;border-bottom:1px solid #1e293b;padding:40px 32px}
-.highlight-inner{max-width:1280px;margin:0 auto}
-.highlight-tag{font-size:12px;color:#60a5fa;font-weight:600;margin-bottom:10px}
-.highlight-title{font-size:24px;font-weight:700;margin-bottom:12px;max-width:700px;letter-spacing:-.3px}
-.highlight-sub{color:#64748b;font-size:14px;margin-bottom:20px;max-width:600px;line-height:1.7}
+/* ─── DOMAIN CARDS ───────────────────────────────────────── */
+.domains{padding:48px 0;border-top:1px solid var(--border)}
+.domain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.dcard{
+  background:var(--bg1);border:1px solid var(--border);border-radius:16px;
+  padding:24px;cursor:pointer;transition:all .2s;
+}
+.dcard:hover{border-color:var(--border2);background:var(--bg2);transform:translateY(-2px)}
+.dcard-tag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;display:block}
+.dcard h3{font-size:15px;font-weight:600;color:var(--txt0);margin-bottom:8px}
+.dcard p{font-size:12px;color:var(--txt3);line-height:1.6}
+.dcard-arrow{font-size:18px;color:var(--txt4);margin-top:14px;display:block;transition:transform .2s}
+.dcard:hover .dcard-arrow{transform:translateX(4px);color:var(--blue)}
 
-/* DAILY UPDATES */
-.updates-bg{background:rgba(15,23,42,.4);border-top:1px solid #1e293b;border-bottom:1px solid #1e293b}
-.updates-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.update-card{background:#0f172a;border:1px solid #1e293b;border-radius:16px;padding:24px;transition:border-color .2s;cursor:pointer}
-.update-card:hover{border-color:#334155}
-.update-date{font-size:11px;color:#60a5fa;margin-bottom:10px;font-weight:500}
-.update-title{font-size:14px;font-weight:500;color:#e2e8f0;margin-bottom:16px;line-height:1.5}
-.btn-sm{background:transparent;color:#f1f5f9;border:1px solid #334155;padding:7px 16px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
-.btn-sm:hover{border-color:#64748b;background:#1e293b}
+/* ─── HIGHLIGHT ──────────────────────────────────────────── */
+.highlight{
+  margin:0;padding:40px 0;
+  background:linear-gradient(135deg,rgba(59,130,246,.08) 0%,rgba(139,92,246,.05) 100%);
+  border-top:1px solid rgba(59,130,246,.15);border-bottom:1px solid rgba(59,130,246,.15);
+}
+.hl-inner{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.hl-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;color:var(--orange);letter-spacing:.08em;text-transform:uppercase;
+  margin-bottom:12px;
+}
+.hl-title{font-size:26px;font-weight:700;color:var(--txt0);margin-bottom:10px;letter-spacing:-.3px;max-width:600px;line-height:1.3}
+.hl-sub{font-size:14px;color:var(--txt2);max-width:560px;line-height:1.7;font-weight:300;margin-bottom:20px}
 
-/* ARTICLES */
-.articles-bg{background:rgba(15,23,42,.3)}
-.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.article-card{background:#0f172a;border:1px solid #1e293b;border-radius:16px;padding:24px;cursor:pointer;transition:all .2s;text-decoration:none;display:block}
-.article-card:hover{border-color:#334155;transform:translateY(-2px)}
-.article-cat{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;margin-bottom:12px;letter-spacing:.04em}
-.cat-5g{background:rgba(59,130,246,.15);color:#60a5fa}
-.cat-6g{background:rgba(168,85,247,.15);color:#c084fc}
-.cat-3gpp{background:rgba(16,185,129,.15);color:#34d399}
-.cat-oran{background:rgba(245,158,11,.15);color:#fbbf24}
-.cat-policy{background:rgba(239,68,68,.15);color:#f87171}
-.cat-ai{background:rgba(99,102,241,.15);color:#818cf8}
-.article-title{font-size:15px;font-weight:600;color:#f1f5f9;margin-bottom:12px;line-height:1.4}
-.article-excerpt{font-size:12px;color:#64748b;line-height:1.6;margin-bottom:16px}
-.article-meta{font-size:11px;color:#475569}
-.empty-msg{text-align:center;padding:48px;color:#475569;grid-column:1/-1;font-size:14px}
+/* ─── FILTER BAR ─────────────────────────────────────────── */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+.fbtn{
+  background:var(--bg2);border:1px solid var(--border);color:var(--txt2);
+  padding:7px 18px;border-radius:8px;font-size:12px;font-weight:500;
+  cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;
+}
+.fbtn:hover{border-color:var(--border2);color:var(--txt0)}
+.fbtn.active{background:var(--blue-dim);border-color:rgba(59,130,246,.4);color:#60a5fa;font-weight:600}
 
-/* 3GPP */
+/* ─── UPDATES ────────────────────────────────────────────── */
+.updates{padding:56px 0;background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.updates-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ucard{
+  background:var(--bg0);border:1px solid var(--border);border-radius:16px;
+  padding:24px;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;
+}
+.ucard:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.ucard-date{font-size:11px;font-weight:600;color:var(--blue);margin-bottom:10px;letter-spacing:.04em}
+.ucard-title{font-size:14px;font-weight:600;color:var(--txt1);margin-bottom:auto;line-height:1.5;padding-bottom:16px}
+.ucard-foot{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border)}
+.ucard-cat{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.read-link{font-size:12px;color:var(--blue);font-weight:500;cursor:pointer;display:flex;align-items:center;gap:4px;transition:gap .15s}
+.read-link:hover{gap:8px}
+
+/* ─── ARTICLES ───────────────────────────────────────────── */
+.articles{padding:56px 0}
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.acard{
+  background:var(--bg1);border:1px solid var(--border);border-radius:16px;
+  padding:24px;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;
+  text-decoration:none;
+}
+.acard:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.acard-cat{
+  display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:14px;
+}
+.cat-5g{background:var(--blue-dim);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.cat-6g{background:var(--purple-dim);color:#c084fc;border:1px solid rgba(139,92,246,.2)}
+.cat-3gpp{background:var(--green-dim);color:#34d399;border:1px solid rgba(16,185,129,.2)}
+.cat-oran{background:var(--orange-dim);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.cat-policy{background:var(--red-dim);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.cat-ai{background:var(--cyan-dim);color:#22d3ee;border:1px solid rgba(6,182,212,.2)}
+.acard-title{font-size:16px;font-weight:700;color:var(--txt0);margin-bottom:10px;line-height:1.4;letter-spacing:-.2px}
+.acard:hover .acard-title{color:#60a5fa}
+.acard-excerpt{font-size:13px;color:var(--txt3);line-height:1.65;flex-grow:1;font-weight:300;margin-bottom:18px}
+.acard-foot{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border);margin-top:auto}
+.acard-date{font-size:11px;color:var(--txt4)}
+.acard-read{font-size:11px;color:var(--blue);font-weight:500}
+
+/* ─── 3GPP ───────────────────────────────────────────────── */
+.gpp{padding:56px 0;background:var(--bg1);border-top:1px solid var(--border)}
 .gpp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.gpp-card{background:#0f172a;border:1px solid #1e293b;border-radius:16px;padding:20px;cursor:pointer;transition:all .2s}
-.gpp-card:hover{border-color:#3b82f6}
-.gpp-card h4{font-size:13px;font-weight:500;color:#cbd5e1}
+.gcard{
+  background:var(--bg0);border:1px solid var(--border);border-radius:14px;
+  padding:22px 20px;cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.gcard:hover{border-color:var(--blue);background:var(--bg2)}
+.gcard h4{font-size:14px;font-weight:600;color:var(--txt1)}
+.gcard-arrow{color:var(--txt4);font-size:16px;transition:all .2s}
+.gcard:hover .gcard-arrow{color:var(--blue);transform:translateX(4px)}
 
-/* ABOUT */
-.about-bg{background:rgba(15,23,42,.3)}
-.about-text{max-width:700px;color:#94a3b8;line-height:1.8}
-.about-text p{margin-bottom:16px;font-size:14px}
-.about-text strong{color:#f1f5f9}
+/* ─── ABOUT ──────────────────────────────────────────────── */
+.about{padding:56px 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.about-text p{font-size:14px;color:var(--txt2);line-height:1.8;margin-bottom:16px;font-weight:300}
+.about-text strong{color:var(--txt0);font-weight:600}
+.about-cards{display:flex;flex-direction:column;gap:14px}
+.abt-card{
+  background:var(--bg1);border:1px solid var(--border);border-radius:14px;
+  padding:20px 22px;display:flex;align-items:center;gap:16px;
+}
+.abt-num{font-size:32px;font-weight:800;color:var(--blue);min-width:60px;line-height:1}
+.abt-label{font-size:13px;color:var(--txt2)}
+.abt-label strong{display:block;color:var(--txt0);font-weight:600;margin-bottom:2px}
 
-/* FOOTER */
-footer{border-top:1px solid #1e293b;padding:32px;text-align:center;font-size:13px;color:#475569;margin-top:40px}
+/* ─── FOOTER ─────────────────────────────────────────────── */
+footer{border-top:1px solid var(--border);padding:28px 0}
+.footer-inner{display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-size:16px;font-weight:800;color:var(--txt0);cursor:pointer;letter-spacing:-.3px}
+.footer-logo span{color:var(--blue)}
+.footer-copy{font-size:12px;color:var(--txt4);text-align:right}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:12px;color:var(--txt3);text-decoration:none;cursor:pointer;transition:color .15s}
+.footer-links a:hover{color:var(--txt1)}
 
-/* SEARCH MODAL */
-.search-overlay{display:none;position:fixed;inset:0;background:rgba(2,8,23,.85);z-index:500;align-items:flex-start;justify-content:center;padding-top:80px}
+/* ─── SEARCH MODAL ───────────────────────────────────────── */
+.search-overlay{display:none;position:fixed;inset:0;background:rgba(3,7,18,.85);backdrop-filter:blur(8px);z-index:500;align-items:flex-start;justify-content:center;padding-top:100px}
 .search-overlay.open{display:flex}
-.search-box{background:#0f172a;border:1px solid #334155;border-radius:16px;width:100%;max-width:600px;padding:24px;box-shadow:0 24px 64px rgba(0,0,0,.6)}
-.search-input{width:100%;background:#020817;border:1px solid #334155;color:#f1f5f9;padding:12px 16px;border-radius:10px;font-size:15px;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s}
-.search-input:focus{border-color:#3b82f6}
-.search-input::placeholder{color:#475569}
-.search-results{margin-top:16px;display:flex;flex-direction:column;gap:8px}
-.search-result-item{padding:12px;border-radius:8px;cursor:pointer;transition:background .15s;text-decoration:none;display:block}
-.search-result-item:hover{background:#1e293b}
-.sr-title{font-size:13px;font-weight:500;color:#e2e8f0;margin-bottom:3px}
-.sr-meta{font-size:11px;color:#475569}
-.search-close{float:right;background:none;border:none;color:#64748b;font-size:20px;cursor:pointer;margin-top:-4px}
+.search-box{background:var(--bg1);border:1px solid var(--border2);border-radius:20px;width:100%;max-width:580px;padding:24px;box-shadow:0 24px 80px rgba(0,0,0,.7)}
+.search-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.search-input{flex:1;background:var(--bg2);border:1px solid var(--border2);color:var(--txt0);padding:12px 16px;border-radius:12px;font-size:15px;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s}
+.search-input:focus{border-color:var(--blue)}
+.search-input::placeholder{color:var(--txt4)}
+.search-close{background:var(--bg3);border:none;color:var(--txt2);width:36px;height:36px;border-radius:8px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.search-close:hover{background:var(--border2);color:var(--txt0)}
+.search-hint{font-size:12px;color:var(--txt4);margin-bottom:12px}
+.search-results{display:flex;flex-direction:column;gap:4px}
+.sresult{display:block;padding:12px 14px;border-radius:10px;text-decoration:none;transition:background .15s;cursor:pointer}
+.sresult:hover{background:var(--bg3)}
+.sr-title{font-size:13px;font-weight:600;color:var(--txt0);margin-bottom:3px}
+.sr-meta{font-size:11px;color:var(--txt3)}
+.no-results{font-size:13px;color:var(--txt3);padding:12px 14px}
 
-/* FILTER BAR */
-.filter-bar{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
-.filter-btn{background:transparent;border:1px solid #1e293b;color:#94a3b8;padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
-.filter-btn:hover{border-color:#334155;color:#f1f5f9}
-.filter-btn.active{background:rgba(59,130,246,.15);border-color:#3b82f6;color:#60a5fa}
+/* ─── EMPTY STATES ───────────────────────────────────────── */
+.empty{text-align:center;padding:56px 24px;grid-column:1/-1}
+.empty-icon{font-size:40px;margin-bottom:12px}
+.empty-title{font-size:16px;font-weight:600;color:var(--txt2);margin-bottom:6px}
+.empty-sub{font-size:13px;color:var(--txt4)}
 
-/* RESPONSIVE */
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;padding:40px 20px}
-  .hero-cards{display:none}
-  .domain-grid,.updates-grid,.articles-grid,.gpp-grid{grid-template-columns:1fr 1fr}
-  section{padding:40px 20px}
-  header{padding:16px 20px}
-  .highlight-section{padding:32px 20px}
-  .visitor-panel{display:none}
-}
-@media(max-width:600px){
-  .domain-grid,.updates-grid,.articles-grid,.gpp-grid{grid-template-columns:1fr}
-  .hero-title{font-size:32px}
-  .section-title{font-size:22px}
-  .live-badge{top:10px;right:10px}
-}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+/* ─── ANIMATIONS ─────────────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .hero-left{animation:fadeUp .6s ease both}
+.hero-cards{animation:fadeUp .6s ease .1s both}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media(max-width:1024px){
+  .hero-title{font-size:40px}
+  .domain-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .hero-grid,.hl-inner{grid-template-columns:1fr}
+  .hero-cards{display:none}
+  .hero-title{font-size:34px}
+  .updates-grid,.articles-grid{grid-template-columns:1fr}
+  .gpp-grid{grid-template-columns:repeat(2,1fr)}
+  .domain-grid{grid-template-columns:1fr 1fr}
+  .visitor-panel{display:none}
+  .live-badge{top:10px;right:10px}
+  .footer-inner{flex-direction:column;gap:16px;text-align:center}
+  .hero-stats{flex-wrap:wrap;gap:20px}
+}
+@media(max-width:480px){
+  .domain-grid,.gpp-grid{grid-template-columns:1fr}
+  .hero{padding:48px 0 40px}
+  .container{padding:0 16px}
+  .hero-btns{flex-direction:column}
+  .btn-primary,.btn-ghost{width:100%;justify-content:center}
+}
 </style>
 </head>
 <body>
 
-<!-- Live Visitors Badge -->
+<!-- Live Badge -->
 <div class="live-badge">
-  <div class="live-dot-green"></div>
-  <span>Live Users: <span id="liveCount">128</span></span>
+  <div class="pulse"></div>
+  Live: <strong id="liveCount">128</strong> readers
 </div>
 
 <!-- Visitor Panel -->
 <div class="visitor-panel">
-  <div class="visitor-panel-title">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+  <div class="vp-header">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
     Live Visitors by Country
   </div>
-  <div id="visitorRows"></div>
+  <div id="vpRows"></div>
 </div>
 
 <!-- HEADER -->
 <header>
-  <div class="header-top">
-    <a class="logo" onclick="showSection('home')">NextG<span>Now</span></a>
-    <button class="search-btn" onclick="openSearch()">Search Articles</button>
+  <div class="header-inner">
+    <div class="header-top">
+      <span class="logo" onclick="goHome()">NextG<span>Now</span></span>
+      <div class="header-right">
+        <button class="search-btn" onclick="openSearch()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Search Articles
+        </button>
+      </div>
+    </div>
+    <nav>
+      <div class="nav-item">
+        <button class="nav-link" onclick="applyFilter('6G')">6G
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown">
+          <div class="dropdown-item" onclick="applyFilter('6G')"><span class="dropdown-dot"></span>6G Vision &amp; Architecture</div>
+          <div class="dropdown-item" onclick="applyFilter('6G')"><span class="dropdown-dot"></span>THz Communication</div>
+          <div class="dropdown-item" onclick="applyFilter('6G')"><span class="dropdown-dot"></span>AI-Native Networks</div>
+          <div class="dropdown-item" onclick="applyFilter('6G')"><span class="dropdown-dot"></span>NTN Integration</div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link" onclick="applyFilter('5G')">5G
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown">
+          <div class="dropdown-item" onclick="applyFilter('5G')"><span class="dropdown-dot"></span>5G Core Architecture</div>
+          <div class="dropdown-item" onclick="applyFilter('5G')"><span class="dropdown-dot"></span>5G NR Radio</div>
+          <div class="dropdown-item" onclick="applyFilter('5G')"><span class="dropdown-dot"></span>Network Slicing</div>
+          <div class="dropdown-item" onclick="applyFilter('5G')"><span class="dropdown-dot"></span>5G Advanced (Rel-18)</div>
+        </div>
+      </div>
+      <button class="nav-link" onclick="applyFilter('3GPP')">3GPP Releases</button>
+      <button class="nav-link" onclick="applyFilter('All')">Call Flows</button>
+      <div class="nav-item">
+        <button class="nav-link" onclick="applyFilter('Open RAN')">AI Telecom
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown">
+          <div class="dropdown-item" onclick="applyFilter('Open RAN')"><span class="dropdown-dot"></span>AI-RAN</div>
+          <div class="dropdown-item" onclick="applyFilter('All')"><span class="dropdown-dot"></span>Traffic Prediction</div>
+          <div class="dropdown-item" onclick="applyFilter('All')"><span class="dropdown-dot"></span>Network Automation</div>
+          <div class="dropdown-item" onclick="applyFilter('All')"><span class="dropdown-dot"></span>Fault Detection</div>
+        </div>
+      </div>
+      <button class="nav-link" onclick="scrollTo('articles')">Latest Articles</button>
+      <button class="nav-link" onclick="scrollTo('about')">About</button>
+    </nav>
   </div>
-  <nav>
-    <div class="nav-item">
-      <button class="nav-link" onclick="filterArticles('6G')">6G ▾</button>
-      <div class="dropdown">
-        <a onclick="filterArticles('6G')">6G Vision</a>
-        <a onclick="filterArticles('6G')">THz Communication</a>
-        <a onclick="filterArticles('6G')">AI Native Networks</a>
-        <a onclick="filterArticles('6G')">NTN Integration</a>
-      </div>
-    </div>
-    <div class="nav-item">
-      <button class="nav-link" onclick="filterArticles('5G')">5G ▾</button>
-      <div class="dropdown">
-        <a onclick="filterArticles('5G')">5G Architecture</a>
-        <a onclick="filterArticles('5G')">5G Core</a>
-        <a onclick="filterArticles('5G')">5G NR</a>
-        <a onclick="filterArticles('5G')">Network Slicing</a>
-      </div>
-    </div>
-    <button class="nav-link" onclick="filterArticles('3GPP')">3GPP Releases</button>
-    <button class="nav-link" onclick="filterArticles('All')">Call Flows</button>
-    <div class="nav-item">
-      <button class="nav-link" onclick="filterArticles('All')">AI Telecom ▾</button>
-      <div class="dropdown">
-        <a onclick="filterArticles('Open RAN')">AI-RAN</a>
-        <a onclick="filterArticles('All')">Traffic Prediction</a>
-        <a onclick="filterArticles('All')">Fault Detection</a>
-        <a onclick="filterArticles('All')">Network Automation</a>
-      </div>
-    </div>
-    <button class="nav-link" onclick="scrollToSection('articles')">Latest Articles</button>
-    <button class="nav-link" onclick="scrollToSection('about')">About</button>
-  </nav>
 </header>
 
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-left">
-    <h2 class="hero-title">5G • 6G • Open RAN<br><span>AI-Driven Telecom</span><br>Knowledge</h2>
-    <p class="hero-sub">Deep technical telecom learning platform covering modern wireless technologies, protocols, call flows, and future network innovations.</p>
-    <div class="hero-btns">
-      <button class="btn-primary" onclick="filterArticles('5G')">Explore 5G Topics</button>
-      <button class="btn-outline" onclick="filterArticles('All')">View Call Flows</button>
-    </div>
-  </div>
-  <div class="hero-cards">
-    <div class="hero-card" onclick="filterArticles('5G')">
-      <svg class="hero-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>
-      <h3>5G NR</h3>
-      <p>RRC, NGAP, Registration, PDU Sessions.</p>
-    </div>
-    <div class="hero-card" onclick="filterArticles('6G')">
-      <svg class="hero-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M9 12l2 2 4-4"/></svg>
-      <h3>6G Vision</h3>
-      <p>AI-native networks and THz spectrum.</p>
-    </div>
-    <div class="hero-card" onclick="filterArticles('Open RAN')">
-      <svg class="hero-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-      <h3>Open RAN</h3>
-      <p>O-RAN architecture and interfaces.</p>
-    </div>
-    <div class="hero-card" onclick="filterArticles('All')">
-      <svg class="hero-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 0 20"/><path d="M12 8a4 4 0 0 1 0 8"/><path d="M12 2v20M2 12h20"/></svg>
-      <h3>AI Telecom</h3>
-      <p>AI-driven network automation.</p>
-    </div>
-  </div>
-</div>
-
-<!-- TECH DOMAINS -->
-<section>
-  <h2 class="section-title">Core Technology Domains</h2>
-  <div class="domain-grid">
-    <div class="domain-card" onclick="filterArticles('5G')">
-      <h3>5G Core Architecture</h3>
-      <p>Explore structured deep-dive tutorials on 5G core, AMF, SMF, UPF and more.</p>
-    </div>
-    <div class="domain-card" onclick="filterArticles('6G')">
-      <h3>6G Future Systems</h3>
-      <p>AI-native 6G architecture, THz bands, and integrated sensing.</p>
-    </div>
-    <div class="domain-card" onclick="filterArticles('Open RAN')">
-      <h3>Open RAN Components</h3>
-      <p>O-RAN specifications, RIC, xApps, E2 interface deep dives.</p>
-    </div>
-    <div class="domain-card" onclick="filterArticles('All')">
-      <h3>AI-Native Networks</h3>
-      <p>Machine learning in 5G/6G, traffic prediction, and autonomous networks.</p>
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-dot"></div>
+          Daily Telecom Intelligence
+        </div>
+        <h1 class="hero-title">
+          5G · 6G · Open RAN<br>
+          <span class="grad">AI-Driven Telecom</span><br>
+          Knowledge Hub
+        </h1>
+        <p class="hero-sub">Deep technical telecom learning platform covering modern wireless technologies, protocols, call flows, and future network innovations — explained clearly.</p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="applyFilter('5G')">
+            Explore 5G Topics →
+          </button>
+          <button class="btn-ghost" onclick="applyFilter('All')">
+            View Call Flows
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num" id="totalCount">—</div>
+            <div class="hero-stat-label">Articles Published</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">Daily</div>
+            <div class="hero-stat-label">New Posts at 8AM IST</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">5</div>
+            <div class="hero-stat-label">Topic Categories</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-cards">
+        <div class="hcard" onclick="applyFilter('5G')">
+          <div class="hcard-icon icon-blue">📡</div>
+          <h3>5G NR</h3>
+          <p>RRC, NGAP, Registration flows, PDU Sessions and more.</p>
+        </div>
+        <div class="hcard" onclick="applyFilter('6G')">
+          <div class="hcard-icon icon-purple">🛰️</div>
+          <h3>6G Vision</h3>
+          <p>AI-native networks, THz spectrum and IMT-2030 framework.</p>
+        </div>
+        <div class="hcard" onclick="applyFilter('Open RAN')">
+          <div class="hcard-icon icon-cyan">🔓</div>
+          <h3>Open RAN</h3>
+          <p>O-RAN architecture, RIC, xApps and E2 interfaces.</p>
+        </div>
+        <div class="hcard" onclick="applyFilter('3GPP')">
+          <div class="hcard-icon icon-green">📋</div>
+          <h3>3GPP Specs</h3>
+          <p>Release 17, 18, 19 features explained simply.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- CORE DOMAINS -->
+<div class="domains">
+  <div class="container">
+    <div class="section-label">Core Technology Domains</div>
+    <div class="domain-grid">
+      <div class="dcard" onclick="applyFilter('5G')">
+        <span class="dcard-tag" style="color:#60a5fa">5G Core</span>
+        <h3>5G Core Architecture</h3>
+        <p>AMF, SMF, UPF, PCF — deep dives into every 5G network function.</p>
+        <span class="dcard-arrow">→</span>
+      </div>
+      <div class="dcard" onclick="applyFilter('6G')">
+        <span class="dcard-tag" style="color:#c084fc">6G Future</span>
+        <h3>6G Future Systems</h3>
+        <p>AI-native 6G, THz bands, integrated sensing and communication.</p>
+        <span class="dcard-arrow">→</span>
+      </div>
+      <div class="dcard" onclick="applyFilter('Open RAN')">
+        <span class="dcard-tag" style="color:#fbbf24">Open RAN</span>
+        <h3>Open RAN Components</h3>
+        <p>O-RAN specs, near-RT RIC, xApps and E2 interface deep dives.</p>
+        <span class="dcard-arrow">→</span>
+      </div>
+      <div class="dcard" onclick="applyFilter('All')">
+        <span class="dcard-tag" style="color:#22d3ee">AI Telecom</span>
+        <h3>AI-Native Networks</h3>
+        <p>ML in 5G/6G, traffic prediction, autonomous network operations.</p>
+        <span class="dcard-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- TODAY'S HIGHLIGHT -->
-<div class="highlight-section">
-  <div class="highlight-inner">
-    <div class="highlight-tag">🔥 Today's Highlight</div>
-    <h2 class="highlight-title" id="highlightTitle">Loading today's featured article...</h2>
-    <p class="highlight-sub" id="highlightSub">Fetching the latest telecom insight.</p>
-    <button class="btn-outline" id="highlightBtn" onclick="window.location=document.getElementById('highlightBtn').dataset.url||'#'">Read Today's Update</button>
+<div class="highlight">
+  <div class="container">
+    <div class="hl-inner">
+      <div>
+        <div class="hl-tag">🔥 Today's Highlight</div>
+        <h2 class="hl-title" id="hlTitle">Loading today's featured article...</h2>
+        <p class="hl-sub" id="hlSub">Fetching the latest telecom insight published this morning.</p>
+        <button class="btn-primary" id="hlBtn" style="display:none" onclick="window.location=this.dataset.url">Read Today's Update →</button>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-size:11px;color:var(--txt4);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;font-weight:600">Published</div>
+        <div id="hlDate" style="font-size:22px;font-weight:800;color:var(--txt0)">—</div>
+        <div style="font-size:12px;color:var(--txt3);margin-top:4px">8:00 AM IST</div>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- DAILY UPDATES -->
-<div class="updates-bg">
-<section>
-  <h2 class="section-title">Daily Telecom Updates</h2>
-  <div class="filter-bar" id="updateFilter">
-    <button class="filter-btn active" onclick="setFilter('All',this)">All</button>
-    <button class="filter-btn" onclick="setFilter('5G',this)">5G</button>
-    <button class="filter-btn" onclick="setFilter('6G',this)">6G</button>
-    <button class="filter-btn" onclick="setFilter('3GPP',this)">3GPP</button>
-    <button class="filter-btn" onclick="setFilter('Open RAN',this)">Open RAN</button>
-    <button class="filter-btn" onclick="setFilter('Policy',this)">Policy</button>
+<div class="updates">
+  <div class="container">
+    <div class="section-label">Daily Telecom Updates</div>
+    <div class="filter-bar" id="updFilter">
+      <button class="fbtn active" onclick="updFilter('All',this)">All Topics</button>
+      <button class="fbtn" onclick="updFilter('5G',this)">5G</button>
+      <button class="fbtn" onclick="updFilter('6G',this)">6G</button>
+      <button class="fbtn" onclick="updFilter('3GPP',this)">3GPP</button>
+      <button class="fbtn" onclick="updFilter('Open RAN',this)">Open RAN</button>
+      <button class="fbtn" onclick="updFilter('Policy',this)">Policy</button>
+    </div>
+    <div class="updates-grid" id="updGrid"></div>
   </div>
-  <div class="updates-grid" id="updatesGrid"></div>
-</section>
 </div>
 
 <!-- LATEST ARTICLES -->
-<div class="articles-bg">
-<section id="articles">
-  <h2 class="section-title" id="articlesTitle">Latest Technical Articles</h2>
-  <div class="articles-grid" id="articlesGrid"></div>
-</section>
+<div class="articles" id="articles">
+  <div class="container">
+    <div class="section-label" id="artLabel">Latest Technical Articles</div>
+    <div class="articles-grid" id="artGrid"></div>
+  </div>
 </div>
 
-<!-- 3GPP UPDATES -->
-<section id="3gpp">
-  <h2 class="section-title">Latest 3GPP Updates</h2>
-  <div class="gpp-grid">
-    <div class="gpp-card" onclick="filterArticles('3GPP')"><h4>Release 17 Summary</h4></div>
-    <div class="gpp-card" onclick="filterArticles('3GPP')"><h4>Release 18 Features</h4></div>
-    <div class="gpp-card" onclick="filterArticles('3GPP')"><h4>Release 19 Roadmap</h4></div>
-    <div class="gpp-card" onclick="filterArticles('3GPP')"><h4>Upcoming Study Items</h4></div>
+<!-- 3GPP -->
+<div class="gpp" id="3gpp">
+  <div class="container">
+    <div class="section-label">3GPP Releases</div>
+    <div class="gpp-grid">
+      <div class="gcard" onclick="applyFilter('3GPP')"><h4>Release 17 Summary</h4><span class="gcard-arrow">→</span></div>
+      <div class="gcard" onclick="applyFilter('3GPP')"><h4>Release 18 Features</h4><span class="gcard-arrow">→</span></div>
+      <div class="gcard" onclick="applyFilter('3GPP')"><h4>Release 19 Roadmap</h4><span class="gcard-arrow">→</span></div>
+      <div class="gcard" onclick="applyFilter('3GPP')"><h4>Upcoming Study Items</h4><span class="gcard-arrow">→</span></div>
+    </div>
   </div>
-</section>
+</div>
 
 <!-- ABOUT -->
-<div class="about-bg">
-<section id="about">
-  <h2 class="section-title">About NextGNow</h2>
-  <div class="about-text">
-    <p><strong>NextGNow</strong> is a modern telecom knowledge platform delivering structured learning resources across 5G, 6G, Open RAN, and AI-driven telecom networks.</p>
-    <p>Our mission is to simplify complex telecom technologies through clear explanations, real-world call flows, architecture diagrams, and continuous daily technical updates aligned with latest 3GPP releases.</p>
-    <p>The platform is designed for telecom engineers, researchers, students, and industry professionals who want to stay updated with next-generation wireless innovations.</p>
+<div class="about" id="about">
+  <div class="container">
+    <div class="section-label">About NextGNow</div>
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title" style="margin-bottom:20px">The Telecom Knowledge Platform</h2>
+        <div class="about-text">
+          <p><strong>NextGNow</strong> is a modern telecom knowledge platform delivering structured learning resources across 5G, 6G, Open RAN, and AI-driven telecom networks.</p>
+          <p>Our mission is to simplify complex telecom technologies through clear explanations, real-world call flows, architecture diagrams, and continuous daily technical updates aligned with latest 3GPP releases.</p>
+          <p>Designed for telecom engineers, researchers, students, and industry professionals who want to stay updated with next-generation wireless innovations.</p>
+        </div>
+      </div>
+      <div class="about-cards">
+        <div class="abt-card">
+          <div class="abt-num" id="abtTotal">—</div>
+          <div class="abt-label"><strong>Articles Published</strong>Across 5G, 6G, 3GPP, Open RAN &amp; Policy</div>
+        </div>
+        <div class="abt-card">
+          <div class="abt-num">1</div>
+          <div class="abt-label"><strong>New Article Daily</strong>Published every morning at 8:00 AM IST</div>
+        </div>
+        <div class="abt-card">
+          <div class="abt-num">0</div>
+          <div class="abt-label"><strong>Jargon or Fluff</strong>Plain English explanations only</div>
+        </div>
+      </div>
+    </div>
   </div>
-</section>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <p>NextGNow · NextGen Telecom Knowledge &nbsp;•&nbsp; 5G &nbsp;•&nbsp; 6G &nbsp;•&nbsp; Open RAN &nbsp;•&nbsp; AI Networks</p>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <span class="footer-logo" onclick="goHome()">NextG<span>Now</span></span>
+        <div style="font-size:12px;color:var(--txt4);margin-top:4px">Tomorrow's Telecom, Explained Today</div>
+      </div>
+      <div class="footer-links">
+        <a onclick="goHome()">Home</a>
+        <a onclick="applyFilter('All')">Articles</a>
+        <a onclick="scrollTo('about')">About</a>
+        <a href="mailto:hello@nextgnow.in">Contact</a>
+      </div>
+      <div class="footer-copy">
+        © 2025 NextGNow · NextGNow.in
+      </div>
+    </div>
+  </div>
 </footer>
 
 <!-- SEARCH MODAL -->
-<div class="search-overlay" id="searchOverlay" onclick="closeSearchOutside(event)">
+<div class="search-overlay" id="searchOverlay" onclick="closeSearchOut(event)">
   <div class="search-box">
-    <button class="search-close" onclick="closeSearch()">✕</button>
-    <input class="search-input" id="searchInput" type="text" placeholder="Search articles..." oninput="doSearch(this.value)" autocomplete="off">
+    <div class="search-header">
+      <input class="search-input" id="searchInput" type="text" placeholder="Search articles, topics, technologies..." oninput="doSearch(this.value)" autocomplete="off">
+      <button class="search-close" onclick="closeSearch()">✕</button>
+    </div>
+    <div class="search-hint" id="searchHint">Type to search across all articles...</div>
     <div class="search-results" id="searchResults"></div>
   </div>
 </div>
 
 <script>
-let allArticles = [];
-let currentFilter = 'All';
+let articles = [], currentFilter = 'All';
 
-// ── Load articles ────────────────────────────────────────
 async function init() {
   try {
     const r = await fetch('/articles.json?v=' + Date.now());
     const d = await r.json();
-    allArticles = d.articles || [];
-  } catch(e) { allArticles = []; }
+    articles = d.articles || [];
+  } catch(e) { articles = []; }
   renderHighlight();
   renderUpdates('All');
   renderArticles('All');
-  animateVisitors();
+  updateStats();
+  startVisitors();
 }
 
-// ── Highlight ────────────────────────────────────────────
+function updateStats() {
+  const n = articles.length;
+  document.getElementById('totalCount').textContent = n || '—';
+  document.getElementById('abtTotal').textContent = n || '—';
+}
+
 function renderHighlight() {
-  if (!allArticles.length) return;
-  const a = allArticles[0];
-  document.getElementById('highlightTitle').textContent = a.title;
-  document.getElementById('highlightSub').textContent = a.excerpt || '';
-  const btn = document.getElementById('highlightBtn');
-  btn.dataset.url = a.url;
-  btn.onclick = () => window.location = a.url;
-}
-
-// ── Updates Grid (shows recent 6) ────────────────────────
-function renderUpdates(cat) {
-  const grid = document.getElementById('updatesGrid');
-  const list = (cat === 'All' ? allArticles : allArticles.filter(a => a.category === cat)).slice(0, 6);
-  if (!list.length) {
-    grid.innerHTML = `<div class="empty-msg">No ${cat === 'All' ? '' : cat + ' '}updates yet. Check back tomorrow!</div>`;
+  if (!articles.length) {
+    document.getElementById('hlTitle').textContent = 'First article coming soon — published daily at 8 AM IST';
+    document.getElementById('hlSub').textContent = 'NextGNow publishes one fresh telecom insight every morning. Come back tomorrow!';
     return;
   }
-  grid.innerHTML = list.map(a => `
-    <div class="update-card" onclick="window.location='${a.url}'">
-      <div class="update-date">${a.date}</div>
-      <div class="update-title">${a.title}</div>
-      <button class="btn-sm">Read Update</button>
+  const a = articles[0];
+  document.getElementById('hlTitle').textContent = a.title;
+  document.getElementById('hlSub').textContent = a.excerpt || '';
+  document.getElementById('hlDate').textContent = a.date || '';
+  const btn = document.getElementById('hlBtn');
+  btn.dataset.url = a.url; btn.style.display = 'inline-flex';
+}
+
+function renderUpdates(cat) {
+  const g = document.getElementById('updGrid');
+  const list = (cat === 'All' ? articles : articles.filter(a => a.category === cat)).slice(0, 6);
+  if (!articles.length) {
+    g.innerHTML = `<div class="empty"><div class="empty-icon">📡</div><div class="empty-title">First update coming tomorrow</div><div class="empty-sub">Published every day at 8:00 AM IST</div></div>`;
+    return;
+  }
+  if (!list.length) {
+    g.innerHTML = `<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">No ${cat} updates yet</div><div class="empty-sub">Check back tomorrow!</div></div>`;
+    return;
+  }
+  g.innerHTML = list.map(a => `
+    <div class="ucard" onclick="location.href='${a.url}'">
+      <div class="ucard-date">${a.date}</div>
+      <div class="ucard-title">${a.title}</div>
+      <div class="ucard-foot">
+        <span class="ucard-cat ${catCls(a.category)}">${a.category}</span>
+        <span class="read-link">Read → </span>
+      </div>
     </div>`).join('');
 }
 
-// ── Articles Grid ────────────────────────────────────────
 function renderArticles(cat) {
-  const grid = document.getElementById('articlesGrid');
-  const title = document.getElementById('articlesTitle');
-  const list = cat === 'All' ? allArticles : allArticles.filter(a => a.category === cat);
-  title.textContent = cat === 'All' ? 'Latest Technical Articles' : cat + ' Articles';
-  if (!allArticles.length) {
-    grid.innerHTML = '<div class="empty-msg">First article coming soon — published every morning at 8:00 AM IST.</div>';
+  const g = document.getElementById('artGrid');
+  const lbl = document.getElementById('artLabel');
+  const list = cat === 'All' ? articles : articles.filter(a => a.category === cat);
+  lbl.textContent = cat === 'All' ? 'Latest Technical Articles' : cat + ' Articles';
+  if (!articles.length) {
+    g.innerHTML = `<div class="empty"><div class="empty-icon">✍️</div><div class="empty-title">First article coming soon</div><div class="empty-sub">Published every morning at 8:00 AM IST</div></div>`;
     return;
   }
   if (!list.length) {
-    grid.innerHTML = `<div class="empty-msg">No ${cat} articles yet. Check back soon!</div>`;
+    g.innerHTML = `<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">No ${cat} articles yet</div><div class="empty-sub">More content coming soon!</div></div>`;
     return;
   }
-  grid.innerHTML = list.map(a => `
-    <a class="article-card" href="${a.url}">
-      <span class="article-cat ${catClass(a.category)}">${a.category}</span>
-      <div class="article-title">${a.title}</div>
-      <div class="article-excerpt">${(a.excerpt||'').substring(0,120)}...</div>
-      <div class="article-meta">${a.date} · 5 min read</div>
+  g.innerHTML = list.map(a => `
+    <a class="acard" href="${a.url}">
+      <span class="acard-cat ${catCls(a.category)}">${a.category}</span>
+      <div class="acard-title">${a.title}</div>
+      <div class="acard-excerpt">${(a.excerpt||'').substring(0,130)}${a.excerpt && a.excerpt.length > 130 ? '...' : ''}</div>
+      <div class="acard-foot">
+        <span class="acard-date">${a.date} · 5 min</span>
+        <span class="acard-read">Read →</span>
+      </div>
     </a>`).join('');
 }
 
-// ── Filter ───────────────────────────────────────────────
-function filterArticles(cat) {
+function applyFilter(cat) {
   currentFilter = cat;
   renderUpdates(cat);
   renderArticles(cat);
-  scrollToSection('articles');
-  // update filter buttons
-  document.querySelectorAll('#updateFilter .filter-btn').forEach(b => {
-    b.classList.toggle('active', b.textContent.trim() === cat || (cat === 'All' && b.textContent.trim() === 'All'));
+  document.querySelectorAll('#updFilter .fbtn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim().replace(' Topics','') === cat || (cat==='All' && b.textContent.trim()==='All Topics'));
   });
+  setTimeout(() => document.getElementById('articles').scrollIntoView({behavior:'smooth',block:'start'}), 80);
 }
 
-function setFilter(cat, btn) {
-  document.querySelectorAll('#updateFilter .filter-btn').forEach(b => b.classList.remove('active'));
+function updFilter(cat, btn) {
+  document.querySelectorAll('#updFilter .fbtn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   renderUpdates(cat);
   renderArticles(cat);
 }
 
-// ── Search ───────────────────────────────────────────────
+function goHome() { window.scrollTo({top:0,behavior:'smooth'}); applyFilter('All'); }
+function scrollTo(id) { const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+
 function openSearch() {
   document.getElementById('searchOverlay').classList.add('open');
-  setTimeout(() => document.getElementById('searchInput').focus(), 100);
+  setTimeout(() => document.getElementById('searchInput').focus(), 80);
 }
 function closeSearch() { document.getElementById('searchOverlay').classList.remove('open'); }
-function closeSearchOutside(e) { if (e.target === document.getElementById('searchOverlay')) closeSearch(); }
+function closeSearchOut(e) { if (e.target===document.getElementById('searchOverlay')) closeSearch(); }
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeSearch(); if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();} });
+
 function doSearch(q) {
-  const results = document.getElementById('searchResults');
-  if (!q.trim()) { results.innerHTML = ''; return; }
-  const matches = allArticles.filter(a =>
+  const res = document.getElementById('searchResults');
+  const hint = document.getElementById('searchHint');
+  if (!q.trim()) { res.innerHTML=''; hint.textContent='Type to search across all articles...'; return; }
+  const matches = articles.filter(a =>
     a.title.toLowerCase().includes(q.toLowerCase()) ||
     (a.excerpt||'').toLowerCase().includes(q.toLowerCase()) ||
     a.category.toLowerCase().includes(q.toLowerCase())
-  ).slice(0, 6);
-  if (!matches.length) { results.innerHTML = '<div style="color:#475569;font-size:13px;padding:8px">No results found.</div>'; return; }
-  results.innerHTML = matches.map(a => `
-    <a class="search-result-item" href="${a.url}">
-      <div class="sr-title">${a.title}</div>
-      <div class="sr-meta">${a.category} · ${a.date}</div>
-    </a>`).join('');
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSearch(); });
-
-// ── Scroll helpers ───────────────────────────────────────
-function scrollToSection(id) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  ).slice(0,8);
+  hint.textContent = matches.length ? `${matches.length} result${matches.length!==1?'s':''} found` : '';
+  res.innerHTML = !matches.length
+    ? `<div class="no-results">No results for "${q}". Try a different keyword.</div>`
+    : matches.map(a => `
+        <a class="sresult" href="${a.url}">
+          <div class="sr-title">${a.title}</div>
+          <div class="sr-meta"><span class="${catCls(a.category)}" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-right:8px">${a.category}</span>${a.date}</div>
+        </a>`).join('');
 }
 
-// ── Live visitor animation ───────────────────────────────
+function catCls(c) {
+  return {'5G':'cat-5g','6G':'cat-6g','3GPP':'cat-3gpp','Open RAN':'cat-oran','Policy':'cat-policy'}[c]||'cat-ai';
+}
+
 const countries = [
-  {flag:'🇮🇳', name:'India', base:64},
-  {flag:'🇺🇸', name:'USA', base:28},
-  {flag:'🇩🇪', name:'Germany', base:14},
-  {flag:'🇯🇵', name:'Japan', base:9},
-  {flag:'🇬🇧', name:'UK', base:7}
+  {f:'🇮🇳',n:'India',b:64},{f:'🇺🇸',n:'USA',b:28},{f:'🇩🇪',n:'Germany',b:14},{f:'🇯🇵',n:'Japan',b:9},{f:'🇬🇧',n:'UK',b:7}
 ];
-function animateVisitors() {
-  const rows = document.getElementById('visitorRows');
+function startVisitors() {
   function update() {
-    const total = countries.reduce((s,c) => s + c.base + Math.floor(Math.random()*5), 0);
+    const vals = countries.map(c => c.b + Math.floor(Math.random()*4));
+    const total = vals.reduce((s,v)=>s+v,0);
     document.getElementById('liveCount').textContent = total;
-    rows.innerHTML = countries.map(c => {
-      const n = c.base + Math.floor(Math.random()*5);
-      const pct = Math.round((n/total)*100);
-      return `<div class="visitor-row"><span>${c.flag} ${c.name}</span><span>${n}</span></div>
-              <div class="visitor-bar"><div class="visitor-bar-fill" style="width:${pct}%"></div></div>`;
+    document.getElementById('vpRows').innerHTML = countries.map((c,i) => {
+      const pct = Math.round((vals[i]/total)*100);
+      return `<div class="vp-row"><span>${c.f} ${c.n}</span><span style="color:var(--txt1);font-weight:600">${vals[i]}</span></div>
+              <div class="vp-bar-wrap"><div class="vp-bar" style="width:${pct}%"></div></div>`;
     }).join('');
   }
-  update();
-  setInterval(update, 5000);
-}
-
-// ── Category CSS class ───────────────────────────────────
-function catClass(c) {
-  return {'5G':'cat-5g','6G':'cat-6g','3GPP':'cat-3gpp','Open RAN':'cat-oran','Policy':'cat-policy'}[c] || 'cat-ai';
+  update(); setInterval(update, 5000);
 }
 
 init();
