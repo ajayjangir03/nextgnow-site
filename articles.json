@@ -4,11 +4,11 @@
       "title": "5G Registration Call Flow",
       "slug": "5g-registration-call-flow",
       "url": "https://nextgnow.in/articles/5g-registration-call-flow.html",
-      "category": "5G",
-      "excerpt": "The 5G registration call flow is the secure handshake between your device and network, authenticating your phone and establishing encrypted connectivity.",
+      "category": "Call Flow",
+      "excerpt": "Complete 5G Registration call flow with NAS authentication, security mode setup, and UE context establishment across AMF, AUSF, and UDM.",
       "date": "Apr 19, 2026",
       "tags": [
-        "5G",
+        "Call Flow",
         "telecom"
       ]
     },
