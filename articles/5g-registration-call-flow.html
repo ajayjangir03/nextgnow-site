@@ -3,1185 +3,575 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>5G Registration Call Flow — NextGNow</title>
+<title>Article — NextGNow</title>
+<meta name="description" content="NextGNow telecom article">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Lora:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg:       #06091A;
-    --bg2:      #0C1028;
-    --bg3:      #111830;
-    --border:   rgba(255,255,255,0.07);
-    --border2:  rgba(255,255,255,0.12);
-    --cyan:     #00D4FF;
-    --cyan-dim: rgba(0,212,255,0.12);
-    --orange:   #FF6B35;
-    --orange-dim: rgba(255,107,53,0.12);
-    --txt:      #E8EEFF;
-    --txt2:     #7A87A4;
-    --txt3:     #4A5568;
-    --green:    #00E5A0;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--txt);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#030712;color:#e2e8f0;font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden}
+:root{
+  --bg0:#030712;--bg1:#0a0f1e;--bg2:#0f172a;--bg3:#1e293b;
+  --border:#1e293b;--border2:#334155;
+  --blue:#3b82f6;--blue-dim:rgba(59,130,246,.12);
+  --cyan:#06b6d4;--cyan-dim:rgba(6,182,212,.1);
+  --purple:#8b5cf6;--purple-dim:rgba(139,92,246,.1);
+  --green:#10b981;--green-dim:rgba(16,185,129,.1);
+  --orange:#f59e0b;--orange-dim:rgba(245,158,11,.1);
+  --red:#ef4444;--red-dim:rgba(239,68,68,.1);
+  --txt0:#f1f5f9;--txt1:#cbd5e1;--txt2:#94a3b8;--txt3:#64748b;--txt4:#475569;
+}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(59,130,246,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.03) 1px,transparent 1px);
+  background-size:48px 48px;}
 
-  /* Background grid */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,212,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,255,0.025) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
+/* ── PROGRESS BAR ── */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#3b82f6,#8b5cf6);z-index:999;transition:width .1s linear}
 
-  /* ── READING PROGRESS BAR ── */
-  #progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    width: 0%;
-    background: linear-gradient(90deg, var(--cyan), var(--orange));
-    z-index: 999;
-    transition: width 0.1s linear;
-  }
+/* ── HEADER ── */
+header{position:sticky;top:0;z-index:150;background:rgba(3,7,18,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.logo-svg{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
+.logo-text{font-size:20px;font-weight:800;color:var(--txt0);letter-spacing:-.5px;line-height:1}
+.logo-text span{color:var(--blue)}
+.header-right{display:flex;align-items:center;gap:10px}
+.social-icons{display:flex;gap:6px}
+.social-icon{width:32px;height:32px;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--txt3);text-decoration:none}
+.social-icon:hover{border-color:var(--blue);background:var(--blue-dim);color:var(--blue)}
+.social-icon svg{width:14px;height:14px}
+.back-btn{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border2);color:var(--txt2);padding:7px 14px;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none}
+.back-btn:hover{border-color:var(--blue);color:var(--txt0)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:var(--bg2);border:1px solid var(--border2);border-radius:8px}
+.hamburger span{width:20px;height:2px;background:var(--txt2);border-radius:2px;transition:all .3s;display:block}
+nav{display:flex;gap:2px;padding:8px 0;flex-wrap:wrap}
+.nav-item{position:relative}
+.nav-link{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:500;color:var(--txt2);cursor:pointer;padding:6px 12px;border-radius:8px;background:none;border:none;font-family:'Inter',sans-serif;transition:all .15s;white-space:nowrap}
+.nav-link:hover{color:var(--txt0);background:var(--bg3)}
+.nav-link .chevron{width:10px;height:10px;opacity:.5;transition:transform .2s}
+.nav-item:hover .nav-link .chevron{transform:rotate(180deg)}
+.dropdown{position:absolute;top:calc(100% + 6px);left:0;background:var(--bg1);border:1px solid var(--border2);border-radius:12px;padding:8px;min-width:210px;display:none;z-index:300;box-shadow:0 16px 48px rgba(0,0,0,.6)}
+.nav-item:hover .dropdown{display:block}
+.dropdown-item{display:flex;align-items:center;gap:10px;padding:9px 12px;font-size:13px;color:var(--txt2);text-decoration:none;border-radius:8px;transition:all .15s;cursor:pointer;white-space:nowrap}
+.dropdown-item:hover{color:var(--txt0);background:var(--bg3)}
+.dd-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);flex-shrink:0}
+.mobile-nav{display:none;flex-direction:column;background:var(--bg1);border-bottom:1px solid var(--border);padding:12px 24px 16px;gap:4px}
+.mobile-nav.open{display:flex}
+.mobile-nav-item{padding:10px 12px;font-size:14px;color:var(--txt2);cursor:pointer;border-radius:8px;transition:all .15s;font-weight:500}
+.mobile-nav-item:hover{color:var(--txt0);background:var(--bg3)}
+.mobile-section{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt4);padding:10px 12px 4px;margin-top:6px}
 
-  /* ── NAV ── */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(6,9,26,0.92);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 26px;
-    letter-spacing: -0.5px;
-    color: var(--txt);
-    text-decoration: none;
-  }
-  .logo span { color: var(--cyan); }
-  .nav-links {
-    display: flex;
-    gap: 24px;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--txt2);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: color .2s;
-  }
-  .nav-links a:hover { color: var(--cyan); }
-  .nav-cta {
-    background: var(--cyan);
-    color: #000;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 4px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: opacity .2s;
-  }
-  .nav-cta:hover { opacity: 0.85; }
+/* ── LAYOUT ── */
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.article-layout{display:grid;grid-template-columns:1fr 280px;gap:48px;padding:40px 0 80px;align-items:start}
 
-  /* ── TICKER ── */
-  .ticker-wrap {
-    background: var(--bg2);
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  }
-  .ticker-label {
-    background: var(--cyan);
-    color: #000;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    padding: 0 14px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-  }
-  .ticker-track {
-    display: flex;
-    animation: ticker 30s linear infinite;
-    white-space: nowrap;
-    padding-left: 40px;
-  }
-  .ticker-track span {
-    font-size: 12px;
-    color: var(--txt2);
-    padding: 0 40px 0 0;
-  }
-  .ticker-track span::before {
-    content: '◆ ';
-    color: var(--cyan);
-    font-size: 8px;
-    margin-right: 8px;
-  }
-  @keyframes ticker {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
+/* ── ARTICLE MAIN ── */
+.article-main{}
 
-  /* ── WRAPPER ── */
-  .wrapper { max-width: 1180px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+/* Breadcrumb */
+.breadcrumb{display:flex;align-items:center;gap:8px;padding:24px 0 0;font-size:12px;color:var(--txt3);font-family:'JetBrains Mono',monospace;flex-wrap:wrap}
+.breadcrumb a{color:var(--txt3);text-decoration:none;transition:color .15s;cursor:pointer}
+.breadcrumb a:hover{color:var(--blue)}
+.breadcrumb span{color:var(--txt4)}
 
-  /* ── BREADCRUMB ── */
-  .breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 24px 0 0;
-    font-size: 12px;
-    color: var(--txt3);
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .breadcrumb a { color: var(--txt3); text-decoration: none; transition: color .15s; }
-  .breadcrumb a:hover { color: var(--cyan); }
-  .breadcrumb span { color: var(--txt3); }
-  .breadcrumb .current { color: var(--txt2); }
+/* Article header */
+.article-header{margin-bottom:36px;padding-top:24px}
+.article-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.badge{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:6px}
+.badge-5g{background:var(--blue-dim);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.badge-6g{background:var(--purple-dim);color:#c084fc;border:1px solid rgba(139,92,246,.2)}
+.badge-3gpp{background:var(--green-dim);color:#34d399;border:1px solid rgba(16,185,129,.2)}
+.badge-oran{background:var(--orange-dim);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.badge-policy{background:var(--red-dim);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.badge-callflow{background:var(--cyan-dim);color:#22d3ee;border:1px solid rgba(6,182,212,.2)}
+.badge-default{background:var(--blue-dim);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.live-dot{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#22c55e;font-family:'JetBrains Mono',monospace}
+.live-dot::before{content:'';width:6px;height:6px;background:#22c55e;border-radius:50%;animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 
-  /* ── ARTICLE LAYOUT ── */
-  .article-layout {
-    display: grid;
-    grid-template-columns: 1fr 260px;
-    gap: 60px;
-    padding: 40px 0 80px;
-    align-items: start;
-  }
+.article-title{font-size:40px;font-weight:800;line-height:1.15;letter-spacing:-.6px;color:var(--txt0);margin-bottom:18px}
+.article-subtitle{font-size:17px;color:var(--txt2);line-height:1.7;max-width:680px;margin-bottom:28px;font-weight:300}
 
-  /* ── ARTICLE MAIN ── */
-  .article-main {}
+/* Byline */
+.article-byline{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;gap:12px}
+.author-info{display:flex;align-items:center;gap:12px}
+.author-avatar{width:36px;height:36px;border-radius:50%;background:var(--blue-dim);border:1px solid rgba(59,130,246,.3);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--blue);flex-shrink:0}
+.author-name{font-size:13px;font-weight:600;color:var(--txt0)}
+.author-role{font-size:11px;color:var(--txt3);margin-top:2px}
+.share-row{display:flex;align-items:center;gap:8px}
+.share-label{font-size:11px;color:var(--txt3);font-family:'JetBrains Mono',monospace}
+.share-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);color:var(--txt2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s}
+.share-btn:hover{background:var(--blue-dim);border-color:rgba(59,130,246,.3);color:var(--blue)}
+.share-btn svg{width:14px;height:14px}
 
-  /* Header */
-  .article-header { margin-bottom: 40px; }
-  .article-eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .badge {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 3px;
-  }
-  .badge-cyan { background: var(--cyan-dim); color: var(--cyan); border: 1px solid rgba(0,212,255,0.2); }
-  .badge-orange { background: var(--orange-dim); color: var(--orange); border: 1px solid rgba(255,107,53,0.2); }
-  .badge-green { background: rgba(0,229,160,0.1); color: var(--green); border: 1px solid rgba(0,229,160,0.2); }
-  .article-meta-top {
-    font-size: 12px;
-    color: var(--txt3);
-    font-family: 'JetBrains Mono', monospace;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .meta-dot { color: var(--border2); }
+/* Hero visual */
+.article-hero-visual{background:var(--bg2);border:1px solid var(--border);border-radius:12px;height:220px;display:flex;align-items:center;justify-content:center;margin-bottom:40px;overflow:hidden;position:relative}
+.hero-visual-bg{position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(59,130,246,.1) 0%,transparent 60%),radial-gradient(circle at 70% 50%,rgba(139,92,246,.07) 0%,transparent 50%)}
+.hero-label{position:relative;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt3);text-align:center;letter-spacing:.1em;text-transform:uppercase}
 
-  .article-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 54px;
-    font-weight: 900;
-    line-height: 0.95;
-    letter-spacing: -1px;
-    color: var(--txt);
-    margin-bottom: 22px;
-    max-width: 700px;
-  }
-  .article-title em { color: var(--cyan); font-style: normal; }
+/* Article body */
+.article-body{font-family:'Lora',serif;font-size:17px;line-height:1.85;color:#c8d4e8;max-width:720px}
+.article-body p{margin-bottom:22px}
+.article-body h2{font-family:'Inter',sans-serif;font-size:24px;font-weight:700;color:var(--txt0);margin:44px 0 14px;letter-spacing:-.3px;display:flex;align-items:center;gap:10px}
+.article-body h2::before{content:'';display:inline-block;width:4px;height:20px;background:var(--blue);border-radius:2px;flex-shrink:0}
+.article-body h3{font-family:'Inter',sans-serif;font-size:18px;font-weight:600;color:var(--txt0);margin:32px 0 12px}
+.article-body ul{margin:0 0 22px 20px;display:flex;flex-direction:column;gap:8px}
+.article-body ol{margin:0 0 22px 20px;display:flex;flex-direction:column;gap:8px}
+.article-body li{color:#b0bec5;line-height:1.7;font-size:16px}
+.article-body strong{color:var(--txt0);font-weight:600}
+.article-body em{color:var(--txt1)}
+.article-body code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--bg3);color:#60a5fa;padding:2px 8px;border-radius:4px}
+.article-body table{width:100%;border-collapse:collapse;margin:28px 0;font-family:'Inter',sans-serif;font-size:14px}
+.article-body th{background:var(--bg3);padding:10px 14px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);border-bottom:1px solid var(--border2)}
+.article-body td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--txt2);vertical-align:top}
+.article-body tr:hover td{background:rgba(255,255,255,.02)}
+.article-body td:first-child{color:var(--txt0);font-weight:500}
 
-  .article-subtitle {
-    font-size: 18px;
-    color: var(--txt2);
-    line-height: 1.65;
-    max-width: 620px;
-    margin-bottom: 28px;
-    font-weight: 300;
-  }
+/* Callout boxes */
+.callout{border-radius:10px;padding:18px 22px;margin:28px 0}
+.callout-info{background:var(--blue-dim);border-left:3px solid var(--blue)}
+.callout-tip{background:var(--green-dim);border-left:3px solid var(--green)}
+.callout-warn{background:var(--orange-dim);border-left:3px solid var(--orange)}
+.callout p{font-family:'Inter',sans-serif;font-size:14px;color:var(--txt2);margin:0;line-height:1.6}
+.callout strong{color:var(--txt0)}
 
-  /* Author + share row */
-  .article-byline {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 40px;
-  }
-  .author-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .author-avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: var(--cyan-dim);
-    border: 1px solid rgba(0,212,255,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--cyan);
-  }
-  .author-name {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--txt);
-  }
-  .author-role {
-    font-size: 11px;
-    color: var(--txt3);
-    margin-top: 1px;
-  }
-  .share-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .share-label {
-    font-size: 11px;
-    color: var(--txt3);
-    font-family: 'JetBrains Mono', monospace;
-    margin-right: 4px;
-  }
-  .share-btn {
-    width: 32px;
-    height: 32px;
-    border-radius: 4px;
-    border: 1px solid var(--border2);
-    background: transparent;
-    color: var(--txt2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all .15s;
-    font-size: 13px;
-  }
-  .share-btn:hover {
-    background: var(--bg3);
-    color: var(--cyan);
-    border-color: rgba(0,212,255,0.3);
-  }
+/* Key takeaways */
+.takeaways{background:var(--bg2);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:22px 26px;margin:44px 0 0}
+.takeaways-label{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.takeaways ul{margin:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.takeaways li{font-family:'Inter',sans-serif;font-size:14px;color:var(--txt2);display:flex;align-items:flex-start;gap:10px;line-height:1.6}
+.takeaways li::before{content:'→';color:var(--green);flex-shrink:0}
 
-  /* ── HERO VISUAL ── */
-  .article-hero-visual {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 40px;
-    overflow: hidden;
-    position: relative;
-  }
-  .hero-visual-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 25% 50%, rgba(0,212,255,0.12) 0%, transparent 55%),
-      radial-gradient(circle at 75% 50%, rgba(255,107,53,0.08) 0%, transparent 50%);
-  }
-  .hero-visual-content {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    gap: 60px;
-  }
-  .signal-tower {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-  .tower-waves {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
-  .wave-arc {
-    border: 1.5px solid var(--cyan);
-    border-bottom: none;
-    border-radius: 100px 100px 0 0;
-    opacity: 0;
-    animation: wave-fade 2s ease-out infinite;
-  }
-  .wave-arc:nth-child(1) { width: 24px; height: 12px; animation-delay: 0s; }
-  .wave-arc:nth-child(2) { width: 44px; height: 22px; animation-delay: 0.3s; }
-  .wave-arc:nth-child(3) { width: 66px; height: 33px; animation-delay: 0.6s; }
-  @keyframes wave-fade {
-    0%   { opacity: 0; }
-    30%  { opacity: 0.8; }
-    100% { opacity: 0; }
-  }
-  .tower-body {
-    width: 6px;
-    height: 60px;
-    background: linear-gradient(to bottom, var(--cyan), rgba(0,212,255,0.2));
-    border-radius: 3px;
-  }
-  .tower-base {
-    width: 40px;
-    height: 4px;
-    background: var(--txt3);
-    border-radius: 2px;
-    margin-top: 4px;
-  }
-  .spec-tags {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .spec-tag {
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: 4px;
-    padding: 8px 16px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--txt2);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .spec-tag-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--cyan);
-    flex-shrink: 0;
-  }
-  .spec-tag-dot.orange { background: var(--orange); }
-  .spec-tag-dot.green  { background: var(--green); }
+/* ── SIDEBAR ── */
+.article-sidebar{position:sticky;top:80px;display:flex;flex-direction:column;gap:20px}
+.sidebar-card{background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:18px}
+.sidebar-title{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
 
-  /* ── ARTICLE BODY ── */
-  .article-body {
-    font-family: 'Lora', serif;
-    font-size: 17px;
-    line-height: 1.85;
-    color: #C8D4E8;
-    max-width: 680px;
-  }
-  .article-body p { margin-bottom: 24px; }
-  .article-body p:last-child { margin-bottom: 0; }
+/* TOC */
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+.toc-item a{display:block;font-size:13px;color:var(--txt2);text-decoration:none;padding:6px 10px;border-radius:6px;line-height:1.4;transition:all .15s;border-left:2px solid transparent}
+.toc-item a:hover,.toc-item.active a{color:var(--blue);background:var(--blue-dim);border-left-color:var(--blue)}
 
-  .article-body h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--txt);
-    margin: 48px 0 16px;
-    letter-spacing: -0.3px;
-  }
-  .article-body h2::before {
-    content: '';
-    display: inline-block;
-    width: 4px;
-    height: 22px;
-    background: var(--cyan);
-    border-radius: 2px;
-    margin-right: 12px;
-    vertical-align: middle;
-    position: relative;
-    top: -2px;
-  }
+/* Stat card */
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}
+.stat-row:last-child{border-bottom:none}
+.stat-key{color:var(--txt3)}
+.stat-val{color:var(--txt0);font-family:'JetBrains Mono',monospace;font-size:11px}
+.stat-val.blue{color:var(--blue)}
 
-  .article-body h3 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--txt);
-    margin: 32px 0 12px;
-    letter-spacing: -0.2px;
-  }
+/* Newsletter */
+.sidebar-newsletter{background:var(--bg1);border:1px solid var(--border);border-top:2px solid var(--blue);border-radius:0 0 12px 12px;padding:18px;text-align:center}
+.sidebar-newsletter h4{font-size:16px;font-weight:700;color:var(--txt0);margin-bottom:6px}
+.sidebar-newsletter h4 span{color:var(--blue)}
+.sidebar-newsletter p{font-size:12px;color:var(--txt3);margin-bottom:12px;line-height:1.5}
+.sidebar-input{width:100%;background:var(--bg2);border:1px solid var(--border2);color:var(--txt0);font-family:'Inter',sans-serif;font-size:13px;padding:9px 12px;border-radius:8px;outline:none;margin-bottom:8px;transition:border-color .2s}
+.sidebar-input:focus{border-color:var(--blue)}
+.sidebar-input::placeholder{color:var(--txt3)}
+.sidebar-sub-btn{width:100%;background:var(--blue);color:#fff;border:none;font-family:'Inter',sans-serif;font-weight:600;font-size:13px;padding:9px;border-radius:8px;cursor:pointer;transition:opacity .2s}
+.sidebar-sub-btn:hover{opacity:.85}
 
-  /* Pull quote */
-  .pull-quote {
-    border-left: 3px solid var(--cyan);
-    padding: 20px 28px;
-    margin: 40px 0;
-    background: var(--bg2);
-    border-radius: 0 6px 6px 0;
-    font-family: 'Lora', serif;
-    font-size: 20px;
-    font-style: italic;
-    color: var(--txt);
-    line-height: 1.6;
-    font-weight: 400;
-  }
-  .pull-quote cite {
-    display: block;
-    font-size: 12px;
-    font-style: normal;
-    color: var(--txt3);
-    margin-top: 12px;
-    font-family: 'JetBrains Mono', monospace;
-  }
+/* Related */
+.related{padding:48px 0;border-top:1px solid var(--border)}
+.related-title{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.related-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rcard{background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:20px;cursor:pointer;transition:all .2s;text-decoration:none;display:block}
+.rcard:hover{border-color:var(--border2);transform:translateY(-2px)}
+.rcard-cat{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:5px;display:inline-block;margin-bottom:10px}
+.rcard-title{font-size:14px;font-weight:600;color:var(--txt0);line-height:1.4;margin-bottom:8px;transition:color .15s}
+.rcard:hover .rcard-title{color:#60a5fa}
+.rcard-date{font-size:11px;color:var(--txt4)}
 
-  /* Key concept box */
-  .key-concept {
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-top: 3px solid var(--orange);
-    border-radius: 0 0 6px 6px;
-    padding: 20px 24px;
-    margin: 36px 0;
-  }
-  .key-concept-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--orange);
-    margin-bottom: 10px;
-  }
-  .key-concept p {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--txt2);
-    line-height: 1.7;
-    margin: 0 !important;
-  }
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:28px 0}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-logo{font-size:16px;font-weight:800;color:var(--txt0);cursor:pointer;letter-spacing:-.3px}
+.footer-logo span{color:var(--blue)}
+.footer-copy{font-size:12px;color:var(--txt4)}
 
-  /* Analogy highlight */
-  .analogy-box {
-    background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(0,212,255,0.02));
-    border: 1px solid rgba(0,212,255,0.15);
-    border-radius: 6px;
-    padding: 22px 26px;
-    margin: 36px 0;
-    position: relative;
-  }
-  .analogy-box::before {
-    content: '"';
-    position: absolute;
-    top: -8px;
-    left: 20px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 60px;
-    color: var(--cyan);
-    opacity: 0.4;
-    line-height: 1;
-  }
-  .analogy-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--cyan);
-    margin-bottom: 10px;
-  }
-  .analogy-box p {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    color: var(--txt2);
-    line-height: 1.7;
-    margin: 0 !important;
-  }
+/* Back to top */
+#back-top{position:fixed;bottom:28px;right:28px;width:40px;height:40px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:all .25s;z-index:50;color:var(--txt2);font-size:16px}
+#back-top.visible{opacity:1;transform:translateY(0)}
+#back-top:hover{border-color:var(--blue);color:var(--blue)}
 
-  /* Spec table */
-  .spec-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 32px 0;
-    font-size: 14px;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .spec-table th {
-    background: var(--bg3);
-    padding: 10px 16px;
-    text-align: left;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--txt3);
-    border-bottom: 1px solid var(--border2);
-  }
-  .spec-table th:first-child { border-radius: 4px 0 0 0; }
-  .spec-table th:last-child  { border-radius: 0 4px 0 0; }
-  .spec-table td {
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border);
-    color: var(--txt2);
-    vertical-align: top;
-  }
-  .spec-table tr:last-child td { border-bottom: none; }
-  .spec-table tr:hover td { background: rgba(255,255,255,0.02); }
-  .spec-table td:first-child { color: var(--txt); font-weight: 500; }
-  .spec-table td.highlight { color: var(--cyan); font-family: 'JetBrains Mono', monospace; font-size: 13px; }
-
-  /* Takeaway box */
-  .takeaway {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--green);
-    border-radius: 0 6px 6px 0;
-    padding: 24px 28px;
-    margin: 48px 0 0;
-  }
-  .takeaway-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--green);
-    margin-bottom: 12px;
-  }
-  .takeaway ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .takeaway li {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--txt2);
-    line-height: 1.6;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  .takeaway li::before {
-    content: '→';
-    color: var(--green);
-    font-size: 13px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  /* ── SIDEBAR ── */
-  .article-sidebar {
-    position: sticky;
-    top: 80px;
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-
-  /* Table of Contents */
-  .toc {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 20px;
-  }
-  .toc-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--txt3);
-    margin-bottom: 14px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-  }
-  .toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
-  .toc-item a {
-    display: block;
-    font-size: 13px;
-    color: var(--txt2);
-    text-decoration: none;
-    padding: 6px 10px;
-    border-radius: 4px;
-    line-height: 1.4;
-    transition: all .15s;
-    border-left: 2px solid transparent;
-  }
-  .toc-item a:hover,
-  .toc-item.active a {
-    color: var(--cyan);
-    background: var(--cyan-dim);
-    border-left-color: var(--cyan);
-  }
-
-  /* Quick stats card */
-  .sidebar-stats {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 20px;
-  }
-  .sidebar-stats-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--txt3);
-    margin-bottom: 14px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-  }
-  .stat-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 12px;
-  }
-  .stat-row:last-child { border-bottom: none; }
-  .stat-key { color: var(--txt3); }
-  .stat-val { color: var(--txt); font-family: 'JetBrains Mono', monospace; font-size: 11px; }
-  .stat-val.cyan { color: var(--cyan); }
-
-  /* Sidebar newsletter */
-  .sidebar-newsletter {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-top: 2px solid var(--cyan);
-    border-radius: 0 0 6px 6px;
-    padding: 20px;
-    text-align: center;
-  }
-  .sidebar-newsletter h4 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--txt);
-    margin-bottom: 8px;
-  }
-  .sidebar-newsletter h4 span { color: var(--cyan); }
-  .sidebar-newsletter p { font-size: 12px; color: var(--txt3); margin-bottom: 14px; line-height: 1.5; }
-  .sidebar-input {
-    width: 100%;
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    color: var(--txt);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    padding: 10px 12px;
-    border-radius: 4px;
-    outline: none;
-    margin-bottom: 8px;
-    transition: border-color .2s;
-  }
-  .sidebar-input::placeholder { color: var(--txt3); }
-  .sidebar-input:focus { border-color: var(--cyan); }
-  .sidebar-btn {
-    width: 100%;
-    background: var(--cyan);
-    color: #000;
-    border: none;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 13px;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: opacity .2s;
-  }
-  .sidebar-btn:hover { opacity: 0.85; }
-
-  /* ── RELATED ARTICLES ── */
-  .related-section {
-    padding: 60px 0;
-    border-top: 1px solid var(--border);
-  }
-  .related-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 24px;
-  }
-  .related-header h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--txt3);
-  }
-  .view-all {
-    font-size: 12px;
-    color: var(--cyan);
-    text-decoration: none;
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .related-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  .related-card {
-    background: var(--bg);
-    padding: 24px;
-    cursor: pointer;
-    transition: background .15s;
-  }
-  .related-card:hover { background: var(--bg2); }
-  .rc-badge { margin-bottom: 12px; }
-  .rc-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.15;
-    color: var(--txt);
-    margin-bottom: 10px;
-    transition: color .15s;
-  }
-  .related-card:hover .rc-title { color: var(--cyan); }
-  .rc-excerpt {
-    font-size: 13px;
-    color: var(--txt2);
-    line-height: 1.6;
-    font-weight: 300;
-    margin-bottom: 16px;
-  }
-  .rc-meta {
-    font-size: 11px;
-    color: var(--txt3);
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 0;
-  }
-  .footer-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .footer-logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 20px;
-    color: var(--txt);
-  }
-  .footer-logo span { color: var(--cyan); }
-  .footer-tagline { font-size: 12px; color: var(--txt3); margin-top: 4px; }
-  .footer-links { display: flex; gap: 20px; list-style: none; }
-  .footer-links a { font-size: 12px; color: var(--txt3); text-decoration: none; transition: color .2s; }
-  .footer-links a:hover { color: var(--txt2); }
-  .footer-copy { font-size: 12px; color: var(--txt3); font-family: 'JetBrains Mono', monospace; text-align: right; }
-
-  /* ── LIVE DOT ── */
-  .live-dot {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    color: var(--green);
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .live-dot::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--green);
-    border-radius: 50%;
-    animation: blink 1.5s ease-in-out infinite;
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.3; }
-  }
-
-  /* ── BACK TO TOP ── */
-  #back-top {
-    position: fixed;
-    bottom: 32px;
-    right: 32px;
-    width: 40px;
-    height: 40px;
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all .25s;
-    z-index: 50;
-    color: var(--txt2);
-    font-size: 16px;
-  }
-  #back-top.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  #back-top:hover { border-color: var(--cyan); color: var(--cyan); }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .article-header { animation: fadeUp 0.5s ease both; }
-  .article-hero-visual { animation: fadeUp 0.5s ease 0.1s both; }
-  .article-body { animation: fadeUp 0.5s ease 0.15s both; }
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .article-layout{grid-template-columns:1fr;gap:32px;padding:24px 0 60px}
+  .article-sidebar{position:static;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .sidebar-newsletter{grid-column:1/-1}
+  .related-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  nav{display:none}
+  .hamburger{display:flex}
+  .article-title{font-size:28px}
+  .article-subtitle{font-size:15px}
+  .container{padding:0 16px}
+  .social-icons{display:none}
+  .article-sidebar{grid-template-columns:1fr}
+  .share-row{display:none}
+  .related-grid{grid-template-columns:1fr}
+  #back-top{bottom:16px;right:16px}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.article-header{animation:fadeUp .5s ease both}
+.article-hero-visual{animation:fadeUp .5s ease .08s both}
 </style>
 </head>
 <body>
+<div id="progress"></div>
 
-<div id="progress-bar"></div>
-
-<!-- NAV -->
-<nav>
-  <a class="logo" href="nextgnow-homepage.html">NextG<span>Now</span></a>
-  <ul class="nav-links">
-    <li><a href="#">5G</a></li>
-    <li><a href="#">6G</a></li>
-    <li><a href="#">3GPP</a></li>
-    <li><a href="#">Open RAN</a></li>
-    <li><a href="#">Policy</a></li>
-    <li><a href="#">About</a></li>
-  </ul>
-  <button class="nav-cta">Subscribe Free</button>
-</nav>
-
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-label">LIVE</div>
-  <div class="ticker-track">
-    <span>3GPP Release 18 spec freeze approved — Feature complete as of March 2024</span>
-    <span>India targets 1 lakh 5G base stations by end of 2025</span>
-    <span>6G research enters second phase with ITU-R IMT-2030 framework</span>
-    <span>Open RAN deployments grow 40% YoY globally</span>
-    <span>Qualcomm demos 10 Gbps 5G Advanced modem at MWC 2025</span>
-    <span>3GPP Release 18 spec freeze approved — Feature complete as of March 2024</span>
-    <span>India targets 1 lakh 5G base stations by end of 2025</span>
-    <span>6G research enters second phase with ITU-R IMT-2030 framework</span>
-    <span>Open RAN deployments grow 40% YoY globally</span>
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="logo-svg" onclick="location.href='/'">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#0f172a" stroke="#1e293b"/><circle cx="18" cy="18" r="3" fill="#3b82f6"/><circle cx="18" cy="18" r="7" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="2 2" opacity=".6"/><circle cx="18" cy="18" r="12" fill="none" stroke="#3b82f6" stroke-width="1" opacity=".3"/><path d="M10 18L26 18" stroke="#60a5fa" stroke-width="1" opacity=".4"/><path d="M18 10L18 26" stroke="#60a5fa" stroke-width="1" opacity=".4"/><circle cx="26" cy="10" r="2.5" fill="#60a5fa" opacity=".8"/><path d="M21 10L26 10L26 15" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".6" fill="none"/></svg>
+        <div><div class="logo-text">NextG<span>Now</span></div><div style="font-size:10px;color:var(--txt4);margin-top:1px;letter-spacing:.04em">TELECOM INTELLIGENCE</div></div>
+      </div>
+      <div class="header-right">
+        <div class="social-icons">
+          <a class="social-icon" href="https://linkedin.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a class="social-icon" href="https://x.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a class="social-icon" href="https://youtube.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+        <a class="back-btn" href="/">← Back to NextGNow</a>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <nav id="desktopNav">
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=6G'">6G <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="dd6g"><div class="dropdown-item" onclick="location.href='/?cat=6G'"><span class="dd-dot" style="background:#c084fc"></span>All 6G Articles</div></div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=5G'">5G <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="dd5g"><div class="dropdown-item" onclick="location.href='/?cat=5G'"><span class="dd-dot"></span>All 5G Articles</div></div>
+      </div>
+      <button class="nav-link" onclick="location.href='/?cat=3GPP'">3GPP Releases</button>
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=Call Flow'">Call Flows <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="ddcf"><div class="dropdown-item" onclick="location.href='/?cat=Call Flow'"><span class="dd-dot" style="background:#22d3ee"></span>All Call Flows</div></div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=Open RAN'">AI Telecom <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="ddoran"><div class="dropdown-item" onclick="location.href='/?cat=Open RAN'"><span class="dd-dot" style="background:#fbbf24"></span>All AI Telecom</div></div>
+      </div>
+      <button class="nav-link" onclick="location.href='/'">Latest Articles</button>
+      <button class="nav-link" onclick="location.href='/#about'">About</button>
+    </nav>
   </div>
-</div>
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-section">Topics</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=5G'">📡 5G</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=6G'">🛰️ 6G</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=3GPP'">📋 3GPP</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=Call Flow'">🔄 Call Flows</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=Open RAN'">🔓 Open RAN</div>
+    <div class="mobile-nav-item" onclick="location.href='/'">📰 All Articles</div>
+  </div>
+</header>
 
-<div class="wrapper">
-
-  <!-- BREADCRUMB -->
+<div class="container">
+  <!-- Breadcrumb -->
   <div class="breadcrumb">
-    <a href="nextgnow-homepage.html">Home</a>
+    <a onclick="location.href='/'">Home</a>
     <span>›</span>
-    <a href="#">5G</a>
+    <a onclick="location.href='/'">Articles</a>
     <span>›</span>
-    <span class="current">5G Advanced Explained</span>
+    <span id="breadcrumbCat" style="color:var(--txt2)">5G</span>
   </div>
 
-  <!-- ARTICLE LAYOUT -->
   <div class="article-layout">
-
-    <!-- MAIN CONTENT -->
+    <!-- MAIN -->
     <div class="article-main">
-
-      <!-- HEADER -->
       <div class="article-header">
         <div class="article-eyebrow">
-          <span class="badge badge-cyan">5G</span>
-          <span class="live-dot">Published · Apr 19, 2026</span>
+          <span class="badge badge-default" id="articleBadge">5G</span>
+          <span class="live-dot" id="articleDate">Published · Apr 19, 2026</span>
         </div>
-
-        <h1 class="article-title">5G Registration Call Flow</h1>
-
-        <p class="article-subtitle">
-          5G registration is the automated security handshake between your device and the network, authenticating identity and enabling connectivity in under a second. — no new towers, dramatically smarter. 3GPP's Release 18 quietly sets the stage for everything from real-time factory robots to cars that talk to traffic lights.
-        </p>
-
+        <h1 class="article-title">What is <em style="color:var(--blue);font-style:normal">5G Advanced</em> and Why Should You Care?</h1>
+        <p class="article-subtitle">The 5G registration call flow is the secure handshake between your device and network, authenticating your phone and establishing encrypted connectivity.</p>
         <div class="article-byline">
           <div class="author-info">
             <div class="author-avatar">NG</div>
             <div>
               <div class="author-name">NextGNow Editorial</div>
-              <div class="author-role">Telecom Intelligence · Apr 16, 2025 · 4 min read</div>
+              <div class="author-role">Telecom Intelligence · <span id="bylineDate">Apr 16, 2025</span> · 5 min read</div>
             </div>
           </div>
           <div class="share-row">
             <span class="share-label">Share</span>
-            <button class="share-btn" title="Share on LinkedIn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </button>
-            <button class="share-btn" title="Share on X">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </button>
-            <button class="share-btn" title="Copy link">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            </button>
+            <button class="share-btn" onclick="shareLinkedIn()" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></button>
+            <button class="share-btn" onclick="shareX()" title="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
+            <button class="share-btn" onclick="copyLink()" title="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>
           </div>
         </div>
       </div>
 
-      <!-- HERO VISUAL -->
+      <!-- Hero visual -->
       <div class="article-hero-visual">
         <div class="hero-visual-bg"></div>
-        <div class="hero-visual-content">
-          <div class="signal-tower">
-            <div class="tower-waves">
-              <div class="wave-arc"></div>
-              <div class="wave-arc"></div>
-              <div class="wave-arc"></div>
-            </div>
-            <div class="tower-body"></div>
-            <div class="tower-base"></div>
-          </div>
-          <div class="spec-tags">
-            <div class="spec-tag"><span class="spec-tag-dot"></span>3GPP Release 18</div>
-            <div class="spec-tag"><span class="spec-tag-dot orange"></span>5G Advanced</div>
-            <div class="spec-tag"><span class="spec-tag-dot green"></span>IMT-2020 Enhanced</div>
-            <div class="spec-tag"><span class="spec-tag-dot"></span>Spec Freeze: Mar 2024</div>
-          </div>
-        </div>
+        <div class="hero-label" id="heroLabel">5G · NEXTGNOW · TELECOM INTELLIGENCE</div>
       </div>
 
-      <!-- ARTICLE BODY -->
+      <!-- Article body — pipeline injects here -->
       <div class="article-body" id="article-content">
 
-<p># 5G Registration Call Flow: The Digital Handshake That Connects You to the Network</p>
+<p># 5G Registration Call Flow: Your Phone's First Conversation with the Network</p>
 
-<p>You pull your new smartphone out of the box, power it on, and within seconds see those coveted "5G" signal bars appear. In that brief moment, an intricate conversation happened between your device and the cellular network—a digital handshake that verified your identity, confirmed your subscription, and granted you access to high-speed connectivity. This process happens so seamlessly that most of us never think about it, yet it's fundamental to every call, text, and data session.</p>
+<p>You pull your new 5G smartphone out of the box, slide in your SIM card, and power it on. Within seconds, signal bars appear, and you're ready to make calls, send messages, and stream videos. But have you ever wondered what happens in those first few seconds? Behind that simple moment lies a complex, lightning-fast conversation between your device and the mobile network.</p>
 
-<p>This automatic connection isn't magic. Behind those few seconds lies the 5G registration call flow, a sophisticated sequence of messages and security checks that ensures only authorized devices access the network. Whether you're a network engineer troubleshooting connection issues or a technology professional trying to understand 5G fundamentals, grasping this process reveals how modern cellular networks balance security, speed, and scalability.</p>
+<p>This conversation—called the registration call flow—is the digital handshake that makes everything else possible. Without it, your phone would be nothing more than an expensive paperweight. Understanding this process reveals how 5G networks deliver their promised speed, security, and reliability from the very first moment your device powers on.</p>
 
 <h2>What Is 5G Registration Call Flow?</h2>
 
-<p>The 5G registration call flow is the standardized procedure that allows a User Equipment (UE)—your smartphone, IoT device, or any 5G-capable gadget—to register with a 5G network and establish its presence. Think of it as the initial check-in process that verifies who you are, confirms you're allowed to use the network, and sets up the necessary pathways for communication.</p>
+<p>The 5G registration call flow is the sequence of messages exchanged between your mobile device (called User Equipment or UE) and the 5G core network when your phone first connects to the network. Think of it as a formal introduction and authentication process where your device identifies itself, proves it has permission to use the network, and receives the credentials needed to access services.</p>
 
-<p>This process involves multiple network functions exchanging messages to authenticate the device, establish security credentials, and configure services. Unlike earlier generations where registration was relatively simple, 5G registration accommodates diverse scenarios: connecting to different network slices, roaming between operators, and supporting everything from smartphones to industrial sensors.</p>
+<p>This process happens automatically every time you power on your phone, switch from airplane mode, or move between different network areas. The entire exchange typically completes in just a few seconds, involving multiple network components and security checks.</p>
 
-<h2>The Hotel Check-In Analogy</h2>
+<h2>A Simple Analogy: Hotel Check-In</h2>
 
-<p>Imagine arriving at a hotel for a reservation. You approach the front desk with your ID and confirmation number. The receptionist verifies your reservation in their system, checks your identity, assigns you a room, programs your key card with specific access permissions, and provides information about hotel services. Only after this complete check-in process can you access your room and enjoy the amenities.</p>
+<p>Registering on a 5G network is remarkably similar to checking into a hotel. When you arrive at the hotel lobby, you present your ID (like your phone presenting its unique identifier). The front desk verifies your reservation (like the network checking your subscription), confirms your identity through their records (authentication), and hands you a room key programmed specifically for your stay (security credentials).</p>
 
-<p>The 5G registration call flow works similarly. Your device (you) connects to the network's access point (front desk), presents its credentials (ID), gets verified against the subscriber database (reservation system), receives security keys (key card), and gets configured with appropriate services (amenities access). Just as the hotel knows which guests can access the pool, gym, or executive lounge, the 5G network determines which services—like enhanced data speeds or ultra-low latency—you're entitled to use.</p>
+<p>Just as the hotel staff updates their system to know you're in the building and which room you're assigned to, the 5G network records your device's location and which services you're authorized to use. And just like you'd go through a modified check-in process if you moved to a different hotel in the same chain, your phone performs simplified registration when moving between different areas of the same network.</p>
 
-<h2>Why 5G Registration Call Flow Matters</h2>
+<h2>Why It Matters: Three Real-World Benefits</h2>
 
-<p><strong>Enhanced Security and Privacy</strong>: The registration process in 5G implements significant security improvements over 4G. The Subscription Permanent Identifier (SUPI) is never transmitted in clear text; instead, a Subscription Concealed Identifier (SUCI) protects user identity from eavesdroppers. This prevents International Mobile Subscriber Identity (IMSI) catching attacks that plagued earlier networks, where bad actors could intercept and track users through their device identifiers.</p>
+<p><strong>Enhanced Security from the Start</strong></p>
 
-<p><strong>Faster Service Activation</strong>: 5G registration happens significantly faster than its predecessors, typically completing in under a second. This speed matters enormously for applications requiring instant connectivity—emergency services, autonomous vehicles, or industrial automation systems that can't afford delays. The streamlined messaging structure and efficient authentication mechanisms mean devices spend less time connecting and more time communicating.</p>
+<p>The 5G registration process implements encryption and authentication from the very first message, using sophisticated cryptographic algorithms. Unlike previous generations, 5G protects your device's permanent identifier (SUPI or Subscription Permanent Identifier) by concealing it with a temporary identifier (SUCI or Subscription Concealed Identifier). This means hackers can't easily track your device or steal your identity, protecting your privacy from the moment you connect.</p>
 
-<p><strong>Network Slice Selection</strong>: During registration, devices can indicate their service requirements, allowing the network to assign them to appropriate network slices. A smartphone streaming video might join a slice optimized for high throughput, while a remote surgery application connects to a slice guaranteeing ultra-reliable low-latency communication. This intelligent assignment during registration ensures each device gets the service quality it needs from the moment it connects.</p>
+<p><strong>Seamless Multi-Network Connectivity</strong></p>
+
+<p>Modern 5G registration supports network slicing, allowing your single device to simultaneously register for different types of services—emergency calls, broadband internet, and IoT sensor data—each with different quality guarantees. This flexibility enables your autonomous vehicle to maintain ultra-reliable low-latency connections for safety features while simultaneously streaming entertainment content, all managed through the initial registration process.</p>
+
+<p><strong>Faster Connection Establishment</strong></p>
+
+<p>5G's streamlined registration reduces the number of message exchanges compared to 4G, cutting connection time significantly. This efficiency is crucial for massive IoT deployments where millions of devices need to register periodically. When your smart home sensors reconnect after a power outage, faster registration means quicker restoration of services and reduced network congestion.</p>
 
 <h2>Technical Details: Inside the Registration Process</h2>
 
-<p>The 5G registration procedure follows the 3GPP TS 23.502 specification and involves several key network functions. The process begins when the UE sends a Registration Request to the Access and Mobility Management Function (AMF) through the Radio Access Network (RAN). This initial message includes the SUCI, registration type (initial, mobility, or periodic), and the device's capabilities.</p>
+<p>The 5G registration call flow follows procedures defined in 3GPP (3rd Generation Partnership Project) Technical Specification 23.502. The process involves several key network functions working together:</p>
 
-<p>The AMF then communicates with the Unified Data Management (UDM) function to retrieve subscriber information and authentication vectors. Using these vectors, the AMF and UE perform 5G Authentication and Key Agreement (5G-AKA) or EAP-AKA' authentication, establishing mutual trust and deriving security keys. These keys protect all subsequent communications and enable integrity protection and ciphering.</p>
+<p><strong>Core Components:</strong></p>
 
-<p>After successful authentication, the AMF registers the UE's location, establishes Protocol Data Unit (PDU) sessions through the Session Management Function (SMF), and coordinates with the Policy Control Function (PCF) to apply appropriate policies. The User Plane Function (UPF) is selected and configured to handle the actual data traffic. The AMF sends a Registration Accept message containing the device's temporary identifier (5G-GUTI), allowed network slices, and other configuration parameters.</p>
+<ul>
+<li><strong>UE (User Equipment):</strong> Your 5G device initiating the registration</li>
+<li><strong>gNB (Next Generation NodeB):</strong> The 5G base station providing radio access</li>
+<li><strong>AMF (Access and Mobility Management Function):</strong> The brain coordinating registration</li>
+<li><strong>AUSF (Authentication Server Function):</strong> Validates your credentials</li>
+<li><strong>UDM (Unified Data Management):</strong> Stores subscriber information and generates authentication vectors</li>
+</ul>
 
-<p>Key parameters include the Periodic Registration Update timer (typically 54 minutes), which determines how often the device must reregister to remain active on the network, and the Network Slicing Selection Assistance Information (NSSAI), which defines which network slices the device can access. The entire message flow uses Service Based Architecture (SBA) principles, where network functions communicate through well-defined service interfaces rather than fixed point-to-point connections.</p>
+<p><strong>Registration Procedure Steps:</strong></p>
 
-<h2>What Comes Next: Evolution of Registration Procedures</h2>
+<p>The process begins when the UE sends a <strong>Registration Request</strong> message containing its SUCI, security capabilities, and requested network slices. The AMF receives this request through the gNB and contacts the AUSF to initiate the <strong>5G-AKA (Authentication and Key Agreement)</strong> protocol or EAP-AKA' (Extensible Authentication Protocol-AKA Prime) for additional security scenarios.</p>
 
-<p>The 5G registration process continues evolving to support emerging use cases. Release 17 and beyond introduce features like reduced capability (RedCap) devices with simplified registration procedures, consuming less power and bandwidth—critical for massive IoT deployments. These lightweight registration flows enable billions of sensors and actuators to connect efficiently.</p>
+<p>During authentication, the AUSF retrieves authentication vectors from UDM, containing parameters like RAND (random challenge), AUTN (authentication token), XRES (expected response), and KAUSF (key material). The UE processes the challenge and responds, proving it possesses the correct credentials stored on its USIM (Universal Subscriber Identity Module).</p>
 
-<p>Non-terrestrial networks (NTN), including satellite connectivity, are adapting registration procedures to handle extreme propagation delays and mobility scenarios. Future releases will refine how devices register when moving between terrestrial and satellite coverage, maintaining seamless connectivity even in remote locations.</p>
+<p>Once authenticated, the AMF performs <strong>NAS (Non-Access Stratum) Security Mode Command</strong> procedures, establishing encryption and integrity protection with keys derived during authentication. Finally, the AMF sends a <strong>Registration Accept</strong> message containing the 5G-GUTI (Globally Unique Temporary Identifier), allowed network slices, and tracking area information.</p>
 
-<p>Artificial intelligence and machine learning are being integrated into registration management. Networks will predict registration patterns, pre-authenticate devices before they explicitly request registration, and optimize resource allocation based on historical behavior. This predictive approach will further reduce connection times and improve user experience, particularly in high-mobility scenarios like high-speed trains or aircraft.</p>
+<p><strong>Key Parameters:</strong></p>
+
+<ul>
+<li><strong>Registration Type:</strong> Initial, periodic, mobility, or emergency registration</li>
+<li><strong>5G-GUTI:</strong> 80-bit temporary identifier assigned to the UE</li>
+<li><strong>NSSAI (Network Slice Selection Assistance Information):</strong> Identifies requested network slices</li>
+<li><strong>TAI (Tracking Area Identity):</strong> Geographical area for mobility management</li>
+</ul>
+
+<h2>What Comes Next: The Evolution of Registration</h2>
+
+<p>Future 5G releases will further optimize the registration process for emerging use cases. 3GPP Release 18 and beyond are introducing <strong>Reduced Capability (RedCap)</strong> devices that simplify registration for IoT devices, cutting power consumption and costs. We'll see registration procedures that intelligently predict mobility patterns, pre-registering devices to networks before they arrive in an area—crucial for high-speed trains and autonomous drones.</p>
+
+<p>The integration of <strong>AI-driven network automation</strong> will enable dynamic registration policies that adapt to network conditions in real-time. If the network detects congestion, it might delay non-critical device registrations or adjust quality parameters automatically during the registration process.</p>
+
+<p><strong>Non-terrestrial networks</strong> are also expanding registration capabilities, allowing your device to seamlessly register with satellite networks when terrestrial coverage is unavailable, maintaining connectivity anywhere on Earth.</p>
 
 <h2>Key Takeaways</h2>
 
 <ul>
-<li><strong>5G registration is the security-enhanced gateway</strong> that authenticates devices and establishes encrypted communication channels, protecting user identity through concealed identifiers that prevent tracking attacks common in previous generations.</li>
-</ul>
-
-<ul>
-<li><strong>The process completes in under a second</strong> but involves multiple network functions—AMF, UDM, SMF, and PCF—exchanging structured messages defined by 3GPP standards to verify credentials and configure services.</li>
-</ul>
-
-<ul>
-<li><strong>Network slice selection during registration</strong> enables the same physical infrastructure to provide differentiated services, directing smartphones, IoT sensors, and mission-critical applications to appropriate network resources based on their requirements.</li>
-</ul>
-
-<ul>
-<li><strong>Ongoing evolution addresses new scenarios</strong> including lightweight registration for massive IoT, satellite connectivity handling propagation delays, and AI-driven predictive registration that anticipates device needs before explicit requests occur.</li>
+<li><strong>5G registration is a secure, multi-step process</strong> that authenticates your device, establishes encryption, and grants network access within seconds of powering on</li>
+<li><strong>Privacy protection is built-in from the start</strong>, with concealed identifiers preventing tracking and sophisticated encryption protecting all communications</li>
+<li><strong>Network slicing support during registration</strong> enables one device to access multiple service types simultaneously, each with customized quality guarantees</li>
+<li><strong>The process is standardized by 3GPP specifications</strong>, ensuring interoperability between equipment from different manufacturers and seamless roaming across global networks</li>
 </ul>
 </div><!-- /article-body -->
 
-    </div><!-- /article-main -->
+    </div>
 
     <!-- SIDEBAR -->
     <div class="article-sidebar">
-
       <!-- TOC -->
-      <div class="toc">
-        <div class="toc-title">In this article</div>
-        <ul class="toc-list">
-          <li class="toc-item active"><a href="#article-content">Overview</a></li>
-          <li class="toc-item"><a href="#what-changed">What changed in Rel-18</a></li>
-          <li class="toc-item"><a href="#satellite">The satellite story</a></li>
-          <li class="toc-item"><a href="#redcap">RedCap for IoT</a></li>
-          <li class="toc-item"><a href="#whats-next">What comes next</a></li>
+      <div class="sidebar-card">
+        <div class="sidebar-title">In this article</div>
+        <ul class="toc-list" id="tocList">
+          <li class="toc-item active"><a href="#article-content">Introduction</a></li>
         </ul>
       </div>
 
-      <!-- Quick stats -->
-      <div class="sidebar-stats">
-        <div class="sidebar-stats-title">Article at a glance</div>
-        <div class="stat-row">
-          <span class="stat-key">Standard</span>
-          <span class="stat-val cyan">3GPP Rel-18</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-key">Spec freeze</span>
-          <span class="stat-val">Mar 2024</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-key">Key feature</span>
-          <span class="stat-val">NTN · RedCap · XR</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-key">Next milestone</span>
-          <span class="stat-val">Rel-19 · 2025</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-key">Read time</span>
-          <span class="stat-val">4 min</span>
-        </div>
+      <!-- Stats -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">Article details</div>
+        <div class="stat-row"><span class="stat-key">Category</span><span class="stat-val blue" id="statCat">5G</span></div>
+        <div class="stat-row"><span class="stat-key">Published</span><span class="stat-val" id="statDate">—</span></div>
+        <div class="stat-row"><span class="stat-key">Read time</span><span class="stat-val">5 min</span></div>
+        <div class="stat-row"><span class="stat-key">Source</span><span class="stat-val">3GPP / ITU</span></div>
       </div>
 
       <!-- Newsletter -->
       <div class="sidebar-newsletter">
-        <h4>One signal, <span>daily</span></h4>
-        <p>Get tomorrow's telecom story in your inbox. Plain English. Free forever.</p>
-        <input class="sidebar-input" type="email" placeholder="your@email.com">
-        <button class="sidebar-btn">Subscribe</button>
-      </div>
-
-    </div><!-- /sidebar -->
-
-  </div><!-- /article-layout -->
-
-  <!-- RELATED ARTICLES -->
-  <div class="related-section">
-    <div class="related-header">
-      <h2>Related Articles</h2>
-      <a href="#" class="view-all">View all →</a>
-    </div>
-    <div class="related-grid">
-      <div class="related-card">
-        <div class="rc-badge"><span class="badge badge-orange">6G</span></div>
-        <div class="rc-title">The 6G Timeline: What We Know So Far</div>
-        <p class="rc-excerpt">Standardisation has started, targets are set, and the first commercial deployments are expected by 2030. Here's the full roadmap.</p>
-        <div class="rc-meta">Apr 15 · 3 min read</div>
-      </div>
-      <div class="related-card">
-        <div class="rc-badge"><span class="badge badge-green">3GPP</span></div>
-        <div class="rc-title">Release 19 Approved Features, Explained Simply</div>
-        <p class="rc-excerpt">3GPP's next release is already taking shape. We break down every approved feature in plain language — no engineering degree required.</p>
-        <div class="rc-meta">Apr 14 · 5 min read</div>
-      </div>
-      <div class="related-card">
-        <div class="rc-badge"><span class="badge badge-cyan">5G</span></div>
-        <div class="rc-title">Network Slicing: One Network, Infinite Possibilities</div>
-        <p class="rc-excerpt">A single physical network that can instantly create private virtual lanes for different use cases — hospitals, factories, gamers, all at once.</p>
-        <div class="rc-meta">Apr 13 · 4 min read</div>
+        <h4>Daily <span>Signal</span></h4>
+        <p>One telecom insight every morning. Free forever.</p>
+        <input class="sidebar-input" type="email" id="sidebarEmail" placeholder="your@email.com">
+        <button class="sidebar-sub-btn" onclick="subscribe()">Subscribe Free</button>
       </div>
     </div>
   </div>
 
-</div><!-- /wrapper -->
+  <!-- Related Articles -->
+  <div class="related">
+    <div class="related-title">Related Articles</div>
+    <div class="related-grid" id="relatedGrid"></div>
+  </div>
+</div>
 
-<!-- FOOTER -->
 <footer>
-  <div class="wrapper">
+  <div class="container">
     <div class="footer-inner">
       <div>
-        <div class="footer-logo">NextG<span>Now</span></div>
-        <div class="footer-tagline">Tomorrow's Telecom, Explained Today</div>
+        <div class="footer-logo" onclick="location.href='/'">NextG<span>Now</span></div>
+        <div style="font-size:12px;color:var(--txt4);margin-top:4px">Tomorrow's Telecom, Explained Today</div>
       </div>
-      <ul class="footer-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Articles</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">LinkedIn</a></li>
-        <li><a href="#">Privacy</a></li>
-      </ul>
-      <div class="footer-copy">
-        <span>© 2025 NextGNow</span><br>
-        <span style="color: var(--txt3);">NextGNow.com</span>
-      </div>
+      <div class="footer-copy">© 2025 NextGNow · NextGNow.in</div>
     </div>
   </div>
 </footer>
 
-<!-- BACK TO TOP -->
 <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-  // Reading progress bar
-  window.addEventListener('scroll', () => {
-    const doc = document.documentElement;
-    const scrollTop = doc.scrollTop || document.body.scrollTop;
-    const scrollHeight = doc.scrollHeight - doc.clientHeight;
-    const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-    document.getElementById('progress-bar').style.width = pct + '%';
+// ── Reading progress ──────────────────────────────────────
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = Math.min(pct,100) + '%';
+  document.getElementById('back-top').classList.toggle('visible', doc.scrollTop > 400);
+  updateTOC();
+});
 
-    // Back to top visibility
-    const btn = document.getElementById('back-top');
-    if (scrollTop > 400) btn.classList.add('visible');
-    else btn.classList.remove('visible');
-
-    // Active TOC item
-    const sections = ['article-content','what-changed','satellite','redcap','whats-next'];
-    let current = sections[0];
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && el.getBoundingClientRect().top < 160) current = id;
-    });
-    document.querySelectorAll('.toc-item').forEach((item, i) => {
-      item.classList.toggle('active', sections[i] === current);
-    });
+// ── Auto-build TOC from h2 headings ──────────────────────
+function buildTOC() {
+  const headings = document.querySelectorAll('.article-body h2');
+  if (!headings.length) return;
+  const toc = document.getElementById('tocList');
+  toc.innerHTML = '<li class="toc-item active"><a href="#article-content">Introduction</a></li>';
+  headings.forEach((h, i) => {
+    const id = 'section-' + i;
+    h.id = id;
+    const li = document.createElement('li');
+    li.className = 'toc-item';
+    li.innerHTML = `<a href="#${id}">${h.textContent.replace(/^▌/,'').trim()}</a>`;
+    toc.appendChild(li);
   });
+}
+
+function updateTOC() {
+  const items = document.querySelectorAll('.toc-item');
+  const headings = document.querySelectorAll('.article-body h2');
+  let current = 0;
+  headings.forEach((h, i) => {
+    if (h.getBoundingClientRect().top < 160) current = i + 1;
+  });
+  items.forEach((item, i) => item.classList.toggle('active', i === current));
+}
+
+// ── Load nav dropdowns from articles.json ─────────────────
+async function loadNavDropdowns() {
+  try {
+    const r = await fetch('/articles.json?v=' + Date.now());
+    const d = await r.json();
+    const articles = d.articles || [];
+    buildDropdown('dd5g',  articles, '5G',       '#60a5fa', '/?cat=5G');
+    buildDropdown('dd6g',  articles, '6G',        '#c084fc', '/?cat=6G');
+    buildDropdown('ddcf',  articles, 'Call Flow', '#22d3ee', '/?cat=Call Flow');
+    buildDropdown('ddoran',articles, 'Open RAN',  '#fbbf24', '/?cat=Open RAN');
+    loadRelated(articles);
+  } catch(e) {}
+}
+
+function buildDropdown(id, articles, cat, color, allUrl) {
+  const dd = document.getElementById(id);
+  if (!dd) return;
+  const items = articles.filter(a => a.category === cat).slice(0, 6);
+  const label = cat === 'Call Flow' ? 'All Call Flows' : `All ${cat} Articles`;
+  dd.innerHTML = `<div class="dropdown-item" onclick="location.href='${allUrl}'"><span class="dd-dot" style="background:${color}"></span>${label}</div>`;
+  items.forEach(a => {
+    const div = document.createElement('div');
+    div.className = 'dropdown-item';
+    div.innerHTML = `<span class="dd-dot" style="background:${color}"></span>${a.title.substring(0,40)}${a.title.length>40?'...':''}`;
+    div.onclick = () => location.href = a.url;
+    dd.appendChild(div);
+  });
+}
+
+function loadRelated(articles) {
+  const grid = document.getElementById('relatedGrid');
+  if (!grid || !articles.length) return;
+  const related = articles.slice(0, 3);
+  const catCls = c => ({'5G':'badge-5g','6G':'badge-6g','3GPP':'badge-3gpp','Open RAN':'badge-oran','Policy':'badge-policy','Call Flow':'badge-callflow'}[c]||'badge-default');
+  grid.innerHTML = related.map(a => `
+    <a class="rcard" href="${a.url}">
+      <span class="rcard-cat ${catCls(a.category)}">${a.category}</span>
+      <div class="rcard-title">${a.title}</div>
+      <div class="rcard-date">${a.date} · 5 min</div>
+    </a>`).join('');
+}
+
+// ── Set badge class from category ────────────────────────
+function setBadge() {
+  const badge = document.getElementById('articleBadge');
+  if (!badge) return;
+  const cat = badge.textContent.trim();
+  const cls = {'5G':'badge-5g','6G':'badge-6g','3GPP':'badge-3gpp','Open RAN':'badge-oran','Policy':'badge-policy','Call Flow':'badge-callflow'}[cat]||'badge-default';
+  badge.className = 'badge ' + cls;
+  document.getElementById('statCat').textContent = cat;
+  document.getElementById('breadcrumbCat').textContent = cat;
+  document.getElementById('heroLabel').textContent = cat.toUpperCase() + ' · NEXTGNOW · TELECOM INTELLIGENCE';
+}
+
+// ── Share buttons ─────────────────────────────────────────
+function shareLinkedIn() { window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(location.href),'_blank'); }
+function shareX() { window.open('https://x.com/intent/tweet?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent(document.title),'_blank'); }
+function copyLink() { navigator.clipboard.writeText(location.href).then(()=>alert('Link copied!')); }
+
+// ── Subscribe ─────────────────────────────────────────────
+function subscribe() {
+  const e = document.getElementById('sidebarEmail').value;
+  if (!e || !e.includes('@')) { alert('Please enter a valid email'); return; }
+  alert('Thanks! Daily telecom insights coming to ' + e);
+  document.getElementById('sidebarEmail').value = '';
+}
+
+// ── Mobile menu ───────────────────────────────────────────
+function toggleMenu() {
+  document.getElementById('mobileNav').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+
+// ── Boot ──────────────────────────────────────────────────
+setBadge();
+buildTOC();
+loadNavDropdowns();
+
+// Sync stat date with eyebrow date
+const dateEl = document.getElementById('articleDate');
+if (dateEl) {
+  const d = dateEl.textContent.replace('Published · ','');
+  document.getElementById('statDate').textContent = d;
+  document.getElementById('bylineDate').textContent = d;
+}
 </script>
 </body>
 </html>
