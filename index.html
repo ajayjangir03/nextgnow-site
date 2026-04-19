@@ -352,22 +352,16 @@ footer{border-top:1px solid var(--border);padding:36px 0 28px}
         <button class="nav-link" onclick="applyFilter('6G')">6G
           <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
         </button>
-        <div class="dropdown">
-          <div class="dropdown-item" onclick="applyFilter('6G')"><span class="dd-dot" style="background:#c084fc"></span>6G Vision &amp; Architecture</div>
-          <div class="dropdown-item" onclick="applyFilter('6G')"><span class="dd-dot" style="background:#c084fc"></span>THz Communication</div>
-          <div class="dropdown-item" onclick="applyFilter('6G')"><span class="dd-dot" style="background:#c084fc"></span>AI-Native Networks</div>
-          <div class="dropdown-item" onclick="applyFilter('6G')"><span class="dd-dot" style="background:#c084fc"></span>NTN Integration</div>
+        <div class="dropdown" id="dd6g">
+          <div class="dropdown-item" onclick="applyFilter('6G')"><span class="dd-dot" style="background:#c084fc"></span>All 6G Articles</div>
         </div>
       </div>
       <div class="nav-item">
         <button class="nav-link" onclick="applyFilter('5G')">5G
           <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
         </button>
-        <div class="dropdown">
-          <div class="dropdown-item" onclick="applyFilter('5G')"><span class="dd-dot"></span>5G Core Architecture</div>
-          <div class="dropdown-item" onclick="applyFilter('5G')"><span class="dd-dot"></span>5G NR Radio</div>
-          <div class="dropdown-item" onclick="applyFilter('5G')"><span class="dd-dot"></span>Network Slicing</div>
-          <div class="dropdown-item" onclick="applyFilter('5G')"><span class="dd-dot"></span>5G Advanced (Rel-18)</div>
+        <div class="dropdown" id="dd5g">
+          <div class="dropdown-item" onclick="applyFilter('5G')"><span class="dd-dot"></span>All 5G Articles</div>
         </div>
       </div>
       <button class="nav-link" onclick="applyFilter('3GPP')">3GPP Releases</button>
@@ -375,20 +369,16 @@ footer{border-top:1px solid var(--border);padding:36px 0 28px}
         <button class="nav-link" onclick="applyFilter('Call Flow')">Call Flows
           <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
         </button>
-        <div class="dropdown" id="callFlowDropdown">
+        <div class="dropdown" id="ddcf">
           <div class="dropdown-item" onclick="applyFilter('Call Flow')"><span class="dd-dot" style="background:#22d3ee"></span>All Call Flows</div>
-          <!-- dynamic items injected here -->
         </div>
       </div>
       <div class="nav-item">
         <button class="nav-link" onclick="applyFilter('Open RAN')">AI Telecom
           <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
         </button>
-        <div class="dropdown">
-          <div class="dropdown-item" onclick="applyFilter('Open RAN')"><span class="dd-dot" style="background:#fbbf24"></span>AI-RAN</div>
-          <div class="dropdown-item" onclick="applyFilter('All')"><span class="dd-dot" style="background:#fbbf24"></span>Traffic Prediction</div>
-          <div class="dropdown-item" onclick="applyFilter('All')"><span class="dd-dot" style="background:#fbbf24"></span>Network Automation</div>
-          <div class="dropdown-item" onclick="applyFilter('All')"><span class="dd-dot" style="background:#fbbf24"></span>Fault Detection</div>
+        <div class="dropdown" id="ddoran">
+          <div class="dropdown-item" onclick="applyFilter('Open RAN')"><span class="dd-dot" style="background:#fbbf24"></span>All AI Telecom</div>
         </div>
       </div>
       <button class="nav-link" onclick="scrollTo('articles')">Latest Articles</button>
@@ -619,7 +609,7 @@ async function init() {
   renderHighlight();
   renderUpdates('All');
   renderArticles('All');
-  buildCallFlowDropdown();
+  buildAllDropdowns();
   startVisitors();
 }
 
@@ -686,16 +676,24 @@ function renderArticles(cat) {
     </a>`).join('');
 }
 
-// Build Call Flow dropdown dynamically from articles.json
-function buildCallFlowDropdown() {
-  const dd = document.getElementById('callFlowDropdown');
-  const callFlows = articles.filter(a => a.category === 'Call Flow');
-  if (!callFlows.length) return;
-  const items = callFlows.slice(0,8).map(a => `
-    <div class="dropdown-item" onclick="location.href='${a.url}'">
-      <span class="dd-dot" style="background:#22d3ee"></span>${a.title.replace(' Call Flow','').replace('Call Flow: ','')}
-    </div>`).join('');
-  dd.innerHTML = `<div class="dropdown-item" onclick="applyFilter('Call Flow')"><span class="dd-dot" style="background:#22d3ee"></span>All Call Flows</div>` + items;
+// Build all nav dropdowns dynamically from articles.json
+function buildAllDropdowns() {
+  buildDrop('dd5g',   '5G',        '#60a5fa', 'All 5G Articles');
+  buildDrop('dd6g',   '6G',        '#c084fc', 'All 6G Articles');
+  buildDrop('ddcf',   'Call Flow', '#22d3ee', 'All Call Flows');
+  buildDrop('ddoran', 'Open RAN',  '#fbbf24', 'All AI Telecom');
+}
+function buildDrop(id, cat, color, label) {
+  const dd = document.getElementById(id);
+  if (!dd) return;
+  const items = articles.filter(a => a.category === cat).slice(0, 6);
+  if (!items.length) return;
+  const allItem = `<div class="dropdown-item" onclick="applyFilter('${cat}')"><span class="dd-dot" style="background:${color}"></span>${label}</div>`;
+  const artItems = items.map(a => {
+    const short = a.title.length > 38 ? a.title.substring(0,38) + '...' : a.title;
+    return `<div class="dropdown-item" onclick="location.href='${a.url}'"><span class="dd-dot" style="background:${color};opacity:.6"></span>${short}</div>`;
+  }).join('');
+  dd.innerHTML = allItem + artItems;
 }
 
 function applyFilter(cat) {
