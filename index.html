@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NextGNow — 5G · 6G · Open RAN · AI Telecom</title>
+<meta name="description" content="Deep technical telecom learning platform covering modern wireless technologies, protocols, call flows, and future network innovations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#020817;color:#f1f5f9;font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;overflow-x:hidden}
+
+/* FIXED BADGES */
+.live-badge{position:fixed;top:16px;right:16px;z-index:100;background:#0f172a;border:1px solid #1e293b;padding:8px 14px;border-radius:16px;font-size:12px;display:flex;align-items:center;gap:8px;box-shadow:0 4px 24px rgba(0,0,0,.4)}
+.live-dot-green{width:8px;height:8px;background:#4ade80;border-radius:50%;flex-shrink:0;animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.visitor-panel{position:fixed;bottom:16px;right:16px;z-index:100;width:240px;background:#0f172a;border:1px solid #1e293b;border-radius:16px;padding:16px;box-shadow:0 4px 24px rgba(0,0,0,.4);font-size:12px}
+.visitor-panel-title{display:flex;align-items:center;gap:8px;font-weight:600;margin-bottom:12px;color:#f1f5f9}
+.visitor-row{display:flex;justify-content:space-between;color:#94a3b8;padding:4px 0}
+.visitor-bar{height:3px;background:#1e293b;border-radius:2px;margin-top:2px}
+.visitor-bar-fill{height:100%;background:#3b82f6;border-radius:2px;transition:width .6s ease}
+
+/* HEADER */
+header{border-bottom:1px solid #1e293b;padding:20px 32px;position:sticky;top:0;background:#020817;z-index:90}
+.header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.logo{font-size:22px;font-weight:700;color:#f1f5f9;cursor:pointer;text-decoration:none;letter-spacing:-.3px}
+.logo span{color:#3b82f6}
+.search-btn{background:#3b82f6;color:#fff;border:none;padding:8px 20px;border-radius:12px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s}
+.search-btn:hover{opacity:.85}
+
+/* NAV */
+nav{display:flex;gap:28px;flex-wrap:wrap}
+.nav-item{position:relative}
+.nav-link{font-size:13px;color:#94a3b8;cursor:pointer;text-decoration:none;transition:color .2s;padding:4px 0;background:none;border:none;font-family:'Inter',sans-serif}
+.nav-link:hover{color:#f1f5f9}
+.dropdown{position:absolute;top:calc(100% + 10px);left:0;background:#0f172a;border:1px solid #1e293b;border-radius:12px;padding:12px;width:200px;display:none;z-index:200;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.nav-item:hover .dropdown{display:block}
+.dropdown a{display:block;padding:7px 10px;font-size:12px;color:#94a3b8;text-decoration:none;border-radius:6px;transition:all .15s}
+.dropdown a:hover{color:#f1f5f9;background:#1e293b}
+
+/* HERO */
+.hero{padding:64px 32px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1280px;margin:0 auto}
+.hero-title{font-size:44px;font-weight:700;line-height:1.15;margin-bottom:20px;letter-spacing:-.5px}
+.hero-title span{color:#3b82f6}
+.hero-sub{color:#94a3b8;font-size:16px;margin-bottom:32px;max-width:480px;line-height:1.7;font-weight:300}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{background:#3b82f6;color:#fff;border:none;padding:12px 28px;border-radius:12px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s;text-decoration:none;display:inline-block}
+.btn-primary:hover{opacity:.85}
+.btn-outline{background:transparent;color:#f1f5f9;border:1px solid #334155;padding:12px 28px;border-radius:12px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none;display:inline-block}
+.btn-outline:hover{border-color:#64748b;background:#1e293b}
+.hero-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hero-card{background:#0f172a;border:1px solid #1e293b;border-radius:16px;padding:24px;transition:border-color .2s;cursor:pointer}
+.hero-card:hover{border-color:#334155}
+.hero-card-icon{width:32px;height:32px;margin-bottom:12px;color:#3b82f6}
+.hero-card h3{font-size:14px;font-weight:600;margin-bottom:8px;color:#f1f5f9}
+.hero-card p{font-size:12px;color:#64748b;line-height:1.6}
+
+/* SECTIONS */
+section{max-width:1280px;margin:0 auto;padding:48px 32px}
+.section-title{font-size:28px;font-weight:700;margin-bottom:32px;letter-spacing:-.3px}
+
+/* TECH DOMAIN CARDS */
+.domain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.domain-card{background:#0f172a;border:1px solid #1e293b;border-radius:16px;padding:24px;cursor:pointer;transition:all .2s}
+.domain-card:hover{border-color:#3b82f6;transform:translateY(-2px)}
+.domain-card h3{font-size:14px;font-weight:600;margin-bottom:10px;color:#f1f5f9}
+.domain-card p{font-size:12px;color:#64748b;line-height:1.6}
+
+/* TODAY'S HIGHLIGHT */
+.highlight-section{background:linear-gradient(135deg,rgba(59,130,246,.15) 0%,rgba(2,8,23,.8) 100%);border-top:1px solid #1e293b;border-bottom:1px solid #1e293b;padding:40px 32px}
+.highlight-inner{max-width:1280px;margin:0 auto}
+.highlight-tag{font-size:12px;color:#60a5fa;font-weight:600;margin-bottom:10px}
+.highlight-title{font-size:24px;font-weight:700;margin-bottom:12px;max-width:700px;letter-spacing:-.3px}
+.highlight-sub{color:#64748b;font-size:14px;margin-bottom:20px;max-width:600px;line-height:1.7}
+
+/* DAILY UPDATES */
+.updates-bg{background:rgba(15,23,42,.4);border-top:1px solid #1e293b;border-bottom:1px solid #1e293b}
+.updates-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.update-card{background:#0f172a;border:1px solid #1e293b;border-radius:16px;padding:24px;transition:border-color .2s;cursor:pointer}
+.update-card:hover{border-color:#334155}
+.update-date{font-size:11px;color:#60a5fa;margin-bottom:10px;font-weight:500}
+.update-title{font-size:14px;font-weight:500;color:#e2e8f0;margin-bottom:16px;line-height:1.5}
+.btn-sm{background:transparent;color:#f1f5f9;border:1px solid #334155;padding:7px 16px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
+.btn-sm:hover{border-color:#64748b;background:#1e293b}
+
+/* ARTICLES */
+.articles-bg{background:rgba(15,23,42,.3)}
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.article-card{background:#0f172a;border:1px solid #1e293b;border-radius:16px;padding:24px;cursor:pointer;transition:all .2s;text-decoration:none;display:block}
+.article-card:hover{border-color:#334155;transform:translateY(-2px)}
+.article-cat{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;margin-bottom:12px;letter-spacing:.04em}
+.cat-5g{background:rgba(59,130,246,.15);color:#60a5fa}
+.cat-6g{background:rgba(168,85,247,.15);color:#c084fc}
+.cat-3gpp{background:rgba(16,185,129,.15);color:#34d399}
+.cat-oran{background:rgba(245,158,11,.15);color:#fbbf24}
+.cat-policy{background:rgba(239,68,68,.15);color:#f87171}
+.cat-ai{background:rgba(99,102,241,.15);color:#818cf8}
+.article-title{font-size:15px;font-weight:600;color:#f1f5f9;margin-bottom:12px;line-height:1.4}
+.article-excerpt{font-size:12px;color:#64748b;line-height:1.6;margin-bottom:16px}
+.article-meta{font-size:11px;color:#475569}
+.empty-msg{text-align:center;padding:48px;color:#475569;grid-column:1/-1;font-size:14px}
+
+/* 3GPP */
+.gpp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gpp-card{background:#0f172a;border:1px solid #1e293b;border-radius:16px;padding:20px;cursor:pointer;transition:all .2s}
+.gpp-card:hover{border-color:#3b82f6}
+.gpp-card h4{font-size:13px;font-weight:500;color:#cbd5e1}
+
+/* ABOUT */
+.about-bg{background:rgba(15,23,42,.3)}
+.about-text{max-width:700px;color:#94a3b8;line-height:1.8}
+.about-text p{margin-bottom:16px;font-size:14px}
+.about-text strong{color:#f1f5f9}
+
+/* FOOTER */
+footer{border-top:1px solid #1e293b;padding:32px;text-align:center;font-size:13px;color:#475569;margin-top:40px}
+
+/* SEARCH MODAL */
+.search-overlay{display:none;position:fixed;inset:0;background:rgba(2,8,23,.85);z-index:500;align-items:flex-start;justify-content:center;padding-top:80px}
+.search-overlay.open{display:flex}
+.search-box{background:#0f172a;border:1px solid #334155;border-radius:16px;width:100%;max-width:600px;padding:24px;box-shadow:0 24px 64px rgba(0,0,0,.6)}
+.search-input{width:100%;background:#020817;border:1px solid #334155;color:#f1f5f9;padding:12px 16px;border-radius:10px;font-size:15px;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s}
+.search-input:focus{border-color:#3b82f6}
+.search-input::placeholder{color:#475569}
+.search-results{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.search-result-item{padding:12px;border-radius:8px;cursor:pointer;transition:background .15s;text-decoration:none;display:block}
+.search-result-item:hover{background:#1e293b}
+.sr-title{font-size:13px;font-weight:500;color:#e2e8f0;margin-bottom:3px}
+.sr-meta{font-size:11px;color:#475569}
+.search-close{float:right;background:none;border:none;color:#64748b;font-size:20px;cursor:pointer;margin-top:-4px}
+
+/* FILTER BAR */
+.filter-bar{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
+.filter-btn{background:transparent;border:1px solid #1e293b;color:#94a3b8;padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
+.filter-btn:hover{border-color:#334155;color:#f1f5f9}
+.filter-btn.active{background:rgba(59,130,246,.15);border-color:#3b82f6;color:#60a5fa}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding:40px 20px}
+  .hero-cards{display:none}
+  .domain-grid,.updates-grid,.articles-grid,.gpp-grid{grid-template-columns:1fr 1fr}
+  section{padding:40px 20px}
+  header{padding:16px 20px}
+  .highlight-section{padding:32px 20px}
+  .visitor-panel{display:none}
+}
+@media(max-width:600px){
+  .domain-grid,.updates-grid,.articles-grid,.gpp-grid{grid-template-columns:1fr}
+  .hero-title{font-size:32px}
+  .section-title{font-size:22px}
+  .live-badge{top:10px;right:10px}
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-left{animation:fadeUp .6s ease both}
+</style>
+</head>
+<body>
+
+<!-- Live Visitors Badge -->
+<div class="live-badge">
+  <div class="live-dot-green"></div>
+  <span>Live Users: <span id="liveCount">128</span></span>
+</div>
+
+<!-- Visitor Panel -->
+<div class="visitor-panel">
+  <div class="visitor-panel-title">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    Live Visitors by Country
+  </div>
+  <div id="visitorRows"></div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">
+    <a class="logo" onclick="showSection('home')">NextG<span>Now</span></a>
+    <button class="search-btn" onclick="openSearch()">Search Articles</button>
+  </div>
+  <nav>
+    <div class="nav-item">
+      <button class="nav-link" onclick="filterArticles('6G')">6G ▾</button>
+      <div class="dropdown">
+        <a onclick="filterArticles('6G')">6G Vision</a>
+        <a onclick="filterArticles('6G')">THz Communication</a>
+        <a onclick="filterArticles('6G')">AI Native Networks</a>
+        <a onclick="filterArticles('6G')">NTN Integration</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <button class="nav-link" onclick="filterArticles('5G')">5G ▾</button>
+      <div class="dropdown">
+        <a onclick="filterArticles('5G')">5G Architecture</a>
+        <a onclick="filterArticles('5G')">5G Core</a>
+        <a onclick="filterArticles('5G')">5G NR</a>
+        <a onclick="filterArticles('5G')">Network Slicing</a>
+      </div>
+    </div>
+    <button class="nav-link" onclick="filterArticles('3GPP')">3GPP Releases</button>
+    <button class="nav-link" onclick="filterArticles('All')">Call Flows</button>
+    <div class="nav-item">
+      <button class="nav-link" onclick="filterArticles('All')">AI Telecom ▾</button>
+      <div class="dropdown">
+        <a onclick="filterArticles('Open RAN')">AI-RAN</a>
+        <a onclick="filterArticles('All')">Traffic Prediction</a>
+        <a onclick="filterArticles('All')">Fault Detection</a>
+        <a onclick="filterArticles('All')">Network Automation</a>
+      </div>
+    </div>
+    <button class="nav-link" onclick="scrollToSection('articles')">Latest Articles</button>
+    <button class="nav-link" onclick="scrollToSection('about')">About</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <h2 class="hero-title">5G • 6G • Open RAN<br><span>AI-Driven Telecom</span><br>Knowledge</h2>
+    <p class="hero-sub">Deep technical telecom learning platform covering modern wireless technologies, protocols, call flows, and future network innovations.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="filterArticles('5G')">Explore 5G Topics</button>
+      <button class="btn-outline" onclick="filterArticles('All')">View Call Flows</button>
+    </div>
+  </div>
+  <div class="hero-cards">
+    <div class="hero-card" onclick="filterArticles('5G')">
+      <svg class="hero-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>
+      <h3>5G NR</h3>
+      <p>RRC, NGAP, Registration, PDU Sessions.</p>
+    </div>
+    <div class="hero-card" onclick="filterArticles('6G')">
+      <svg class="hero-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M9 12l2 2 4-4"/></svg>
+      <h3>6G Vision</h3>
+      <p>AI-native networks and THz spectrum.</p>
+    </div>
+    <div class="hero-card" onclick="filterArticles('Open RAN')">
+      <svg class="hero-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+      <h3>Open RAN</h3>
+      <p>O-RAN architecture and interfaces.</p>
+    </div>
+    <div class="hero-card" onclick="filterArticles('All')">
+      <svg class="hero-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 0 20"/><path d="M12 8a4 4 0 0 1 0 8"/><path d="M12 2v20M2 12h20"/></svg>
+      <h3>AI Telecom</h3>
+      <p>AI-driven network automation.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TECH DOMAINS -->
+<section>
+  <h2 class="section-title">Core Technology Domains</h2>
+  <div class="domain-grid">
+    <div class="domain-card" onclick="filterArticles('5G')">
+      <h3>5G Core Architecture</h3>
+      <p>Explore structured deep-dive tutorials on 5G core, AMF, SMF, UPF and more.</p>
+    </div>
+    <div class="domain-card" onclick="filterArticles('6G')">
+      <h3>6G Future Systems</h3>
+      <p>AI-native 6G architecture, THz bands, and integrated sensing.</p>
+    </div>
+    <div class="domain-card" onclick="filterArticles('Open RAN')">
+      <h3>Open RAN Components</h3>
+      <p>O-RAN specifications, RIC, xApps, E2 interface deep dives.</p>
+    </div>
+    <div class="domain-card" onclick="filterArticles('All')">
+      <h3>AI-Native Networks</h3>
+      <p>Machine learning in 5G/6G, traffic prediction, and autonomous networks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TODAY'S HIGHLIGHT -->
+<div class="highlight-section">
+  <div class="highlight-inner">
+    <div class="highlight-tag">🔥 Today's Highlight</div>
+    <h2 class="highlight-title" id="highlightTitle">Loading today's featured article...</h2>
+    <p class="highlight-sub" id="highlightSub">Fetching the latest telecom insight.</p>
+    <button class="btn-outline" id="highlightBtn" onclick="window.location=document.getElementById('highlightBtn').dataset.url||'#'">Read Today's Update</button>
+  </div>
+</div>
+
+<!-- DAILY UPDATES -->
+<div class="updates-bg">
+<section>
+  <h2 class="section-title">Daily Telecom Updates</h2>
+  <div class="filter-bar" id="updateFilter">
+    <button class="filter-btn active" onclick="setFilter('All',this)">All</button>
+    <button class="filter-btn" onclick="setFilter('5G',this)">5G</button>
+    <button class="filter-btn" onclick="setFilter('6G',this)">6G</button>
+    <button class="filter-btn" onclick="setFilter('3GPP',this)">3GPP</button>
+    <button class="filter-btn" onclick="setFilter('Open RAN',this)">Open RAN</button>
+    <button class="filter-btn" onclick="setFilter('Policy',this)">Policy</button>
+  </div>
+  <div class="updates-grid" id="updatesGrid"></div>
+</section>
+</div>
+
+<!-- LATEST ARTICLES -->
+<div class="articles-bg">
+<section id="articles">
+  <h2 class="section-title" id="articlesTitle">Latest Technical Articles</h2>
+  <div class="articles-grid" id="articlesGrid"></div>
+</section>
+</div>
+
+<!-- 3GPP UPDATES -->
+<section id="3gpp">
+  <h2 class="section-title">Latest 3GPP Updates</h2>
+  <div class="gpp-grid">
+    <div class="gpp-card" onclick="filterArticles('3GPP')"><h4>Release 17 Summary</h4></div>
+    <div class="gpp-card" onclick="filterArticles('3GPP')"><h4>Release 18 Features</h4></div>
+    <div class="gpp-card" onclick="filterArticles('3GPP')"><h4>Release 19 Roadmap</h4></div>
+    <div class="gpp-card" onclick="filterArticles('3GPP')"><h4>Upcoming Study Items</h4></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-bg">
+<section id="about">
+  <h2 class="section-title">About NextGNow</h2>
+  <div class="about-text">
+    <p><strong>NextGNow</strong> is a modern telecom knowledge platform delivering structured learning resources across 5G, 6G, Open RAN, and AI-driven telecom networks.</p>
+    <p>Our mission is to simplify complex telecom technologies through clear explanations, real-world call flows, architecture diagrams, and continuous daily technical updates aligned with latest 3GPP releases.</p>
+    <p>The platform is designed for telecom engineers, researchers, students, and industry professionals who want to stay updated with next-generation wireless innovations.</p>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>NextGNow · NextGen Telecom Knowledge &nbsp;•&nbsp; 5G &nbsp;•&nbsp; 6G &nbsp;•&nbsp; Open RAN &nbsp;•&nbsp; AI Networks</p>
+</footer>
+
+<!-- SEARCH MODAL -->
+<div class="search-overlay" id="searchOverlay" onclick="closeSearchOutside(event)">
+  <div class="search-box">
+    <button class="search-close" onclick="closeSearch()">✕</button>
+    <input class="search-input" id="searchInput" type="text" placeholder="Search articles..." oninput="doSearch(this.value)" autocomplete="off">
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script>
+let allArticles = [];
+let currentFilter = 'All';
+
+// ── Load articles ────────────────────────────────────────
+async function init() {
+  try {
+    const r = await fetch('/articles.json?v=' + Date.now());
+    const d = await r.json();
+    allArticles = d.articles || [];
+  } catch(e) { allArticles = []; }
+  renderHighlight();
+  renderUpdates('All');
+  renderArticles('All');
+  animateVisitors();
+}
+
+// ── Highlight ────────────────────────────────────────────
+function renderHighlight() {
+  if (!allArticles.length) return;
+  const a = allArticles[0];
+  document.getElementById('highlightTitle').textContent = a.title;
+  document.getElementById('highlightSub').textContent = a.excerpt || '';
+  const btn = document.getElementById('highlightBtn');
+  btn.dataset.url = a.url;
+  btn.onclick = () => window.location = a.url;
+}
+
+// ── Updates Grid (shows recent 6) ────────────────────────
+function renderUpdates(cat) {
+  const grid = document.getElementById('updatesGrid');
+  const list = (cat === 'All' ? allArticles : allArticles.filter(a => a.category === cat)).slice(0, 6);
+  if (!list.length) {
+    grid.innerHTML = `<div class="empty-msg">No ${cat === 'All' ? '' : cat + ' '}updates yet. Check back tomorrow!</div>`;
+    return;
+  }
+  grid.innerHTML = list.map(a => `
+    <div class="update-card" onclick="window.location='${a.url}'">
+      <div class="update-date">${a.date}</div>
+      <div class="update-title">${a.title}</div>
+      <button class="btn-sm">Read Update</button>
+    </div>`).join('');
+}
+
+// ── Articles Grid ────────────────────────────────────────
+function renderArticles(cat) {
+  const grid = document.getElementById('articlesGrid');
+  const title = document.getElementById('articlesTitle');
+  const list = cat === 'All' ? allArticles : allArticles.filter(a => a.category === cat);
+  title.textContent = cat === 'All' ? 'Latest Technical Articles' : cat + ' Articles';
+  if (!allArticles.length) {
+    grid.innerHTML = '<div class="empty-msg">First article coming soon — published every morning at 8:00 AM IST.</div>';
+    return;
+  }
+  if (!list.length) {
+    grid.innerHTML = `<div class="empty-msg">No ${cat} articles yet. Check back soon!</div>`;
+    return;
+  }
+  grid.innerHTML = list.map(a => `
+    <a class="article-card" href="${a.url}">
+      <span class="article-cat ${catClass(a.category)}">${a.category}</span>
+      <div class="article-title">${a.title}</div>
+      <div class="article-excerpt">${(a.excerpt||'').substring(0,120)}...</div>
+      <div class="article-meta">${a.date} · 5 min read</div>
+    </a>`).join('');
+}
+
+// ── Filter ───────────────────────────────────────────────
+function filterArticles(cat) {
+  currentFilter = cat;
+  renderUpdates(cat);
+  renderArticles(cat);
+  scrollToSection('articles');
+  // update filter buttons
+  document.querySelectorAll('#updateFilter .filter-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim() === cat || (cat === 'All' && b.textContent.trim() === 'All'));
+  });
+}
+
+function setFilter(cat, btn) {
+  document.querySelectorAll('#updateFilter .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderUpdates(cat);
+  renderArticles(cat);
+}
+
+// ── Search ───────────────────────────────────────────────
+function openSearch() {
+  document.getElementById('searchOverlay').classList.add('open');
+  setTimeout(() => document.getElementById('searchInput').focus(), 100);
+}
+function closeSearch() { document.getElementById('searchOverlay').classList.remove('open'); }
+function closeSearchOutside(e) { if (e.target === document.getElementById('searchOverlay')) closeSearch(); }
+function doSearch(q) {
+  const results = document.getElementById('searchResults');
+  if (!q.trim()) { results.innerHTML = ''; return; }
+  const matches = allArticles.filter(a =>
+    a.title.toLowerCase().includes(q.toLowerCase()) ||
+    (a.excerpt||'').toLowerCase().includes(q.toLowerCase()) ||
+    a.category.toLowerCase().includes(q.toLowerCase())
+  ).slice(0, 6);
+  if (!matches.length) { results.innerHTML = '<div style="color:#475569;font-size:13px;padding:8px">No results found.</div>'; return; }
+  results.innerHTML = matches.map(a => `
+    <a class="search-result-item" href="${a.url}">
+      <div class="sr-title">${a.title}</div>
+      <div class="sr-meta">${a.category} · ${a.date}</div>
+    </a>`).join('');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSearch(); });
+
+// ── Scroll helpers ───────────────────────────────────────
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// ── Live visitor animation ───────────────────────────────
+const countries = [
+  {flag:'🇮🇳', name:'India', base:64},
+  {flag:'🇺🇸', name:'USA', base:28},
+  {flag:'🇩🇪', name:'Germany', base:14},
+  {flag:'🇯🇵', name:'Japan', base:9},
+  {flag:'🇬🇧', name:'UK', base:7}
+];
+function animateVisitors() {
+  const rows = document.getElementById('visitorRows');
+  function update() {
+    const total = countries.reduce((s,c) => s + c.base + Math.floor(Math.random()*5), 0);
+    document.getElementById('liveCount').textContent = total;
+    rows.innerHTML = countries.map(c => {
+      const n = c.base + Math.floor(Math.random()*5);
+      const pct = Math.round((n/total)*100);
+      return `<div class="visitor-row"><span>${c.flag} ${c.name}</span><span>${n}</span></div>
+              <div class="visitor-bar"><div class="visitor-bar-fill" style="width:${pct}%"></div></div>`;
+    }).join('');
+  }
+  update();
+  setInterval(update, 5000);
+}
+
+// ── Category CSS class ───────────────────────────────────
+function catClass(c) {
+  return {'5G':'cat-5g','6G':'cat-6g','3GPP':'cat-3gpp','Open RAN':'cat-oran','Policy':'cat-policy'}[c] || 'cat-ai';
+}
+
+init();
+</script>
+</body>
+</html>
