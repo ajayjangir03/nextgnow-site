@@ -1,1 +1,17 @@
-
+{
+  "articles": [
+    {
+      "title": "AI-Native 6G Prototype Demonstrations Accelerate at MWC 2026",
+      "slug": "ai-native-6g-prototype-demonstrations-accelerate-at-mwc-2026",
+      "url": "https://nextgnow.in/articles/ai-native-6g-prototype-demonstrations-accelerate-at-mwc-2026.html",
+      "category": "6G",
+      "excerpt": "Headline\nAI-Native 6G Prototypes Take Center Stage at MWC 2026 Barcelona with Integrated Sensing and Intelligence\n\n Quick Summary TL;DR\n- Major telecom\u2026",
+      "date": "Apr 20, 2026",
+      "tags": [
+        "6G",
+        "telecom",
+        "3GPP"
+      ]
+    }
+  ]
+}
