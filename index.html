@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NextGNow — 5G · 6G · Open RAN · AI Telecom</title>
+<meta name="description" content="Deep technical telecom learning platform covering 5G, 6G, Open RAN, 3GPP and AI-driven networks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:15px}
+body{background:#030712;color:#e2e8f0;font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden;min-height:100vh}
+:root{
+  --bg0:#030712;--bg1:#0a0f1e;--bg2:#0f172a;--bg3:#1e293b;
+  --border:#1e293b;--border2:#334155;
+  --blue:#3b82f6;--blue-dim:rgba(59,130,246,.12);--blue-glow:rgba(59,130,246,.25);
+  --cyan:#06b6d4;--cyan-dim:rgba(6,182,212,.1);
+  --purple:#8b5cf6;--purple-dim:rgba(139,92,246,.1);
+  --green:#10b981;--green-dim:rgba(16,185,129,.1);
+  --orange:#f59e0b;--orange-dim:rgba(245,158,11,.1);
+  --red:#ef4444;--red-dim:rgba(239,68,68,.1);
+  --txt0:#f1f5f9;--txt1:#cbd5e1;--txt2:#94a3b8;--txt3:#64748b;--txt4:#475569;
+}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(59,130,246,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.04) 1px,transparent 1px);
+  background-size:48px 48px;}
+body::after{content:'';position:fixed;top:0;left:50%;transform:translateX(-50%);width:800px;height:500px;
+  background:radial-gradient(ellipse at 50% 0%,rgba(59,130,246,.12) 0%,transparent 70%);pointer-events:none;z-index:0;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+/* ── LOGO SVG ── */
+.logo-svg{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
+.logo-mark{width:36px;height:36px;flex-shrink:0}
+.logo-text{font-size:20px;font-weight:800;color:var(--txt0);letter-spacing:-.5px;line-height:1}
+.logo-text span{color:var(--blue)}
+
+/* ── FIXED BADGES ── */
+.live-badge{position:fixed;top:14px;right:14px;z-index:200;background:rgba(10,15,30,.92);backdrop-filter:blur(12px);border:1px solid var(--border2);padding:7px 14px;border-radius:20px;font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;color:var(--txt1);box-shadow:0 4px 24px rgba(0,0,0,.4)}
+.pulse{width:7px;height:7px;background:#22c55e;border-radius:50%;flex-shrink:0;box-shadow:0 0 8px #22c55e;animation:pulse-anim 2s ease-in-out infinite}
+@keyframes pulse-anim{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.2)}}
+.visitor-panel{width:230px;background:var(--bg1);border:1px solid var(--border2);border-radius:16px;padding:16px;font-size:12px;display:none}
+.vp-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;font-weight:600;color:var(--txt0)}
+.vp-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;color:var(--txt2)}
+.vp-bar-wrap{height:3px;background:var(--bg3);border-radius:2px;margin:2px 0 6px;overflow:hidden}
+.vp-bar{height:100%;background:var(--blue);border-radius:2px;transition:width .8s ease}
+
+/* ── HEADER ── */
+header{position:sticky;top:0;z-index:150;background:rgba(3,7,18,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.header-right{display:flex;align-items:center;gap:10px}
+.social-icons{display:flex;align-items:center;gap:6px}
+.social-icon{width:32px;height:32px;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--txt3);text-decoration:none}
+.social-icon:hover{border-color:var(--blue);background:var(--blue-dim);color:var(--blue)}
+.social-icon svg{width:15px;height:15px}
+.search-btn{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border2);color:var(--txt2);padding:7px 14px;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+.search-btn:hover{border-color:var(--blue);color:var(--txt0);background:var(--bg3)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:var(--bg2);border:1px solid var(--border2);border-radius:8px}
+.hamburger span{width:20px;height:2px;background:var(--txt2);border-radius:2px;transition:all .3s;display:block}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* ── NAV ── */
+nav{display:flex;gap:2px;padding:8px 0;flex-wrap:wrap}
+.nav-item{position:relative}
+.nav-link{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:500;color:var(--txt2);cursor:pointer;padding:6px 12px;border-radius:8px;background:none;border:none;font-family:'Inter',sans-serif;transition:all .15s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--txt0);background:var(--bg3)}
+.nav-link .chevron{width:10px;height:10px;opacity:.5;transition:transform .2s}
+.nav-item:hover .nav-link .chevron{transform:rotate(180deg)}
+.dropdown{position:absolute;top:calc(100% + 6px);left:0;background:var(--bg1);border:1px solid var(--border2);border-radius:12px;padding:8px;min-width:210px;display:none;z-index:300;box-shadow:0 16px 48px rgba(0,0,0,.6)}
+.nav-item:hover .dropdown{display:block}
+.dropdown-item{display:flex;align-items:center;gap:10px;padding:9px 12px;font-size:13px;color:var(--txt2);text-decoration:none;border-radius:8px;transition:all .15s;cursor:pointer;white-space:nowrap}
+.dropdown-item:hover{color:var(--txt0);background:var(--bg3)}
+.dd-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);flex-shrink:0}
+.dd-tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;margin-left:auto}
+
+/* ── MOBILE NAV ── */
+.mobile-nav{display:none;flex-direction:column;background:var(--bg1);border-bottom:1px solid var(--border);padding:12px 24px 16px;gap:4px}
+.mobile-nav.open{display:flex}
+.mobile-nav-item{padding:10px 12px;font-size:14px;color:var(--txt2);cursor:pointer;border-radius:8px;transition:all .15s;font-weight:500}
+.mobile-nav-item:hover{color:var(--txt0);background:var(--bg3)}
+.mobile-section{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt4);padding:10px 12px 4px;margin-top:6px}
+
+/* ── HERO ── */
+.hero{padding:64px 0 56px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--blue-dim);border:1px solid rgba(59,130,246,.25);color:var(--blue);font-size:12px;font-weight:600;padding:6px 14px;border-radius:20px;margin-bottom:24px;letter-spacing:.04em}
+.eyebrow-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse-anim 2s ease-in-out infinite}
+.hero-title{font-size:46px;font-weight:800;line-height:1.1;letter-spacing:-.8px;margin-bottom:20px;color:var(--txt0)}
+.grad{background:linear-gradient(135deg,#60a5fa 0%,#a78bfa 50%,#34d399 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:15px;color:var(--txt2);line-height:1.75;margin-bottom:36px;max-width:440px;font-weight:300}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;border:none;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none;box-shadow:0 4px 20px rgba(59,130,246,.3)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(59,130,246,.4)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--txt1);border:1px solid var(--border2);padding:12px 24px;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none}
+.btn-ghost:hover{background:var(--bg3);border-color:var(--blue);color:var(--txt0)}
+.hero-stats{display:flex;gap:28px;margin-top:36px;padding-top:28px;border-top:1px solid var(--border)}
+.hero-stat-num{font-size:26px;font-weight:800;color:var(--blue);line-height:1}
+.hero-stat-label{font-size:11px;color:var(--txt3);margin-top:4px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.hero-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hcard{background:var(--bg1);border:1px solid var(--border);border-radius:16px;padding:22px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.hcard::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--blue-dim),transparent);opacity:0;transition:opacity .25s}
+.hcard:hover{border-color:rgba(59,130,246,.4);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.hcard:hover::before{opacity:1}
+.hcard-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:18px}
+.hcard h3{font-size:14px;font-weight:600;color:var(--txt0);margin-bottom:6px}
+.hcard p{font-size:12px;color:var(--txt3);line-height:1.6}
+.icon-blue{background:var(--blue-dim);border:1px solid rgba(59,130,246,.2)}
+.icon-purple{background:var(--purple-dim);border:1px solid rgba(139,92,246,.2)}
+.icon-cyan{background:var(--cyan-dim);border:1px solid rgba(6,182,212,.2)}
+.icon-green{background:var(--green-dim);border:1px solid rgba(16,185,129,.2)}
+
+/* ── SECTIONS ── */
+.section-label{display:flex;align-items:center;gap:12px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:24px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.section-title{font-size:30px;font-weight:800;letter-spacing:-.5px;color:var(--txt0);margin-bottom:32px}
+
+/* ── DOMAINS ── */
+.domains{padding:48px 0;border-top:1px solid var(--border)}
+.domain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.dcard{background:var(--bg1);border:1px solid var(--border);border-radius:16px;padding:24px;cursor:pointer;transition:all .2s}
+.dcard:hover{border-color:var(--border2);background:var(--bg2);transform:translateY(-2px)}
+.dcard-tag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;display:block}
+.dcard h3{font-size:15px;font-weight:600;color:var(--txt0);margin-bottom:8px}
+.dcard p{font-size:12px;color:var(--txt3);line-height:1.6}
+.dcard-arrow{font-size:18px;color:var(--txt4);margin-top:14px;display:block;transition:transform .2s}
+.dcard:hover .dcard-arrow{transform:translateX(4px);color:var(--blue)}
+
+/* ── HIGHLIGHT ── */
+.highlight{padding:40px 0;background:linear-gradient(135deg,rgba(59,130,246,.08) 0%,rgba(139,92,246,.05) 100%);border-top:1px solid rgba(59,130,246,.15);border-bottom:1px solid rgba(59,130,246,.15)}
+.hl-inner{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.hl-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--orange);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.hl-title{font-size:26px;font-weight:700;color:var(--txt0);margin-bottom:10px;letter-spacing:-.3px;max-width:600px;line-height:1.3}
+.hl-sub{font-size:14px;color:var(--txt2);max-width:560px;line-height:1.7;font-weight:300;margin-bottom:20px}
+
+/* ── FILTER BAR ── */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.fbtn{background:var(--bg2);border:1px solid var(--border);color:var(--txt2);padding:7px 18px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
+.fbtn:hover{border-color:var(--border2);color:var(--txt0)}
+.fbtn.active{background:var(--blue-dim);border-color:rgba(59,130,246,.4);color:#60a5fa;font-weight:600}
+
+/* ── UPDATES ── */
+.updates{padding:56px 0;background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.updates-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ucard{background:var(--bg0);border:1px solid var(--border);border-radius:16px;padding:24px;cursor:pointer;transition:all .2s;display:flex;flex-direction:column}
+.ucard:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.ucard-date{font-size:11px;font-weight:600;color:var(--blue);margin-bottom:10px;letter-spacing:.04em}
+.ucard-title{font-size:14px;font-weight:600;color:var(--txt1);line-height:1.5;padding-bottom:16px;flex-grow:1}
+.ucard-foot{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border);margin-top:auto}
+.read-link{font-size:12px;color:var(--blue);font-weight:500;display:flex;align-items:center;gap:4px;transition:gap .15s}
+.read-link:hover{gap:8px}
+
+/* ── ARTICLES ── */
+.articles{padding:56px 0}
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.acard{background:var(--bg1);border:1px solid var(--border);border-radius:16px;padding:24px;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;text-decoration:none}
+.acard:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.acard-cat{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:14px}
+.cat-5g{background:var(--blue-dim);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.cat-6g{background:var(--purple-dim);color:#c084fc;border:1px solid rgba(139,92,246,.2)}
+.cat-3gpp{background:var(--green-dim);color:#34d399;border:1px solid rgba(16,185,129,.2)}
+.cat-oran{background:var(--orange-dim);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.cat-policy{background:var(--red-dim);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.cat-callflow{background:var(--cyan-dim);color:#22d3ee;border:1px solid rgba(6,182,212,.2)}
+.cat-ai{background:var(--cyan-dim);color:#22d3ee;border:1px solid rgba(6,182,212,.2)}
+.acard-title{font-size:16px;font-weight:700;color:var(--txt0);margin-bottom:10px;line-height:1.4;letter-spacing:-.2px}
+.acard:hover .acard-title{color:#60a5fa}
+.acard-excerpt{font-size:13px;color:var(--txt3);line-height:1.65;flex-grow:1;font-weight:300;margin-bottom:18px}
+.acard-foot{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border);margin-top:auto}
+.acard-date{font-size:11px;color:var(--txt4)}
+.acard-read{font-size:11px;color:var(--blue);font-weight:500}
+
+/* ── 3GPP ── */
+.gpp{padding:56px 0;background:var(--bg1);border-top:1px solid var(--border)}
+.gpp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gcard{background:var(--bg0);border:1px solid var(--border);border-radius:14px;padding:22px 20px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:space-between}
+.gcard:hover{border-color:var(--blue);background:var(--bg2)}
+.gcard h4{font-size:14px;font-weight:600;color:var(--txt1)}
+.gcard-arrow{color:var(--txt4);font-size:16px;transition:all .2s}
+.gcard:hover .gcard-arrow{color:var(--blue);transform:translateX(4px)}
+
+/* ── ABOUT ── */
+.about{padding:56px 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.about-text p{font-size:14px;color:var(--txt2);line-height:1.8;margin-bottom:16px;font-weight:300}
+.about-text strong{color:var(--txt0);font-weight:600}
+.about-cards{display:flex;flex-direction:column;gap:14px}
+.abt-card{background:var(--bg1);border:1px solid var(--border);border-radius:14px;padding:20px 22px;display:flex;align-items:center;gap:16px}
+.abt-num{font-size:32px;font-weight:800;color:var(--blue);min-width:60px;line-height:1}
+.abt-label{font-size:13px;color:var(--txt2)}
+.abt-label strong{display:block;color:var(--txt0);font-weight:600;margin-bottom:2px}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:36px 0 28px}
+.footer-top{display:grid;grid-template-columns:1fr auto 1fr;gap:32px;align-items:start;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.footer-brand{}
+.footer-logo-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.footer-logo-text{font-size:18px;font-weight:800;color:var(--txt0);letter-spacing:-.4px}
+.footer-logo-text span{color:var(--blue)}
+.footer-tagline{font-size:12px;color:var(--txt4);margin-bottom:14px}
+.footer-social{display:flex;gap:8px}
+.footer-social-icon{width:34px;height:34px;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--txt3);text-decoration:none}
+.footer-social-icon:hover{border-color:var(--blue);background:var(--blue-dim);color:var(--blue)}
+.footer-social-icon svg{width:15px;height:15px}
+.footer-links-col{display:flex;flex-direction:column;gap:8px}
+.footer-links-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt4);margin-bottom:6px}
+.footer-link{font-size:13px;color:var(--txt3);text-decoration:none;cursor:pointer;transition:color .15s}
+.footer-link:hover{color:var(--txt0)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-size:12px;color:var(--txt4)}
+.footer-bottom-links{display:flex;gap:16px}
+.footer-bottom-links a{font-size:12px;color:var(--txt4);text-decoration:none;cursor:pointer;transition:color .15s}
+.footer-bottom-links a:hover{color:var(--txt2)}
+
+/* ── SEARCH MODAL ── */
+.search-overlay{display:none;position:fixed;inset:0;background:rgba(3,7,18,.85);backdrop-filter:blur(8px);z-index:500;align-items:flex-start;justify-content:center;padding-top:100px;padding-left:16px;padding-right:16px}
+.search-overlay.open{display:flex}
+.search-box{background:var(--bg1);border:1px solid var(--border2);border-radius:20px;width:100%;max-width:580px;padding:24px;box-shadow:0 24px 80px rgba(0,0,0,.7)}
+.search-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.search-input{flex:1;background:var(--bg2);border:1px solid var(--border2);color:var(--txt0);padding:12px 16px;border-radius:12px;font-size:15px;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s}
+.search-input:focus{border-color:var(--blue)}
+.search-input::placeholder{color:var(--txt4)}
+.search-close{background:var(--bg3);border:none;color:var(--txt2);width:36px;height:36px;border-radius:8px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.search-close:hover{background:var(--border2);color:var(--txt0)}
+.search-hint{font-size:12px;color:var(--txt4);margin-bottom:12px}
+.search-results{display:flex;flex-direction:column;gap:4px}
+.sresult{display:block;padding:12px 14px;border-radius:10px;text-decoration:none;transition:background .15s;cursor:pointer}
+.sresult:hover{background:var(--bg3)}
+.sr-title{font-size:13px;font-weight:600;color:var(--txt0);margin-bottom:3px}
+.sr-meta{font-size:11px;color:var(--txt3)}
+.no-results{font-size:13px;color:var(--txt3);padding:12px 14px}
+
+/* ── EMPTY STATES ── */
+.empty{text-align:center;padding:56px 24px;grid-column:1/-1}
+.empty-icon{font-size:40px;margin-bottom:12px}
+.empty-title{font-size:16px;font-weight:600;color:var(--txt2);margin-bottom:6px}
+.empty-sub{font-size:13px;color:var(--txt4)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-left{animation:fadeUp .6s ease both}
+.hero-cards{animation:fadeUp .6s ease .1s both}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .hero-title{font-size:38px}
+  .domain-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .hero-grid,.hl-inner{grid-template-columns:1fr}
+  .hero-cards,.visitor-panel{display:none}
+  .hero-title{font-size:32px}
+  .hero-sub{font-size:14px}
+  .updates-grid,.articles-grid{grid-template-columns:1fr}
+  .gpp-grid{grid-template-columns:repeat(2,1fr)}
+  .domain-grid{grid-template-columns:1fr 1fr}
+  .hero-stats{flex-wrap:wrap;gap:20px}
+  .live-badge{top:10px;right:10px;font-size:11px;padding:6px 11px}
+  .hamburger{display:flex}
+  nav{display:none}
+  .header-top{padding:10px 0}
+  .footer-top{grid-template-columns:1fr;gap:24px}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+  .hl-inner{grid-template-columns:1fr;gap:20px}
+}
+@media(max-width:480px){
+  .domain-grid,.gpp-grid{grid-template-columns:1fr}
+  .hero{padding:40px 0 32px}
+  .container{padding:0 16px}
+  .hero-btns{flex-direction:column}
+  .btn-primary,.btn-ghost{justify-content:center}
+  .section-title{font-size:24px}
+  .updates-grid,.articles-grid{grid-template-columns:1fr}
+  .footer-top{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- Live Badge -->
+<div class="live-badge">
+  <div class="pulse"></div>
+  <span id="liveCount">128</span> reading now
+</div>
+
+<!-- visitor panel moved to about section -->
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+
+      <!-- LOGO -->
+      <div class="logo-svg" onclick="goHome()">
+        <svg class="logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="36" height="36" rx="10" fill="#0f172a" stroke="#1e293b"/>
+          <circle cx="18" cy="18" r="3" fill="#3b82f6"/>
+          <circle cx="18" cy="18" r="7" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="2 2" opacity=".6"/>
+          <circle cx="18" cy="18" r="12" fill="none" stroke="#3b82f6" stroke-width="1" opacity=".3"/>
+          <path d="M10 18 L26 18" stroke="#60a5fa" stroke-width="1" opacity=".4"/>
+          <path d="M18 10 L18 26" stroke="#60a5fa" stroke-width="1" opacity=".4"/>
+          <circle cx="26" cy="10" r="2.5" fill="#60a5fa" opacity=".8"/>
+          <path d="M21 10 L26 10 L26 15" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".6" fill="none"/>
+        </svg>
+        <div>
+          <div class="logo-text">NextG<span>Now</span></div>
+          <div style="font-size:10px;color:var(--txt4);margin-top:1px;letter-spacing:.04em">TELECOM INTELLIGENCE</div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- Social Icons -->
+        <div class="social-icons">
+          <a class="social-icon" href="https://linkedin.com" target="_blank" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a class="social-icon" href="https://x.com" target="_blank" title="X / Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a class="social-icon" href="https://youtube.com" target="_blank" title="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a class="social-icon" href="#" title="RSS Feed">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg>
+          </a>
+        </div>
+        <button class="search-btn" onclick="openSearch()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Search
+        </button>
+        <!-- Hamburger -->
+        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Nav -->
+    <nav id="desktopNav">
+      <div class="nav-item">
+        <button class="nav-link" onclick="applyFilter('6G')">6G
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown" id="dd6g">
+          <div class="dropdown-item" onclick="applyFilter('6G')"><span class="dd-dot" style="background:#c084fc"></span>All 6G Articles</div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link" onclick="applyFilter('5G')">5G
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown" id="dd5g">
+          <div class="dropdown-item" onclick="applyFilter('5G')"><span class="dd-dot"></span>All 5G Articles</div>
+        </div>
+      </div>
+      <button class="nav-link" onclick="applyFilter('3GPP')">3GPP Releases</button>
+      <div class="nav-item">
+        <button class="nav-link" onclick="applyFilter('Call Flow')">Call Flows
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown" id="ddcf">
+          <div class="dropdown-item" onclick="applyFilter('Call Flow')"><span class="dd-dot" style="background:#22d3ee"></span>All Call Flows</div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link" onclick="applyFilter('Open RAN')">AI Telecom
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown" id="ddoran">
+          <div class="dropdown-item" onclick="applyFilter('Open RAN')"><span class="dd-dot" style="background:#fbbf24"></span>All AI Telecom</div>
+        </div>
+      </div>
+      <button class="nav-link" onclick="scrollTo('articles')">Latest Articles</button>
+      <button class="nav-link" onclick="scrollTo('about')">About</button>
+    </nav>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-section">Technologies</div>
+    <div class="mobile-nav-item" onclick="applyFilter('5G');closeMobileMenu()">📡 5G</div>
+    <div class="mobile-nav-item" onclick="applyFilter('6G');closeMobileMenu()">🛰️ 6G</div>
+    <div class="mobile-nav-item" onclick="applyFilter('3GPP');closeMobileMenu()">📋 3GPP Releases</div>
+    <div class="mobile-nav-item" onclick="applyFilter('Call Flow');closeMobileMenu()">🔄 Call Flows</div>
+    <div class="mobile-nav-item" onclick="applyFilter('Open RAN');closeMobileMenu()">🔓 Open RAN / AI Telecom</div>
+    <div class="mobile-section">Pages</div>
+    <div class="mobile-nav-item" onclick="scrollTo('articles');closeMobileMenu()">📰 Latest Articles</div>
+    <div class="mobile-nav-item" onclick="scrollTo('about');closeMobileMenu()">ℹ️ About</div>
+    <div class="mobile-section">Connect</div>
+    <div style="display:flex;gap:10px;padding:8px 12px">
+      <a class="social-icon" href="https://linkedin.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      <a class="social-icon" href="https://x.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a class="social-icon" href="https://youtube.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-eyebrow"><div class="eyebrow-dot"></div>Daily Telecom Intelligence</div>
+        <h1 class="hero-title">5G · 6G · Open RAN<br><span class="grad">AI-Driven Telecom</span><br>Knowledge Hub</h1>
+        <p class="hero-sub">Deep technical telecom learning platform covering modern wireless technologies, protocols, call flows, and future network innovations — explained clearly.</p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="applyFilter('5G')">Explore 5G Topics →</button>
+          <button class="btn-ghost" onclick="applyFilter('Call Flow')">View Call Flows</button>
+        </div>
+        <div class="hero-stats">
+          <div><div class="hero-stat-num" id="totalCount">—</div><div class="hero-stat-label">Articles Published</div></div>
+          <div><div class="hero-stat-num">Daily</div><div class="hero-stat-label">New Posts 8AM IST</div></div>
+          <div><div class="hero-stat-num">5+</div><div class="hero-stat-label">Topic Categories</div></div>
+        </div>
+      </div>
+      <div class="hero-cards">
+        <div class="hcard" onclick="applyFilter('5G')"><div class="hcard-icon icon-blue">📡</div><h3>5G NR</h3><p>RRC, NGAP, Registration flows, PDU Sessions.</p></div>
+        <div class="hcard" onclick="applyFilter('6G')"><div class="hcard-icon icon-purple">🛰️</div><h3>6G Vision</h3><p>AI-native networks and IMT-2030 framework.</p></div>
+        <div class="hcard" onclick="applyFilter('Call Flow')"><div class="hcard-icon icon-cyan">🔄</div><h3>Call Flows</h3><p>Detailed signalling flows with step-by-step diagrams.</p></div>
+        <div class="hcard" onclick="applyFilter('3GPP')"><div class="hcard-icon icon-green">📋</div><h3>3GPP Specs</h3><p>Release 17, 18, 19 features explained simply.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAINS -->
+<div class="domains">
+  <div class="container">
+    <div class="section-label">Core Technology Domains</div>
+    <div class="domain-grid">
+      <div class="dcard" onclick="applyFilter('5G')"><span class="dcard-tag" style="color:#60a5fa">5G Core</span><h3>5G Core Architecture</h3><p>AMF, SMF, UPF, PCF — deep dives into every 5G network function.</p><span class="dcard-arrow">→</span></div>
+      <div class="dcard" onclick="applyFilter('6G')"><span class="dcard-tag" style="color:#c084fc">6G Future</span><h3>6G Future Systems</h3><p>AI-native 6G, THz bands, integrated sensing and communication.</p><span class="dcard-arrow">→</span></div>
+      <div class="dcard" onclick="applyFilter('Call Flow')"><span class="dcard-tag" style="color:#22d3ee">Call Flows</span><h3>Protocol Call Flows</h3><p>Step-by-step signalling diagrams for 5G NR, EPC, IMS and more.</p><span class="dcard-arrow">→</span></div>
+      <div class="dcard" onclick="applyFilter('Open RAN')"><span class="dcard-tag" style="color:#fbbf24">Open RAN</span><h3>Open RAN &amp; AI</h3><p>O-RAN specs, near-RT RIC, xApps and network automation.</p><span class="dcard-arrow">→</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- HIGHLIGHT -->
+<div class="highlight">
+  <div class="container">
+    <div class="hl-inner">
+      <div>
+        <div class="hl-tag">🔥 Today's Highlight</div>
+        <h2 class="hl-title" id="hlTitle">Loading today's featured article...</h2>
+        <p class="hl-sub" id="hlSub">Fetching the latest telecom insight published this morning.</p>
+        <button class="btn-primary" id="hlBtn" style="display:none" onclick="window.location=this.dataset.url">Read Today's Update →</button>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-size:11px;color:var(--txt4);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;font-weight:600">Published</div>
+        <div id="hlDate" style="font-size:22px;font-weight:800;color:var(--txt0)">—</div>
+        <div style="font-size:12px;color:var(--txt3);margin-top:4px">8:00 AM IST</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAILY UPDATES -->
+<div class="updates">
+  <div class="container">
+    <div class="section-label">Daily Telecom Updates</div>
+    <div class="filter-bar" id="updFilter">
+      <button class="fbtn active" onclick="updFilter('All',this)">All Topics</button>
+      <button class="fbtn" onclick="updFilter('5G',this)">5G</button>
+      <button class="fbtn" onclick="updFilter('6G',this)">6G</button>
+      <button class="fbtn" onclick="updFilter('3GPP',this)">3GPP</button>
+      <button class="fbtn" onclick="updFilter('Open RAN',this)">Open RAN</button>
+      <button class="fbtn" onclick="updFilter('Call Flow',this)">Call Flows</button>
+      <button class="fbtn" onclick="updFilter('Policy',this)">Policy</button>
+    </div>
+    <div class="updates-grid" id="updGrid"></div>
+  </div>
+</div>
+
+<!-- ARTICLES -->
+<div class="articles" id="articles">
+  <div class="container">
+    <!-- Articles header + inline category filter -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:14px">
+      <div class="section-label" id="artLabel" style="margin-bottom:0;flex:1">Latest Technical Articles</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <button class="fbtn active" onclick="setCatFilter('All',this)">All</button>
+        <button class="fbtn" onclick="setCatFilter('5G',this)">📡 5G</button>
+        <button class="fbtn" onclick="setCatFilter('6G',this)">🛰️ 6G</button>
+        <button class="fbtn" onclick="setCatFilter('3GPP',this)">📋 3GPP</button>
+        <button class="fbtn" onclick="setCatFilter('Open RAN',this)">🔓 Open RAN</button>
+        <button class="fbtn" onclick="setCatFilter('Call Flow',this)">🔄 Call Flows</button>
+        <button class="fbtn" onclick="setCatFilter('Policy',this)">🏛️ Policy</button>
+      </div>
+    </div>
+    <div class="articles-grid" id="artGrid"></div>
+  </div>
+</div>
+
+<!-- 3GPP -->
+<div class="gpp" id="3gpp">
+  <div class="container">
+    <div class="section-label">3GPP Releases</div>
+    <div class="gpp-grid">
+      <div class="gcard" onclick="applyFilter('3GPP')"><h4>Release 17 Summary</h4><span class="gcard-arrow">→</span></div>
+      <div class="gcard" onclick="applyFilter('3GPP')"><h4>Release 18 Features</h4><span class="gcard-arrow">→</span></div>
+      <div class="gcard" onclick="applyFilter('3GPP')"><h4>Release 19 Roadmap</h4><span class="gcard-arrow">→</span></div>
+      <div class="gcard" onclick="applyFilter('3GPP')"><h4>Upcoming Study Items</h4><span class="gcard-arrow">→</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about" id="about">
+  <div class="container">
+    <div class="section-label">About NextGNow</div>
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title" style="margin-bottom:20px">The Telecom Knowledge Platform</h2>
+        <div class="about-text">
+          <p><strong>NextGNow</strong> is a modern telecom knowledge platform delivering structured learning resources across 5G, 6G, Open RAN, Call Flows, and AI-driven telecom networks.</p>
+          <p>Our mission is to simplify complex telecom technologies through clear explanations, real-world call flows, architecture diagrams, and continuous daily technical updates aligned with latest 3GPP releases.</p>
+          <p>Designed for telecom engineers, researchers, students, and industry professionals who want to stay updated with next-generation wireless innovations.</p>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap">
+          <a class="social-icon" href="https://linkedin.com" target="_blank" style="width:auto;padding:0 14px;gap:8px;font-size:13px;font-weight:500;color:var(--txt2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            Follow on LinkedIn
+          </a>
+          <a class="social-icon" href="https://x.com" target="_blank" style="width:auto;padding:0 14px;gap:8px;font-size:13px;font-weight:500;color:var(--txt2)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Follow on X
+          </a>
+        </div>
+      </div>
+      <div class="about-cards">
+        <div class="abt-card"><div class="abt-num" id="abtTotal">—</div><div class="abt-label"><strong>Articles Published</strong>Across 5G, 6G, 3GPP, Open RAN &amp; Policy</div></div>
+        <div class="abt-card"><div class="abt-num">1</div><div class="abt-label"><strong>New Article Daily</strong>Published every morning at 8:00 AM IST</div></div>
+        <div class="abt-card"><div class="abt-num">0</div><div class="abt-label"><strong>Jargon or Fluff</strong>Plain English explanations only</div></div>
+        <div class="abt-card" style="flex-direction:column;align-items:flex-start;gap:10px">
+          <div style="display:flex;align-items:center;gap:8px;width:100%">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+            <span style="font-size:13px;font-weight:600;color:var(--txt0)">Live Visitors</span>
+            <div class="pulse" style="margin-left:auto"></div>
+            <span style="font-size:13px;font-weight:700;color:var(--blue)" id="liveCount">—</span>
+          </div>
+          <div id="vpRows" style="width:100%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-row">
+          <svg width="32" height="32" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#0f172a" stroke="#1e293b"/><circle cx="18" cy="18" r="3" fill="#3b82f6"/><circle cx="18" cy="18" r="7" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="2 2" opacity=".6"/><circle cx="18" cy="18" r="12" fill="none" stroke="#3b82f6" stroke-width="1" opacity=".3"/><path d="M10 18L26 18" stroke="#60a5fa" stroke-width="1" opacity=".4"/><path d="M18 10L18 26" stroke="#60a5fa" stroke-width="1" opacity=".4"/><circle cx="26" cy="10" r="2.5" fill="#60a5fa" opacity=".8"/><path d="M21 10L26 10L26 15" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".6" fill="none"/></svg>
+          <span class="footer-logo-text">NextG<span>Now</span></span>
+        </div>
+        <div class="footer-tagline">Tomorrow's Telecom, Explained Today</div>
+        <div class="footer-social">
+          <a class="footer-social-icon" href="https://linkedin.com" target="_blank" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a class="footer-social-icon" href="https://x.com" target="_blank" title="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a class="footer-social-icon" href="https://youtube.com" target="_blank" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a class="footer-social-icon" href="#" title="RSS"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-links-col">
+          <div class="footer-links-title">Topics</div>
+          <a class="footer-link" onclick="applyFilter('5G')">5G</a>
+          <a class="footer-link" onclick="applyFilter('6G')">6G</a>
+          <a class="footer-link" onclick="applyFilter('3GPP')">3GPP Releases</a>
+          <a class="footer-link" onclick="applyFilter('Call Flow')">Call Flows</a>
+          <a class="footer-link" onclick="applyFilter('Open RAN')">Open RAN</a>
+          <a class="footer-link" onclick="applyFilter('Policy')">Policy</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-links-col">
+          <div class="footer-links-title">Platform</div>
+          <a class="footer-link" onclick="goHome()">Home</a>
+          <a class="footer-link" onclick="scrollTo('articles')">All Articles</a>
+          <a class="footer-link" onclick="scrollTo('about')">About</a>
+          <a class="footer-link" href="mailto:hello@nextgnow.in">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 NextGNow · NextGNow.in · All rights reserved</div>
+      <div class="footer-bottom-links">
+        <a>Privacy Policy</a>
+        <a>Terms of Use</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- SEARCH MODAL -->
+<div class="search-overlay" id="searchOverlay" onclick="closeSearchOut(event)">
+  <div class="search-box">
+    <div class="search-header">
+      <input class="search-input" id="searchInput" type="text" placeholder="Search articles, topics, technologies..." oninput="doSearch(this.value)" autocomplete="off">
+      <button class="search-close" onclick="closeSearch()">✕</button>
+    </div>
+    <div class="search-hint" id="searchHint">Type to search · Press Ctrl+K to open anytime</div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script>
+let articles = [], currentFilter = 'All';
+
+async function init() {
+  try {
+    const r = await fetch('/articles.json?v=' + Date.now());
+    const d = await r.json();
+    articles = d.articles || [];
+  } catch(e) { articles = []; }
+  updateStats();
+  renderHighlight();
+  renderUpdates('All');
+  renderArticles('All');
+  buildAllDropdowns();
+  startVisitors();
+}
+
+function updateStats() {
+  const n = articles.length;
+  document.getElementById('totalCount').textContent = n || '—';
+  document.getElementById('abtTotal').textContent = n || '—';
+}
+
+function renderHighlight() {
+  if (!articles.length) {
+    document.getElementById('hlTitle').textContent = 'First article coming soon — published daily at 8 AM IST';
+    document.getElementById('hlSub').textContent = 'NextGNow publishes one fresh telecom insight every morning.';
+    return;
+  }
+  const a = articles[0];
+  document.getElementById('hlTitle').textContent = a.title;
+  document.getElementById('hlSub').textContent = a.excerpt || '';
+  document.getElementById('hlDate').textContent = a.date || '';
+  const btn = document.getElementById('hlBtn');
+  btn.dataset.url = a.url; btn.style.display = 'inline-flex';
+}
+
+function renderUpdates(cat) {
+  const g = document.getElementById('updGrid');
+  const list = (cat === 'All' ? articles : articles.filter(a => a.category === cat)).slice(0, 6);
+  if (!articles.length) {
+    g.innerHTML = emptyState('📡','First update coming tomorrow','Published every day at 8:00 AM IST'); return;
+  }
+  if (!list.length) {
+    g.innerHTML = emptyState('🔍',`No ${cat} updates yet`,'Check back soon!'); return;
+  }
+  g.innerHTML = list.map(a => `
+    <div class="ucard" onclick="location.href='${a.url}'">
+      <div class="ucard-date">${a.date}</div>
+      <div class="ucard-title">${a.title}</div>
+      <div class="ucard-foot">
+        <span class="acard-cat ${catCls(a.category)}">${a.category}</span>
+        <span class="read-link">Read →</span>
+      </div>
+    </div>`).join('');
+}
+
+function renderArticles(cat) {
+  const g = document.getElementById('artGrid');
+  const lbl = document.getElementById('artLabel');
+  const list = cat === 'All' ? articles : articles.filter(a => a.category === cat);
+  lbl.textContent = cat === 'All' ? 'Latest Technical Articles' : cat + ' Articles';
+  if (!articles.length) {
+    g.innerHTML = emptyState('✍️','First article coming soon','Published every morning at 8:00 AM IST'); return;
+  }
+  if (!list.length) {
+    g.innerHTML = emptyState('🔍',`No ${cat} articles yet`,'More content coming soon!'); return;
+  }
+  g.innerHTML = list.map(a => `
+    <a class="acard" href="${a.url}">
+      <span class="acard-cat ${catCls(a.category)}">${a.category}</span>
+      <div class="acard-title">${a.title}</div>
+      <div class="acard-excerpt">${(a.excerpt||'').substring(0,130)}${(a.excerpt||'').length>130?'...':''}</div>
+      <div class="acard-foot">
+        <span class="acard-date">${a.date} · 5 min</span>
+        <span class="acard-read">Read →</span>
+      </div>
+    </a>`).join('');
+}
+
+// Build all nav dropdowns dynamically from articles.json
+function buildAllDropdowns() {
+  // Nav dropdowns show only manually-created articles (not daily auto-posts)
+  // Auto-posts show in Latest Articles section only
+  const manual = articles.filter(a => a.type === 'manual' || a.category === 'Call Flow');
+  buildDrop('dd5g',   articles, '5G',        '#60a5fa', 'All 5G Articles', true);
+  buildDrop('dd6g',   articles, '6G',        '#c084fc', 'All 6G Articles', true);
+  buildDrop('ddcf',   articles, 'Call Flow', '#22d3ee', 'All Call Flows',  false);
+  buildDrop('ddoran', articles, 'Open RAN',  '#fbbf24', 'All AI Telecom',  true);
+}
+function buildDrop(id, arts, cat, color, label, autoOnly) {
+  const dd = document.getElementById(id);
+  if (!dd) return;
+  // For category dropdowns, show recent manual posts; for Call Flow show all
+  const items = arts.filter(a => a.category === cat).slice(0, 5);
+  const allItem = `<div class="dropdown-item" onclick="applyFilter('${cat}')"><span class="dd-dot" style="background:${color}"></span>${label}</div>`;
+  if (!items.length) { dd.innerHTML = allItem; return; }
+  const artItems = items.map(a => {
+    const short = a.title.length > 36 ? a.title.substring(0,36) + '...' : a.title;
+    return `<div class="dropdown-item" onclick="location.href='${a.url}'"><span class="dd-dot" style="background:${color};opacity:.6"></span>${short}</div>`;
+  }).join('');
+  dd.innerHTML = allItem + artItems;
+}
+
+function applyFilter(cat) {
+  currentFilter = cat;
+  renderUpdates(cat);
+  renderArticles(cat);
+  document.querySelectorAll('#updFilter .fbtn').forEach(b => {
+    const t = b.textContent.trim().replace(' Topics','');
+    b.classList.toggle('active', t === cat || (cat==='All' && t==='All Topics'));
+  });
+  setTimeout(() => document.getElementById('articles').scrollIntoView({behavior:'smooth',block:'start'}), 80);
+}
+
+function setCatFilter(cat, btn) {
+  // Category filter inside Latest Articles section
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  renderArticles(cat);
+  document.getElementById('artLabel').textContent = cat === 'All' ? 'Latest Technical Articles' : cat + ' Articles';
+}
+
+function updFilter(cat, btn) {
+  document.querySelectorAll('#updFilter .fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderUpdates(cat);
+  renderArticles(cat);
+}
+
+function goHome() { window.scrollTo({top:0,behavior:'smooth'}); applyFilter('All'); }
+function scrollTo(id) { const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+
+// Mobile menu
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileNav');
+  const ham = document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  ham.classList.toggle('open');
+}
+function closeMobileMenu() {
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+// Search
+function openSearch() { document.getElementById('searchOverlay').classList.add('open'); setTimeout(()=>document.getElementById('searchInput').focus(),80); }
+function closeSearch() { document.getElementById('searchOverlay').classList.remove('open'); document.getElementById('searchInput').value=''; document.getElementById('searchResults').innerHTML=''; }
+function closeSearchOut(e) { if(e.target===document.getElementById('searchOverlay')) closeSearch(); }
+document.addEventListener('keydown', e => {
+  if(e.key==='Escape') closeSearch();
+  if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();}
+});
+function doSearch(q) {
+  const res=document.getElementById('searchResults'), hint=document.getElementById('searchHint');
+  if(!q.trim()){res.innerHTML='';hint.textContent='Type to search · Press Ctrl+K to open anytime';return;}
+  const m=articles.filter(a=>a.title.toLowerCase().includes(q.toLowerCase())||(a.excerpt||'').toLowerCase().includes(q.toLowerCase())||a.category.toLowerCase().includes(q.toLowerCase())).slice(0,8);
+  hint.textContent=m.length?`${m.length} result${m.length!==1?'s':''} found`:'No results';
+  res.innerHTML=!m.length?`<div class="no-results">No results for "${q}"</div>`:m.map(a=>`
+    <a class="sresult" href="${a.url}">
+      <div class="sr-title">${a.title}</div>
+      <div class="sr-meta"><span class="${catCls(a.category)}" style="font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-right:8px">${a.category}</span>${a.date}</div>
+    </a>`).join('');
+}
+
+function catCls(c) {
+  return {'5G':'cat-5g','6G':'cat-6g','3GPP':'cat-3gpp','Open RAN':'cat-oran','Policy':'cat-policy','Call Flow':'cat-callflow'}[c]||'cat-ai';
+}
+function emptyState(icon,title,sub) {
+  return `<div class="empty"><div class="empty-icon">${icon}</div><div class="empty-title">${title}</div><div class="empty-sub">${sub}</div></div>`;
+}
+
+// Live visitors
+const countries=[{f:'🇮🇳',n:'India',b:64},{f:'🇺🇸',n:'USA',b:28},{f:'🇩🇪',n:'Germany',b:14},{f:'🇯🇵',n:'Japan',b:9},{f:'🇬🇧',n:'UK',b:7}];
+function startVisitors(){
+  function upd(){
+    const vals=countries.map(c=>c.b+Math.floor(Math.random()*4));
+    const total=vals.reduce((s,v)=>s+v,0);
+    const lc=document.getElementById('liveCount');
+    if(lc) lc.textContent=total;
+    const vr=document.getElementById('vpRows');
+    if(!vr) return;
+    vr.innerHTML=countries.map((c,i)=>{
+      const pct=Math.round((vals[i]/total)*100);
+      return `<div class="vp-row"><span>${c.f} ${c.n}</span><span style="color:var(--txt1);font-weight:600">${vals[i]}</span></div><div class="vp-bar-wrap"><div class="vp-bar" style="width:${pct}%"></div></div>`;
+    }).join('');
+  }
+  upd(); setInterval(upd,5000);
+}
+
+init();
+</script>
+</body>
+</html>
