@@ -1,1 +1,16 @@
-
+{
+  "articles": [
+    {
+      "title": "5G Registration Call Flow",
+      "slug": "5g-registration-call-flow",
+      "url": "https://nextgnow.in/articles/5g-registration-call-flow.html",
+      "category": "Call Flow",
+      "excerpt": "5G Registration Call Flow",
+      "date": "Apr 20, 2026",
+      "tags": [
+        "Call Flow",
+        "telecom"
+      ]
+    }
+  ]
+}
