@@ -1,6 +1,18 @@
 {
   "articles": [
     {
+      "title": "5G NR RACH Procedure Flow",
+      "slug": "5g-nr-rach-procedure-flow",
+      "url": "https://nextgnow.in/articles/5g-nr-rach-procedure-flow.html",
+      "category": "5G",
+      "excerpt": "How 5G devices establish their first connection to the network through the RACH procedure\u2014the digital handshake powering instant connectivity.",
+      "date": "Apr 20, 2026",
+      "tags": [
+        "5G",
+        "telecom"
+      ]
+    },
+    {
       "title": "Qualcomm Unveils 60-Company 6G Coalition Targeting 2029 Commercial Launch",
       "slug": "qualcomm-unveils-60-company-6g-coalition-targeting-2029-commercial-launch",
       "url": "https://nextgnow.in/articles/qualcomm-unveils-60-company-6g-coalition-targeting-2029-commercial-launch.html",
