@@ -380,7 +380,7 @@ footer{border-top:1px solid var(--border);padding:36px 0 28px}
           <div class="dropdown-item" onclick="applyFilter('Open RAN')"><span class="dd-dot" style="background:#fbbf24"></span>All AI Telecom</div>
         </div>
       </div>
-      <button class="nav-link" onclick="scrollTo('articles')">Latest Articles</button>
+      <button class="nav-link" onclick="goLatestArticles()">Latest Articles</button>
       <button class="nav-link" onclick="scrollTo('about')">About</button>
     </nav>
   </div>
@@ -394,7 +394,7 @@ footer{border-top:1px solid var(--border);padding:36px 0 28px}
     <div class="mobile-nav-item" onclick="applyFilter('Call Flow');closeMobileMenu()">🔄 Call Flows</div>
     <div class="mobile-nav-item" onclick="applyFilter('Open RAN');closeMobileMenu()">🔓 Open RAN / AI Telecom</div>
     <div class="mobile-section">Pages</div>
-    <div class="mobile-nav-item" onclick="scrollTo('articles');closeMobileMenu()">📰 Latest Articles</div>
+    <div class="mobile-nav-item" onclick="goLatestArticles();closeMobileMenu()">📰 Latest Articles</div>
     <div class="mobile-nav-item" onclick="scrollTo('about');closeMobileMenu()">ℹ️ About</div>
     <div class="mobile-section">Connect</div>
     <div style="display:flex;gap:10px;padding:8px 12px">
@@ -462,23 +462,6 @@ footer{border-top:1px solid var(--border);padding:36px 0 28px}
         <div style="font-size:12px;color:var(--txt3);margin-top:4px">8:00 AM IST</div>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- DAILY UPDATES -->
-<div class="updates">
-  <div class="container">
-    <div class="section-label">Daily Telecom Updates</div>
-    <div class="filter-bar" id="updFilter">
-      <button class="fbtn active" onclick="updFilter('All',this)">All Topics</button>
-      <button class="fbtn" onclick="updFilter('5G',this)">5G</button>
-      <button class="fbtn" onclick="updFilter('6G',this)">6G</button>
-      <button class="fbtn" onclick="updFilter('3GPP',this)">3GPP</button>
-      <button class="fbtn" onclick="updFilter('Open RAN',this)">Open RAN</button>
-      <button class="fbtn" onclick="updFilter('Call Flow',this)">Call Flows</button>
-      <button class="fbtn" onclick="updFilter('Policy',this)">Policy</button>
-    </div>
-    <div class="updates-grid" id="updGrid"></div>
   </div>
 </div>
 
@@ -628,7 +611,6 @@ async function init() {
   } catch(e) { articles = []; }
   updateStats();
   renderHighlight();
-  renderUpdates('All');
   renderArticles('All');
   buildAllDropdowns();
   startVisitors();
@@ -652,26 +634,6 @@ function renderHighlight() {
   document.getElementById('hlDate').textContent = a.date || '';
   const btn = document.getElementById('hlBtn');
   btn.dataset.url = a.url; btn.style.display = 'inline-flex';
-}
-
-function renderUpdates(cat) {
-  const g = document.getElementById('updGrid');
-  const list = (cat === 'All' ? articles : articles.filter(a => a.category === cat)).slice(0, 6);
-  if (!articles.length) {
-    g.innerHTML = emptyState('📡','First update coming tomorrow','Published every day at 8:00 AM IST'); return;
-  }
-  if (!list.length) {
-    g.innerHTML = emptyState('🔍',`No ${cat} updates yet`,'Check back soon!'); return;
-  }
-  g.innerHTML = list.map(a => `
-    <div class="ucard" onclick="location.href='${a.url}'">
-      <div class="ucard-date">${a.date}</div>
-      <div class="ucard-title">${a.title}</div>
-      <div class="ucard-foot">
-        <span class="acard-cat ${catCls(a.category)}">${a.category}</span>
-        <span class="read-link">Read →</span>
-      </div>
-    </div>`).join('');
 }
 
 // Blog-type categories used for daily auto-posts
@@ -731,13 +693,16 @@ function buildDrop(id, arts, cat, color, label, autoOnly) {
 
 function applyFilter(cat) {
   currentFilter = cat;
-  renderUpdates(cat);
   renderArticles(cat);
-  document.querySelectorAll('#updFilter .fbtn').forEach(b => {
-    const t = b.textContent.trim().replace(' Topics','');
-    b.classList.toggle('active', t === cat || (cat==='All' && t==='All Topics'));
-  });
   setTimeout(() => document.getElementById('articles').scrollIntoView({behavior:'smooth',block:'start'}), 80);
+}
+
+function goLatestArticles() {
+  // Scroll to Latest Articles and reset filter to All
+  setLatestFilter('All', document.querySelector('#latestFilterBtns .fbtn'));
+  setTimeout(() => {
+    document.getElementById('articles').scrollIntoView({behavior:'smooth', block:'start'});
+  }, 50);
 }
 
 function setLatestFilter(cat, btn) {
@@ -750,12 +715,7 @@ function setCatFilter(cat, btn) {
   setLatestFilter(cat, btn);
 }
 
-function updFilter(cat, btn) {
-  document.querySelectorAll('#updFilter .fbtn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderUpdates(cat);
-  renderArticles(cat);
-}
+function updFilter(cat, btn) { renderArticles(cat); }
 
 function goHome() { window.scrollTo({top:0,behavior:'smooth'}); applyFilter('All'); }
 function scrollTo(id) { const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
