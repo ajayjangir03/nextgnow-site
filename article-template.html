@@ -302,9 +302,9 @@ footer{border-top:1px solid var(--border);padding:28px 0}
   <div class="breadcrumb">
     <a onclick="location.href='/'">Home</a>
     <span>›</span>
-    <a onclick="location.href='/'">Articles</a>
+    <a id="breadcrumbLink" onclick="location.href='/'">Articles</a>
     <span>›</span>
-    <span id="breadcrumbCat" style="color:var(--txt2)">5G</span>
+    <span id="breadcrumbCat" style="color:var(--txt2)">Loading...</span>
   </div>
 
   <div class="article-layout">
@@ -312,7 +312,7 @@ footer{border-top:1px solid var(--border);padding:28px 0}
     <div class="article-main">
       <div class="article-header">
         <div class="article-eyebrow">
-          <span class="badge badge-default" id="articleBadge">5G</span>
+          <span class="badge badge-default" id="articleBadge">Article</span>
           <span class="live-dot" id="articleDate">Published · Apr 16, 2025</span>
         </div>
         <h1 class="article-title" id="articleH1">ARTICLE_TITLE_PLACEHOLDER</h1>
@@ -476,11 +476,23 @@ function setBadge() {
   const badge = document.getElementById('articleBadge');
   if (!badge) return;
   const cat = badge.textContent.trim();
-  const cls = {'5G':'badge-5g','6G':'badge-6g','3GPP':'badge-3gpp','Open RAN':'badge-oran','Policy':'badge-policy','Call Flow':'badge-callflow'}[cat]||'badge-default';
-  badge.className = 'badge ' + cls;
+  const clsMap = {
+    // Tech categories (manual posts)
+    '5G':'badge-5g','6G':'badge-6g','3GPP':'badge-3gpp',
+    'Open RAN':'badge-oran','Policy':'badge-policy','Call Flow':'badge-callflow',
+    // Blog-type categories (daily auto-posts)
+    'Latest News':'badge-news','Concept Guide':'badge-concept',
+    'Protocol Deep Dive':'badge-proto','Industry Trends':'badge-trends',
+    'Interview Prep':'badge-interview','Future Tech':'badge-future',
+  };
+  badge.className = 'badge ' + (clsMap[cat] || 'badge-default');
   document.getElementById('statCat').textContent = cat;
-  document.getElementById('breadcrumbCat').textContent = cat;
-
+  // Breadcrumb: show correct category, not always "5G"
+  const breadcrumb = document.getElementById('breadcrumbCat');
+  if (breadcrumb) breadcrumb.textContent = cat;
+  // Also fix the breadcrumb link
+  const breadcrumbLink = document.getElementById('breadcrumbLink');
+  if (breadcrumbLink) breadcrumbLink.href = '/?cat=' + encodeURIComponent(cat);
 }
 
 // ── Share buttons ─────────────────────────────────────────
