@@ -165,6 +165,12 @@ nav{display:flex;gap:2px;padding:8px 0;flex-wrap:wrap}
 .cat-policy{background:var(--red-dim);color:#f87171;border:1px solid rgba(239,68,68,.2)}
 .cat-callflow{background:var(--cyan-dim);color:#22d3ee;border:1px solid rgba(6,182,212,.2)}
 .cat-ai{background:var(--cyan-dim);color:#22d3ee;border:1px solid rgba(6,182,212,.2)}
+.cat-news{background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.cat-concept{background:rgba(168,85,247,.1);color:#c084fc;border:1px solid rgba(168,85,247,.2)}
+.cat-proto{background:rgba(59,130,246,.1);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.cat-trends{background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.cat-interview{background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.cat-future{background:rgba(6,182,212,.1);color:#22d3ee;border:1px solid rgba(6,182,212,.2)}
 .acard-title{font-size:16px;font-weight:700;color:var(--txt0);margin-bottom:10px;line-height:1.4;letter-spacing:-.2px}
 .acard:hover .acard-title{color:#60a5fa}
 .acard-excerpt{font-size:13px;color:var(--txt3);line-height:1.65;flex-grow:1;font-weight:300;margin-bottom:18px}
@@ -479,17 +485,18 @@ footer{border-top:1px solid var(--border);padding:36px 0 28px}
 <!-- ARTICLES -->
 <div class="articles" id="articles">
   <div class="container">
-    <!-- Articles header + inline category filter -->
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:14px">
-      <div class="section-label" id="artLabel" style="margin-bottom:0;flex:1">Latest Technical Articles</div>
-      <div style="display:flex;gap:6px;flex-wrap:wrap">
-        <button class="fbtn active" onclick="setCatFilter('All',this)">All</button>
-        <button class="fbtn" onclick="setCatFilter('5G',this)">📡 5G</button>
-        <button class="fbtn" onclick="setCatFilter('6G',this)">🛰️ 6G</button>
-        <button class="fbtn" onclick="setCatFilter('3GPP',this)">📋 3GPP</button>
-        <button class="fbtn" onclick="setCatFilter('Open RAN',this)">🔓 Open RAN</button>
-        <button class="fbtn" onclick="setCatFilter('Call Flow',this)">🔄 Call Flows</button>
-        <button class="fbtn" onclick="setCatFilter('Policy',this)">🏛️ Policy</button>
+    <!-- Latest Articles — blog-type categories for daily posts -->
+    <div style="margin-bottom:20px">
+      <div class="section-label" style="margin-bottom:16px" id="artLabel">Latest Articles</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap" id="latestFilterBtns">
+        <button class="fbtn active"  onclick="setLatestFilter('All',this)">All Posts</button>
+        <button class="fbtn" onclick="setLatestFilter('Latest News',this)">📰 Latest News</button>
+        <button class="fbtn" onclick="setLatestFilter('Concept Guide',this)">💡 Concept Guide</button>
+        <button class="fbtn" onclick="setLatestFilter('Protocol Deep Dive',this)">🔬 Protocol Deep Dive</button>
+        <button class="fbtn" onclick="setLatestFilter('Industry Trends',this)">📈 Industry Trends</button>
+        <button class="fbtn" onclick="setLatestFilter('Interview Prep',this)">🎯 Interview Prep</button>
+        <button class="fbtn" onclick="setLatestFilter('Future Tech',this)">🚀 Future Tech</button>
+        <button class="fbtn" onclick="setLatestFilter('Call Flow',this)">🔄 Call Flows</button>
       </div>
     </div>
     <div class="articles-grid" id="artGrid"></div>
@@ -667,11 +674,19 @@ function renderUpdates(cat) {
     </div>`).join('');
 }
 
+// Blog-type categories used for daily auto-posts
+const BLOG_CATS = ['Latest News','Concept Guide','Protocol Deep Dive',
+                   'Industry Trends','Interview Prep','Future Tech','Call Flow'];
+// Tech categories used for manual posts in nav dropdowns  
+const TECH_CATS = ['5G','6G','3GPP','Open RAN','Policy'];
+
 function renderArticles(cat) {
   const g = document.getElementById('artGrid');
   const lbl = document.getElementById('artLabel');
+  // Latest Articles section shows ALL articles when cat=All
+  // or filters by blog-type category
   const list = cat === 'All' ? articles : articles.filter(a => a.category === cat);
-  lbl.textContent = cat === 'All' ? 'Latest Technical Articles' : cat + ' Articles';
+  lbl.textContent = cat === 'All' ? 'Latest Articles' : cat;
   if (!articles.length) {
     g.innerHTML = emptyState('✍️','First article coming soon','Published every morning at 8:00 AM IST'); return;
   }
@@ -725,12 +740,14 @@ function applyFilter(cat) {
   setTimeout(() => document.getElementById('articles').scrollIntoView({behavior:'smooth',block:'start'}), 80);
 }
 
-function setCatFilter(cat, btn) {
-  // Category filter inside Latest Articles section
-  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+function setLatestFilter(cat, btn) {
+  document.querySelectorAll('#latestFilterBtns .fbtn').forEach(b => b.classList.remove('active'));
   if(btn) btn.classList.add('active');
   renderArticles(cat);
-  document.getElementById('artLabel').textContent = cat === 'All' ? 'Latest Technical Articles' : cat + ' Articles';
+}
+
+function setCatFilter(cat, btn) {
+  setLatestFilter(cat, btn);
 }
 
 function updFilter(cat, btn) {
@@ -776,7 +793,14 @@ function doSearch(q) {
 }
 
 function catCls(c) {
-  return {'5G':'cat-5g','6G':'cat-6g','3GPP':'cat-3gpp','Open RAN':'cat-oran','Policy':'cat-policy','Call Flow':'cat-callflow'}[c]||'cat-ai';
+  const m = {
+    '5G':'cat-5g','6G':'cat-6g','3GPP':'cat-3gpp',
+    'Open RAN':'cat-oran','Policy':'cat-policy','Call Flow':'cat-callflow',
+    'Latest News':'cat-news','Concept Guide':'cat-concept',
+    'Protocol Deep Dive':'cat-proto','Industry Trends':'cat-trends',
+    'Interview Prep':'cat-interview','Future Tech':'cat-future'
+  };
+  return m[c] || 'cat-ai';
 }
 function emptyState(icon,title,sub) {
   return `<div class="empty"><div class="empty-icon">${icon}</div><div class="empty-title">${title}</div><div class="empty-sub">${sub}</div></div>`;
