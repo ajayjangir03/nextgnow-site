@@ -1,1 +1,18 @@
-
+{
+  "articles": [
+    {
+      "title": "Global Telecom Leaders Commit to AI-Native Open 6G Platforms",
+      "slug": "global-telecom-leaders-commit-to-ai-native-open-6g-platforms",
+      "url": "https://nextgnow.in/articles/global-telecom-leaders-commit-to-ai-native-open-6g-platforms.html",
+      "category": "Latest News",
+      "excerpt": "Global Telecom Leaders Unite Behind AI-Native Open 6G Platforms, Marking Industry Shift from Proprietary Systems On April 20, 2026, a coalition of eight\u2026",
+      "date": "Apr 20, 2026",
+      "tags": [
+        "Latest News",
+        "6G",
+        "telecom"
+      ],
+      "type": "auto"
+    }
+  ]
+}
