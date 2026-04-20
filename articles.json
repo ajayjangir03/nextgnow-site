@@ -1,1 +1,18 @@
-
+{
+  "articles": [
+    {
+      "title": "US Clears 2.7 GHz Spectrum Milestone for 6G Leadership",
+      "slug": "us-clears-27-ghz-spectrum-milestone-for-6g-leadership",
+      "url": "https://nextgnow.in/articles/us-clears-27-ghz-spectrum-milestone-for-6g-leadership.html",
+      "category": "6G",
+      "excerpt": "Headline\nUS Clears 2.7 GHz Spectrum Milestone for 6G Leadership as NTIA Approves Technical Review for Federal Band Repurposing\n\n Quick Summary\n- NTIA\u2026",
+      "date": "Apr 20, 2026",
+      "tags": [
+        "6G",
+        "telecom",
+        "3GPP"
+      ],
+      "type": "auto"
+    }
+  ]
+}
