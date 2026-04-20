@@ -1,1 +1,18 @@
-
+{
+  "articles": [
+    {
+      "title": "Qualcomm Leads 60-Company Coalition to Accelerate 6G Development",
+      "slug": "qualcomm-leads-60-company-coalition-to-accelerate-6g-development",
+      "url": "https://nextgnow.in/articles/qualcomm-leads-60-company-coalition-to-accelerate-6g-development.html",
+      "category": "Latest News",
+      "excerpt": "Headline\nQualcomm Leads 60-Company Coalition to Accelerate 6G Development with 2029 Commercial Target\n\n Quick Summary\n- Qualcomm spearheads a 60-member\u2026",
+      "date": "Apr 20, 2026",
+      "tags": [
+        "Latest News",
+        "6G",
+        "telecom"
+      ],
+      "type": "auto"
+    }
+  ]
+}
