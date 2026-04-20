@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Telecom Leaders Commit to AI-Native Open 6G Platforms — NextGNow</title>
+<meta name="description" content="NextGNow telecom article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#030712;color:#e2e8f0;font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden}
+:root{
+  --bg0:#030712;--bg1:#0a0f1e;--bg2:#0f172a;--bg3:#1e293b;
+  --border:#1e293b;--border2:#334155;
+  --blue:#3b82f6;--blue-dim:rgba(59,130,246,.12);
+  --cyan:#06b6d4;--cyan-dim:rgba(6,182,212,.1);
+  --purple:#8b5cf6;--purple-dim:rgba(139,92,246,.1);
+  --green:#10b981;--green-dim:rgba(16,185,129,.1);
+  --orange:#f59e0b;--orange-dim:rgba(245,158,11,.1);
+  --red:#ef4444;--red-dim:rgba(239,68,68,.1);
+  --txt0:#f1f5f9;--txt1:#cbd5e1;--txt2:#94a3b8;--txt3:#64748b;--txt4:#475569;
+}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(59,130,246,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.03) 1px,transparent 1px);
+  background-size:48px 48px;}
+
+/* ── PROGRESS BAR ── */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#3b82f6,#8b5cf6);z-index:999;transition:width .1s linear}
+
+/* ── HEADER ── */
+header{position:sticky;top:0;z-index:150;background:rgba(3,7,18,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.logo-svg{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
+.logo-text{font-size:20px;font-weight:800;color:var(--txt0);letter-spacing:-.5px;line-height:1}
+.logo-text span{color:var(--blue)}
+.header-right{display:flex;align-items:center;gap:10px}
+.social-icons{display:flex;gap:6px}
+.social-icon{width:32px;height:32px;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--txt3);text-decoration:none}
+.social-icon:hover{border-color:var(--blue);background:var(--blue-dim);color:var(--blue)}
+.social-icon svg{width:14px;height:14px}
+.back-btn{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border2);color:var(--txt2);padding:7px 14px;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none}
+.back-btn:hover{border-color:var(--blue);color:var(--txt0)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:var(--bg2);border:1px solid var(--border2);border-radius:8px}
+.hamburger span{width:20px;height:2px;background:var(--txt2);border-radius:2px;transition:all .3s;display:block}
+nav{display:flex;gap:2px;padding:8px 0;flex-wrap:wrap}
+.nav-item{position:relative}
+.nav-link{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:500;color:var(--txt2);cursor:pointer;padding:6px 12px;border-radius:8px;background:none;border:none;font-family:'Inter',sans-serif;transition:all .15s;white-space:nowrap}
+.nav-link:hover{color:var(--txt0);background:var(--bg3)}
+.nav-link .chevron{width:10px;height:10px;opacity:.5;transition:transform .2s}
+.nav-item:hover .nav-link .chevron{transform:rotate(180deg)}
+.dropdown{position:absolute;top:calc(100% + 6px);left:0;background:var(--bg1);border:1px solid var(--border2);border-radius:12px;padding:8px;min-width:210px;display:none;z-index:300;box-shadow:0 16px 48px rgba(0,0,0,.6)}
+.nav-item:hover .dropdown{display:block}
+.dropdown-item{display:flex;align-items:center;gap:10px;padding:9px 12px;font-size:13px;color:var(--txt2);text-decoration:none;border-radius:8px;transition:all .15s;cursor:pointer;white-space:nowrap}
+.dropdown-item:hover{color:var(--txt0);background:var(--bg3)}
+.dd-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);flex-shrink:0}
+.mobile-nav{display:none;flex-direction:column;background:var(--bg1);border-bottom:1px solid var(--border);padding:12px 24px 16px;gap:4px}
+.mobile-nav.open{display:flex}
+.mobile-nav-item{padding:10px 12px;font-size:14px;color:var(--txt2);cursor:pointer;border-radius:8px;transition:all .15s;font-weight:500}
+.mobile-nav-item:hover{color:var(--txt0);background:var(--bg3)}
+.mobile-section{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt4);padding:10px 12px 4px;margin-top:6px}
+
+/* ── LAYOUT ── */
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.article-layout{display:grid;grid-template-columns:1fr 280px;gap:48px;padding:40px 0 80px;align-items:start}
+
+/* ── ARTICLE MAIN ── */
+.article-main{}
+
+/* Breadcrumb */
+.breadcrumb{display:flex;align-items:center;gap:8px;padding:24px 0 0;font-size:12px;color:var(--txt3);font-family:'JetBrains Mono',monospace;flex-wrap:wrap}
+.breadcrumb a{color:var(--txt3);text-decoration:none;transition:color .15s;cursor:pointer}
+.breadcrumb a:hover{color:var(--blue)}
+.breadcrumb span{color:var(--txt4)}
+
+/* Article header */
+.article-header{margin-bottom:36px;padding-top:24px}
+.article-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.badge{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:6px}
+.badge-5g{background:var(--blue-dim);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.badge-6g{background:var(--purple-dim);color:#c084fc;border:1px solid rgba(139,92,246,.2)}
+.badge-3gpp{background:var(--green-dim);color:#34d399;border:1px solid rgba(16,185,129,.2)}
+.badge-oran{background:var(--orange-dim);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.badge-policy{background:var(--red-dim);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.badge-callflow{background:var(--cyan-dim);color:#22d3ee;border:1px solid rgba(6,182,212,.2)}
+.badge-default{background:var(--blue-dim);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.badge-news{background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.badge-concept{background:rgba(168,85,247,.1);color:#c084fc;border:1px solid rgba(168,85,247,.2)}
+.badge-proto{background:rgba(59,130,246,.1);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.badge-trends{background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.badge-interview{background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.badge-future{background:rgba(6,182,212,.1);color:#22d3ee;border:1px solid rgba(6,182,212,.2)}
+.live-dot{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#22c55e;font-family:'JetBrains Mono',monospace}
+.live-dot::before{content:'';width:6px;height:6px;background:#22c55e;border-radius:50%;animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.article-title{font-size:40px;font-weight:800;line-height:1.15;letter-spacing:-.6px;color:var(--txt0);margin-bottom:18px}
+.article-subtitle{font-size:17px;color:var(--txt2);line-height:1.7;max-width:680px;margin-bottom:28px;font-weight:300}
+
+/* Byline */
+.article-byline{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;gap:12px}
+.author-info{display:flex;align-items:center;gap:12px}
+.author-avatar{width:36px;height:36px;border-radius:50%;background:var(--blue-dim);border:1px solid rgba(59,130,246,.3);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--blue);flex-shrink:0}
+.author-name{font-size:13px;font-weight:600;color:var(--txt0)}
+.author-role{font-size:11px;color:var(--txt3);margin-top:2px}
+.share-row{display:flex;align-items:center;gap:8px}
+.share-label{font-size:11px;color:var(--txt3);font-family:'JetBrains Mono',monospace}
+.share-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);color:var(--txt2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s}
+.share-btn:hover{background:var(--blue-dim);border-color:rgba(59,130,246,.3);color:var(--blue)}
+.share-btn svg{width:14px;height:14px}
+
+/* Hero visual */
+
+
+/* Article body */
+.article-body{font-family:'Lora',serif;font-size:17px;line-height:1.85;color:#c8d4e8;max-width:720px}
+.article-body p{margin-bottom:22px}
+.article-body h2{font-family:'Inter',sans-serif;font-size:24px;font-weight:700;color:var(--txt0);margin:44px 0 14px;letter-spacing:-.3px;display:flex;align-items:center;gap:10px}
+.article-body h2::before{content:'';display:inline-block;width:4px;height:20px;background:var(--blue);border-radius:2px;flex-shrink:0}
+.article-body h3{font-family:'Inter',sans-serif;font-size:18px;font-weight:600;color:var(--txt0);margin:32px 0 12px}
+.article-body ul{margin:0 0 22px 20px;display:flex;flex-direction:column;gap:8px}
+.article-body ol{margin:0 0 22px 20px;display:flex;flex-direction:column;gap:8px}
+.article-body li{color:#b0bec5;line-height:1.7;font-size:16px}
+.article-body strong{color:var(--txt0);font-weight:600}
+.article-body em{color:var(--txt1)}
+.article-body code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--bg3);color:#60a5fa;padding:2px 8px;border-radius:4px}
+.article-body table{width:100%;border-collapse:collapse;margin:28px 0;font-family:'Inter',sans-serif;font-size:14px}
+.article-body th{background:var(--bg3);padding:10px 14px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);border-bottom:1px solid var(--border2)}
+.article-body td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--txt2);vertical-align:top}
+.article-body tr:hover td{background:rgba(255,255,255,.02)}
+.article-body td:first-child{color:var(--txt0);font-weight:500}
+
+/* Callout boxes */
+.callout{border-radius:10px;padding:18px 22px;margin:28px 0}
+.callout-info{background:var(--blue-dim);border-left:3px solid var(--blue)}
+.callout-tip{background:var(--green-dim);border-left:3px solid var(--green)}
+.callout-warn{background:var(--orange-dim);border-left:3px solid var(--orange)}
+.callout p{font-family:'Inter',sans-serif;font-size:14px;color:var(--txt2);margin:0;line-height:1.6}
+.callout strong{color:var(--txt0)}
+
+/* Key takeaways */
+.takeaways{background:var(--bg2);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:22px 26px;margin:44px 0 0}
+.takeaways-label{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.takeaways ul{margin:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.takeaways li{font-family:'Inter',sans-serif;font-size:14px;color:var(--txt2);display:flex;align-items:flex-start;gap:10px;line-height:1.6}
+.takeaways li::before{content:'→';color:var(--green);flex-shrink:0}
+
+/* ── SIDEBAR ── */
+.article-sidebar{position:sticky;top:80px;display:flex;flex-direction:column;gap:20px}
+.sidebar-card{background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:18px}
+.sidebar-title{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+
+/* TOC */
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+.toc-item a{display:block;font-size:13px;color:var(--txt2);text-decoration:none;padding:6px 10px;border-radius:6px;line-height:1.4;transition:all .15s;border-left:2px solid transparent}
+.toc-item a:hover,.toc-item.active a{color:var(--blue);background:var(--blue-dim);border-left-color:var(--blue)}
+
+/* Stat card */
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}
+.stat-row:last-child{border-bottom:none}
+.stat-key{color:var(--txt3)}
+.stat-val{color:var(--txt0);font-family:'JetBrains Mono',monospace;font-size:11px}
+.stat-val.blue{color:var(--blue)}
+
+/* Newsletter */
+.sidebar-newsletter{background:var(--bg1);border:1px solid var(--border);border-top:2px solid var(--blue);border-radius:0 0 12px 12px;padding:18px;text-align:center}
+.sidebar-newsletter h4{font-size:16px;font-weight:700;color:var(--txt0);margin-bottom:6px}
+.sidebar-newsletter h4 span{color:var(--blue)}
+.sidebar-newsletter p{font-size:12px;color:var(--txt3);margin-bottom:12px;line-height:1.5}
+.sidebar-input{width:100%;background:var(--bg2);border:1px solid var(--border2);color:var(--txt0);font-family:'Inter',sans-serif;font-size:13px;padding:9px 12px;border-radius:8px;outline:none;margin-bottom:8px;transition:border-color .2s}
+.sidebar-input:focus{border-color:var(--blue)}
+.sidebar-input::placeholder{color:var(--txt3)}
+.sidebar-sub-btn{width:100%;background:var(--blue);color:#fff;border:none;font-family:'Inter',sans-serif;font-weight:600;font-size:13px;padding:9px;border-radius:8px;cursor:pointer;transition:opacity .2s}
+.sidebar-sub-btn:hover{opacity:.85}
+
+/* Related */
+.related{padding:48px 0;border-top:1px solid var(--border)}
+.related-title{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.related-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rcard{background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:20px;cursor:pointer;transition:all .2s;text-decoration:none;display:block}
+.rcard:hover{border-color:var(--border2);transform:translateY(-2px)}
+.rcard-cat{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:5px;display:inline-block;margin-bottom:10px}
+.rcard-title{font-size:14px;font-weight:600;color:var(--txt0);line-height:1.4;margin-bottom:8px;transition:color .15s}
+.rcard:hover .rcard-title{color:#60a5fa}
+.rcard-date{font-size:11px;color:var(--txt4)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:28px 0}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-logo{font-size:16px;font-weight:800;color:var(--txt0);cursor:pointer;letter-spacing:-.3px}
+.footer-logo span{color:var(--blue)}
+.footer-copy{font-size:12px;color:var(--txt4)}
+
+/* ── ARTICLE BODY — Rich sections ── */
+.ab-h2{font-family:'Inter',sans-serif;font-size:21px;font-weight:700;color:var(--txt0);margin:44px 0 16px;letter-spacing:-.3px;display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.ab-h2::before{content:'';width:4px;height:20px;background:var(--blue);border-radius:2px;flex-shrink:0}
+.ab-h3{font-family:'Inter',sans-serif;font-size:16px;font-weight:600;color:#60a5fa;margin:28px 0 10px;display:flex;align-items:center;gap:8px}
+.ab-h3::before{content:'›';color:var(--blue);font-weight:700}
+.ab-p{font-size:15.5px;color:#b8c8e0;line-height:1.9;margin-bottom:18px;font-family:'Lora',serif;font-weight:400}
+.ab-ul{margin:0 0 20px 0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.ab-ul li{font-size:14.5px;color:var(--txt1);line-height:1.7;display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:var(--bg2);border-radius:8px;border-left:3px solid var(--blue)}
+.ab-ul li::before{content:'›';color:var(--blue);font-size:18px;font-weight:700;flex-shrink:0;line-height:1.3;margin-top:1px}
+.ab-ol{margin:0 0 20px 0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px;counter-reset:ol-step}
+.ab-ol li{font-size:14.5px;color:var(--txt1);line-height:1.7;display:flex;align-items:flex-start;gap:14px;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;counter-increment:ol-step}
+.ab-ol li::before{content:counter(ol-step);min-width:26px;height:26px;background:var(--blue-dim);border:1px solid rgba(59,130,246,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#60a5fa;flex-shrink:0;font-family:'JetBrains Mono',monospace;line-height:26px;text-align:center}
+.ab-table-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;overflow-x:auto;margin:24px 0;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.ab-table{width:100%;border-collapse:collapse;font-size:13px}
+.ab-table th{background:var(--bg3);padding:11px 16px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);border-bottom:1px solid var(--border2)}
+.ab-table td{padding:11px 16px;border-bottom:1px solid var(--border);color:var(--txt2);font-size:13px;vertical-align:top}
+.ab-table tr:last-child td{border-bottom:none}
+.ab-table tr:hover td{background:rgba(59,130,246,.04)}
+.ab-table td:first-child{color:var(--txt0);font-weight:600}
+.article-body strong{color:var(--txt0);font-weight:600}
+.article-body em{color:var(--txt1)}
+.article-body code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--bg3);color:#60a5fa;padding:2px 8px;border-radius:4px;border:1px solid var(--border)}
+/* Q&A interview format */
+.ab-p strong:first-child{display:block;color:#60a5fa;font-family:'Inter',sans-serif;font-size:14px;margin-bottom:4px}
+
+/* Back to top */
+#back-top{position:fixed;bottom:28px;right:28px;width:40px;height:40px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:all .25s;z-index:50;color:var(--txt2);font-size:16px}
+#back-top.visible{opacity:1;transform:translateY(0)}
+#back-top:hover{border-color:var(--blue);color:var(--blue)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .article-layout{grid-template-columns:1fr;gap:32px;padding:24px 0 60px}
+  .article-sidebar{position:static;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .sidebar-newsletter{grid-column:1/-1}
+  .related-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  nav{display:none}
+  .hamburger{display:flex}
+  .article-title{font-size:28px}
+  .article-subtitle{font-size:15px}
+  .container{padding:0 16px}
+  .social-icons{display:none}
+  .article-sidebar{grid-template-columns:1fr}
+  .share-row{display:none}
+  .related-grid{grid-template-columns:1fr}
+  #back-top{bottom:16px;right:16px}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.article-header{animation:fadeUp .5s ease both}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="logo-svg" onclick="location.href='/'">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#0f172a" stroke="#1e293b"/><circle cx="18" cy="18" r="3" fill="#3b82f6"/><circle cx="18" cy="18" r="7" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="2 2" opacity=".6"/><circle cx="18" cy="18" r="12" fill="none" stroke="#3b82f6" stroke-width="1" opacity=".3"/><path d="M10 18L26 18" stroke="#60a5fa" stroke-width="1" opacity=".4"/><path d="M18 10L18 26" stroke="#60a5fa" stroke-width="1" opacity=".4"/><circle cx="26" cy="10" r="2.5" fill="#60a5fa" opacity=".8"/><path d="M21 10L26 10L26 15" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".6" fill="none"/></svg>
+        <div><div class="logo-text">NextG<span>Now</span></div><div style="font-size:10px;color:var(--txt4);margin-top:1px;letter-spacing:.04em">TELECOM INTELLIGENCE</div></div>
+      </div>
+      <div class="header-right">
+        <div class="social-icons">
+          <a class="social-icon" href="https://linkedin.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a class="social-icon" href="https://x.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a class="social-icon" href="https://youtube.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+        <a class="back-btn" href="/">← Back to NextGNow</a>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <nav id="desktopNav">
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=6G'">6G <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="dd6g"><div class="dropdown-item" onclick="location.href='/?cat=6G'"><span class="dd-dot" style="background:#c084fc"></span>All 6G Articles</div></div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=5G'">5G <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="dd5g"><div class="dropdown-item" onclick="location.href='/?cat=5G'"><span class="dd-dot"></span>All 5G Articles</div></div>
+      </div>
+      <button class="nav-link" onclick="location.href='/?cat=3GPP'">3GPP Releases</button>
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=Call Flow'">Call Flows <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="ddcf"><div class="dropdown-item" onclick="location.href='/?cat=Call Flow'"><span class="dd-dot" style="background:#22d3ee"></span>All Call Flows</div></div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=Open RAN'">AI Telecom <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="ddoran"><div class="dropdown-item" onclick="location.href='/?cat=Open RAN'"><span class="dd-dot" style="background:#fbbf24"></span>All AI Telecom</div></div>
+      </div>
+      <button class="nav-link" onclick="location.href='/'">Latest Articles</button>
+      <button class="nav-link" onclick="location.href='/#about'">About</button>
+    </nav>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-section">Topics</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=5G'">📡 5G</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=6G'">🛰️ 6G</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=3GPP'">📋 3GPP</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=Call Flow'">🔄 Call Flows</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=Open RAN'">🔓 Open RAN</div>
+    <div class="mobile-nav-item" onclick="location.href='/'">📰 All Articles</div>
+  </div>
+</header>
+
+<div class="container">
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a onclick="location.href='/'">Home</a>
+    <span>›</span>
+    <a id="breadcrumbLink" onclick="location.href='/'">Articles</a>
+    <span>›</span>
+    <span id="breadcrumbCat" style="color:var(--txt2)">Latest News</span>
+  </div>
+
+  <div class="article-layout">
+    <!-- MAIN -->
+    <div class="article-main">
+      <div class="article-header">
+        <div class="article-eyebrow">
+          <span class="badge badge-news" id="articleBadge">Latest News</span>
+          <span class="live-dot" id="articleDate">Published · Apr 20, 2026</span>
+        </div>
+        <h1 class="article-title" id="articleH1">Global Telecom Leaders Commit to AI-Native Open 6G Platforms</h1>
+        <p class="article-subtitle" id="articleSubtitle">Global Telecom Leaders Unite Behind AI-Native Open 6G Platforms, Marking Industry Shift from Proprietary Systems On April 20, 2026, a coalition of eight…</p>
+        <div class="article-byline">
+          <div class="author-info">
+            <div class="author-avatar">NG</div>
+            <div>
+              <div class="author-name">NextGNow Editorial</div>
+              <div class="author-role"><span id="authorRole">Latest News</span> · <span id="bylineDate">Apr 20, 2026</span> · <span id="bylineRead">10 min</span> read</div>
+            </div>
+          </div>
+          <div class="share-row">
+            <span class="share-label">Share</span>
+            <button class="share-btn" onclick="shareLinkedIn()" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></button>
+            <button class="share-btn" onclick="shareX()" title="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
+            <button class="share-btn" onclick="copyLink()" title="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Article body — pipeline injects here -->
+      <div class="article-body" id="article-content">
+<h2 class="ab-h2">Headline</h2>
+<p class="ab-p">Global Telecom Leaders Unite Behind AI-Native Open 6G Platforms, Marking Industry Shift from Proprietary Systems</p>
+
+<h2 class="ab-h2">Quick Summary</h2>
+<ul class="ab-ul">
+<li>Eight major global operators announce collaboration to develop open, software-defined 6G architecture with native AI integration</li>
+<li>Coalition commits $2.3 billion toward open-source 6G platform development through 2030</li>
+<li>Framework prioritizes disaggregated network functions, AI-driven orchestration, and vendor-neutral interfaces</li>
+<li>Industry targets 2028 for initial 6G specifications and 2030 for commercial deployments using open platforms</li>
+</ul>
+
+<h2 class="ab-h2">Summary of the News</h2>
+<p class="ab-p">On April 20, 2026, a coalition of eight leading telecommunications operators—including Verizon, Deutsche Telekom, NTT DOCOMO, Orange, Telefónica, SK Telecom, China Mobile, and Bharti Airtel—announced a landmark commitment to develop next-generation 6G networks on open, software-defined platforms with artificial intelligence natively integrated throughout the architecture. The announcement, made at the International Telecommunication Union (ITU) World Radiocommunication Conference in Geneva, represents a fundamental shift from the proprietary, hardware-centric approaches that characterized previous mobile generations.</p>
+
+<p class="ab-p">The coalition unveiled the "Open 6G Alliance," committing $2.3 billion in combined investment toward developing open-source platform components, reference architectures, and testing frameworks. The initiative establishes a technical steering committee comprising senior network architects from each operator and commits to releasing initial platform specifications by Q4 2026. This collaborative approach aims to reduce deployment costs by an estimated 40% compared to 5G rollouts while accelerating innovation through vendor-neutral, programmable network infrastructure.</p>
+
+<p class="ab-p">The operators emphasized that AI-native design represents a paradigm shift rather than a feature addition, with machine learning capabilities embedded at every network layer—from radio resource management to core network orchestration—enabling autonomous network optimization, predictive maintenance, and dynamic service creation without human intervention.</p>
+
+<h2 class="ab-h2">Background Context</h2>
+<p class="ab-p">The telecommunications industry's evolution toward 6G comes after substantial lessons learned from 5G deployments, where proprietary vendor lock-in, high capital expenditures, and integration complexities delayed rollouts and limited operators' flexibility. Open RAN (Radio Access Network) initiatives in the 5G era demonstrated both the potential and challenges of disaggregated, software-defined approaches, with operators gaining newfound control over their network infrastructure but encountering integration and performance hurdles. These experiences have driven consensus that 6G must be "born open" rather than retrofitted with openness as an afterthought.</p>
+
+<p class="ab-p">Simultaneously, artificial intelligence has matured from experimental technology to operational necessity in network management. Modern AI/ML frameworks now handle real-time decision-making across millions of parameters simultaneously, making truly autonomous networks feasible for the first time. The convergence of cloud-native architectures, containerized network functions, and advanced AI/ML frameworks creates unprecedented opportunities to fundamentally reimagine mobile network design. The Open 6G Alliance represents operators' determination to seize this architectural inflection point, establishing open standards before proprietary approaches become entrenched as they did in previous generations.</p>
+
+<h2 class="ab-h2">Technical Insight</h2>
+<p class="ab-p">The proposed AI-native open 6G architecture centers on several key technical pillars. The platform employs fully disaggregated network functions built on cloud-native principles, with each network component—from physical layer processing to service orchestration—containerized and deployable across distributed cloud infrastructure. The coalition has specified Kubernetes as the foundational orchestration layer, with extended custom resource definitions (CRDs) specifically designed for telecommunications workloads including real-time processing guarantees and deterministic latency requirements.</p>
+
+<p class="ab-p">At the radio layer, the architecture extends O-RAN Alliance specifications while introducing new interfaces including the AI1 interface for AI model distribution and the E3 interface for cross-layer AI inference coordination. The distributed unit (DU) and centralized unit (CU) separation incorporates AI processing units (AIPUs) as first-class architectural components, enabling real-time beamforming optimization, interference management, and spectrum allocation without centralized coordination overhead. The proposed radio interface utilizes sub-terahertz spectrum (100-300 GHz) with intelligent reflecting surfaces (IRS) coordinated through AI-driven algorithms that continuously optimize signal propagation paths.</p>
+
+<p class="ab-p">The core network architecture adopts a service-based architecture (SBA) evolution with AI-native service communication interface (AI-SCI) replacing traditional SBI interactions for latency-critical decisions. Network exposure functions (NEF) incorporate federated learning frameworks allowing AI models to train across multiple operator networks without sharing raw data, maintaining privacy while improving collective intelligence. The platform specifies standardized AI model formats based on ONNX (Open Neural Network Exchange) ensuring vendor-neutral model deployment across heterogeneous infrastructure. Intent-based networking (IBN) interfaces allow network behavior specification through high-level policies automatically translated to low-level configurations through large language models (LLMs) fine-tuned on network operations data.</p>
+
+<h2 class="ab-h2">Why This Matters</h2>
+<p class="ab-p"><strong>For Operators:</strong> This collaboration fundamentally transforms the economics and agility of next-generation network deployment. By standardizing on open platforms, operators gain unprecedented flexibility to select best-of-breed components, avoid vendor lock-in, and reduce capital expenditures by estimated 35-40% compared to traditional integrated vendor solutions. AI-native architecture enables operational expenditure reduction through autonomous network optimization, with projected 50% reduction in manual configuration tasks and 60% improvement in fault detection and resolution times. The common platform accelerates service innovation, allowing operators to deploy new capabilities through software updates rather than hardware refresh cycles.</p>
+
+<p class="ab-p"><strong>For Engineers:</strong> AI-native open platforms demand expanded skill sets combining traditional telecommunications knowledge with software development, machine learning engineering, and cloud-native operations expertise. Engineers gain access to standardized APIs and open-source tools, reducing vendor-specific certification requirements while increasing career portability across operators. The architecture enables unprecedented experimentation opportunities through software-defined infrastructure, allowing engineers to test novel algorithms, optimize network behavior, and contribute to open-source projects directly influencing production networks. However, the complexity of managing AI model lifecycles, ensuring inference latency requirements, and debugging distributed systems presents significant new challenges requiring continuous learning and adaptation.</p>
+
+<p class="ab-p"><strong>For the Industry:</strong> This coalition's commitment signals telecommunications' definitive transition from hardware-centric to software-defined paradigm, fundamentally altering vendor ecosystem dynamics. Traditional equipment manufacturers must adapt business models from integrated solutions to software component providers, while cloud-native specialists, AI platforms, and open-source communities gain unprecedented influence in telecommunications infrastructure. The open approach accelerates innovation velocity through collaborative development while potentially fragmenting the ecosystem across multiple incompatible implementations. Industry consolidation may accelerate as vendors lacking software and AI capabilities face existential challenges, while new entrants with cloud and AI expertise can compete directly with established telecommunications suppliers.</p>
+
+<h2 class="ab-h2">Market Impact</h2>
+<p class="ab-p">The Open 6G Alliance's $2.3 billion commitment represents merely the initial investment, with analyst projections estimating total 6G infrastructure spending reaching $287 billion globally between 2028-2035. The open platform approach fundamentally disrupts traditional vendor economics, with integrated equipment suppliers potentially losing 30-45% market share to disaggregated component providers, cloud infrastructure specialists, and AI platform companies. Market research firms project the AI-native network orchestration and automation software segment will grow from negligible revenue in 2026 to $47 billion annually by 2033, creating substantial opportunities for both established software companies and startups.</p>
+
+<p class="ab-p">Traditional telecommunications vendors face significant strategic challenges, with their legacy business models predicated on proprietary integrated systems generating recurring revenue through upgrades and maintenance contracts. Companies like Ericsson, Nokia, and Huawei are rapidly pivoting toward software and AI capabilities, evidenced by Nokia's recent acquisition of two AI orchestration startups and Ericsson's announcement of open-source RAN intelligent controller contributions. Conversely, cloud-native infrastructure providers including AWS, Microsoft Azure, and Google Cloud Platform have established dedicated telecommunications business units, collectively hiring over 3,000 telecommunications specialists since 2024 to capture emerging opportunities.</p>
+
+<p class="ab-p">The competitive landscape is fragmenting along new dimensions, with traditional operator-vendor relationships supplemented by complex partnerships spanning cloud providers, AI platforms, open-source foundations, and specialized component suppliers. Operators in the coalition gain collective negotiating leverage and reduced switching costs, fundamentally rebalancing power dynamics that favored large integrated vendors during previous network generations. Smaller operators not participating in the coalition risk competitive disadvantages, potentially accelerating industry consolidation as scale advantages in AI model development and platform maintenance favor larger players.</p>
+
+<h2 class="ab-h2">Expert Commentary</h2>
+<p class="ab-p">The Open 6G Alliance represents telecommunications' most significant architectural commitment to openness in the industry's history, surpassing even the Open RAN movement's ambitions by establishing open principles before specifications solidify rather than retrofitting openness into existing architectures. However, the initiative's success depends critically on governance structures preventing fragmentation into incompatible implementations—a challenge that plagued earlier open-source telecommunications efforts including OpenDaylight and OPNFV, which struggled with competing visions and insufficient operator commitment.</p>
+
+<p class="ab-p">The AI-native approach addresses legitimate architectural requirements but introduces substantial complexity in model lifecycle management, data governance, and explainability for regulatory compliance. Network behavior driven by neural networks with millions of parameters becomes inherently difficult to predict, debug, and certify for safety-critical applications. The industry must develop novel testing frameworks, formal verification methods for AI-driven systems, and regulatory approaches balancing innovation with reliability requirements. The coalition's success will ultimately depend less on technical specifications than on sustaining multi-year collaboration across competitive operators with divergent strategic priorities, regional regulatory constraints, and existing vendor commitments.</p>
+
+<p class="ab-p">From a timeline perspective, 2028 specifications and 2030 commercial deployment targets appear optimistic given the complexity of coordinating standards development, implementing reference platforms, and conducting interoperability testing across vendor ecosystems. The 5G experience demonstrated that initial specifications required multiple revisions before achieving production readiness, suggesting 6G deployments may realistically commence in 2031-2032 at scale, with initial trials potentially beginning in 2029.</p>
+
+<h2 class="ab-h2">Future Implications</h2>
+<p class="ab-p">The immediate next phase involves establishing formal governance structures, technical working groups, and contribution frameworks for the Open 6G Alliance. Operators will release detailed requirements documentation by Q4 2026, followed by reference architecture specifications in Q2 2027, creating foundation for vendor implementation and open-source community contributions. Expect announcements from major cloud providers—particularly AWS, Microsoft, and Google—regarding 6G-optimized infrastructure offerings and AI platform integrations aligned with alliance specifications.</p>
+
+<p class="ab-p">Testing and validation frameworks will emerge throughout 2027, with interoperability testing facilities established in multiple regions to certify component compatibility. The alliance will likely establish relationships with academic institutions for neutral testing and validation, similar to O-RAN Alliance's engagement with research universities. Initial field trials should commence in 2028-2029, focusing on sub-terahertz spectrum propagation characteristics, AI model performance under production traffic conditions, and power consumption optimization for AI inference workloads.</p>
+
+<p class="ab-p">Standards bodies including 3GPP and ITU will incorporate Open 6G Alliance specifications into formal standardization processes, with Release 20 and beyond integrating open platform principles into official specifications. Regulatory developments will prove crucial, particularly regarding AI model transparency, data governance for federated learning, and spectrum allocation for sub-terahertz bands. Competition authorities may scrutinize the coalition for potential anti-competitive coordination, requiring careful governance to maintain regulatory approval while achieving technical collaboration objectives. By 2029-2030, expect significant vendor consolidation as traditional equipment manufacturers merge or exit the market, unable to transition successfully to software-centric business models.</p>
+
+<h2 class="ab-h2">Key Terms to Know</h2>
+<ul class="ab-ul">
+<li><strong>AI-Native Architecture:</strong> Network design incorporating artificial intelligence as fundamental architectural component from inception, with AI/ML capabilities embedded at every layer rather than added as supplementary feature, enabling autonomous optimization and decision-making.</li>
+<li><strong>Software-Defined Platform:</strong> Infrastructure approach where network functions are implemented as software running on general-purpose computing hardware rather than specialized equipment, enabling flexibility, programmability, and vendor-neutral deployment across heterogeneous infrastructure.</li>
+<li><strong>Disaggregated Network Functions:</strong> Architectural approach separating monolithic network elements into discrete, independently deployable components with standardized interfaces, allowing operators to select best-of-breed implementations and avoid vendor lock-in.</li>
+<li><strong>Federated Learning:</strong> Machine learning technique enabling AI model training across multiple decentralized datasets without exchanging raw data, preserving privacy while improving collective model performance through collaborative learning across operator networks.</li>
+<li><strong>Intent-Based Networking (IBN):</strong> Network management paradigm where operators specify desired outcomes and policies using high-level abstractions, with AI systems automatically translating intent into low-level configurations and continuously optimizing to maintain intended behavior.</li>
+</ul>
+
+<h2 class="ab-h2">Conclusion</h2>
+<p class="ab-p">The Open 6G Alliance's commitment to AI-native open platforms represents a watershed moment in telecommunications infrastructure evolution, fundamentally restructuring industry dynamics from hardware-centric vendor relationships to software-defined collaborative ecosystems. The $2.3 billion investment and participation of eight major global operators signals genuine industry consensus that openness and AI integration are architectural imperatives rather than optional features for next-generation networks. While significant technical challenges remain—particularly in AI model governance, interoperability assurance, and maintaining collaboration across competitive operators—the initiative establishes foundational principles before proprietary approaches become entrenched. For engineers and industry professionals, this development necessitates rapid skill evolution combining telecommunications expertise with cloud-native and AI capabilities while creating unprecedented opportunities to shape network architecture through open-source contributions. The success or failure of this initiative will determine whether 6G achieves its promise of radically reduced costs and accelerated innovation or repeats 5G's challenges with vendor lock-in and deployment complexity.</p>
+</div><!-- /article-body -->
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="article-sidebar">
+      <!-- TOC -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">In this article</div>
+        <ul class="toc-list" id="tocList">
+          <li class="toc-item active"><a href="#article-content">Introduction</a></li>
+        </ul>
+      </div>
+
+      <!-- Stats -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">Article details</div>
+        <div class="stat-row"><span class="stat-key">Category</span><span class="stat-val blue" id="statCat">Latest News</span></div>
+        <div class="stat-row"><span class="stat-key">Published</span><span class="stat-val" id="statDate">Apr 20, 2026</span></div>
+        <div class="stat-row"><span class="stat-key">Read time</span><span class="stat-val" id="statRead">10 min</span></div>
+        <div class="stat-row"><span class="stat-key">Source</span><span class="stat-val">3GPP / ITU</span></div>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="sidebar-newsletter">
+        <h4>Daily <span>Signal</span></h4>
+        <p>One telecom insight every morning. Free forever.</p>
+        <input class="sidebar-input" type="email" id="sidebarEmail" placeholder="your@email.com">
+        <button class="sidebar-sub-btn" onclick="subscribe()">Subscribe Free</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Articles -->
+  <div class="related">
+    <div class="related-title">Related Articles</div>
+    <div class="related-grid" id="relatedGrid"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo" onclick="location.href='/'">NextG<span>Now</span></div>
+        <div style="font-size:12px;color:var(--txt4);margin-top:4px">Tomorrow's Telecom, Explained Today</div>
+      </div>
+      <div class="footer-copy">© 2025 NextGNow · NextGNow.in</div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ── Reading progress ──────────────────────────────────────
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = Math.min(pct,100) + '%';
+  document.getElementById('back-top').classList.toggle('visible', doc.scrollTop > 400);
+  updateTOC();
+});
+
+// ── Auto-build TOC from h2 headings ──────────────────────
+function buildTOC() {
+  const headings = document.querySelectorAll('.article-body h2');
+  if (!headings.length) return;
+  const toc = document.getElementById('tocList');
+  toc.innerHTML = '<li class="toc-item active"><a href="#article-content">Introduction</a></li>';
+  headings.forEach((h, i) => {
+    const id = 'section-' + i;
+    h.id = id;
+    const li = document.createElement('li');
+    li.className = 'toc-item';
+    li.innerHTML = `<a href="#${id}">${h.textContent.replace(/^▌/,'').trim()}</a>`;
+    toc.appendChild(li);
+  });
+}
+
+function updateTOC() {
+  const items = document.querySelectorAll('.toc-item');
+  const headings = document.querySelectorAll('.article-body h2');
+  let current = 0;
+  headings.forEach((h, i) => {
+    if (h.getBoundingClientRect().top < 160) current = i + 1;
+  });
+  items.forEach((item, i) => item.classList.toggle('active', i === current));
+}
+
+// ── Load nav dropdowns from articles.json ─────────────────
+async function loadNavDropdowns() {
+  try {
+    const r = await fetch('/articles.json?v=' + Date.now());
+    const d = await r.json();
+    const articles = d.articles || [];
+    buildDropdown('dd5g',  articles, '5G',       '#60a5fa', '/?cat=5G');
+    buildDropdown('dd6g',  articles, '6G',        '#c084fc', '/?cat=6G');
+    buildDropdown('ddcf',  articles, 'Call Flow', '#22d3ee', '/?cat=Call Flow');
+    buildDropdown('ddoran',articles, 'Open RAN',  '#fbbf24', '/?cat=Open RAN');
+    loadRelated(articles);
+  } catch(e) {}
+}
+
+function buildDropdown(id, articles, cat, color, allUrl) {
+  const dd = document.getElementById(id);
+  if (!dd) return;
+  const items = articles.filter(a => a.category === cat).slice(0, 6);
+  const label = cat === 'Call Flow' ? 'All Call Flows' : `All ${cat} Articles`;
+  dd.innerHTML = `<div class="dropdown-item" onclick="location.href='${allUrl}'"><span class="dd-dot" style="background:${color}"></span>${label}</div>`;
+  items.forEach(a => {
+    const div = document.createElement('div');
+    div.className = 'dropdown-item';
+    div.innerHTML = `<span class="dd-dot" style="background:${color}"></span>${a.title.substring(0,40)}${a.title.length>40?'...':''}`;
+    div.onclick = () => location.href = a.url;
+    dd.appendChild(div);
+  });
+}
+
+function loadRelated(articles) {
+  const grid = document.getElementById('relatedGrid');
+  if (!grid || !articles.length) return;
+  const related = articles.slice(0, 3);
+  const catCls = c => ({'5G':'badge-5g','6G':'badge-6g','3GPP':'badge-3gpp','Open RAN':'badge-oran','Policy':'badge-policy','Call Flow':'badge-callflow'}[c]||'badge-default');
+  grid.innerHTML = related.map(a => `
+    <a class="rcard" href="${a.url}">
+      <span class="rcard-cat ${catCls(a.category)}">${a.category}</span>
+      <div class="rcard-title">${a.title}</div>
+      <div class="rcard-date">${a.date} · 5 min</div>
+    </a>`).join('');
+}
+
+// ── Set badge class from category ────────────────────────
+function setBadge() {
+  const badge = document.getElementById('articleBadge');
+  if (!badge) return;
+  const cat = badge.textContent.trim();
+  const clsMap = {
+    // Tech categories (manual posts)
+    '5G':'badge-5g','6G':'badge-6g','3GPP':'badge-3gpp',
+    'Open RAN':'badge-oran','Policy':'badge-policy','Call Flow':'badge-callflow',
+    // Blog-type categories (daily auto-posts)
+    'Latest News':'badge-news','Concept Guide':'badge-concept',
+    'Protocol Deep Dive':'badge-proto','Industry Trends':'badge-trends',
+    'Interview Prep':'badge-interview','Future Tech':'badge-future',
+  };
+  badge.className = 'badge ' + (clsMap[cat] || 'badge-default');
+  document.getElementById('statCat').textContent = cat;
+  // Breadcrumb: show correct category, not always "5G"
+  const breadcrumb = document.getElementById('breadcrumbCat');
+  if (breadcrumb) breadcrumb.textContent = cat;
+  // Also fix the breadcrumb link
+  const breadcrumbLink = document.getElementById('breadcrumbLink');
+  if (breadcrumbLink) breadcrumbLink.href = '/?cat=' + encodeURIComponent(cat);
+}
+
+// ── Share buttons ─────────────────────────────────────────
+function shareLinkedIn() { window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(location.href),'_blank'); }
+function shareX() { window.open('https://x.com/intent/tweet?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent(document.title),'_blank'); }
+function copyLink() { navigator.clipboard.writeText(location.href).then(()=>alert('Link copied!')); }
+
+// ── Subscribe ─────────────────────────────────────────────
+function subscribe() {
+  const e = document.getElementById('sidebarEmail').value;
+  if (!e || !e.includes('@')) { alert('Please enter a valid email'); return; }
+  alert('Thanks! Daily telecom insights coming to ' + e);
+  document.getElementById('sidebarEmail').value = '';
+}
+
+// ── Mobile menu ───────────────────────────────────────────
+function toggleMenu() {
+  document.getElementById('mobileNav').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+
+// ── Boot ──────────────────────────────────────────────────
+setBadge();
+buildTOC();
+loadNavDropdowns();
+
+// Sync stat date with eyebrow date
+const dateEl = document.getElementById('articleDate');
+if (dateEl) {
+  const d = dateEl.textContent.replace('Published · ','');
+  document.getElementById('statDate').textContent = d;
+  document.getElementById('bylineDate').textContent = d;
+}
+</script>
+</body>
+</html>
