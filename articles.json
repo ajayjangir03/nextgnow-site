@@ -1,6 +1,20 @@
 {
   "articles": [
     {
+      "title": "US Clears 2.7 GHz Spectrum for 6G Leadership",
+      "slug": "us-clears-27-ghz-spectrum-for-6g-leadership",
+      "url": "https://nextgnow.in/articles/us-clears-27-ghz-spectrum-for-6g-leadership.html",
+      "category": "Concept Guide",
+      "excerpt": "The National Telecommunications and Information Administration NTIA has approved groundbreaking spectrum relocation plans that will transition the 2.7 GHz\u2026",
+      "date": "Apr 21, 2026",
+      "tags": [
+        "Concept Guide",
+        "6G",
+        "telecom"
+      ],
+      "type": "auto"
+    },
+    {
       "title": "Global Telecom Leaders Commit to AI-Native Open 6G Platforms",
       "slug": "global-telecom-leaders-commit-to-ai-native-open-6g-platforms",
       "url": "https://nextgnow.in/articles/global-telecom-leaders-commit-to-ai-native-open-6g-platforms.html",
