@@ -1,6 +1,20 @@
 {
   "articles": [
     {
+      "title": "6G AI-Native Networks: Qualcomm's MWC 2026 Prototype Breakthrough",
+      "slug": "6g-ai-native-networks-qualcomms-mwc-2026-prototype-breakthrough",
+      "url": "https://nextgnow.in/articles/6g-ai-native-networks-qualcomms-mwc-2026-prototype-breakthrough.html",
+      "category": "Call Flow",
+      "excerpt": "At Mobile World Congress Barcelona 2026, Qualcomm Technologies unveiled a groundbreaking end-to-end 6G prototype system that fundamentally reimagines\u2026",
+      "date": "Apr 22, 2026",
+      "tags": [
+        "Call Flow",
+        "6G",
+        "telecom"
+      ],
+      "type": "auto"
+    },
+    {
       "title": "US Clears 2.7 GHz Spectrum for 6G Leadership",
       "slug": "us-clears-27-ghz-spectrum-for-6g-leadership",
       "url": "https://nextgnow.in/articles/us-clears-27-ghz-spectrum-for-6g-leadership.html",
