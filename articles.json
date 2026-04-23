@@ -1,6 +1,20 @@
 {
   "articles": [
     {
+      "title": "Open RAN Shifts From Trials to Commercial Scale in 2026",
+      "slug": "open-ran-shifts-from-trials-to-commercial-scale-in-2026",
+      "url": "https://nextgnow.in/articles/open-ran-shifts-from-trials-to-commercial-scale-in-2026.html",
+      "category": "Protocol Deep Dive",
+      "excerpt": "Open RAN represents a paradigm shift in radio access network architecture, disaggregating traditional monolithic base stations into discrete, interoperable\u2026",
+      "date": "Apr 23, 2026",
+      "tags": [
+        "Protocol Deep Dive",
+        "Open RAN",
+        "telecom"
+      ],
+      "type": "auto"
+    },
+    {
       "title": "6G AI-Native Networks: Qualcomm's MWC 2026 Prototype Breakthrough",
       "slug": "6g-ai-native-networks-qualcomms-mwc-2026-prototype-breakthrough",
       "url": "https://nextgnow.in/articles/6g-ai-native-networks-qualcomms-mwc-2026-prototype-breakthrough.html",
