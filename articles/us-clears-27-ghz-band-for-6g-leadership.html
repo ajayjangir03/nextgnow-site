@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US Clears 2.7 GHz Band for 6G Leadership — NextGNow</title>
+<meta name="description" content="NextGNow telecom article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#030712;color:#e2e8f0;font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden}
+:root{
+  --bg0:#030712;--bg1:#0a0f1e;--bg2:#0f172a;--bg3:#1e293b;
+  --border:#1e293b;--border2:#334155;
+  --blue:#3b82f6;--blue-dim:rgba(59,130,246,.12);
+  --cyan:#06b6d4;--cyan-dim:rgba(6,182,212,.1);
+  --purple:#8b5cf6;--purple-dim:rgba(139,92,246,.1);
+  --green:#10b981;--green-dim:rgba(16,185,129,.1);
+  --orange:#f59e0b;--orange-dim:rgba(245,158,11,.1);
+  --red:#ef4444;--red-dim:rgba(239,68,68,.1);
+  --txt0:#f1f5f9;--txt1:#cbd5e1;--txt2:#94a3b8;--txt3:#64748b;--txt4:#475569;
+}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(59,130,246,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.03) 1px,transparent 1px);
+  background-size:48px 48px;}
+
+/* ── PROGRESS BAR ── */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#3b82f6,#8b5cf6);z-index:999;transition:width .1s linear}
+
+/* ── HEADER ── */
+header{position:sticky;top:0;z-index:150;background:rgba(3,7,18,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.logo-svg{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
+.logo-text{font-size:20px;font-weight:800;color:var(--txt0);letter-spacing:-.5px;line-height:1}
+.logo-text span{color:var(--blue)}
+.header-right{display:flex;align-items:center;gap:10px}
+.social-icons{display:flex;gap:6px}
+.social-icon{width:32px;height:32px;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--txt3);text-decoration:none}
+.social-icon:hover{border-color:var(--blue);background:var(--blue-dim);color:var(--blue)}
+.social-icon svg{width:14px;height:14px}
+.back-btn{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border2);color:var(--txt2);padding:7px 14px;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none}
+.back-btn:hover{border-color:var(--blue);color:var(--txt0)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:var(--bg2);border:1px solid var(--border2);border-radius:8px}
+.hamburger span{width:20px;height:2px;background:var(--txt2);border-radius:2px;transition:all .3s;display:block}
+nav{display:flex;gap:2px;padding:8px 0;flex-wrap:wrap}
+.nav-item{position:relative}
+.nav-link{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:500;color:var(--txt2);cursor:pointer;padding:6px 12px;border-radius:8px;background:none;border:none;font-family:'Inter',sans-serif;transition:all .15s;white-space:nowrap}
+.nav-link:hover{color:var(--txt0);background:var(--bg3)}
+.nav-link .chevron{width:10px;height:10px;opacity:.5;transition:transform .2s}
+.nav-item:hover .nav-link .chevron{transform:rotate(180deg)}
+.dropdown{position:absolute;top:calc(100% + 6px);left:0;background:var(--bg1);border:1px solid var(--border2);border-radius:12px;padding:8px;min-width:210px;display:none;z-index:300;box-shadow:0 16px 48px rgba(0,0,0,.6)}
+.nav-item:hover .dropdown{display:block}
+.dropdown-item{display:flex;align-items:center;gap:10px;padding:9px 12px;font-size:13px;color:var(--txt2);text-decoration:none;border-radius:8px;transition:all .15s;cursor:pointer;white-space:nowrap}
+.dropdown-item:hover{color:var(--txt0);background:var(--bg3)}
+.dd-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);flex-shrink:0}
+.mobile-nav{display:none;flex-direction:column;background:var(--bg1);border-bottom:1px solid var(--border);padding:12px 24px 16px;gap:4px}
+.mobile-nav.open{display:flex}
+.mobile-nav-item{padding:10px 12px;font-size:14px;color:var(--txt2);cursor:pointer;border-radius:8px;transition:all .15s;font-weight:500}
+.mobile-nav-item:hover{color:var(--txt0);background:var(--bg3)}
+.mobile-section{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt4);padding:10px 12px 4px;margin-top:6px}
+
+/* ── LAYOUT ── */
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.article-layout{display:grid;grid-template-columns:1fr 280px;gap:48px;padding:40px 0 80px;align-items:start}
+
+/* ── ARTICLE MAIN ── */
+.article-main{}
+
+/* Breadcrumb */
+.breadcrumb{display:flex;align-items:center;gap:8px;padding:24px 0 0;font-size:12px;color:var(--txt3);font-family:'JetBrains Mono',monospace;flex-wrap:wrap}
+.breadcrumb a{color:var(--txt3);text-decoration:none;transition:color .15s;cursor:pointer}
+.breadcrumb a:hover{color:var(--blue)}
+.breadcrumb span{color:var(--txt4)}
+
+/* Article header */
+.article-header{margin-bottom:36px;padding-top:24px}
+.article-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.badge{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:6px}
+.badge-5g{background:var(--blue-dim);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.badge-6g{background:var(--purple-dim);color:#c084fc;border:1px solid rgba(139,92,246,.2)}
+.badge-3gpp{background:var(--green-dim);color:#34d399;border:1px solid rgba(16,185,129,.2)}
+.badge-oran{background:var(--orange-dim);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.badge-policy{background:var(--red-dim);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.badge-callflow{background:var(--cyan-dim);color:#22d3ee;border:1px solid rgba(6,182,212,.2)}
+.badge-default{background:var(--blue-dim);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.badge-news{background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.badge-concept{background:rgba(168,85,247,.1);color:#c084fc;border:1px solid rgba(168,85,247,.2)}
+.badge-proto{background:rgba(59,130,246,.1);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.badge-trends{background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.badge-interview{background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.badge-future{background:rgba(6,182,212,.1);color:#22d3ee;border:1px solid rgba(6,182,212,.2)}
+.live-dot{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#22c55e;font-family:'JetBrains Mono',monospace}
+.live-dot::before{content:'';width:6px;height:6px;background:#22c55e;border-radius:50%;animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.article-title{font-size:40px;font-weight:800;line-height:1.15;letter-spacing:-.6px;color:var(--txt0);margin-bottom:18px}
+.article-subtitle{font-size:17px;color:var(--txt2);line-height:1.7;max-width:680px;margin-bottom:28px;font-weight:300}
+
+/* Byline */
+.article-byline{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;gap:12px}
+.author-info{display:flex;align-items:center;gap:12px}
+.author-avatar{width:36px;height:36px;border-radius:50%;background:var(--blue-dim);border:1px solid rgba(59,130,246,.3);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--blue);flex-shrink:0}
+.author-name{font-size:13px;font-weight:600;color:var(--txt0)}
+.author-role{font-size:11px;color:var(--txt3);margin-top:2px}
+.share-row{display:flex;align-items:center;gap:8px}
+.share-label{font-size:11px;color:var(--txt3);font-family:'JetBrains Mono',monospace}
+.share-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);color:var(--txt2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s}
+.share-btn:hover{background:var(--blue-dim);border-color:rgba(59,130,246,.3);color:var(--blue)}
+.share-btn svg{width:14px;height:14px}
+
+/* Hero visual */
+
+
+/* Article body */
+.article-body{font-family:'Lora',serif;font-size:17px;line-height:1.85;color:#c8d4e8;max-width:720px}
+.article-body p{margin-bottom:22px}
+.article-body h2{font-family:'Inter',sans-serif;font-size:24px;font-weight:700;color:var(--txt0);margin:44px 0 14px;letter-spacing:-.3px;display:flex;align-items:center;gap:10px}
+.article-body h2::before{content:'';display:inline-block;width:4px;height:20px;background:var(--blue);border-radius:2px;flex-shrink:0}
+.article-body h3{font-family:'Inter',sans-serif;font-size:18px;font-weight:600;color:var(--txt0);margin:32px 0 12px}
+.article-body ul{margin:0 0 22px 20px;display:flex;flex-direction:column;gap:8px}
+.article-body ol{margin:0 0 22px 20px;display:flex;flex-direction:column;gap:8px}
+.article-body li{color:#b0bec5;line-height:1.7;font-size:16px}
+.article-body strong{color:var(--txt0);font-weight:600}
+.article-body em{color:var(--txt1)}
+.article-body code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--bg3);color:#60a5fa;padding:2px 8px;border-radius:4px}
+.article-body table{width:100%;border-collapse:collapse;margin:28px 0;font-family:'Inter',sans-serif;font-size:14px}
+.article-body th{background:var(--bg3);padding:10px 14px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);border-bottom:1px solid var(--border2)}
+.article-body td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--txt2);vertical-align:top}
+.article-body tr:hover td{background:rgba(255,255,255,.02)}
+.article-body td:first-child{color:var(--txt0);font-weight:500}
+
+/* Callout boxes */
+.callout{border-radius:10px;padding:18px 22px;margin:28px 0}
+.callout-info{background:var(--blue-dim);border-left:3px solid var(--blue)}
+.callout-tip{background:var(--green-dim);border-left:3px solid var(--green)}
+.callout-warn{background:var(--orange-dim);border-left:3px solid var(--orange)}
+.callout p{font-family:'Inter',sans-serif;font-size:14px;color:var(--txt2);margin:0;line-height:1.6}
+.callout strong{color:var(--txt0)}
+
+/* Key takeaways */
+.takeaways{background:var(--bg2);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:22px 26px;margin:44px 0 0}
+.takeaways-label{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.takeaways ul{margin:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.takeaways li{font-family:'Inter',sans-serif;font-size:14px;color:var(--txt2);display:flex;align-items:flex-start;gap:10px;line-height:1.6}
+.takeaways li::before{content:'→';color:var(--green);flex-shrink:0}
+
+/* ── SIDEBAR ── */
+.article-sidebar{position:sticky;top:80px;display:flex;flex-direction:column;gap:20px}
+.sidebar-card{background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:18px}
+.sidebar-title{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+
+/* TOC */
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+.toc-item a{display:block;font-size:13px;color:var(--txt2);text-decoration:none;padding:6px 10px;border-radius:6px;line-height:1.4;transition:all .15s;border-left:2px solid transparent}
+.toc-item a:hover,.toc-item.active a{color:var(--blue);background:var(--blue-dim);border-left-color:var(--blue)}
+
+/* Stat card */
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}
+.stat-row:last-child{border-bottom:none}
+.stat-key{color:var(--txt3)}
+.stat-val{color:var(--txt0);font-family:'JetBrains Mono',monospace;font-size:11px}
+.stat-val.blue{color:var(--blue)}
+
+/* Newsletter */
+.sidebar-newsletter{background:var(--bg1);border:1px solid var(--border);border-top:2px solid var(--blue);border-radius:0 0 12px 12px;padding:18px;text-align:center}
+.sidebar-newsletter h4{font-size:16px;font-weight:700;color:var(--txt0);margin-bottom:6px}
+.sidebar-newsletter h4 span{color:var(--blue)}
+.sidebar-newsletter p{font-size:12px;color:var(--txt3);margin-bottom:12px;line-height:1.5}
+.sidebar-input{width:100%;background:var(--bg2);border:1px solid var(--border2);color:var(--txt0);font-family:'Inter',sans-serif;font-size:13px;padding:9px 12px;border-radius:8px;outline:none;margin-bottom:8px;transition:border-color .2s}
+.sidebar-input:focus{border-color:var(--blue)}
+.sidebar-input::placeholder{color:var(--txt3)}
+.sidebar-sub-btn{width:100%;background:var(--blue);color:#fff;border:none;font-family:'Inter',sans-serif;font-weight:600;font-size:13px;padding:9px;border-radius:8px;cursor:pointer;transition:opacity .2s}
+.sidebar-sub-btn:hover{opacity:.85}
+
+/* Related */
+.related{padding:48px 0;border-top:1px solid var(--border)}
+.related-title{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.related-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rcard{background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:20px;cursor:pointer;transition:all .2s;text-decoration:none;display:block}
+.rcard:hover{border-color:var(--border2);transform:translateY(-2px)}
+.rcard-cat{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:5px;display:inline-block;margin-bottom:10px}
+.rcard-title{font-size:14px;font-weight:600;color:var(--txt0);line-height:1.4;margin-bottom:8px;transition:color .15s}
+.rcard:hover .rcard-title{color:#60a5fa}
+.rcard-date{font-size:11px;color:var(--txt4)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:28px 0}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-logo{font-size:16px;font-weight:800;color:var(--txt0);cursor:pointer;letter-spacing:-.3px}
+.footer-logo span{color:var(--blue)}
+.footer-copy{font-size:12px;color:var(--txt4)}
+
+/* ── ARTICLE BODY — Rich sections ── */
+.ab-h2{font-family:'Inter',sans-serif;font-size:21px;font-weight:700;color:var(--txt0);margin:44px 0 16px;letter-spacing:-.3px;display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.ab-h2::before{content:'';width:4px;height:20px;background:var(--blue);border-radius:2px;flex-shrink:0}
+.ab-h3{font-family:'Inter',sans-serif;font-size:16px;font-weight:600;color:#60a5fa;margin:28px 0 10px;display:flex;align-items:center;gap:8px}
+.ab-h3::before{content:'›';color:var(--blue);font-weight:700}
+.ab-p{font-size:15.5px;color:#b8c8e0;line-height:1.9;margin-bottom:18px;font-family:'Lora',serif;font-weight:400}
+.ab-ul{margin:0 0 20px 0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.ab-ul li{font-size:14.5px;color:var(--txt1);line-height:1.7;display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:var(--bg2);border-radius:8px;border-left:3px solid var(--blue)}
+.ab-ul li::before{content:'›';color:var(--blue);font-size:18px;font-weight:700;flex-shrink:0;line-height:1.3;margin-top:1px}
+.ab-ol{margin:0 0 20px 0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px;counter-reset:ol-step}
+.ab-ol li{font-size:14.5px;color:var(--txt1);line-height:1.7;display:flex;align-items:flex-start;gap:14px;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;counter-increment:ol-step}
+.ab-ol li::before{content:counter(ol-step);min-width:26px;height:26px;background:var(--blue-dim);border:1px solid rgba(59,130,246,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#60a5fa;flex-shrink:0;font-family:'JetBrains Mono',monospace;line-height:26px;text-align:center}
+.ab-table-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;overflow-x:auto;margin:24px 0;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.ab-table{width:100%;border-collapse:collapse;font-size:13px}
+.ab-table th{background:var(--bg3);padding:11px 16px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);border-bottom:1px solid var(--border2)}
+.ab-table td{padding:11px 16px;border-bottom:1px solid var(--border);color:var(--txt2);font-size:13px;vertical-align:top}
+.ab-table tr:last-child td{border-bottom:none}
+.ab-table tr:hover td{background:rgba(59,130,246,.04)}
+.ab-table td:first-child{color:var(--txt0);font-weight:600}
+.article-body strong{color:var(--txt0);font-weight:600}
+.article-body em{color:var(--txt1)}
+.article-body code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--bg3);color:#60a5fa;padding:2px 8px;border-radius:4px;border:1px solid var(--border)}
+/* Q&A interview format */
+.ab-p strong:first-child{display:block;color:#60a5fa;font-family:'Inter',sans-serif;font-size:14px;margin-bottom:4px}
+
+/* Back to top */
+#back-top{position:fixed;bottom:28px;right:28px;width:40px;height:40px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:all .25s;z-index:50;color:var(--txt2);font-size:16px}
+#back-top.visible{opacity:1;transform:translateY(0)}
+#back-top:hover{border-color:var(--blue);color:var(--blue)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .article-layout{grid-template-columns:1fr;gap:32px;padding:24px 0 60px}
+  .article-sidebar{position:static;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .sidebar-newsletter{grid-column:1/-1}
+  .related-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  nav{display:none}
+  .hamburger{display:flex}
+  .article-title{font-size:28px}
+  .article-subtitle{font-size:15px}
+  .container{padding:0 16px}
+  .social-icons{display:none}
+  .article-sidebar{grid-template-columns:1fr}
+  .share-row{display:none}
+  .related-grid{grid-template-columns:1fr}
+  #back-top{bottom:16px;right:16px}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.article-header{animation:fadeUp .5s ease both}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="logo-svg" onclick="location.href='/'">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#0f172a" stroke="#1e293b"/><circle cx="18" cy="18" r="3" fill="#3b82f6"/><circle cx="18" cy="18" r="7" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="2 2" opacity=".6"/><circle cx="18" cy="18" r="12" fill="none" stroke="#3b82f6" stroke-width="1" opacity=".3"/><path d="M10 18L26 18" stroke="#60a5fa" stroke-width="1" opacity=".4"/><path d="M18 10L18 26" stroke="#60a5fa" stroke-width="1" opacity=".4"/><circle cx="26" cy="10" r="2.5" fill="#60a5fa" opacity=".8"/><path d="M21 10L26 10L26 15" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".6" fill="none"/></svg>
+        <div><div class="logo-text">NextG<span>Now</span></div><div style="font-size:10px;color:var(--txt4);margin-top:1px;letter-spacing:.04em">TELECOM INTELLIGENCE</div></div>
+      </div>
+      <div class="header-right">
+        <div class="social-icons">
+          <a class="social-icon" href="https://linkedin.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a class="social-icon" href="https://x.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a class="social-icon" href="https://youtube.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+        <a class="back-btn" href="/">← Back to NextGNow</a>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <nav id="desktopNav">
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=6G'">6G <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="dd6g"><div class="dropdown-item" onclick="location.href='/?cat=6G'"><span class="dd-dot" style="background:#c084fc"></span>All 6G Articles</div></div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=5G'">5G <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="dd5g"><div class="dropdown-item" onclick="location.href='/?cat=5G'"><span class="dd-dot"></span>All 5G Articles</div></div>
+      </div>
+      <button class="nav-link" onclick="location.href='/?cat=3GPP'">3GPP Releases</button>
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=Call Flow'">Call Flows <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="ddcf"><div class="dropdown-item" onclick="location.href='/?cat=Call Flow'"><span class="dd-dot" style="background:#22d3ee"></span>All Call Flows</div></div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=Open RAN'">AI Telecom <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="ddoran"><div class="dropdown-item" onclick="location.href='/?cat=Open RAN'"><span class="dd-dot" style="background:#fbbf24"></span>All AI Telecom</div></div>
+      </div>
+      <button class="nav-link" onclick="location.href='/'">Latest Articles</button>
+      <button class="nav-link" onclick="location.href='/#about'">About</button>
+    </nav>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-section">Topics</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=5G'">📡 5G</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=6G'">🛰️ 6G</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=3GPP'">📋 3GPP</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=Call Flow'">🔄 Call Flows</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=Open RAN'">🔓 Open RAN</div>
+    <div class="mobile-nav-item" onclick="location.href='/'">📰 All Articles</div>
+  </div>
+</header>
+
+<div class="container">
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a onclick="location.href='/'">Home</a>
+    <span>›</span>
+    <a id="breadcrumbLink" onclick="location.href='/'">Articles</a>
+    <span>›</span>
+    <span id="breadcrumbCat" style="color:var(--txt2)">Interview Prep</span>
+  </div>
+
+  <div class="article-layout">
+    <!-- MAIN -->
+    <div class="article-main">
+      <div class="article-header">
+        <div class="article-eyebrow">
+          <span class="badge badge-interview" id="articleBadge">Interview Prep</span>
+          <span class="live-dot" id="articleDate">Published · Apr 25, 2026</span>
+        </div>
+        <h1 class="article-title" id="articleH1">US Clears 2.7 GHz Band for 6G Leadership</h1>
+        <p class="article-subtitle" id="articleSubtitle">Why is this topic important for telecom interviews? The NTIA's approval to repurpose the 2.7 GHz band represents a strategic inflection point in American…</p>
+        <div class="article-byline">
+          <div class="author-info">
+            <div class="author-avatar">NG</div>
+            <div>
+              <div class="author-name">NextGNow Editorial</div>
+              <div class="author-role"><span id="authorRole">Interview Prep</span> · <span id="bylineDate">Apr 25, 2026</span> · <span id="bylineRead">15 min</span> read</div>
+            </div>
+          </div>
+          <div class="share-row">
+            <span class="share-label">Share</span>
+            <button class="share-btn" onclick="shareLinkedIn()" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></button>
+            <button class="share-btn" onclick="shareX()" title="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
+            <button class="share-btn" onclick="copyLink()" title="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Article body — pipeline injects here -->
+      <div class="article-body" id="article-content">
+<p class="ab-p"># US Clears 2.7 GHz Band for 6G Leadership: Interview Preparation Guide</p>
+
+<h2 class="ab-h2">Quick Summary</h2>
+<ul class="ab-ul">
+<li>NTIA approves repurposing 2.7 GHz spectrum band for commercial wireless services to support 6G development and American technological leadership</li>
+<li>This mid-band spectrum allocation addresses critical capacity needs bridging coverage and capacity for next-generation networks</li>
+<li>Decision positions US competitively against China and other nations in the global 6G standardization and deployment race</li>
+</ul>
+
+<h2 class="ab-h2">Introduction</h2>
+<p class="ab-p">Why is this topic important for telecom interviews?</p>
+
+<p class="ab-p">The NTIA's approval to repurpose the 2.7 GHz band represents a strategic inflection point in American telecommunications policy and technical infrastructure development. For telecom professionals, this topic is interview-critical because it demonstrates understanding of spectrum management, regulatory processes, next-generation technology roadmaps, and geopolitical considerations in wireless evolution.</p>
+
+<p class="ab-p">Interviewers assess candidates on their grasp of spectrum economics, technical suitability of different frequency bands, international competitive dynamics, and the architectural implications for network planning. This decision affects equipment manufacturers, service providers, network planners, regulatory specialists, and technical architects across the industry. Demonstrating knowledge of this topic shows awareness of strategic industry direction, policy frameworks, and the technical-business nexus that drives telecommunications evolution. Whether interviewing for infrastructure, policy, engineering, or strategic roles, understanding spectrum repurposing decisions and their implications for 6G showcases comprehensive industry knowledge beyond purely technical specifications.</p>
+
+<h2 class="ab-h2">Concept Explained Simply</h2>
+
+<p class="ab-p"><strong>Simple Explanation:</strong></p>
+
+<p class="ab-p">Imagine the wireless spectrum as a highway system. The 2.7 GHz band is like building a new major highway that's perfectly positioned—not too close to downtown (low frequencies with great coverage but limited capacity) and not too far out in the suburbs (high frequencies with huge capacity but poor coverage). The US government has decided to open this "highway" to commercial wireless companies so they can start building the next generation of mobile networks called 6G.</p>
+
+<p class="ab-p">Think of 6G as the successor to today's 5G networks, expected to be 100 times faster with near-zero delay. To make this work, wireless companies need more "space" (spectrum) to send signals. The 2.7 GHz band had been used by government agencies, but now it's being repurposed—like converting a military road into a public highway—so commercial companies can use it for advanced wireless services.</p>
+
+<p class="ab-p"><strong>Technical Depth:</strong></p>
+
+<p class="ab-p">The 2.7 GHz band (specifically 2690-2900 MHz) represents approximately 210 MHz of contiguous mid-band spectrum with optimal propagation characteristics for balancing coverage and capacity. This spectrum sits within the critical "sweet spot" between low-band coverage layers (sub-1 GHz) and high-band capacity layers (mmWave above 24 GHz).</p>
+
+<p class="ab-p">From a radio physics perspective, the 2.7 GHz frequency offers several technical advantages: reasonable diffraction around obstacles compared to higher frequencies, manageable path loss enabling cell radii of 500m-2km in urban environments, and sufficient bandwidth to support multi-gigabit throughput with advanced MIMO configurations. The wavelength of approximately 11 cm allows practical massive MIMO antenna arrays while maintaining reasonable form factors.</p>
+
+<p class="ab-p">The NTIA's approval involves complex frequency coordination, incumbent relocation processes, and interference mitigation strategies. Government users in this band include Department of Defense satellite systems, airborne telemetry, and ground-based radars. The repurposing process requires either relocating these services to alternative spectrum, implementing sharing mechanisms with dynamic spectrum access protocols, or geographic exclusion zones around sensitive installations.</p>
+
+<p class="ab-p">For 6G specifically, this spectrum enables testing and deployment of key technologies including AI-native network architectures, integrated sensing and communication (ISAC), extremely low-latency services below 1 millisecond, and dense connectivity supporting up to 10 million devices per square kilometer. The timing aligns with 6G standardization expected around 2028-2030 in 3GPP Release 21 and beyond.</p>
+
+<h2 class="ab-h2">Architecture / Components</h2>
+
+<p class="ab-p"><strong>Spectrum Management Architecture:</strong></p>
+
+<ol class="ab-ol">
+<li><strong>NTIA (National Telecommunications and Information Administration)</strong></li>
+</ol>
+<p class="ab-p">   - Federal spectrum management authority</p>
+<p class="ab-p">   - Coordinates government spectrum use and commercial allocation decisions</p>
+<p class="ab-p">   - Manages relocation planning and interference analysis</p>
+<p class="ab-p">   - Works with FCC on spectrum sharing frameworks</p>
+
+<ol class="ab-ol">
+<li><strong>FCC (Federal Communications Commission)</strong></li>
+</ol>
+<p class="ab-p">   - Commercial spectrum licensing authority</p>
+<p class="ab-p">   - Designs auction mechanisms and service rules</p>
+<p class="ab-p">   - Establishes technical parameters (power limits, emission masks, guard bands)</p>
+<p class="ab-p">   - Enforces compliance and coordinates international spectrum policies</p>
+
+<ol class="ab-ol">
+<li><strong>Incumbent Government Users</strong></li>
+</ol>
+<p class="ab-p">   - Department of Defense radar and satellite systems</p>
+<p class="ab-p">   - Aeronautical telemetry operations</p>
+<p class="ab-p">   - Federal satellite downlinks</p>
+<p class="ab-p">   - Require relocation or sharing coordination</p>
+
+<p class="ab-p"><strong>6G Network Architecture Components:</strong></p>
+
+<ol class="ab-ol">
+<li><strong>Radio Access Network (RAN) Elements</strong></li>
+</ol>
+<p class="ab-p">   - Next-generation base stations (evolved gNB to potential "iNB" intelligent NodeB)</p>
+<p class="ab-p">   - Distributed Unit (DU), Centralized Unit (CU), and Radio Unit (RU) disaggregation</p>
+<p class="ab-p">   - Massive MIMO with 256-1024 antenna elements</p>
+<p class="ab-p">   - Reconfigurable Intelligent Surfaces (RIS) for signal propagation control</p>
+
+<ol class="ab-ol">
+<li><strong>Core Network Evolution</strong></li>
+</ol>
+<p class="ab-p">   - Cloud-native, service-based architecture extending 5G SA core</p>
+<p class="ab-p">   - AI/ML integrated network functions for autonomous operations</p>
+<p class="ab-p">   - Distributed edge computing with sub-1ms latency</p>
+<p class="ab-p">   - Network slicing with deterministic QoS guarantees</p>
+
+<ol class="ab-ol">
+<li><strong>Spectrum Coordination Systems</strong></li>
+</ol>
+<p class="ab-p">   - Dynamic Spectrum Sharing (DSS) evolved for multi-generational coexistence</p>
+<p class="ab-p">   - Spectrum Access Systems (SAS) for coordinated sharing with incumbents</p>
+<p class="ab-p">   - Cognitive radio capabilities with real-time sensing</p>
+<p class="ab-p">   - Geolocation databases for exclusion zone enforcement</p>
+
+<ol class="ab-ol">
+<li><strong>AI-Native Infrastructure</strong></li>
+</ol>
+<p class="ab-p">   - Distributed intelligence across RAN and core</p>
+<p class="ab-p">   - Real-time radio resource management</p>
+<p class="ab-p">   - Predictive maintenance and self-optimization</p>
+<p class="ab-p">   - Intent-based networking with closed-loop automation</p>
+
+<ol class="ab-ol">
+<li><strong>Sensing and Positioning Components</strong></li>
+</ol>
+<p class="ab-p">   - Integrated communication and sensing (ISAC) capabilities</p>
+<p class="ab-p">   - Sub-meter positioning accuracy leveraging carrier phase measurements</p>
+<p class="ab-p">   - Environmental sensing for smart city applications</p>
+<p class="ab-p">   - Multi-static radar configurations using network infrastructure</p>
+
+<h2 class="ab-h2">How It Works</h2>
+
+<p class="ab-p"><strong>Step-by-Step Spectrum Repurposing Process:</strong></p>
+
+<p class="ab-p"><strong>Phase 1: Analysis and Planning (Months 1-12)</strong></p>
+<ol class="ab-ol">
+<li>NTIA conducts comprehensive spectrum occupancy studies identifying current government users in 2.7 GHz band</li>
+<li>Technical working groups analyze interference scenarios between proposed commercial services and incumbent operations</li>
+<li>Economic analysis determines relocation costs versus spectrum value for commercial use</li>
+<li>Feasibility studies examine alternative spectrum for incumbent users or sharing frameworks</li>
+<li>International coordination begins with ITU and neighboring countries for border area considerations</li>
+</ol>
+
+<p class="ab-p"><strong>Phase 2: Incumbent Relocation Strategy (Months 12-36)</strong></p>
+<ol class="ab-ol">
+<li>NTIA identifies alternative spectrum for government users requiring relocation (e.g., moving satellite downlinks to C-band extensions or Ku-band)</li>
+<li>Engineering studies design new systems with equivalent or improved capabilities</li>
+<li>Budget allocation through Congressional appropriations for equipment replacement and system upgrades</li>
+<li>Phased transition timeline developed to maintain operational continuity</li>
+<li>Test and validation of new systems before decommissioning 2.7 GHz operations</li>
+</ol>
+
+<p class="ab-p"><strong>Phase 3: Regulatory Framework Development (Months 24-42)</strong></p>
+<ol class="ab-ol">
+<li>FCC proposes service rules through Notice of Proposed Rulemaking (NPRM)</li>
+<li>Industry stakeholders submit comments on technical standards, licensing structure, and deployment timelines</li>
+<li>FCC establishes technical parameters: maximum EIRP levels (typically 68-75 dBm/MHz), out-of-band emission limits, antenna height restrictions</li>
+<li>Licensing framework decided: geographic area licenses (PAL), shared spectrum approaches, or hybrid models</li>
+<li>Coordination procedures defined for areas near government installations requiring protection</li>
+</ol>
+
+<p class="ab-p"><strong>Phase 4: Auction and Allocation (Months 42-54)</strong></p>
+<ol class="ab-ol">
+<li>FCC designs auction mechanism (simultaneous multiple round, incentive auction, or innovative formats)</li>
+<li>Qualified bidders (mobile operators, satellite providers, neutral host networks) deposit participation funds</li>
+<li>Spectrum blocks defined: potentially 50 MHz channels for nationwide flexibility</li>
+<li>Auction proceeds according to designed rules with price discovery across multiple rounds</li>
+<li>Winning bidders receive licenses with buildout requirements and performance milestones</li>
+</ol>
+
+<p class="ab-p"><strong>Phase 5: 6G Technology Deployment (Months 54+)</strong></p>
+
+<p class="ab-p"><strong>Network Planning:</strong></p>
+<ol class="ab-ol">
+<li>Operators perform RF propagation modeling using 2.7 GHz characteristics (free space path loss: FSPL(dB) = 32.45 + 20log₁₀(f_MHz) + 20log₁₀(d_km))</li>
+<li>Site acquisition identifying optimal base station locations balancing coverage and capacity</li>
+<li>Backhaul/fronthaul planning for high-capacity transport (100+ Gbps per site)</li>
+<li>Massive MIMO antenna system engineering with 3D beamforming</li>
+</ol>
+
+<p class="ab-p"><strong>Radio Implementation:</strong></p>
+<ol class="ab-ol">
+<li>Base stations transmit reference signals allowing user devices to measure channel quality</li>
+<li>Advanced MIMO techniques apply: multi-user MIMO (MU-MIMO) serving 16-32 simultaneous users per cell, beamforming with 128-256 elements creating narrow beams (5-10 degrees)</li>
+<li>AI-driven resource allocation algorithms predict traffic patterns and pre-allocate resources</li>
+<li>Dynamic spectrum sharing if coexisting with 5G: resource blocks assigned based on demand per technology</li>
+</ol>
+
+<p class="ab-p"><strong>Advanced 6G Features:</strong></p>
+<ol class="ab-ol">
+<li>Integrated sensing uses communication waveforms for radar functionality—base station transmits known signal pattern, analyzes reflections for object detection</li>
+<li>Terahertz aggregation: 2.7 GHz provides control plane and coverage while mmWave/THz bands deliver ultra-high capacity when available</li>
+<li>Predictive QoS: AI predicts application needs milliseconds ahead, pre-allocates resources before requested</li>
+<li>Digital twin networks: virtual network replica enables testing configuration changes before deployment</li>
+</ol>
+
+<p class="ab-p"><strong>Interference Management:</strong></p>
+<ol class="ab-ol">
+<li>Exclusion zones around protected government facilities maintained through geolocation enforcement in network equipment</li>
+<li>Dynamic power control reduces transmission power when devices approach restricted areas</li>
+<li>Coordinated scheduling prevents simultaneous transmission that would aggregate interference</li>
+<li>Advanced filters in government receivers improve rejection of adjacent-band commercial signals</li>
+</ol>
+
+<h2 class="ab-h2">Interview Questions — Beginner Level</h2>
+
+<p class="ab-p"><strong>Q1: What is the 2.7 GHz spectrum band and why is it considered important for 6G?</strong></p>
+
+<p class="ab-p"><strong>A:</strong> The 2.7 GHz spectrum band (2690-2900 MHz) is a range of radio frequencies that was previously used primarily by government agencies but is now being made available for commercial wireless services to support 6G development. It's considered important for several reasons:</p>
+
+<p class="ab-p">First, it's "mid-band" spectrum, which means it offers a balanced combination of coverage and capacity. Low-band spectrum (like 600 MHz) travels far and penetrates buildings well but can't carry as much data. High-band spectrum (like 28 GHz mmWave) carries enormous amounts of data but doesn't travel far or penetrate obstacles. The 2.7 GHz band sits in the middle—it can cover reasonable distances (cell radii of 500 meters to 2 kilometers in urban areas) while still supporting multi-gigabit speeds.</p>
+
+<p class="ab-p">Second, with approximately 210 MHz of contiguous bandwidth available, this allocation provides sufficient spectrum for deploying advanced technologies like massive MIMO with hundreds of simultaneous data streams and ultra-low latency services that 6G promises.</p>
+
+<p class="ab-p">Third, the timing is strategic. As the telecommunications industry begins researching and standardizing 6G technologies (expected to launch commercially around 2030), having this spectrum available now allows American companies to test equipment, optimize networks, and establish leadership in 6G before widespread global deployment. This puts the US in a competitive position against other nations, particularly China, which has already allocated substantial mid-band spectrum for next-generation wireless.</p>
+
+<p class="ab-p"><strong>Q2: How does spectrum repurposing work when government agencies are currently using it?</strong></p>
+
+<p class="ab-p"><strong>A:</strong> Spectrum repurposing is a complex process that carefully transitions radio frequencies from one use (typically government operations) to another use (commercial wireless services). Here's how it works:</p>
+
+<p class="ab-p"><strong>Step 1 - Analysis:</strong> The NTIA first studies exactly how government agencies are using the 2.7 GHz band. They identify which agencies operate in this spectrum, what equipment they use, where it's located, and how critical those operations are to national security or government functions.</p>
+
+<p class="ab-p"><strong>Step 2 - Finding Alternatives:</strong> The government then identifies alternative solutions. This might mean moving government users to different spectrum bands that are less valuable for commercial use, upgrading their technology to work in different frequencies, or implementing sharing arrangements where commercial and government users can coexist in the same band using coordination mechanisms.</p>
+
+<p class="ab-p"><strong>Step 3 - Funding Relocation:</strong> Congress typically appropriates funding to pay for relocating government users. This covers costs of new equipment, system redesign, testing, and deployment. For example, if military radars currently use 2.7 GHz, the government might purchase new radar systems operating at different frequencies with equivalent or better performance.</p>
+
+<p class="ab-p"><strong>Step 4 - Transition Period:</strong> The repurposing doesn't happen overnight. There's usually a phased transition period of several years where government users gradually move to new spectrum or new systems while commercial users begin limited operations. Critical government functions are maintained throughout this process.</p>
+
+<p class="ab-p"><strong>Step 5 - Commercial Licensing:</strong> Once the spectrum is cleared (or sharing mechanisms are established), the FCC designs licensing rules and typically conducts an auction where wireless carriers bid for rights to use the spectrum. Winners pay substantial sums (often billions of dollars) for these licenses, and that revenue goes to the US Treasury.</p>
+
+<p class="ab-p"><strong>Q3: What are the key differences between 5G and 6G that make new spectrum allocation necessary?</strong></p>
+
+<p class="ab-p"><strong>A:</strong> While 6G standards are still being developed, several key differences from 5G are emerging that require additional spectrum like the 2.7 GHz band:</p>
+
+<p class="ab-p"><strong>Performance Requirements:</strong> 6G targets peak data rates of 1 Tbps (terabit per second), which is 100 times faster than 5G's 10 Gbps target. It aims for latency below 1 millisecond (5G targets 1-4 ms) and connection density of 10 million devices per square kilometer (10x more than 5G's 1 million). These dramatic improvements require more spectrum bandwidth to carry the additional data.</p>
+
+<p class="ab-p"><strong>New Use Cases:</strong> 6G is being designed for applications that don't exist yet or aren't feasible with 5G: holographic communications requiring 1+ Tbps, true digital twins with real-time synchronization, pervasive AI integration throughout the network, and multi-sensory extended reality (XR) experiences. These applications consume vastly more spectrum resources than today's video streaming and web browsing.</p>
+
+<p class="ab-p"><strong>Integrated Sensing:</strong> Unlike 5G which focuses purely on communication, 6G incorporates sensing capabilities—essentially using the same radio signals for both data transmission and environmental sensing (like radar). This "Integrated Sensing and Communication" (ISAC) requires additional spectrum resources to simultaneously support both functions.</p>
+
+<p class="ab-p"><strong>AI-Native Architecture:</strong> 6G networks will have artificial intelligence integrated at every layer—from radio resource management to traffic prediction to self-optimization. These AI functions generate additional signaling overhead and require spectrum for control channels and coordination.</p>
+
+<p class="ab-p"><strong>Spectrum Efficiency Limits:</strong> While each generation improves spectral efficiency (bits per second per hertz), physics imposes limits. 5G approaches theoretical Shannon limits in many scenarios. To achieve 100x performance improvement, 6G needs substantially more spectrum since efficiency gains alone can't bridge the gap.</p>
+
+<p class="ab-p">Allocating the 2.7 GHz band provides the mid-band capacity necessary to support these advanced capabilities, complementing low-band coverage spectrum and high-band capacity spectrum in a multi-layered 6G network architecture.</p>
+
+<p class="ab-p"><strong>Q4: Why is this spectrum allocation considered important for US technological leadership?</strong></p>
+
+<p class="ab-p"><strong>A:</strong> The 2.7 GHz spectrum allocation is strategically important for US technological leadership for several interconnected reasons:</p>
+
+<p class="ab-p"><strong>First-Mover Advantage:</strong> Telecommunications standards are largely set by companies and countries that lead in early development and deployment. By making 2.7 GHz spectrum available now—several years before 6G commercial launch—the US enables American companies (equipment manufacturers, chipset makers, network operators) to begin testing and developing 6G technologies earlier. This early experimentation influences international standards at the 3GPP (which develops global mobile standards), giving US technology approaches greater representation in final specifications.</p>
+
+<p class="ab-p"><strong>Industry Ecosystem Development:</strong> Spectrum availability attracts investment and talent. When the US signals commitment to 6G through spectrum allocation, it encourages venture capital investment in 6G startups, incentivizes R&D spending by established companies, and attracts top engineering talent. This builds a robust ecosystem of innovation that compounds over time.</p>
+
+<p class="ab-p"><strong>Competitive Positioning:</strong> China has made 6G development a national strategic priority, allocating significant government funding and spectrum resources. They aim to lead 6G standards as they were followers in 4G and co-leaders in 5G. By allocating the 2.7 GHz band, the US demonstrates comparable commitment and ensures American companies can compete on equal footing rather than playing catch-up.</p>
+
+<p class="ab-p"><strong>Economic Implications:</strong> Leadership in wireless technology translates to economic advantages. The country whose companies dominate equipment sales (like Ericsson, Nokia, Huawei, Samsung) captures substantial export revenue. Standards leadership also means domestic companies own key intellectual property and collect patent licensing fees globally. Estimates suggest 6G could enable $7-10 trillion in economic value by 2040.</p>
+
+<p class="ab-p"><strong>National Security:</strong> Telecommunications infrastructure is critical infrastructure. Depending on foreign equipment suppliers (particularly from geopolitical competitors) creates security vulnerabilities. By fostering domestic 6G leadership, the US ensures its networks can be built with trusted equipment and that sensitive communications remain secure.</p>
+
+<p class="ab-p">The 2.7 GHz allocation is thus more than a technical decision—it's strategic industrial policy designed to position the US advantageously in what many consider the most important technology race of the 2030s.</p>
+
+<h2 class="ab-h2">Interview Questions — Intermediate Level</h2>
+
+<p class="ab-p"><strong>Q3: Explain the technical advantages and challenges of using 2.7 GHz spectrum specifically for 6G deployment compared to other frequency bands.</strong></p>
+
+<p class="ab-p"><strong>A:</strong> The 2.7 GHz band offers specific technical characteristics that make it valuable for 6G, though it also presents unique challenges:</p>
+
+<p class="ab-p"><strong>Technical Advantages:</strong></p>
+
+<p class="ab-p"><strong>Propagation Balance:</strong> At 2.7 GHz, the free-space path loss follows FSPL = 32.45 + 20log₁₀(2700) + 20log₁₀(d_km) = 101.1 + 20log₁₀(d_km) dB. This is significantly better than mmWave bands (28 GHz experiences ~20 dB more path loss at the same distance) while offering more capacity than low-band spectrum. For urban deployments, this translates to cell radii of 500-800 meters with modern massive MIMO, compared to 200-300 meters for mmWave and 2-5 kilometers for low-band. This "sweet spot" reduces the number of cell sites needed while maintaining high capacity.</p>
+
+<p class="ab-p"><strong>MIMO Scalability:</strong> The wavelength at 2.7 GHz is approximately 11.1 cm (λ = c/f = 3×10⁸/2.7×10⁹). For massive MIMO antenna arrays with half-wavelength element spacing (λ/2 ≈ 5.5 cm), a 64-element array fits within approximately 35×35 cm, and a 256-element array within 70×70 cm—practical form factors for rooftop or tower mounting. This allows realistic deployment of massive MIMO systems with 64-256 antenna elements, enabling spatial multiplexing of 32-64 simultaneous users per cell sector.</p>
+
+<p class="ab-p"><strong>Penetration vs. Capacity Trade-off:</strong> Building penetration loss at 2.7 GHz averages 15-20 dB for typical commercial construction, compared to 5-8 dB at 700 MHz and 25-35 dB at 28 GHz. This means 2.7 GHz can provide meaningful indoor coverage from outdoor macro cells (though not as robustly as low-band), reducing the need for extensive indoor small cell deployments while still supporting gigabit-class services.</p>
+
+<p class="ab-p"><strong>Bandwidth Availability:</strong> The full 2690-2900 MHz allocation provides 210 MHz of contiguous spectrum. With advanced modulation (potentially 1024-QAM or higher in 6G) and massive MIMO (spectral efficiency approaching 10-15 bps/Hz in favorable conditions), theoretical capacity approaches 2-3 Gbps per carrier. With carrier aggregation across the full 210 MHz, peak rates could exceed 20-30 Gbps per cell sector—sufficient for demanding 6G use cases.</p>
+
+<p class="ab-p"><strong>Technical Challenges:</strong></p>
+
+<p class="ab-p"><strong>Incumbent Coordination:</strong> The band currently hosts government satellite downlinks and aeronautical telemetry. Geographic exclusion zones around military bases, airports, and satellite earth stations will likely restrict full-power operations in some areas. Dynamic spectrum sharing systems (evolved from CBRS SAS concepts) will add complexity to network planning and may require real-time power adjustments or frequency avoidance, reducing available capacity by 10-30% in affected areas.</p>
+
+<p class="ab-p"><strong>Antenna Design Complexity:</strong> Operating at 2.7 GHz requires multiband antennas if operators want to support legacy 4G/5G bands simultaneously (common equipment sharing strategy). Designing antenna systems covering, for example, 1.7-2.7 GHz with acceptable performance across that range involves engineering trade-offs in gain, beamwidth, and cross-polarization discrimination. Active antenna systems (AAS) with integrated transceivers help but add cost.</p>
+
+<p class="ab-p"><em></em>Interference Management</p>
+</div><!-- /article-body -->
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="article-sidebar">
+      <!-- TOC -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">In this article</div>
+        <ul class="toc-list" id="tocList">
+          <li class="toc-item active"><a href="#article-content">Introduction</a></li>
+        </ul>
+      </div>
+
+      <!-- Stats -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">Article details</div>
+        <div class="stat-row"><span class="stat-key">Category</span><span class="stat-val blue" id="statCat">Interview Prep</span></div>
+        <div class="stat-row"><span class="stat-key">Published</span><span class="stat-val" id="statDate">Apr 25, 2026</span></div>
+        <div class="stat-row"><span class="stat-key">Read time</span><span class="stat-val" id="statRead">15 min</span></div>
+        <div class="stat-row"><span class="stat-key">Source</span><span class="stat-val">3GPP / ITU</span></div>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="sidebar-newsletter">
+        <h4>Daily <span>Signal</span></h4>
+        <p>One telecom insight every morning. Free forever.</p>
+        <input class="sidebar-input" type="email" id="sidebarEmail" placeholder="your@email.com">
+        <button class="sidebar-sub-btn" onclick="subscribe()">Subscribe Free</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Articles -->
+  <div class="related">
+    <div class="related-title">Related Articles</div>
+    <div class="related-grid" id="relatedGrid"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo" onclick="location.href='/'">NextG<span>Now</span></div>
+        <div style="font-size:12px;color:var(--txt4);margin-top:4px">Tomorrow's Telecom, Explained Today</div>
+      </div>
+      <div class="footer-copy">© 2025 NextGNow · NextGNow.in</div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ── Reading progress ──────────────────────────────────────
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = Math.min(pct,100) + '%';
+  document.getElementById('back-top').classList.toggle('visible', doc.scrollTop > 400);
+  updateTOC();
+});
+
+// ── Auto-build TOC from h2 headings ──────────────────────
+function buildTOC() {
+  const headings = document.querySelectorAll('.article-body h2');
+  if (!headings.length) return;
+  const toc = document.getElementById('tocList');
+  toc.innerHTML = '<li class="toc-item active"><a href="#article-content">Introduction</a></li>';
+  headings.forEach((h, i) => {
+    const id = 'section-' + i;
+    h.id = id;
+    const li = document.createElement('li');
+    li.className = 'toc-item';
+    li.innerHTML = `<a href="#${id}">${h.textContent.replace(/^▌/,'').trim()}</a>`;
+    toc.appendChild(li);
+  });
+}
+
+function updateTOC() {
+  const items = document.querySelectorAll('.toc-item');
+  const headings = document.querySelectorAll('.article-body h2');
+  let current = 0;
+  headings.forEach((h, i) => {
+    if (h.getBoundingClientRect().top < 160) current = i + 1;
+  });
+  items.forEach((item, i) => item.classList.toggle('active', i === current));
+}
+
+// ── Load nav dropdowns from articles.json ─────────────────
+async function loadNavDropdowns() {
+  try {
+    const r = await fetch('/articles.json?v=' + Date.now());
+    const d = await r.json();
+    const articles = d.articles || [];
+    buildDropdown('dd5g',  articles, '5G',       '#60a5fa', '/?cat=5G');
+    buildDropdown('dd6g',  articles, '6G',        '#c084fc', '/?cat=6G');
+    buildDropdown('ddcf',  articles, 'Call Flow', '#22d3ee', '/?cat=Call Flow');
+    buildDropdown('ddoran',articles, 'Open RAN',  '#fbbf24', '/?cat=Open RAN');
+    loadRelated(articles);
+  } catch(e) {}
+}
+
+function buildDropdown(id, articles, cat, color, allUrl) {
+  const dd = document.getElementById(id);
+  if (!dd) return;
+  const items = articles.filter(a => a.category === cat).slice(0, 6);
+  const label = cat === 'Call Flow' ? 'All Call Flows' : `All ${cat} Articles`;
+  dd.innerHTML = `<div class="dropdown-item" onclick="location.href='${allUrl}'"><span class="dd-dot" style="background:${color}"></span>${label}</div>`;
+  items.forEach(a => {
+    const div = document.createElement('div');
+    div.className = 'dropdown-item';
+    div.innerHTML = `<span class="dd-dot" style="background:${color}"></span>${a.title.substring(0,40)}${a.title.length>40?'...':''}`;
+    div.onclick = () => location.href = a.url;
+    dd.appendChild(div);
+  });
+}
+
+function loadRelated(articles) {
+  const grid = document.getElementById('relatedGrid');
+  if (!grid || !articles.length) return;
+  const related = articles.slice(0, 3);
+  const catCls = c => ({'5G':'badge-5g','6G':'badge-6g','3GPP':'badge-3gpp','Open RAN':'badge-oran','Policy':'badge-policy','Call Flow':'badge-callflow'}[c]||'badge-default');
+  grid.innerHTML = related.map(a => `
+    <a class="rcard" href="${a.url}">
+      <span class="rcard-cat ${catCls(a.category)}">${a.category}</span>
+      <div class="rcard-title">${a.title}</div>
+      <div class="rcard-date">${a.date} · 5 min</div>
+    </a>`).join('');
+}
+
+// ── Set badge class from category ────────────────────────
+function setBadge() {
+  const badge = document.getElementById('articleBadge');
+  if (!badge) return;
+  const cat = badge.textContent.trim();
+  const clsMap = {
+    // Tech categories (manual posts)
+    '5G':'badge-5g','6G':'badge-6g','3GPP':'badge-3gpp',
+    'Open RAN':'badge-oran','Policy':'badge-policy','Call Flow':'badge-callflow',
+    // Blog-type categories (daily auto-posts)
+    'Latest News':'badge-news','Concept Guide':'badge-concept',
+    'Protocol Deep Dive':'badge-proto','Industry Trends':'badge-trends',
+    'Interview Prep':'badge-interview','Future Tech':'badge-future',
+  };
+  badge.className = 'badge ' + (clsMap[cat] || 'badge-default');
+  document.getElementById('statCat').textContent = cat;
+  // Breadcrumb: show correct category, not always "5G"
+  const breadcrumb = document.getElementById('breadcrumbCat');
+  if (breadcrumb) breadcrumb.textContent = cat;
+  // Also fix the breadcrumb link
+  const breadcrumbLink = document.getElementById('breadcrumbLink');
+  if (breadcrumbLink) breadcrumbLink.href = '/?cat=' + encodeURIComponent(cat);
+}
+
+// ── Share buttons ─────────────────────────────────────────
+function shareLinkedIn() { window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(location.href),'_blank'); }
+function shareX() { window.open('https://x.com/intent/tweet?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent(document.title),'_blank'); }
+function copyLink() { navigator.clipboard.writeText(location.href).then(()=>alert('Link copied!')); }
+
+// ── Subscribe ─────────────────────────────────────────────
+function subscribe() {
+  const e = document.getElementById('sidebarEmail').value;
+  if (!e || !e.includes('@')) { alert('Please enter a valid email'); return; }
+  alert('Thanks! Daily telecom insights coming to ' + e);
+  document.getElementById('sidebarEmail').value = '';
+}
+
+// ── Mobile menu ───────────────────────────────────────────
+function toggleMenu() {
+  document.getElementById('mobileNav').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+
+// ── Boot ──────────────────────────────────────────────────
+setBadge();
+buildTOC();
+loadNavDropdowns();
+
+// Sync stat date with eyebrow date
+const dateEl = document.getElementById('articleDate');
+if (dateEl) {
+  const d = dateEl.textContent.replace('Published · ','');
+  document.getElementById('statDate').textContent = d;
+  document.getElementById('bylineDate').textContent = d;
+}
+</script>
+</body>
+</html>
