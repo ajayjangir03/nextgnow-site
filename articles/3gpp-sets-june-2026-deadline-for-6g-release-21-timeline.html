@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3GPP Sets June 2026 Deadline for 6G Release 21 Timeline — NextGNow</title>
+<meta name="description" content="NextGNow telecom article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#030712;color:#e2e8f0;font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden}
+:root{
+  --bg0:#030712;--bg1:#0a0f1e;--bg2:#0f172a;--bg3:#1e293b;
+  --border:#1e293b;--border2:#334155;
+  --blue:#3b82f6;--blue-dim:rgba(59,130,246,.12);
+  --cyan:#06b6d4;--cyan-dim:rgba(6,182,212,.1);
+  --purple:#8b5cf6;--purple-dim:rgba(139,92,246,.1);
+  --green:#10b981;--green-dim:rgba(16,185,129,.1);
+  --orange:#f59e0b;--orange-dim:rgba(245,158,11,.1);
+  --red:#ef4444;--red-dim:rgba(239,68,68,.1);
+  --txt0:#f1f5f9;--txt1:#cbd5e1;--txt2:#94a3b8;--txt3:#64748b;--txt4:#475569;
+}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(59,130,246,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.03) 1px,transparent 1px);
+  background-size:48px 48px;}
+
+/* ── PROGRESS BAR ── */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#3b82f6,#8b5cf6);z-index:999;transition:width .1s linear}
+
+/* ── HEADER ── */
+header{position:sticky;top:0;z-index:150;background:rgba(3,7,18,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.logo-svg{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
+.logo-text{font-size:20px;font-weight:800;color:var(--txt0);letter-spacing:-.5px;line-height:1}
+.logo-text span{color:var(--blue)}
+.header-right{display:flex;align-items:center;gap:10px}
+.social-icons{display:flex;gap:6px}
+.social-icon{width:32px;height:32px;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--txt3);text-decoration:none}
+.social-icon:hover{border-color:var(--blue);background:var(--blue-dim);color:var(--blue)}
+.social-icon svg{width:14px;height:14px}
+.back-btn{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border2);color:var(--txt2);padding:7px 14px;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none}
+.back-btn:hover{border-color:var(--blue);color:var(--txt0)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:var(--bg2);border:1px solid var(--border2);border-radius:8px}
+.hamburger span{width:20px;height:2px;background:var(--txt2);border-radius:2px;transition:all .3s;display:block}
+nav{display:flex;gap:2px;padding:8px 0;flex-wrap:wrap}
+.nav-item{position:relative}
+.nav-link{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:500;color:var(--txt2);cursor:pointer;padding:6px 12px;border-radius:8px;background:none;border:none;font-family:'Inter',sans-serif;transition:all .15s;white-space:nowrap}
+.nav-link:hover{color:var(--txt0);background:var(--bg3)}
+.nav-link .chevron{width:10px;height:10px;opacity:.5;transition:transform .2s}
+.nav-item:hover .nav-link .chevron{transform:rotate(180deg)}
+.dropdown{position:absolute;top:calc(100% + 6px);left:0;background:var(--bg1);border:1px solid var(--border2);border-radius:12px;padding:8px;min-width:210px;display:none;z-index:300;box-shadow:0 16px 48px rgba(0,0,0,.6)}
+.nav-item:hover .dropdown{display:block}
+.dropdown-item{display:flex;align-items:center;gap:10px;padding:9px 12px;font-size:13px;color:var(--txt2);text-decoration:none;border-radius:8px;transition:all .15s;cursor:pointer;white-space:nowrap}
+.dropdown-item:hover{color:var(--txt0);background:var(--bg3)}
+.dd-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);flex-shrink:0}
+.mobile-nav{display:none;flex-direction:column;background:var(--bg1);border-bottom:1px solid var(--border);padding:12px 24px 16px;gap:4px}
+.mobile-nav.open{display:flex}
+.mobile-nav-item{padding:10px 12px;font-size:14px;color:var(--txt2);cursor:pointer;border-radius:8px;transition:all .15s;font-weight:500}
+.mobile-nav-item:hover{color:var(--txt0);background:var(--bg3)}
+.mobile-section{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt4);padding:10px 12px 4px;margin-top:6px}
+
+/* ── LAYOUT ── */
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.article-layout{display:grid;grid-template-columns:1fr 280px;gap:48px;padding:40px 0 80px;align-items:start}
+
+/* ── ARTICLE MAIN ── */
+.article-main{}
+
+/* Breadcrumb */
+.breadcrumb{display:flex;align-items:center;gap:8px;padding:24px 0 0;font-size:12px;color:var(--txt3);font-family:'JetBrains Mono',monospace;flex-wrap:wrap}
+.breadcrumb a{color:var(--txt3);text-decoration:none;transition:color .15s;cursor:pointer}
+.breadcrumb a:hover{color:var(--blue)}
+.breadcrumb span{color:var(--txt4)}
+
+/* Article header */
+.article-header{margin-bottom:36px;padding-top:24px}
+.article-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.badge{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:6px}
+.badge-5g{background:var(--blue-dim);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.badge-6g{background:var(--purple-dim);color:#c084fc;border:1px solid rgba(139,92,246,.2)}
+.badge-3gpp{background:var(--green-dim);color:#34d399;border:1px solid rgba(16,185,129,.2)}
+.badge-oran{background:var(--orange-dim);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.badge-policy{background:var(--red-dim);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.badge-callflow{background:var(--cyan-dim);color:#22d3ee;border:1px solid rgba(6,182,212,.2)}
+.badge-default{background:var(--blue-dim);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.badge-news{background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.badge-concept{background:rgba(168,85,247,.1);color:#c084fc;border:1px solid rgba(168,85,247,.2)}
+.badge-proto{background:rgba(59,130,246,.1);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.badge-trends{background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.badge-interview{background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.badge-future{background:rgba(6,182,212,.1);color:#22d3ee;border:1px solid rgba(6,182,212,.2)}
+.live-dot{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#22c55e;font-family:'JetBrains Mono',monospace}
+.live-dot::before{content:'';width:6px;height:6px;background:#22c55e;border-radius:50%;animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.article-title{font-size:40px;font-weight:800;line-height:1.15;letter-spacing:-.6px;color:var(--txt0);margin-bottom:18px}
+.article-subtitle{font-size:17px;color:var(--txt2);line-height:1.7;max-width:680px;margin-bottom:28px;font-weight:300}
+
+/* Byline */
+.article-byline{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;gap:12px}
+.author-info{display:flex;align-items:center;gap:12px}
+.author-avatar{width:36px;height:36px;border-radius:50%;background:var(--blue-dim);border:1px solid rgba(59,130,246,.3);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--blue);flex-shrink:0}
+.author-name{font-size:13px;font-weight:600;color:var(--txt0)}
+.author-role{font-size:11px;color:var(--txt3);margin-top:2px}
+.share-row{display:flex;align-items:center;gap:8px}
+.share-label{font-size:11px;color:var(--txt3);font-family:'JetBrains Mono',monospace}
+.share-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);color:var(--txt2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s}
+.share-btn:hover{background:var(--blue-dim);border-color:rgba(59,130,246,.3);color:var(--blue)}
+.share-btn svg{width:14px;height:14px}
+
+/* Hero visual */
+
+
+/* Article body */
+.article-body{font-family:'Lora',serif;font-size:17px;line-height:1.85;color:#c8d4e8;max-width:720px}
+.article-body p{margin-bottom:22px}
+.article-body h2{font-family:'Inter',sans-serif;font-size:24px;font-weight:700;color:var(--txt0);margin:44px 0 14px;letter-spacing:-.3px;display:flex;align-items:center;gap:10px}
+.article-body h2::before{content:'';display:inline-block;width:4px;height:20px;background:var(--blue);border-radius:2px;flex-shrink:0}
+.article-body h3{font-family:'Inter',sans-serif;font-size:18px;font-weight:600;color:var(--txt0);margin:32px 0 12px}
+.article-body ul{margin:0 0 22px 20px;display:flex;flex-direction:column;gap:8px}
+.article-body ol{margin:0 0 22px 20px;display:flex;flex-direction:column;gap:8px}
+.article-body li{color:#b0bec5;line-height:1.7;font-size:16px}
+.article-body strong{color:var(--txt0);font-weight:600}
+.article-body em{color:var(--txt1)}
+.article-body code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--bg3);color:#60a5fa;padding:2px 8px;border-radius:4px}
+.article-body table{width:100%;border-collapse:collapse;margin:28px 0;font-family:'Inter',sans-serif;font-size:14px}
+.article-body th{background:var(--bg3);padding:10px 14px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);border-bottom:1px solid var(--border2)}
+.article-body td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--txt2);vertical-align:top}
+.article-body tr:hover td{background:rgba(255,255,255,.02)}
+.article-body td:first-child{color:var(--txt0);font-weight:500}
+
+/* Callout boxes */
+.callout{border-radius:10px;padding:18px 22px;margin:28px 0}
+.callout-info{background:var(--blue-dim);border-left:3px solid var(--blue)}
+.callout-tip{background:var(--green-dim);border-left:3px solid var(--green)}
+.callout-warn{background:var(--orange-dim);border-left:3px solid var(--orange)}
+.callout p{font-family:'Inter',sans-serif;font-size:14px;color:var(--txt2);margin:0;line-height:1.6}
+.callout strong{color:var(--txt0)}
+
+/* Key takeaways */
+.takeaways{background:var(--bg2);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:22px 26px;margin:44px 0 0}
+.takeaways-label{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.takeaways ul{margin:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.takeaways li{font-family:'Inter',sans-serif;font-size:14px;color:var(--txt2);display:flex;align-items:flex-start;gap:10px;line-height:1.6}
+.takeaways li::before{content:'→';color:var(--green);flex-shrink:0}
+
+/* ── SIDEBAR ── */
+.article-sidebar{position:sticky;top:80px;display:flex;flex-direction:column;gap:20px}
+.sidebar-card{background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:18px}
+.sidebar-title{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+
+/* TOC */
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+.toc-item a{display:block;font-size:13px;color:var(--txt2);text-decoration:none;padding:6px 10px;border-radius:6px;line-height:1.4;transition:all .15s;border-left:2px solid transparent}
+.toc-item a:hover,.toc-item.active a{color:var(--blue);background:var(--blue-dim);border-left-color:var(--blue)}
+
+/* Stat card */
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}
+.stat-row:last-child{border-bottom:none}
+.stat-key{color:var(--txt3)}
+.stat-val{color:var(--txt0);font-family:'JetBrains Mono',monospace;font-size:11px}
+.stat-val.blue{color:var(--blue)}
+
+/* Newsletter */
+.sidebar-newsletter{background:var(--bg1);border:1px solid var(--border);border-top:2px solid var(--blue);border-radius:0 0 12px 12px;padding:18px;text-align:center}
+.sidebar-newsletter h4{font-size:16px;font-weight:700;color:var(--txt0);margin-bottom:6px}
+.sidebar-newsletter h4 span{color:var(--blue)}
+.sidebar-newsletter p{font-size:12px;color:var(--txt3);margin-bottom:12px;line-height:1.5}
+.sidebar-input{width:100%;background:var(--bg2);border:1px solid var(--border2);color:var(--txt0);font-family:'Inter',sans-serif;font-size:13px;padding:9px 12px;border-radius:8px;outline:none;margin-bottom:8px;transition:border-color .2s}
+.sidebar-input:focus{border-color:var(--blue)}
+.sidebar-input::placeholder{color:var(--txt3)}
+.sidebar-sub-btn{width:100%;background:var(--blue);color:#fff;border:none;font-family:'Inter',sans-serif;font-weight:600;font-size:13px;padding:9px;border-radius:8px;cursor:pointer;transition:opacity .2s}
+.sidebar-sub-btn:hover{opacity:.85}
+
+/* Related */
+.related{padding:48px 0;border-top:1px solid var(--border)}
+.related-title{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.related-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rcard{background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:20px;cursor:pointer;transition:all .2s;text-decoration:none;display:block}
+.rcard:hover{border-color:var(--border2);transform:translateY(-2px)}
+.rcard-cat{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:5px;display:inline-block;margin-bottom:10px}
+.rcard-title{font-size:14px;font-weight:600;color:var(--txt0);line-height:1.4;margin-bottom:8px;transition:color .15s}
+.rcard:hover .rcard-title{color:#60a5fa}
+.rcard-date{font-size:11px;color:var(--txt4)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:28px 0}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-logo{font-size:16px;font-weight:800;color:var(--txt0);cursor:pointer;letter-spacing:-.3px}
+.footer-logo span{color:var(--blue)}
+.footer-copy{font-size:12px;color:var(--txt4)}
+
+/* ── ARTICLE BODY — Rich sections ── */
+.ab-h2{font-family:'Inter',sans-serif;font-size:21px;font-weight:700;color:var(--txt0);margin:44px 0 16px;letter-spacing:-.3px;display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.ab-h2::before{content:'';width:4px;height:20px;background:var(--blue);border-radius:2px;flex-shrink:0}
+.ab-h3{font-family:'Inter',sans-serif;font-size:16px;font-weight:600;color:#60a5fa;margin:28px 0 10px;display:flex;align-items:center;gap:8px}
+.ab-h3::before{content:'›';color:var(--blue);font-weight:700}
+.ab-p{font-size:15.5px;color:#b8c8e0;line-height:1.9;margin-bottom:18px;font-family:'Lora',serif;font-weight:400}
+.ab-ul{margin:0 0 20px 0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.ab-ul li{font-size:14.5px;color:var(--txt1);line-height:1.7;display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:var(--bg2);border-radius:8px;border-left:3px solid var(--blue)}
+.ab-ul li::before{content:'›';color:var(--blue);font-size:18px;font-weight:700;flex-shrink:0;line-height:1.3;margin-top:1px}
+.ab-ol{margin:0 0 20px 0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px;counter-reset:ol-step}
+.ab-ol li{font-size:14.5px;color:var(--txt1);line-height:1.7;display:flex;align-items:flex-start;gap:14px;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;counter-increment:ol-step}
+.ab-ol li::before{content:counter(ol-step);min-width:26px;height:26px;background:var(--blue-dim);border:1px solid rgba(59,130,246,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#60a5fa;flex-shrink:0;font-family:'JetBrains Mono',monospace;line-height:26px;text-align:center}
+.ab-table-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;overflow-x:auto;margin:24px 0;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.ab-table{width:100%;border-collapse:collapse;font-size:13px}
+.ab-table th{background:var(--bg3);padding:11px 16px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);border-bottom:1px solid var(--border2)}
+.ab-table td{padding:11px 16px;border-bottom:1px solid var(--border);color:var(--txt2);font-size:13px;vertical-align:top}
+.ab-table tr:last-child td{border-bottom:none}
+.ab-table tr:hover td{background:rgba(59,130,246,.04)}
+.ab-table td:first-child{color:var(--txt0);font-weight:600}
+.article-body strong{color:var(--txt0);font-weight:600}
+.article-body em{color:var(--txt1)}
+.article-body code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--bg3);color:#60a5fa;padding:2px 8px;border-radius:4px;border:1px solid var(--border)}
+/* Q&A interview format */
+.ab-p strong:first-child{display:block;color:#60a5fa;font-family:'Inter',sans-serif;font-size:14px;margin-bottom:4px}
+
+/* Back to top */
+#back-top{position:fixed;bottom:28px;right:28px;width:40px;height:40px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:all .25s;z-index:50;color:var(--txt2);font-size:16px}
+#back-top.visible{opacity:1;transform:translateY(0)}
+#back-top:hover{border-color:var(--blue);color:var(--blue)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .article-layout{grid-template-columns:1fr;gap:32px;padding:24px 0 60px}
+  .article-sidebar{position:static;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .sidebar-newsletter{grid-column:1/-1}
+  .related-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  nav{display:none}
+  .hamburger{display:flex}
+  .article-title{font-size:28px}
+  .article-subtitle{font-size:15px}
+  .container{padding:0 16px}
+  .social-icons{display:none}
+  .article-sidebar{grid-template-columns:1fr}
+  .share-row{display:none}
+  .related-grid{grid-template-columns:1fr}
+  #back-top{bottom:16px;right:16px}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.article-header{animation:fadeUp .5s ease both}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="logo-svg" onclick="location.href='/'">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#0f172a" stroke="#1e293b"/><circle cx="18" cy="18" r="3" fill="#3b82f6"/><circle cx="18" cy="18" r="7" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="2 2" opacity=".6"/><circle cx="18" cy="18" r="12" fill="none" stroke="#3b82f6" stroke-width="1" opacity=".3"/><path d="M10 18L26 18" stroke="#60a5fa" stroke-width="1" opacity=".4"/><path d="M18 10L18 26" stroke="#60a5fa" stroke-width="1" opacity=".4"/><circle cx="26" cy="10" r="2.5" fill="#60a5fa" opacity=".8"/><path d="M21 10L26 10L26 15" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".6" fill="none"/></svg>
+        <div><div class="logo-text">NextG<span>Now</span></div><div style="font-size:10px;color:var(--txt4);margin-top:1px;letter-spacing:.04em">TELECOM INTELLIGENCE</div></div>
+      </div>
+      <div class="header-right">
+        <div class="social-icons">
+          <a class="social-icon" href="https://linkedin.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a class="social-icon" href="https://x.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a class="social-icon" href="https://youtube.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+        <a class="back-btn" href="/">← Back to NextGNow</a>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <nav id="desktopNav">
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=6G'">6G <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="dd6g"><div class="dropdown-item" onclick="location.href='/?cat=6G'"><span class="dd-dot" style="background:#c084fc"></span>All 6G Articles</div></div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=5G'">5G <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="dd5g"><div class="dropdown-item" onclick="location.href='/?cat=5G'"><span class="dd-dot"></span>All 5G Articles</div></div>
+      </div>
+      <button class="nav-link" onclick="location.href='/?cat=3GPP'">3GPP Releases</button>
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=Call Flow'">Call Flows <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="ddcf"><div class="dropdown-item" onclick="location.href='/?cat=Call Flow'"><span class="dd-dot" style="background:#22d3ee"></span>All Call Flows</div></div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=Open RAN'">AI Telecom <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="ddoran"><div class="dropdown-item" onclick="location.href='/?cat=Open RAN'"><span class="dd-dot" style="background:#fbbf24"></span>All AI Telecom</div></div>
+      </div>
+      <button class="nav-link" onclick="location.href='/'">Latest Articles</button>
+      <button class="nav-link" onclick="location.href='/#about'">About</button>
+    </nav>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-section">Topics</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=5G'">📡 5G</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=6G'">🛰️ 6G</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=3GPP'">📋 3GPP</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=Call Flow'">🔄 Call Flows</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=Open RAN'">🔓 Open RAN</div>
+    <div class="mobile-nav-item" onclick="location.href='/'">📰 All Articles</div>
+  </div>
+</header>
+
+<div class="container">
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a onclick="location.href='/'">Home</a>
+    <span>›</span>
+    <a id="breadcrumbLink" onclick="location.href='/'">Articles</a>
+    <span>›</span>
+    <span id="breadcrumbCat" style="color:var(--txt2)">Latest News</span>
+  </div>
+
+  <div class="article-layout">
+    <!-- MAIN -->
+    <div class="article-main">
+      <div class="article-header">
+        <div class="article-eyebrow">
+          <span class="badge badge-news" id="articleBadge">Latest News</span>
+          <span class="live-dot" id="articleDate">Published · Apr 27, 2026</span>
+        </div>
+        <h1 class="article-title" id="articleH1">3GPP Sets June 2026 Deadline for 6G Release 21 Timeline</h1>
+        <p class="article-subtitle" id="articleSubtitle">3GPP Sets June 2026 Deadline for 6G Release 21 Timeline Decision as Standards Body Maps Path to 2030 Commercial Launch The 3rd Generation Partnership…</p>
+        <div class="article-byline">
+          <div class="author-info">
+            <div class="author-avatar">NG</div>
+            <div>
+              <div class="author-name">NextGNow Editorial</div>
+              <div class="author-role"><span id="authorRole">Latest News</span> · <span id="bylineDate">Apr 27, 2026</span> · <span id="bylineRead">8 min</span> read</div>
+            </div>
+          </div>
+          <div class="share-row">
+            <span class="share-label">Share</span>
+            <button class="share-btn" onclick="shareLinkedIn()" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></button>
+            <button class="share-btn" onclick="shareX()" title="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
+            <button class="share-btn" onclick="copyLink()" title="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Article body — pipeline injects here -->
+      <div class="article-body" id="article-content">
+<h2 class="ab-h2">Headline</h2>
+<p class="ab-p">3GPP Sets June 2026 Deadline for 6G Release 21 Timeline Decision as Standards Body Maps Path to 2030 Commercial Launch</p>
+
+<h2 class="ab-h2">Quick Summary</h2>
+<ul class="ab-ul">
+<li>3GPP establishes June 2026 as critical decision point for first 6G specification duration</li>
+<li>Release 21 marks beginning of 6G standardization targeting 2030 commercial deployment</li>
+<li>Standards body must balance thoroughness with industry timeline pressures</li>
+<li>Decision will determine pace of global 6G development and competitive positioning</li>
+</ul>
+
+<h2 class="ab-h2">Summary of the News</h2>
+<p class="ab-p">The 3rd Generation Partnership Project (3GPP) has announced a June 2026 deadline for finalizing the timeline and scope of Release 21, marking the official start of 6G standardization work. The decision, reached during recent technical specification group meetings, represents a critical milestone in the telecommunications industry's roadmap toward sixth-generation wireless networks expected to launch commercially by 2030.</p>
+
+<p class="ab-p">The standards organization will use the next two months to determine the duration and focus areas for Release 21, balancing the need for comprehensive technical development against aggressive commercial deployment timelines from global operators and equipment vendors. This decision will establish the foundation for subsequent 6G releases and determine how quickly new capabilities can be standardized and brought to market.</p>
+
+<p class="ab-p">Industry stakeholders from network operators, equipment manufacturers, chipset vendors, and research institutions are actively participating in the deliberations, recognizing that the Release 21 timeline will significantly impact their respective 6G investment strategies and competitive positioning in the emerging market.</p>
+
+<h2 class="ab-h2">Background Context</h2>
+<p class="ab-p">The 3GPP follows a structured release-based approach to developing mobile telecommunications standards, with each release typically spanning 15-18 months and introducing new features and capabilities. 5G development began with Release 15 in 2018, followed by progressive enhancements through Release 16, 17, and subsequent versions. Release 20, currently under development, represents the final 5G-Advanced specification before the transition to 6G architecture.</p>
+
+<p class="ab-p">The shift to 6G represents more than incremental improvement; it requires fundamental rethinking of radio access technologies, core network architecture, spectrum utilization, and use case requirements. Early research indicates 6G will target peak data rates exceeding 1 Tbps, sub-millisecond latency, and native support for AI/ML integration, holographic communications, and sensing capabilities. The complexity of these requirements necessitates careful timeline planning to ensure both technical rigor and market readiness.</p>
+
+<h2 class="ab-h2">Technical Insight</h2>
+<p class="ab-p">Release 21 is expected to establish the foundational 6G New Radio (NR) framework, defining new physical layer structures, waveforms, and multiple access schemes potentially including non-orthogonal multiple access (NOMA) and novel modulation techniques. The specification work will address operation in sub-THz frequency bands (7-24 GHz mid-band extensions and potentially 100-300 GHz ranges), requiring entirely new propagation models, beamforming architectures, and antenna designs.</p>
+
+<p class="ab-p">The core network evolution for 6G will likely introduce a new service-based architecture beyond 5G's existing framework, with native integration of artificial intelligence for autonomous network operations, zero-touch provisioning, and predictive resource management. Key technical areas include integrated terrestrial-non-terrestrial networks (ITNTN) with seamless satellite connectivity, joint communication and sensing (JCAS) capabilities, and extreme ultra-reliable low-latency communication (xURLLC) targeting 0.1ms latency.</p>
+
+<p class="ab-p">Interface specifications will need to address new functional splits between radio units and distributed/centralized processing, potentially introducing AI-native interfaces for machine learning model distribution and inference. The standards must also define new quality of service (QoS) frameworks supporting holographic telepresence, digital twin synchronization, and brain-computer interfaces—use cases that require orders of magnitude improvement beyond 5G capabilities.</p>
+
+<h2 class="ab-h2">Why This Matters</h2>
+<p class="ab-p"><strong>For Operators:</strong> The June decision directly impacts capital expenditure planning, spectrum acquisition strategies, and infrastructure investment timelines through 2030. Operators need sufficient lead time to prepare network architectures, train engineering teams, and develop business cases for 6G deployment while maximizing ROI from existing 5G infrastructure investments.</p>
+
+<p class="ab-p"><strong>For Engineers:</strong> Release 21's scope determines the technical skillsets, research focus areas, and development priorities for the next four years. Engineers working on PHY layer design, protocol stack development, and network optimization must align their expertise with the standardization timeline to remain competitive in the 6G job market and contribute meaningfully to implementations.</p>
+
+<p class="ab-p"><strong>For the Industry:</strong> The timeline decision affects the global competitive landscape, particularly between regions racing for 6G leadership. Countries and companies that align research funding, spectrum allocation, and product development with the 3GPP timeline gain significant first-mover advantages in defining technologies that become mandatory global standards, influencing patent portfolios worth billions in licensing revenue.</p>
+
+<h2 class="ab-h2">Market Impact</h2>
+<p class="ab-p">The 6G market is projected to reach $340 billion by 2035, with infrastructure investments beginning in earnest around 2028-2029. The June timeline decision will trigger accelerated R&D spending, with major equipment vendors like Ericsson, Nokia, Huawei, and Samsung expected to increase 6G development budgets by 40-60% in fiscal year 2027. Early standardization commitment provides these vendors clearer targets for prototype development and field trial planning.</p>
+
+<p class="ab-p">Chipset manufacturers face particularly acute timeline pressures, requiring 3-4 years to develop, test, and manufacture commercial silicon. A clearly defined Release 21 schedule allows companies like Qualcomm, MediaTek, and emerging players to finalize architectural decisions on processing nodes, modem designs, and RF front-end configurations. Delayed standardization decisions could push commercial chipset availability beyond 2030, jeopardizing entire device ecosystems.</p>
+
+<p class="ab-p">Regional competitive dynamics intensify around this decision, with China, South Korea, and the United States each positioning for 6G leadership. China's IMT-2030 Promotion Group and Korea's 6G R&D program have already committed over $2 billion combined to pre-standardization research. The 3GPP timeline will determine whether early research investments translate to standards influence or become stranded assets if specifications diverge from national research priorities.</p>
+
+<h2 class="ab-h2">Expert Commentary</h2>
+<p class="ab-p">The June 2026 deadline represents a delicate balancing act for 3GPP. Historical precedent from 5G development shows that compressed timelines can lead to specification fragmentation, with critical features pushed to later releases, undermining the "complete system" vision that operators need for business planning. Release 15 5G NR, for example, launched with limited coverage and capacity features, requiring Releases 16 and 17 to address industrial IoT and enhanced positioning—capabilities that should have been baseline.</p>
+
+<p class="ab-p">However, extended timeline durations risk market irrelevance. The technology landscape evolves rapidly, and 6G requirements documented in 2025-2026 may inadequately address AI capabilities, quantum computing integration, or edge intelligence architectures emerging by 2029. A pragmatic approach might establish an 18-month Release 21 focused on fundamental radio access and core architecture, with explicit hooks for AI/ML integration and sensing capabilities to be detailed in Release 22.</p>
+
+<p class="ab-p">The decision will likely reflect consensus building between aggressive timelines from Asian operators and equipment vendors seeking first-mover advantages, and more conservative approaches from European and North American stakeholders prioritizing backward compatibility and migration path clarity from 5G-Advanced. Expect compromise positioning Release 21 completion around Q4 2027, providing sufficient technical depth while maintaining pressure toward 2030 commercial launches.</p>
+
+<h2 class="ab-h2">Future Implications</h2>
+<p class="ab-p">Following the June decision, expect formal Release 21 work item proposals by September 2026, with technical specification groups initiating detailed protocol design work throughout late 2026 and 2027. The Radio Access Network (RAN) working groups will prioritize physical layer and MAC layer specifications, while Service and System Aspects (SA) groups focus on architecture, security, and service requirements.</p>
+
+<p class="ab-p">Pre-commercial field trials should commence in 2028, initially in controlled laboratory environments and expanding to outdoor deployments in 2029. South Korea, China, and Japan have already indicated intentions to conduct 6G demonstrations during major sporting and cultural events in 2029-2030, creating natural milestones for technology validation. These trials will validate Release 21 specifications and identify necessary corrections for Release 22.</p>
+
+<p class="ab-p">Spectrum allocation discussions will intensify at the World Radiocommunication Conference 2027 (WRC-27), where ITU member states will formally consider spectrum bands for IMT-2030 (6G) services. The 3GPP Release 21 timeline directly influences these negotiations, as delegates need clear technical requirements to justify spectrum allocations. Expect particular focus on upper mid-band (7-24 GHz) and initial discussions on sub-THz bands above 100 GHz.</p>
+
+<h2 class="ab-h2">Key Terms to Know</h2>
+<ul class="ab-ul">
+<li><strong>Release 21:</strong> The first 3GPP specification release dedicated to 6G technology, establishing foundational radio access and core network architecture for sixth-generation mobile networks targeted for 2030 commercial deployment.</li>
+</ul>
+
+<ul class="ab-ul">
+<li><strong>Sub-THz Spectrum:</strong> Frequency bands between 100-300 GHz being considered for 6G, offering massive bandwidth for extreme data rates but presenting significant propagation and device integration challenges.</li>
+</ul>
+
+<ul class="ab-ul">
+<li><strong>Joint Communication and Sensing (JCAS):</strong> 6G capability enabling simultaneous wireless communication and environmental sensing using the same radio infrastructure, supporting applications like autonomous vehicles and gesture recognition.</li>
+</ul>
+
+<ul class="ab-ul">
+<li><strong>IMT-2030:</strong> International Mobile Telecommunications-2030, the ITU's framework and requirements definition for 6G systems, establishing performance targets including 1 Tbps peak data rates and 0.1ms latency.</li>
+</ul>
+
+<ul class="ab-ul">
+<li><strong>AI-Native Network:</strong> Network architecture with artificial intelligence and machine learning integrated fundamentally into design, operations, and optimization rather than added as overlay functionality, enabling autonomous network management and predictive service delivery.</li>
+</ul>
+
+<h2 class="ab-h2">Conclusion</h2>
+<p class="ab-p">The 3GPP's June 2026 deadline for Release 21 timeline decisions represents a pivotal moment in telecommunications history, formally launching the 6G standardization era. This decision will cascade through the entire industry ecosystem, determining R&D investments, spectrum strategies, and competitive positioning for the next decade. With commercial 6G launches targeted for 2030, the standards body faces intense pressure to balance technical thoroughness against market urgency while accommodating diverse regional priorities. The outcome will fundamentally shape how the next generation of wireless technology emerges, influencing everything from infrastructure deployment strategies to the pace of revolutionary applications like holographic communications and AI-native services.</p>
+</div><!-- /article-body -->
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="article-sidebar">
+      <!-- TOC -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">In this article</div>
+        <ul class="toc-list" id="tocList">
+          <li class="toc-item active"><a href="#article-content">Introduction</a></li>
+        </ul>
+      </div>
+
+      <!-- Stats -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">Article details</div>
+        <div class="stat-row"><span class="stat-key">Category</span><span class="stat-val blue" id="statCat">Latest News</span></div>
+        <div class="stat-row"><span class="stat-key">Published</span><span class="stat-val" id="statDate">Apr 27, 2026</span></div>
+        <div class="stat-row"><span class="stat-key">Read time</span><span class="stat-val" id="statRead">8 min</span></div>
+        <div class="stat-row"><span class="stat-key">Source</span><span class="stat-val">3GPP / ITU</span></div>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="sidebar-newsletter">
+        <h4>Daily <span>Signal</span></h4>
+        <p>One telecom insight every morning. Free forever.</p>
+        <input class="sidebar-input" type="email" id="sidebarEmail" placeholder="your@email.com">
+        <button class="sidebar-sub-btn" onclick="subscribe()">Subscribe Free</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Articles -->
+  <div class="related">
+    <div class="related-title">Related Articles</div>
+    <div class="related-grid" id="relatedGrid"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo" onclick="location.href='/'">NextG<span>Now</span></div>
+        <div style="font-size:12px;color:var(--txt4);margin-top:4px">Tomorrow's Telecom, Explained Today</div>
+      </div>
+      <div class="footer-copy">© 2025 NextGNow · NextGNow.in</div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ── Reading progress ──────────────────────────────────────
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = Math.min(pct,100) + '%';
+  document.getElementById('back-top').classList.toggle('visible', doc.scrollTop > 400);
+  updateTOC();
+});
+
+// ── Auto-build TOC from h2 headings ──────────────────────
+function buildTOC() {
+  const headings = document.querySelectorAll('.article-body h2');
+  if (!headings.length) return;
+  const toc = document.getElementById('tocList');
+  toc.innerHTML = '<li class="toc-item active"><a href="#article-content">Introduction</a></li>';
+  headings.forEach((h, i) => {
+    const id = 'section-' + i;
+    h.id = id;
+    const li = document.createElement('li');
+    li.className = 'toc-item';
+    li.innerHTML = `<a href="#${id}">${h.textContent.replace(/^▌/,'').trim()}</a>`;
+    toc.appendChild(li);
+  });
+}
+
+function updateTOC() {
+  const items = document.querySelectorAll('.toc-item');
+  const headings = document.querySelectorAll('.article-body h2');
+  let current = 0;
+  headings.forEach((h, i) => {
+    if (h.getBoundingClientRect().top < 160) current = i + 1;
+  });
+  items.forEach((item, i) => item.classList.toggle('active', i === current));
+}
+
+// ── Load nav dropdowns from articles.json ─────────────────
+async function loadNavDropdowns() {
+  try {
+    const r = await fetch('/articles.json?v=' + Date.now());
+    const d = await r.json();
+    const articles = d.articles || [];
+    buildDropdown('dd5g',  articles, '5G',       '#60a5fa', '/?cat=5G');
+    buildDropdown('dd6g',  articles, '6G',        '#c084fc', '/?cat=6G');
+    buildDropdown('ddcf',  articles, 'Call Flow', '#22d3ee', '/?cat=Call Flow');
+    buildDropdown('ddoran',articles, 'Open RAN',  '#fbbf24', '/?cat=Open RAN');
+    loadRelated(articles);
+  } catch(e) {}
+}
+
+function buildDropdown(id, articles, cat, color, allUrl) {
+  const dd = document.getElementById(id);
+  if (!dd) return;
+  const items = articles.filter(a => a.category === cat).slice(0, 6);
+  const label = cat === 'Call Flow' ? 'All Call Flows' : `All ${cat} Articles`;
+  dd.innerHTML = `<div class="dropdown-item" onclick="location.href='${allUrl}'"><span class="dd-dot" style="background:${color}"></span>${label}</div>`;
+  items.forEach(a => {
+    const div = document.createElement('div');
+    div.className = 'dropdown-item';
+    div.innerHTML = `<span class="dd-dot" style="background:${color}"></span>${a.title.substring(0,40)}${a.title.length>40?'...':''}`;
+    div.onclick = () => location.href = a.url;
+    dd.appendChild(div);
+  });
+}
+
+function loadRelated(articles) {
+  const grid = document.getElementById('relatedGrid');
+  if (!grid || !articles.length) return;
+  const related = articles.slice(0, 3);
+  const catCls = c => ({'5G':'badge-5g','6G':'badge-6g','3GPP':'badge-3gpp','Open RAN':'badge-oran','Policy':'badge-policy','Call Flow':'badge-callflow'}[c]||'badge-default');
+  grid.innerHTML = related.map(a => `
+    <a class="rcard" href="${a.url}">
+      <span class="rcard-cat ${catCls(a.category)}">${a.category}</span>
+      <div class="rcard-title">${a.title}</div>
+      <div class="rcard-date">${a.date} · 5 min</div>
+    </a>`).join('');
+}
+
+// ── Set badge class from category ────────────────────────
+function setBadge() {
+  const badge = document.getElementById('articleBadge');
+  if (!badge) return;
+  const cat = badge.textContent.trim();
+  const clsMap = {
+    // Tech categories (manual posts)
+    '5G':'badge-5g','6G':'badge-6g','3GPP':'badge-3gpp',
+    'Open RAN':'badge-oran','Policy':'badge-policy','Call Flow':'badge-callflow',
+    // Blog-type categories (daily auto-posts)
+    'Latest News':'badge-news','Concept Guide':'badge-concept',
+    'Protocol Deep Dive':'badge-proto','Industry Trends':'badge-trends',
+    'Interview Prep':'badge-interview','Future Tech':'badge-future',
+  };
+  badge.className = 'badge ' + (clsMap[cat] || 'badge-default');
+  document.getElementById('statCat').textContent = cat;
+  // Breadcrumb: show correct category, not always "5G"
+  const breadcrumb = document.getElementById('breadcrumbCat');
+  if (breadcrumb) breadcrumb.textContent = cat;
+  // Also fix the breadcrumb link
+  const breadcrumbLink = document.getElementById('breadcrumbLink');
+  if (breadcrumbLink) breadcrumbLink.href = '/?cat=' + encodeURIComponent(cat);
+}
+
+// ── Share buttons ─────────────────────────────────────────
+function shareLinkedIn() { window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(location.href),'_blank'); }
+function shareX() { window.open('https://x.com/intent/tweet?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent(document.title),'_blank'); }
+function copyLink() { navigator.clipboard.writeText(location.href).then(()=>alert('Link copied!')); }
+
+// ── Subscribe ─────────────────────────────────────────────
+function subscribe() {
+  const e = document.getElementById('sidebarEmail').value;
+  if (!e || !e.includes('@')) { alert('Please enter a valid email'); return; }
+  alert('Thanks! Daily telecom insights coming to ' + e);
+  document.getElementById('sidebarEmail').value = '';
+}
+
+// ── Mobile menu ───────────────────────────────────────────
+function toggleMenu() {
+  document.getElementById('mobileNav').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+
+// ── Boot ──────────────────────────────────────────────────
+setBadge();
+buildTOC();
+loadNavDropdowns();
+
+// Sync stat date with eyebrow date
+const dateEl = document.getElementById('articleDate');
+if (dateEl) {
+  const d = dateEl.textContent.replace('Published · ','');
+  document.getElementById('statDate').textContent = d;
+  document.getElementById('bylineDate').textContent = d;
+}
+</script>
+</body>
+</html>
