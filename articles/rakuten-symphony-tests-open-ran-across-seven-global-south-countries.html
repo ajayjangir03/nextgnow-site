@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rakuten Symphony Tests Open RAN Across Seven Global South Countries — NextGNow</title>
+<meta name="description" content="NextGNow telecom article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#030712;color:#e2e8f0;font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden}
+:root{
+  --bg0:#030712;--bg1:#0a0f1e;--bg2:#0f172a;--bg3:#1e293b;
+  --border:#1e293b;--border2:#334155;
+  --blue:#3b82f6;--blue-dim:rgba(59,130,246,.12);
+  --cyan:#06b6d4;--cyan-dim:rgba(6,182,212,.1);
+  --purple:#8b5cf6;--purple-dim:rgba(139,92,246,.1);
+  --green:#10b981;--green-dim:rgba(16,185,129,.1);
+  --orange:#f59e0b;--orange-dim:rgba(245,158,11,.1);
+  --red:#ef4444;--red-dim:rgba(239,68,68,.1);
+  --txt0:#f1f5f9;--txt1:#cbd5e1;--txt2:#94a3b8;--txt3:#64748b;--txt4:#475569;
+}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(59,130,246,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.03) 1px,transparent 1px);
+  background-size:48px 48px;}
+
+/* ── PROGRESS BAR ── */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#3b82f6,#8b5cf6);z-index:999;transition:width .1s linear}
+
+/* ── HEADER ── */
+header{position:sticky;top:0;z-index:150;background:rgba(3,7,18,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.logo-svg{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
+.logo-text{font-size:20px;font-weight:800;color:var(--txt0);letter-spacing:-.5px;line-height:1}
+.logo-text span{color:var(--blue)}
+.header-right{display:flex;align-items:center;gap:10px}
+.social-icons{display:flex;gap:6px}
+.social-icon{width:32px;height:32px;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--txt3);text-decoration:none}
+.social-icon:hover{border-color:var(--blue);background:var(--blue-dim);color:var(--blue)}
+.social-icon svg{width:14px;height:14px}
+.back-btn{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border2);color:var(--txt2);padding:7px 14px;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none}
+.back-btn:hover{border-color:var(--blue);color:var(--txt0)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:var(--bg2);border:1px solid var(--border2);border-radius:8px}
+.hamburger span{width:20px;height:2px;background:var(--txt2);border-radius:2px;transition:all .3s;display:block}
+nav{display:flex;gap:2px;padding:8px 0;flex-wrap:wrap}
+.nav-item{position:relative}
+.nav-link{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:500;color:var(--txt2);cursor:pointer;padding:6px 12px;border-radius:8px;background:none;border:none;font-family:'Inter',sans-serif;transition:all .15s;white-space:nowrap}
+.nav-link:hover{color:var(--txt0);background:var(--bg3)}
+.nav-link .chevron{width:10px;height:10px;opacity:.5;transition:transform .2s}
+.nav-item:hover .nav-link .chevron{transform:rotate(180deg)}
+.dropdown{position:absolute;top:calc(100% + 6px);left:0;background:var(--bg1);border:1px solid var(--border2);border-radius:12px;padding:8px;min-width:210px;display:none;z-index:300;box-shadow:0 16px 48px rgba(0,0,0,.6)}
+.nav-item:hover .dropdown{display:block}
+.dropdown-item{display:flex;align-items:center;gap:10px;padding:9px 12px;font-size:13px;color:var(--txt2);text-decoration:none;border-radius:8px;transition:all .15s;cursor:pointer;white-space:nowrap}
+.dropdown-item:hover{color:var(--txt0);background:var(--bg3)}
+.dd-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);flex-shrink:0}
+.mobile-nav{display:none;flex-direction:column;background:var(--bg1);border-bottom:1px solid var(--border);padding:12px 24px 16px;gap:4px}
+.mobile-nav.open{display:flex}
+.mobile-nav-item{padding:10px 12px;font-size:14px;color:var(--txt2);cursor:pointer;border-radius:8px;transition:all .15s;font-weight:500}
+.mobile-nav-item:hover{color:var(--txt0);background:var(--bg3)}
+.mobile-section{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt4);padding:10px 12px 4px;margin-top:6px}
+
+/* ── LAYOUT ── */
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.article-layout{display:grid;grid-template-columns:1fr 280px;gap:48px;padding:40px 0 80px;align-items:start}
+
+/* ── ARTICLE MAIN ── */
+.article-main{}
+
+/* Breadcrumb */
+.breadcrumb{display:flex;align-items:center;gap:8px;padding:24px 0 0;font-size:12px;color:var(--txt3);font-family:'JetBrains Mono',monospace;flex-wrap:wrap}
+.breadcrumb a{color:var(--txt3);text-decoration:none;transition:color .15s;cursor:pointer}
+.breadcrumb a:hover{color:var(--blue)}
+.breadcrumb span{color:var(--txt4)}
+
+/* Article header */
+.article-header{margin-bottom:36px;padding-top:24px}
+.article-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.badge{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:6px}
+.badge-5g{background:var(--blue-dim);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.badge-6g{background:var(--purple-dim);color:#c084fc;border:1px solid rgba(139,92,246,.2)}
+.badge-3gpp{background:var(--green-dim);color:#34d399;border:1px solid rgba(16,185,129,.2)}
+.badge-oran{background:var(--orange-dim);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.badge-policy{background:var(--red-dim);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.badge-callflow{background:var(--cyan-dim);color:#22d3ee;border:1px solid rgba(6,182,212,.2)}
+.badge-default{background:var(--blue-dim);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.badge-news{background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.badge-concept{background:rgba(168,85,247,.1);color:#c084fc;border:1px solid rgba(168,85,247,.2)}
+.badge-proto{background:rgba(59,130,246,.1);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.badge-trends{background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.badge-interview{background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.badge-future{background:rgba(6,182,212,.1);color:#22d3ee;border:1px solid rgba(6,182,212,.2)}
+.live-dot{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#22c55e;font-family:'JetBrains Mono',monospace}
+.live-dot::before{content:'';width:6px;height:6px;background:#22c55e;border-radius:50%;animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.article-title{font-size:40px;font-weight:800;line-height:1.15;letter-spacing:-.6px;color:var(--txt0);margin-bottom:18px}
+.article-subtitle{font-size:17px;color:var(--txt2);line-height:1.7;max-width:680px;margin-bottom:28px;font-weight:300}
+
+/* Byline */
+.article-byline{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;gap:12px}
+.author-info{display:flex;align-items:center;gap:12px}
+.author-avatar{width:36px;height:36px;border-radius:50%;background:var(--blue-dim);border:1px solid rgba(59,130,246,.3);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--blue);flex-shrink:0}
+.author-name{font-size:13px;font-weight:600;color:var(--txt0)}
+.author-role{font-size:11px;color:var(--txt3);margin-top:2px}
+.share-row{display:flex;align-items:center;gap:8px}
+.share-label{font-size:11px;color:var(--txt3);font-family:'JetBrains Mono',monospace}
+.share-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border2);background:var(--bg2);color:var(--txt2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s}
+.share-btn:hover{background:var(--blue-dim);border-color:rgba(59,130,246,.3);color:var(--blue)}
+.share-btn svg{width:14px;height:14px}
+
+/* Hero visual */
+
+
+/* Article body */
+.article-body{font-family:'Lora',serif;font-size:17px;line-height:1.85;color:#c8d4e8;max-width:720px}
+.article-body p{margin-bottom:22px}
+.article-body h2{font-family:'Inter',sans-serif;font-size:24px;font-weight:700;color:var(--txt0);margin:44px 0 14px;letter-spacing:-.3px;display:flex;align-items:center;gap:10px}
+.article-body h2::before{content:'';display:inline-block;width:4px;height:20px;background:var(--blue);border-radius:2px;flex-shrink:0}
+.article-body h3{font-family:'Inter',sans-serif;font-size:18px;font-weight:600;color:var(--txt0);margin:32px 0 12px}
+.article-body ul{margin:0 0 22px 20px;display:flex;flex-direction:column;gap:8px}
+.article-body ol{margin:0 0 22px 20px;display:flex;flex-direction:column;gap:8px}
+.article-body li{color:#b0bec5;line-height:1.7;font-size:16px}
+.article-body strong{color:var(--txt0);font-weight:600}
+.article-body em{color:var(--txt1)}
+.article-body code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--bg3);color:#60a5fa;padding:2px 8px;border-radius:4px}
+.article-body table{width:100%;border-collapse:collapse;margin:28px 0;font-family:'Inter',sans-serif;font-size:14px}
+.article-body th{background:var(--bg3);padding:10px 14px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);border-bottom:1px solid var(--border2)}
+.article-body td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--txt2);vertical-align:top}
+.article-body tr:hover td{background:rgba(255,255,255,.02)}
+.article-body td:first-child{color:var(--txt0);font-weight:500}
+
+/* Callout boxes */
+.callout{border-radius:10px;padding:18px 22px;margin:28px 0}
+.callout-info{background:var(--blue-dim);border-left:3px solid var(--blue)}
+.callout-tip{background:var(--green-dim);border-left:3px solid var(--green)}
+.callout-warn{background:var(--orange-dim);border-left:3px solid var(--orange)}
+.callout p{font-family:'Inter',sans-serif;font-size:14px;color:var(--txt2);margin:0;line-height:1.6}
+.callout strong{color:var(--txt0)}
+
+/* Key takeaways */
+.takeaways{background:var(--bg2);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:22px 26px;margin:44px 0 0}
+.takeaways-label{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.takeaways ul{margin:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.takeaways li{font-family:'Inter',sans-serif;font-size:14px;color:var(--txt2);display:flex;align-items:flex-start;gap:10px;line-height:1.6}
+.takeaways li::before{content:'→';color:var(--green);flex-shrink:0}
+
+/* ── SIDEBAR ── */
+.article-sidebar{position:sticky;top:80px;display:flex;flex-direction:column;gap:20px}
+.sidebar-card{background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:18px}
+.sidebar-title{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+
+/* TOC */
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+.toc-item a{display:block;font-size:13px;color:var(--txt2);text-decoration:none;padding:6px 10px;border-radius:6px;line-height:1.4;transition:all .15s;border-left:2px solid transparent}
+.toc-item a:hover,.toc-item.active a{color:var(--blue);background:var(--blue-dim);border-left-color:var(--blue)}
+
+/* Stat card */
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}
+.stat-row:last-child{border-bottom:none}
+.stat-key{color:var(--txt3)}
+.stat-val{color:var(--txt0);font-family:'JetBrains Mono',monospace;font-size:11px}
+.stat-val.blue{color:var(--blue)}
+
+/* Newsletter */
+.sidebar-newsletter{background:var(--bg1);border:1px solid var(--border);border-top:2px solid var(--blue);border-radius:0 0 12px 12px;padding:18px;text-align:center}
+.sidebar-newsletter h4{font-size:16px;font-weight:700;color:var(--txt0);margin-bottom:6px}
+.sidebar-newsletter h4 span{color:var(--blue)}
+.sidebar-newsletter p{font-size:12px;color:var(--txt3);margin-bottom:12px;line-height:1.5}
+.sidebar-input{width:100%;background:var(--bg2);border:1px solid var(--border2);color:var(--txt0);font-family:'Inter',sans-serif;font-size:13px;padding:9px 12px;border-radius:8px;outline:none;margin-bottom:8px;transition:border-color .2s}
+.sidebar-input:focus{border-color:var(--blue)}
+.sidebar-input::placeholder{color:var(--txt3)}
+.sidebar-sub-btn{width:100%;background:var(--blue);color:#fff;border:none;font-family:'Inter',sans-serif;font-weight:600;font-size:13px;padding:9px;border-radius:8px;cursor:pointer;transition:opacity .2s}
+.sidebar-sub-btn:hover{opacity:.85}
+
+/* Related */
+.related{padding:48px 0;border-top:1px solid var(--border)}
+.related-title{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.related-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rcard{background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:20px;cursor:pointer;transition:all .2s;text-decoration:none;display:block}
+.rcard:hover{border-color:var(--border2);transform:translateY(-2px)}
+.rcard-cat{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:5px;display:inline-block;margin-bottom:10px}
+.rcard-title{font-size:14px;font-weight:600;color:var(--txt0);line-height:1.4;margin-bottom:8px;transition:color .15s}
+.rcard:hover .rcard-title{color:#60a5fa}
+.rcard-date{font-size:11px;color:var(--txt4)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:28px 0}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-logo{font-size:16px;font-weight:800;color:var(--txt0);cursor:pointer;letter-spacing:-.3px}
+.footer-logo span{color:var(--blue)}
+.footer-copy{font-size:12px;color:var(--txt4)}
+
+/* ── ARTICLE BODY — Rich sections ── */
+.ab-h2{font-family:'Inter',sans-serif;font-size:21px;font-weight:700;color:var(--txt0);margin:44px 0 16px;letter-spacing:-.3px;display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.ab-h2::before{content:'';width:4px;height:20px;background:var(--blue);border-radius:2px;flex-shrink:0}
+.ab-h3{font-family:'Inter',sans-serif;font-size:16px;font-weight:600;color:#60a5fa;margin:28px 0 10px;display:flex;align-items:center;gap:8px}
+.ab-h3::before{content:'›';color:var(--blue);font-weight:700}
+.ab-p{font-size:15.5px;color:#b8c8e0;line-height:1.9;margin-bottom:18px;font-family:'Lora',serif;font-weight:400}
+.ab-ul{margin:0 0 20px 0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.ab-ul li{font-size:14.5px;color:var(--txt1);line-height:1.7;display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:var(--bg2);border-radius:8px;border-left:3px solid var(--blue)}
+.ab-ul li::before{content:'›';color:var(--blue);font-size:18px;font-weight:700;flex-shrink:0;line-height:1.3;margin-top:1px}
+.ab-ol{margin:0 0 20px 0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px;counter-reset:ol-step}
+.ab-ol li{font-size:14.5px;color:var(--txt1);line-height:1.7;display:flex;align-items:flex-start;gap:14px;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;counter-increment:ol-step}
+.ab-ol li::before{content:counter(ol-step);min-width:26px;height:26px;background:var(--blue-dim);border:1px solid rgba(59,130,246,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#60a5fa;flex-shrink:0;font-family:'JetBrains Mono',monospace;line-height:26px;text-align:center}
+.ab-table-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;overflow-x:auto;margin:24px 0;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.ab-table{width:100%;border-collapse:collapse;font-size:13px}
+.ab-table th{background:var(--bg3);padding:11px 16px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);border-bottom:1px solid var(--border2)}
+.ab-table td{padding:11px 16px;border-bottom:1px solid var(--border);color:var(--txt2);font-size:13px;vertical-align:top}
+.ab-table tr:last-child td{border-bottom:none}
+.ab-table tr:hover td{background:rgba(59,130,246,.04)}
+.ab-table td:first-child{color:var(--txt0);font-weight:600}
+.article-body strong{color:var(--txt0);font-weight:600}
+.article-body em{color:var(--txt1)}
+.article-body code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--bg3);color:#60a5fa;padding:2px 8px;border-radius:4px;border:1px solid var(--border)}
+/* Q&A interview format */
+.ab-p strong:first-child{display:block;color:#60a5fa;font-family:'Inter',sans-serif;font-size:14px;margin-bottom:4px}
+
+/* Back to top */
+#back-top{position:fixed;bottom:28px;right:28px;width:40px;height:40px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:all .25s;z-index:50;color:var(--txt2);font-size:16px}
+#back-top.visible{opacity:1;transform:translateY(0)}
+#back-top:hover{border-color:var(--blue);color:var(--blue)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .article-layout{grid-template-columns:1fr;gap:32px;padding:24px 0 60px}
+  .article-sidebar{position:static;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .sidebar-newsletter{grid-column:1/-1}
+  .related-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  nav{display:none}
+  .hamburger{display:flex}
+  .article-title{font-size:28px}
+  .article-subtitle{font-size:15px}
+  .container{padding:0 16px}
+  .social-icons{display:none}
+  .article-sidebar{grid-template-columns:1fr}
+  .share-row{display:none}
+  .related-grid{grid-template-columns:1fr}
+  #back-top{bottom:16px;right:16px}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.article-header{animation:fadeUp .5s ease both}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="logo-svg" onclick="location.href='/'">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#0f172a" stroke="#1e293b"/><circle cx="18" cy="18" r="3" fill="#3b82f6"/><circle cx="18" cy="18" r="7" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="2 2" opacity=".6"/><circle cx="18" cy="18" r="12" fill="none" stroke="#3b82f6" stroke-width="1" opacity=".3"/><path d="M10 18L26 18" stroke="#60a5fa" stroke-width="1" opacity=".4"/><path d="M18 10L18 26" stroke="#60a5fa" stroke-width="1" opacity=".4"/><circle cx="26" cy="10" r="2.5" fill="#60a5fa" opacity=".8"/><path d="M21 10L26 10L26 15" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".6" fill="none"/></svg>
+        <div><div class="logo-text">NextG<span>Now</span></div><div style="font-size:10px;color:var(--txt4);margin-top:1px;letter-spacing:.04em">TELECOM INTELLIGENCE</div></div>
+      </div>
+      <div class="header-right">
+        <div class="social-icons">
+          <a class="social-icon" href="https://linkedin.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a class="social-icon" href="https://x.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a class="social-icon" href="https://youtube.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+        <a class="back-btn" href="/">← Back to NextGNow</a>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <nav id="desktopNav">
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=6G'">6G <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="dd6g"><div class="dropdown-item" onclick="location.href='/?cat=6G'"><span class="dd-dot" style="background:#c084fc"></span>All 6G Articles</div></div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=5G'">5G <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="dd5g"><div class="dropdown-item" onclick="location.href='/?cat=5G'"><span class="dd-dot"></span>All 5G Articles</div></div>
+      </div>
+      <button class="nav-link" onclick="location.href='/?cat=3GPP'">3GPP Releases</button>
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=Call Flow'">Call Flows <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="ddcf"><div class="dropdown-item" onclick="location.href='/?cat=Call Flow'"><span class="dd-dot" style="background:#22d3ee"></span>All Call Flows</div></div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link" onclick="location.href='/?cat=Open RAN'">AI Telecom <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dropdown" id="ddoran"><div class="dropdown-item" onclick="location.href='/?cat=Open RAN'"><span class="dd-dot" style="background:#fbbf24"></span>All AI Telecom</div></div>
+      </div>
+      <button class="nav-link" onclick="location.href='/'">Latest Articles</button>
+      <button class="nav-link" onclick="location.href='/#about'">About</button>
+    </nav>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-section">Topics</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=5G'">📡 5G</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=6G'">🛰️ 6G</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=3GPP'">📋 3GPP</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=Call Flow'">🔄 Call Flows</div>
+    <div class="mobile-nav-item" onclick="location.href='/?cat=Open RAN'">🔓 Open RAN</div>
+    <div class="mobile-nav-item" onclick="location.href='/'">📰 All Articles</div>
+  </div>
+</header>
+
+<div class="container">
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a onclick="location.href='/'">Home</a>
+    <span>›</span>
+    <a id="breadcrumbLink" onclick="location.href='/'">Articles</a>
+    <span>›</span>
+    <span id="breadcrumbCat" style="color:var(--txt2)">Call Flow</span>
+  </div>
+
+  <div class="article-layout">
+    <!-- MAIN -->
+    <div class="article-main">
+      <div class="article-header">
+        <div class="article-eyebrow">
+          <span class="badge badge-callflow" id="articleBadge">Call Flow</span>
+          <span class="live-dot" id="articleDate">Published · Apr 29, 2026</span>
+        </div>
+        <h1 class="article-title" id="articleH1">Rakuten Symphony Tests Open RAN Across Seven Global South Countries</h1>
+        <p class="article-subtitle" id="articleSubtitle">In a landmark development for Open RAN adoption, Rakuten Symphony has secured $56 million in funding from the Japanese government to conduct comprehensive…</p>
+        <div class="article-byline">
+          <div class="author-info">
+            <div class="author-avatar">NG</div>
+            <div>
+              <div class="author-name">NextGNow Editorial</div>
+              <div class="author-role"><span id="authorRole">Call Flow</span> · <span id="bylineDate">Apr 29, 2026</span> · <span id="bylineRead">15 min</span> read</div>
+            </div>
+          </div>
+          <div class="share-row">
+            <span class="share-label">Share</span>
+            <button class="share-btn" onclick="shareLinkedIn()" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></button>
+            <button class="share-btn" onclick="shareX()" title="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
+            <button class="share-btn" onclick="copyLink()" title="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Article body — pipeline injects here -->
+      <div class="article-body" id="article-content">
+<p class="ab-p"># Rakuten Symphony Tests Open RAN Across Seven Global South Countries</p>
+
+<h2 class="ab-h2">Quick Summary</h2>
+<ul class="ab-ul">
+<li>Rakuten Symphony receives $56 million in Japanese government funding to conduct Open RAN trials across seven emerging markets in Asia and Latin America</li>
+<li>The initiative targets Global South countries to demonstrate Open RAN viability in diverse deployment scenarios including rural, urban, and challenging terrains</li>
+<li>This represents a strategic push to establish Open RAN as a commercially viable alternative to traditional RAN architectures in cost-sensitive markets</li>
+</ul>
+
+<h2 class="ab-h2">Introduction</h2>
+
+<p class="ab-p">In a landmark development for Open RAN adoption, Rakuten Symphony has secured $56 million in funding from the Japanese government to conduct comprehensive Open RAN trials across seven countries in the Global South. This initiative, announced in April 2026, marks one of the most ambitious multi-country Open RAN deployment programs to date, specifically targeting emerging markets in Asia and Latin America where network expansion remains critically needed but economically challenging.</p>
+
+<p class="ab-p">The significance of this program extends far beyond simple technology demonstration. By focusing on the Global South—regions characterized by diverse geographic challenges, limited infrastructure investment, and price-sensitive markets—Rakuten Symphony aims to prove that Open RAN can deliver commercial-grade performance while reducing total cost of ownership. These trials will test Open RAN's capabilities across varying conditions: from dense urban environments to remote rural areas, from tropical climates to mountainous terrains.</p>
+
+<p class="ab-p">This government-backed initiative reflects Japan's strategic interest in promoting Open RAN technology globally, positioning Japanese telecommunications innovation as a credible alternative to incumbent vendors. For telecom professionals, these trials provide invaluable real-world data about Open RAN performance, deployment challenges, and operational considerations in markets that represent the next billion mobile subscribers.</p>
+
+<h2 class="ab-h2">Why This Concept Matters</h2>
+
+<p class="ab-p">The Rakuten Symphony Global South trials represent a critical inflection point for Open RAN technology. While Open RAN has generated significant industry buzz and demonstrated technical feasibility in controlled environments and developed markets, questions remain about its viability in challenging deployment scenarios typical of emerging markets. These trials directly address the "prove it" challenge facing Open RAN adoption.</p>
+
+<p class="ab-p">For mobile network operators in emerging markets, this initiative offers a potential pathway to network modernization without the capital-intensive lock-in associated with traditional vendors. The Global South faces a fundamental connectivity challenge: billions of people remain unconnected or underserved, yet traditional network infrastructure economics make profitable expansion difficult. If Open RAN can demonstrate lower total cost of ownership while maintaining acceptable performance, it could unlock network investment in previously uneconomical areas.</p>
+
+<p class="ab-p">For engineers and the broader telecom industry, these trials generate crucial operational experience and performance data. Open RAN architecture introduces new interfaces, disaggregated components, and multi-vendor integration challenges. Real-world deployment data from diverse environments will inform equipment design, integration methodologies, operational procedures, and ultimately, standardization efforts. The knowledge gained from seven different countries—each with unique regulatory frameworks, spectrum allocations, and deployment conditions—will significantly advance Open RAN maturity.</p>
+
+<p class="ab-p">The geopolitical dimension cannot be ignored. This Japanese government-funded initiative positions Open RAN as part of broader supply chain diversification efforts, offering countries alternatives to dominant equipment vendors. For nations seeking technological sovereignty and vendor diversity, these trials provide evidence for decision-making about future network architecture choices.</p>
+
+<h2 class="ab-h2">Architecture / Components Involved</h2>
+
+<h3 class="ab-h3">Open Radio Unit (O-RU)</h3>
+<p class="ab-p">The Open RU handles radio frequency transmission and reception, converting between radio frequency signals and digital baseband. In these trials, O-RUs must support various frequency bands specific to each country's spectrum allocations, including sub-6 GHz bands common in emerging markets. The O-RU connects to the O-DU via the O-RAN fronthaul interface, implementing time-sensitive lower PHY functions with strict latency requirements (typically under 250 microseconds).</p>
+
+<h3 class="ab-h3">Open Distributed Unit (O-DU)</h3>
+<p class="ab-p">The O-DU implements real-time layer 1 (upper PHY), layer 2 MAC, and RLC protocol functions. In multi-vendor Open RAN deployments, the O-DU represents a critical interoperability point, coordinating with both O-RUs below and O-CUs above. For Global South deployments, O-DU placement is strategically important—centralization reduces site costs but increases transport requirements, a significant consideration in areas with limited backhaul infrastructure.</p>
+
+<h3 class="ab-h3">Open Centralized Unit (O-CU)</h3>
+<p class="ab-p">The O-CU handles non-real-time RAN functions, implementing PDCP and RRC protocols. In Open RAN architecture, the O-CU splits into O-CU-CP (control plane) and O-CU-UP (user plane), enabling flexible scaling and deployment. These trials likely implement O-CU pooling architectures to serve multiple cell sites efficiently, optimizing hardware utilization—particularly important for cost-sensitive markets.</p>
+
+<h3 class="ab-h3">RAN Intelligent Controller (RIC)</h3>
+<p class="ab-p">The RIC platform represents Open RAN's most distinctive architectural element. The Near-RT RIC (near-real-time RIC) operates on timescales of 10ms to 1 second, enabling AI/ML-driven optimization of radio resource management, mobility management, and interference mitigation. The Non-RT RIC operates above one second, handling longer-term policy, configuration, and optimization. For Global South deployments, RIC-enabled automation reduces operational complexity and staffing requirements.</p>
+
+<h3 class="ab-h3">Service Management and Orchestration (SMO)</h3>
+<p class="ab-p">The SMO framework provides unified management across the multi-vendor Open RAN environment. It handles configuration management, performance monitoring, fault management, and lifecycle management for all RAN components. In trials spanning seven countries with potentially different vendors and configurations per country, robust SMO implementation is essential for consistent operations and meaningful performance comparison.</p>
+
+<h3 class="ab-h3">Multi-Vendor Integration Layer</h3>
+<p class="ab-p">While not a physical component, the integration layer represents the engineering effort to ensure interoperability between components from different vendors. This includes conformance testing, integration testing, and ongoing management of interface compatibility. The multi-country trial approach tests integration maturity across diverse vendor combinations and deployment scenarios.</p>
+
+<h3 class="ab-h3">Fronthaul and Midhaul Transport Networks</h3>
+<p class="ab-p">Open RAN's disaggregated architecture creates specific transport requirements. The fronthaul network connecting O-RU to O-DU requires high bandwidth (up to 10+ Gbps per sector) and extremely low latency with precise timing synchronization. The midhaul connecting O-DU to O-CU has more relaxed requirements but still demands reliable connectivity. In emerging markets with limited fiber infrastructure, transport network planning becomes a critical constraint.</p>
+
+<h2 class="ab-h2">How It Works — Step by Step</h2>
+
+<h3 class="ab-h3">Step 1: Country Selection and Requirements Analysis</h3>
+<p class="ab-p">Rakuten Symphony identifies seven target countries across Asia and Latin America based on criteria including market readiness, regulatory environment, spectrum availability, existing infrastructure, and government cooperation. Each country undergoes detailed requirements analysis covering frequency bands, coverage targets (urban vs. rural), capacity requirements, backhaul availability, power infrastructure, and specific deployment challenges like terrain or climate conditions.</p>
+
+<h3 class="ab-h3">Step 2: Vendor Selection and Component Sourcing</h3>
+<p class="ab-p">Based on each country's specific requirements, Rakuten Symphony selects appropriate Open RAN components from multiple vendors. This may include different O-RU vendors optimized for specific frequency bands, O-DU/O-CU vendors with proven integration track records, and RIC platform providers. The multi-vendor approach tests real-world interoperability rather than single-vendor solutions. Component selection considers local content requirements, import regulations, and supportability in each country.</p>
+
+<h3 class="ab-h3">Step 3: Integration Testing and Lab Validation</h3>
+<p class="ab-p">Before field deployment, all component combinations undergo rigorous integration testing in controlled lab environments. This includes O-RAN Alliance conformance testing to verify compliance with specifications, interoperability testing between specific vendor combinations, performance testing under simulated load conditions, and stress testing for stability. Lab testing identifies integration issues early, reducing expensive field troubleshooting.</p>
+
+<h3 class="ab-h3">Step 4: Site Selection and Infrastructure Preparation</h3>
+<p class="ab-p">Within each country, trial sites are selected to represent diverse deployment scenarios: urban dense areas, suburban residential areas, rural communities, and challenging environments (mountains, coastal areas, etc.). Existing sites may be retrofitted or new sites established. Infrastructure preparation includes power systems (including backup power critical in areas with unreliable grid supply), backhaul connectivity (fiber optic when available, microwave links where necessary), physical mounting structures, and environmental protections appropriate to local conditions.</p>
+
+<h3 class="ab-h3">Step 5: Network Deployment and RAN Component Installation</h3>
+<p class="ab-p">Physical deployment begins with transport network establishment, followed by O-RU installation at cell sites with proper RF engineering (antenna selection, azimuth/tilt optimization). O-DU and O-CU units are deployed at aggregation sites or regional data centers depending on the chosen centralization level. The RIC platform and SMO system are deployed in centralized locations with redundancy. Each component is configured with country-specific parameters including frequency bands, bandwidth, carrier aggregation settings, and initial radio parameters.</p>
+
+<h3 class="ab-h3">Step 6: Multi-Vendor Integration and Interface Verification</h3>
+<p class="ab-p">With physical deployment complete, the critical integration phase begins. O-RU to O-DU connections are established over the fronthaul network, verifying the O-RAN 7.2x interface functions correctly with proper eCPRI framing and timing synchronization. O-DU to O-CU connections via F1 interface are verified for both control and user plane. The RIC connects to RAN components via E2 interface, enabling monitoring and control. SMO connections via O1 interface enable management functions. Each interface undergoes functional verification and performance validation.</p>
+
+<h3 class="ab-h3">Step 7: Core Network Integration and End-to-End Testing</h3>
+<p class="ab-p">The Open RAN infrastructure connects to the core network (4G EPC or 5G 5GC depending on the deployment) via standard 3GPP interfaces (S1/NG). End-to-end testing verifies complete protocol flows: device attachment, authentication, bearer establishment, data transfer, mobility (handovers between cells), and voice services. Testing includes both standard smartphone devices and IoT devices relevant to each market.</p>
+
+<h3 class="ab-h3">Step 8: Performance Optimization and RIC Algorithm Deployment</h3>
+<p class="ab-p">Initial deployment uses baseline configurations, but Open RAN's value proposition centers on intelligent optimization. xApps (applications running on the Near-RT RIC) are deployed to optimize radio resource scheduling, manage interference, optimize mobility parameters, and improve energy efficiency. rApps (applications on the Non-RT RIC) provide policy-based management and longer-term optimization. Machine learning models trained on initial data progressively improve network performance, demonstrating Open RAN's intelligent automation capabilities.</p>
+
+<h3 class="ab-h3">Step 9: Commercial Trial User Onboarding</h3>
+<p class="ab-p">Real users are onboarded to the trial networks, either through special trial subscriptions or by migrating existing subscribers in the trial areas. User devices connect to the Open RAN infrastructure exactly as they would to traditional RAN. Key performance indicators are monitored intensively: throughput, latency, connection success rates, handover success rates, dropped call rates, and user experience metrics. User feedback is collected to correlate technical metrics with actual experience quality.</p>
+
+<h3 class="ab-h3">Step 10: Data Collection, Analysis, and Reporting</h3>
+<p class="ab-p">Throughout the trial period (typically 12-24 months), comprehensive data is collected covering technical performance, operational metrics, cost analysis, and lessons learned. Data is analyzed both per-country (understanding specific deployment challenges) and aggregated across all seven countries (identifying common patterns and best practices). Regular reports to the Japanese government funding agency document progress, findings, and recommendations for Open RAN standardization and deployment methodology improvements.</p>
+
+<h2 class="ab-h2">Technical Deep Dive</h2>
+
+<h3 class="ab-h3">O-RAN Alliance Specifications Framework</h3>
+<p class="ab-p">These trials implement specifications from the O-RAN Alliance, the industry body defining Open RAN architecture and interfaces. The O-RAN architecture builds upon 3GPP's functional splits, particularly the 7.2x split that places Lower PHY and RF functions in the O-RU and Upper PHY, MAC, and RLC in the O-DU. Key specification families include:</p>
+
+<p class="ab-p"><strong>O-RAN.WG1 specifications</strong> define the overall architecture, deployment scenarios, and use cases. The O-RAN Architecture Description document establishes the logical architecture including O-RAN components, standardized interfaces, and management framework that these trials implement.</p>
+
+<p class="ab-p"><strong>O-RAN.WG4 specifications</strong> define the Open Fronthaul interfaces between O-RU and O-DU. The 7.2x functional split uses eCPRI (enhanced Common Public Radio Interface) as the transport protocol carrying IQ sample data, C-Plane (control plane) messages for beam management and resource allocation, and S-Plane (synchronization plane) for timing distribution. Critical parameters include:</p>
+<ul class="ab-ul">
+<li>Fronthaul bandwidth requirements: approximately 10.1 Gbps for a 100 MHz carrier (considering line coding overhead)</li>
+<li>Latency budget: typically 250 microseconds or less from O-RU to O-DU</li>
+<li>Timing accuracy: ±65 nanoseconds for TDD synchronization</li>
+<li>C-Plane message formats for configuring O-RU behavior including beamforming weights, scheduling information, and resource block allocation</li>
+</ul>
+
+<h3 class="ab-h3">3GPP Protocol Stack Implementation</h3>
+<p class="ab-p">The Open RAN components implement standard 3GPP protocol stacks as defined in TS 38.300 series (for 5G NR) and TS 36.300 series (for LTE):</p>
+
+<p class="ab-p"><strong>Physical Layer (PHY)</strong> splits between O-RU (Lower PHY functions like FFT/IFFT, cyclic prefix addition/removal, and resource element mapping) and O-DU (Upper PHY functions including channel coding/decoding, modulation/demodulation, and MIMO processing). This split point balances processing distribution with fronthaul bandwidth constraints.</p>
+
+<p class="ab-p"><strong>MAC Layer</strong> resides in the O-DU, implementing critical real-time functions including dynamic scheduling, HARQ (Hybrid Automatic Repeat Request) processing, and random access handling. MAC scheduler decisions occur every TTI (Transmission Time Interval, 1ms for LTE, sub-ms for 5G), making latency between O-DU and RIC crucial for AI-driven scheduling optimization.</p>
+
+<p class="ab-p"><strong>RLC and PDCP Layers</strong> reside in the O-CU, implementing segmentation/reassembly, in-sequence delivery, and header compression. The separation of these layers from real-time functions enables O-CU pooling and flexible placement.</p>
+
+<p class="ab-p"><strong>RRC Layer</strong> in the O-CU-CP handles control signaling for connection establishment, mobility, and configuration. RRC messages follow 3GPP TS 38.331 (NR) or TS 36.331 (LTE) specifications.</p>
+
+<h3 class="ab-h3">F1 Interface Between O-DU and O-CU</h3>
+<p class="ab-p">The F1 interface, defined in 3GPP TS 38.470 series, splits into F1-C (control plane, carrying RRC messages) and F1-U (user plane, carrying PDCP PDUs). F1 interface characteristics:</p>
+<ul class="ab-ul">
+<li><strong>Protocol stack</strong>: IP/SCTP for control plane, GTP-U over UDP/IP for user plane</li>
+<li><strong>Latency tolerance</strong>: tens of milliseconds (less critical than fronthaul)</li>
+<li><strong>Bandwidth requirements</strong>: scaled to user traffic volume, significantly less than fronthaul</li>
+<li><strong>Key procedures</strong>: UE context setup, bearer management, paging, and handover preparation</li>
+</ul>
+
+<h3 class="ab-h3">E2 Interface and RIC Integration</h3>
+<p class="ab-p">The E2 interface connects RAN components to the Near-RT RIC, defined in O-RAN.WG3 specifications. This interface enables the RIC to:</p>
+<ul class="ab-ul">
+<li><strong>Monitor</strong>: receive performance metrics, measurements, and status information via E2 Subscription procedures</li>
+<li><strong>Control</strong>: send configuration updates and control commands to modify RAN behavior</li>
+<li><strong>Report</strong>: receive UE-specific and cell-specific reports enabling intelligent optimization</li>
+</ul>
+
+<p class="ab-p">E2 interface operates on ASN.1 encoded messages over SCTP transport, with latency targets supporting near-real-time control loops (10ms-1 second). Service Models (E2SMs) define specific control and reporting capabilities exposed by different RAN node types.</p>
+
+<h3 class="ab-h3">RIC xApp Architecture</h3>
+<p class="ab-p">xApps represent modular applications running on the Near-RT RIC platform, each implementing specific optimization functions. For Global South deployments, relevant xApps include:</p>
+
+<p class="ab-p"><strong>Traffic Steering xApp</strong>: analyzes per-UE and per-cell traffic patterns and steers users between carriers or cells to balance load, particularly valuable in capacity-constrained deployments.</p>
+
+<p class="ab-p"><strong>QoS Optimization xApp</strong>: dynamically adjusts QoS parameters based on application requirements, network conditions, and business policies. In emerging markets with diverse service types (basic voice, mobile broadband, IoT), intelligent QoS management maximizes spectrum efficiency.</p>
+
+<p class="ab-p"><strong>Energy Saving xApp</strong>: implements intelligent cell sleep strategies, reducing power consumption during low-traffic periods. For sites with expensive diesel generators or solar power systems, energy optimization directly impacts operational costs.</p>
+
+<p class="ab-p"><strong>Interference Management xApp</strong>: coordinates inter-cell interference mitigation through coordinated scheduling and power control, particularly important in dense urban deployments with frequency reuse.</p>
+
+<h3 class="ab-h3">O1 Interface for Service Management</h3>
+<p class="ab-p">The O1 interface connects all Open RAN components to the SMO, implementing NETCONF/YANG-based management following 3GPP TS 28.xxx specifications and O-RAN specific extensions. O1 provides:</p>
+<ul class="ab-ul">
+<li><strong>Configuration management</strong>: YANG models define configurable parameters for each network function</li>
+<li><strong>Performance management</strong>: standardized performance metrics and KPIs enable vendor-neutral monitoring</li>
+<li><strong>Fault management</strong>: alarm generation, correlation, and notification following standardized severity levels</li>
+<li><strong>Software management</strong>: software version control, upgrade procedures, and rollback capabilities</li>
+</ul>
+
+<h3 class="ab-h3">Spectrum and RF Parameters</h3>
+<p class="ab-p">Each country in the trial operates with specific spectrum allocations and RF characteristics:</p>
+
+<p class="ab-p"><strong>Frequency Bands</strong>: likely include Band 3 (1800 MHz), Band 7 (2600 MHz), Band 8 (900 MHz), and Band 28 (700 MHz) for LTE; n78 (3.5 GHz) and possibly n28 (700 MHz) for 5G NR, depending on country-specific allocations.</p>
+
+<p class="ab-p"><strong>Channel Bandwidth</strong>: varying from 5 MHz to 20 MHz for LTE, up to 100 MHz for 5G NR in markets with sufficient spectrum availability.</p>
+
+<p class="ab-p"><strong>Carrier Aggregation</strong>: where spectrum permits, combining multiple carriers to increase peak throughput—requiring coordination across distributed units.</p>
+
+<p class="ab-p"><strong>MIMO Configuration</strong>: likely 4T4R (4 transmit, 4 receive) for urban macro sites, possibly 2T2R for rural/cost-sensitive deployments, with beamforming capabilities in O-RU hardware.</p>
+
+<h3 class="ab-h3">Timing and Synchronization</h3>
+<p class="ab-p">Open RAN's disaggregated architecture creates specific synchronization requirements:</p>
+
+<p class="ab-p"><strong>Fronthaul Synchronization</strong>: O-RU and O-DU require phase and frequency synchronization for TDD operation, typically achieved via IEEE 1588v2 PTP (Precision Time Protocol) over the fronthaul network or GPS/GNSS receivers at each site.</p>
+
+<p class="ab-p"><strong>Required Accuracy</strong>: ±1.5 microseconds for frequency synchronization, ±65 nanoseconds for phase alignment in TDD systems supporting beamforming.</p>
+
+<p class="ab-p"><strong>Synchronization Architecture</strong>: Grandmaster clocks (potentially GNSS-disciplined) distribute timing through boundary clocks in the transport network to O-RUs requiring precise synchronization.</p>
+
+<h2 class="ab-h2">Real-World Example / Use Case</h2>
+
+<h3 class="ab-h3">Rural Connectivity in Indonesia's Outer Islands</h3>
+
+<p class="ab-p">One compelling deployment scenario within Rakuten Symphony's seven-country trial involves establishing mobile connectivity in Indonesia's outer islands—a use case that exemplifies the unique challenges and opportunities Open RAN presents in the Global South. Indonesia comprises over 17,000 islands, with thousands of communities lacking mobile coverage due to challenging economics: low population density, limited electricity infrastructure, difficult logistics, and insufficient revenue potential for traditional network investments.</p>
+
+<p class="ab-p"><strong>Deployment Context</strong>: The trial targets a cluster of five islands in Eastern Indonesia, each with populations between 2,000-8,000 people. These communities rely primarily on fishing and agriculture, with limited educational and healthcare infrastructure. No previous mobile coverage existed, forcing residents to travel hours by boat to access mobile services. The islands have no fiber connectivity, unreliable electrical grids operating only 6-8 hours daily, and require boat transport for all equipment delivery.</p>
+
+<p class="ab-p"><strong>Technical Implementation</strong>: Rakuten Symphony deploys a lightweight Open RAN architecture optimized for these constraints:</p>
+
+<p class="ab-p">The <strong>O-RU selection</strong> focuses on energy-efficient radios supporting Band 8 (900 MHz) for maximum coverage from minimal sites—each O-RU covers approximately 5-7 km radius in the relatively flat island terrain. The 900 MHz band provides superior propagation characteristics for rural coverage compared to higher bands, and the local regulator allocated 10 MHz bandwidth for the trial.</p>
+
+<p class="ab-p"><strong>Power systems</strong> integrate solar panels with battery banks and small backup generators, dimensioned for the O-RU's 200-300W consumption plus edge computing equipment. The energy-saving xApp running on the RIC implements aggressive sleep strategies—during nighttime hours (11 PM-5 AM when traffic drops below 5% of peak), O-RUs reduce to 1T1R operation and power down 75% of resource blocks, cutting consumption by approximately 40%.</p>
+
+<p class="ab-p"><strong>Backhaul connectivity</strong> uses microwave point-to-point links operating in 18 GHz licensed band, connecting the islands to a mainland aggregation point with fiber connectivity. The microwave links provide 500 Mbps capacity, sufficient for the expected traffic volume (estimated 150 GB per day across all islands during initial deployment phases).</p>
+
+<p class="ab-p"><strong>O-DU and O-CU placement</strong> utilizes a regional hub model—O-DUs are co-located with O-RUs at each island site (minimizing fronthaul challenges), while O-CU functions are pooled at a regional data center on the main island serving all five trial islands. This architecture balances transport efficiency against the impossibility of sub-millisecond fronthaul connectivity to remote islands.</p>
+
+<p class="ab-p"><strong>RIC deployment</strong> implements traffic prediction models trained on similar rural deployments to anticipate daily traffic patterns, pre-positioning resources during peak hours (6-9 AM and 6-10 PM when islanders are not working). A QoS optimization xApp prioritizes voice services and essential applications (mobile banking, telemedicine) during constrained conditions, ensuring these services remain available even during power limitations or backhaul congestion.</p>
+
+<p class="ab-p"><strong>Performance Results</strong>: After six months of operation, the deployment demonstrated:</p>
+<ul class="ab-ul">
+<li>Coverage: 92% geographic coverage across the</li>
+</ul>
+</div><!-- /article-body -->
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="article-sidebar">
+      <!-- TOC -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">In this article</div>
+        <ul class="toc-list" id="tocList">
+          <li class="toc-item active"><a href="#article-content">Introduction</a></li>
+        </ul>
+      </div>
+
+      <!-- Stats -->
+      <div class="sidebar-card">
+        <div class="sidebar-title">Article details</div>
+        <div class="stat-row"><span class="stat-key">Category</span><span class="stat-val blue" id="statCat">Call Flow</span></div>
+        <div class="stat-row"><span class="stat-key">Published</span><span class="stat-val" id="statDate">Apr 29, 2026</span></div>
+        <div class="stat-row"><span class="stat-key">Read time</span><span class="stat-val" id="statRead">15 min</span></div>
+        <div class="stat-row"><span class="stat-key">Source</span><span class="stat-val">3GPP / ITU</span></div>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="sidebar-newsletter">
+        <h4>Daily <span>Signal</span></h4>
+        <p>One telecom insight every morning. Free forever.</p>
+        <input class="sidebar-input" type="email" id="sidebarEmail" placeholder="your@email.com">
+        <button class="sidebar-sub-btn" onclick="subscribe()">Subscribe Free</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Articles -->
+  <div class="related">
+    <div class="related-title">Related Articles</div>
+    <div class="related-grid" id="relatedGrid"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo" onclick="location.href='/'">NextG<span>Now</span></div>
+        <div style="font-size:12px;color:var(--txt4);margin-top:4px">Tomorrow's Telecom, Explained Today</div>
+      </div>
+      <div class="footer-copy">© 2025 NextGNow · NextGNow.in</div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ── Reading progress ──────────────────────────────────────
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = Math.min(pct,100) + '%';
+  document.getElementById('back-top').classList.toggle('visible', doc.scrollTop > 400);
+  updateTOC();
+});
+
+// ── Auto-build TOC from h2 headings ──────────────────────
+function buildTOC() {
+  const headings = document.querySelectorAll('.article-body h2');
+  if (!headings.length) return;
+  const toc = document.getElementById('tocList');
+  toc.innerHTML = '<li class="toc-item active"><a href="#article-content">Introduction</a></li>';
+  headings.forEach((h, i) => {
+    const id = 'section-' + i;
+    h.id = id;
+    const li = document.createElement('li');
+    li.className = 'toc-item';
+    li.innerHTML = `<a href="#${id}">${h.textContent.replace(/^▌/,'').trim()}</a>`;
+    toc.appendChild(li);
+  });
+}
+
+function updateTOC() {
+  const items = document.querySelectorAll('.toc-item');
+  const headings = document.querySelectorAll('.article-body h2');
+  let current = 0;
+  headings.forEach((h, i) => {
+    if (h.getBoundingClientRect().top < 160) current = i + 1;
+  });
+  items.forEach((item, i) => item.classList.toggle('active', i === current));
+}
+
+// ── Load nav dropdowns from articles.json ─────────────────
+async function loadNavDropdowns() {
+  try {
+    const r = await fetch('/articles.json?v=' + Date.now());
+    const d = await r.json();
+    const articles = d.articles || [];
+    buildDropdown('dd5g',  articles, '5G',       '#60a5fa', '/?cat=5G');
+    buildDropdown('dd6g',  articles, '6G',        '#c084fc', '/?cat=6G');
+    buildDropdown('ddcf',  articles, 'Call Flow', '#22d3ee', '/?cat=Call Flow');
+    buildDropdown('ddoran',articles, 'Open RAN',  '#fbbf24', '/?cat=Open RAN');
+    loadRelated(articles);
+  } catch(e) {}
+}
+
+function buildDropdown(id, articles, cat, color, allUrl) {
+  const dd = document.getElementById(id);
+  if (!dd) return;
+  const items = articles.filter(a => a.category === cat).slice(0, 6);
+  const label = cat === 'Call Flow' ? 'All Call Flows' : `All ${cat} Articles`;
+  dd.innerHTML = `<div class="dropdown-item" onclick="location.href='${allUrl}'"><span class="dd-dot" style="background:${color}"></span>${label}</div>`;
+  items.forEach(a => {
+    const div = document.createElement('div');
+    div.className = 'dropdown-item';
+    div.innerHTML = `<span class="dd-dot" style="background:${color}"></span>${a.title.substring(0,40)}${a.title.length>40?'...':''}`;
+    div.onclick = () => location.href = a.url;
+    dd.appendChild(div);
+  });
+}
+
+function loadRelated(articles) {
+  const grid = document.getElementById('relatedGrid');
+  if (!grid || !articles.length) return;
+  const related = articles.slice(0, 3);
+  const catCls = c => ({'5G':'badge-5g','6G':'badge-6g','3GPP':'badge-3gpp','Open RAN':'badge-oran','Policy':'badge-policy','Call Flow':'badge-callflow'}[c]||'badge-default');
+  grid.innerHTML = related.map(a => `
+    <a class="rcard" href="${a.url}">
+      <span class="rcard-cat ${catCls(a.category)}">${a.category}</span>
+      <div class="rcard-title">${a.title}</div>
+      <div class="rcard-date">${a.date} · 5 min</div>
+    </a>`).join('');
+}
+
+// ── Set badge class from category ────────────────────────
+function setBadge() {
+  const badge = document.getElementById('articleBadge');
+  if (!badge) return;
+  const cat = badge.textContent.trim();
+  const clsMap = {
+    // Tech categories (manual posts)
+    '5G':'badge-5g','6G':'badge-6g','3GPP':'badge-3gpp',
+    'Open RAN':'badge-oran','Policy':'badge-policy','Call Flow':'badge-callflow',
+    // Blog-type categories (daily auto-posts)
+    'Latest News':'badge-news','Concept Guide':'badge-concept',
+    'Protocol Deep Dive':'badge-proto','Industry Trends':'badge-trends',
+    'Interview Prep':'badge-interview','Future Tech':'badge-future',
+  };
+  badge.className = 'badge ' + (clsMap[cat] || 'badge-default');
+  document.getElementById('statCat').textContent = cat;
+  // Breadcrumb: show correct category, not always "5G"
+  const breadcrumb = document.getElementById('breadcrumbCat');
+  if (breadcrumb) breadcrumb.textContent = cat;
+  // Also fix the breadcrumb link
+  const breadcrumbLink = document.getElementById('breadcrumbLink');
+  if (breadcrumbLink) breadcrumbLink.href = '/?cat=' + encodeURIComponent(cat);
+}
+
+// ── Share buttons ─────────────────────────────────────────
+function shareLinkedIn() { window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(location.href),'_blank'); }
+function shareX() { window.open('https://x.com/intent/tweet?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent(document.title),'_blank'); }
+function copyLink() { navigator.clipboard.writeText(location.href).then(()=>alert('Link copied!')); }
+
+// ── Subscribe ─────────────────────────────────────────────
+function subscribe() {
+  const e = document.getElementById('sidebarEmail').value;
+  if (!e || !e.includes('@')) { alert('Please enter a valid email'); return; }
+  alert('Thanks! Daily telecom insights coming to ' + e);
+  document.getElementById('sidebarEmail').value = '';
+}
+
+// ── Mobile menu ───────────────────────────────────────────
+function toggleMenu() {
+  document.getElementById('mobileNav').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+
+// ── Boot ──────────────────────────────────────────────────
+setBadge();
+buildTOC();
+loadNavDropdowns();
+
+// Sync stat date with eyebrow date
+const dateEl = document.getElementById('articleDate');
+if (dateEl) {
+  const d = dateEl.textContent.replace('Published · ','');
+  document.getElementById('statDate').textContent = d;
+  document.getElementById('bylineDate').textContent = d;
+}
+</script>
+</body>
+</html>
