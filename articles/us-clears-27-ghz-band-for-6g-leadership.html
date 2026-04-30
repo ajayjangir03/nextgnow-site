@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>US Clears 2.7 GHz Band for 6G Leadership — NextGNow</title>
+<title>U.S. Clears 2.7 GHz Band for 6G Leadership — NextGNow</title>
 <meta name="description" content="NextGNow telecom article">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -307,7 +307,7 @@ footer{border-top:1px solid var(--border);padding:28px 0}
     <span>›</span>
     <a id="breadcrumbLink" onclick="location.href='/'">Articles</a>
     <span>›</span>
-    <span id="breadcrumbCat" style="color:var(--txt2)">Interview Prep</span>
+    <span id="breadcrumbCat" style="color:var(--txt2)">Protocol Deep Dive</span>
   </div>
 
   <div class="article-layout">
@@ -315,17 +315,17 @@ footer{border-top:1px solid var(--border);padding:28px 0}
     <div class="article-main">
       <div class="article-header">
         <div class="article-eyebrow">
-          <span class="badge badge-interview" id="articleBadge">Interview Prep</span>
-          <span class="live-dot" id="articleDate">Published · Apr 25, 2026</span>
+          <span class="badge badge-proto" id="articleBadge">Protocol Deep Dive</span>
+          <span class="live-dot" id="articleDate">Published · Apr 30, 2026</span>
         </div>
-        <h1 class="article-title" id="articleH1">US Clears 2.7 GHz Band for 6G Leadership</h1>
-        <p class="article-subtitle" id="articleSubtitle">Why is this topic important for telecom interviews? The NTIA's approval to repurpose the 2.7 GHz band represents a strategic inflection point in American…</p>
+        <h1 class="article-title" id="articleH1">U.S. Clears 2.7 GHz Band for 6G Leadership</h1>
+        <p class="article-subtitle" id="articleSubtitle">The 2.7 GHz band 2700-2980 MHz represents a critical mid-band spectrum allocation for 6G deployment, bridging the gap between capacity and coverage. This…</p>
         <div class="article-byline">
           <div class="author-info">
             <div class="author-avatar">NG</div>
             <div>
               <div class="author-name">NextGNow Editorial</div>
-              <div class="author-role"><span id="authorRole">Interview Prep</span> · <span id="bylineDate">Apr 25, 2026</span> · <span id="bylineRead">15 min</span> read</div>
+              <div class="author-role"><span id="authorRole">Protocol Deep Dive</span> · <span id="bylineDate">Apr 30, 2026</span> · <span id="bylineRead">12 min</span> read</div>
             </div>
           </div>
           <div class="share-row">
@@ -341,265 +341,455 @@ footer{border-top:1px solid var(--border);padding:28px 0}
 
       <!-- Article body — pipeline injects here -->
       <div class="article-body" id="article-content">
-<p class="ab-p"># US Clears 2.7 GHz Band for 6G Leadership: Interview Preparation Guide</p>
+<p class="ab-p"># U.S. Clears 2.7 GHz Band for 6G Leadership</p>
 
 <h2 class="ab-h2">Quick Summary</h2>
 <ul class="ab-ul">
-<li>NTIA approves repurposing 2.7 GHz spectrum band for commercial wireless services to support 6G development and American technological leadership</li>
-<li>This mid-band spectrum allocation addresses critical capacity needs bridging coverage and capacity for next-generation networks</li>
-<li>Decision positions US competitively against China and other nations in the global 6G standardization and deployment race</li>
+<li>NTIA approves federal spectrum relocation from 2700-2980 MHz to enable commercial 6G operations with full power transmission</li>
+<li>3GPP begins standardization work on n104 band (2.7 GHz) for IMT-2030/6G in Release 21, targeting sub-7 GHz massive MIMO and AI-native air interface</li>
+<li>New spectrum sharing protocols enable coexistence between federal incumbents and commercial networks through dynamic frequency coordination procedures</li>
 </ul>
 
 <h2 class="ab-h2">Introduction</h2>
-<p class="ab-p">Why is this topic important for telecom interviews?</p>
 
-<p class="ab-p">The NTIA's approval to repurpose the 2.7 GHz band represents a strategic inflection point in American telecommunications policy and technical infrastructure development. For telecom professionals, this topic is interview-critical because it demonstrates understanding of spectrum management, regulatory processes, next-generation technology roadmaps, and geopolitical considerations in wireless evolution.</p>
+<p class="ab-p">The 2.7 GHz band (2700-2980 MHz) represents a critical mid-band spectrum allocation for 6G deployment, bridging the gap between capacity and coverage. This frequency range falls within 3GPP's emerging framework for IMT-2030 systems, requiring new radio access technologies and spectrum coordination protocols. The NTIA approval initiates a complex technical migration involving spectrum sharing mechanisms, enhanced interference management protocols, and next-generation radio interface designs that will be standardized in 3GPP Release 21 and beyond. Unlike traditional spectrum clearances, this allocation introduces dynamic coexistence frameworks where federal and commercial systems share spectrum through real-time coordination protocols—a paradigm shift that necessitates new protocol layers and signaling procedures not present in current 5G specifications.</p>
 
-<p class="ab-p">Interviewers assess candidates on their grasp of spectrum economics, technical suitability of different frequency bands, international competitive dynamics, and the architectural implications for network planning. This decision affects equipment manufacturers, service providers, network planners, regulatory specialists, and technical architects across the industry. Demonstrating knowledge of this topic shows awareness of strategic industry direction, policy frameworks, and the technical-business nexus that drives telecommunications evolution. Whether interviewing for infrastructure, policy, engineering, or strategic roles, understanding spectrum repurposing decisions and their implications for 6G showcases comprehensive industry knowledge beyond purely technical specifications.</p>
+<h2 class="ab-h2">Protocol Overview</h2>
 
-<h2 class="ab-h2">Concept Explained Simply</h2>
+<ul class="ab-ul">
+<li><strong>Standard:</strong> 3GPP TS 38.104 (NR Base Station Radio Transmission), TS 38.300 (NR Overall Description), Future TR 38.8xx (6G Study Items)</li>
+<li><strong>Layer:</strong> Physical Layer (Layer 1) and MAC Layer (Layer 2) with new Spectrum Access System (SAS) coordination at control plane</li>
+<li><strong>Interfaces:</strong> NR-Uu (air interface), NG (Next Generation core interface), new SAS-gNB interface for dynamic spectrum coordination</li>
+<li><strong>Purpose:</strong> Define radio characteristics, channel arrangements, and coexistence protocols for 2.7 GHz band (n104) supporting 100 MHz+ channel bandwidths for 6G-Advanced services with dynamic spectrum sharing</li>
+</ul>
 
-<p class="ab-p"><strong>Simple Explanation:</strong></p>
+<h2 class="ab-h2">Architecture / Nodes Involved</h2>
 
-<p class="ab-p">Imagine the wireless spectrum as a highway system. The 2.7 GHz band is like building a new major highway that's perfectly positioned—not too close to downtown (low frequencies with great coverage but limited capacity) and not too far out in the suburbs (high frequencies with huge capacity but poor coverage). The US government has decided to open this "highway" to commercial wireless companies so they can start building the next generation of mobile networks called 6G.</p>
+<p class="ab-p">The 2.7 GHz deployment architecture introduces several novel components beyond traditional 5G infrastructure:</p>
 
-<p class="ab-p">Think of 6G as the successor to today's 5G networks, expected to be 100 times faster with near-zero delay. To make this work, wireless companies need more "space" (spectrum) to send signals. The 2.7 GHz band had been used by government agencies, but now it's being repurposed—like converting a military road into a public highway—so commercial companies can use it for advanced wireless services.</p>
+<p class="ab-p"><strong>Next-Generation NodeB (ng-gNB)</strong>: Evolution beyond 5G gNB with AI-native beamforming, capable of real-time spectrum sensing and adaptive transmission power control. The ng-gNB implements new spectrum coordination protocols to interface with federal Spectrum Access Systems.</p>
 
-<p class="ab-p"><strong>Technical Depth:</strong></p>
+<p class="ab-p"><strong>Spectrum Access System-Next (SAS-N)</strong>: Enhanced version of CBRS SAS architecture, managing interference protection zones for federal incumbents while maximizing commercial spectrum availability. Operates at sub-second timescales for dynamic frequency assignment.</p>
 
-<p class="ab-p">The 2.7 GHz band (specifically 2690-2900 MHz) represents approximately 210 MHz of contiguous mid-band spectrum with optimal propagation characteristics for balancing coverage and capacity. This spectrum sits within the critical "sweet spot" between low-band coverage layers (sub-1 GHz) and high-band capacity layers (mmWave above 24 GHz).</p>
+<p class="ab-p"><strong>Federal Incumbent Protection Service (FIPS)</strong>: New network function providing real-time federal system location and operational parameter information to SAS-N for interference calculation and exclusion zone management.</p>
 
-<p class="ab-p">From a radio physics perspective, the 2.7 GHz frequency offers several technical advantages: reasonable diffraction around obstacles compared to higher frequencies, manageable path loss enabling cell radii of 500m-2km in urban environments, and sufficient bandwidth to support multi-gigabit throughput with advanced MIMO configurations. The wavelength of approximately 11 cm allows practical massive MIMO antenna arrays while maintaining reasonable form factors.</p>
+<p class="ab-p"><strong>6G Core (6GC)</strong>: Evolution of 5GC with enhanced Network Slicing capabilities, supporting deterministic latency for spectrum coordination signaling. Includes new Service-Based Architecture (SBA) functions for spectrum policy enforcement.</p>
 
-<p class="ab-p">The NTIA's approval involves complex frequency coordination, incumbent relocation processes, and interference mitigation strategies. Government users in this band include Department of Defense satellite systems, airborne telemetry, and ground-based radars. The repurposing process requires either relocating these services to alternative spectrum, implementing sharing mechanisms with dynamic spectrum access protocols, or geographic exclusion zones around sensitive installations.</p>
+<p class="ab-p"><strong>Distributed Unit (DU) and Centralized Unit (CU)</strong>: Split architecture with AI/ML processing units for predictive spectrum allocation and interference mitigation. CU manages spectrum coordination signaling while DU handles real-time PHY adaptations.</p>
 
-<p class="ab-p">For 6G specifically, this spectrum enables testing and deployment of key technologies including AI-native network architectures, integrated sensing and communication (ISAC), extremely low-latency services below 1 millisecond, and dense connectivity supporting up to 10 million devices per square kilometer. The timing aligns with 6G standardization expected around 2028-2030 in 3GPP Release 21 and beyond.</p>
+<p class="ab-p">The architecture implements a three-tier coordination model: macro-level (SAS-N to ng-gNB), meso-level (ng-gNB to ng-gNB coordination), and micro-level (beamformed transmission adaptation based on real-time sensing).</p>
 
-<h2 class="ab-h2">Architecture / Components</h2>
+<h2 class="ab-h2">Message Structure</h2>
 
-<p class="ab-p"><strong>Spectrum Management Architecture:</strong></p>
+<h3 class="ab-h3">Spectrum Coordination Messages</h3>
+
+<p class="ab-p"><strong>SPECTRUM ACCESS REQUEST (SAR)</strong></p>
+<p class="ab-p"><code></code>`</p>
+<p class="ab-p">Message Type: SAR</p>
+<p class="ab-p">IEs:</p>
+<ul class="ab-ul">
+<li>gNB ID (48 bits): Global unique identifier</li>
+<li>Requested Frequency Range (32 bits): Start/stop frequencies</li>
+<li>Maximum EIRP (16 bits): Desired transmission power</li>
+<li>Coverage Area Polygon (variable): Geographic coordinates</li>
+<li>Time Window (64 bits): Start time, duration</li>
+<li>Priority Level (8 bits): Service priority indicator</li>
+<li>Incumbent Protection Requirements (variable): Federal system parameters</li>
+</ul>
+<p class="ab-p"><code></code>`</p>
+
+<p class="ab-p"><strong>SPECTRUM ACCESS GRANT (SAG)</strong></p>
+<p class="ab-p"><code></code>`</p>
+<p class="ab-p">Message Type: SAG</p>
+<p class="ab-p">IEs:</p>
+<ul class="ab-ul">
+<li>Grant ID (64 bits): Unique authorization identifier</li>
+<li>Authorized Frequency Range (32 bits): Allocated spectrum</li>
+<li>Authorized EIRP (16 bits): Maximum permitted power</li>
+<li>Time Validity (64 bits): Grant duration and expiration</li>
+<li>Restriction Zones (variable): Geographic exclusion areas</li>
+<li>Coordination Parameters (variable): Interference thresholds</li>
+<li>Sensing Requirements (variable): Mandatory monitoring parameters</li>
+</ul>
+<p class="ab-p"><code></code>`</p>
+
+<p class="ab-p"><strong>DYNAMIC SPECTRUM REPORT (DSR)</strong></p>
+<p class="ab-p"><code></code>`</p>
+<p class="ab-p">Message Type: DSR</p>
+<p class="ab-p">IEs:</p>
+<ul class="ab-ul">
+<li>gNB ID (48 bits)</li>
+<li>Measurement Timestamp (64 bits)</li>
+<li>Spectrum Occupancy Matrix (variable): Per-PRB RSSI measurements</li>
+<li>Detected Incumbent Signals (variable): Federal system signatures</li>
+<li>Interference Temperature (variable): Per-channel measurements</li>
+<li>UE Distribution (variable): Active user density map</li>
+</ul>
+<p class="ab-p"><code></code>`</p>
+
+<h3 class="ab-h3">Air Interface Control Messages (6G-specific)</h3>
+
+<p class="ab-p"><strong>FREQUENCY ASSIGNMENT COMMAND (FAC)</strong></p>
+<ul class="ab-ul">
+<li>Sent from ng-gNB to UE during connection reconfiguration</li>
+<li>Contains new carrier frequency, bandwidth, and validity timer</li>
+<li>Includes spectrum grant expiration for UE awareness</li>
+</ul>
+
+<p class="ab-p"><strong>INCUMBENT PROTECTION NOTIFICATION (IPN)</strong></p>
+<ul class="ab-ul">
+<li>Emergency message forcing immediate frequency vacation</li>
+<li>Requires UE to cease transmission within 50ms</li>
+<li>Triggers make-before-break handover to alternate frequency</li>
+</ul>
+
+<h2 class="ab-h2">Step-by-Step Flow</h2>
+
+<h3 class="ab-h3">Initial Spectrum Acquisition for 6G Network Deployment</h3>
 
 <ol class="ab-ol">
-<li><strong>NTIA (National Telecommunications and Information Administration)</strong></li>
+<li><strong>Network Planning Phase</strong>: Operator submits coverage requirements to SAS-N including desired geographic areas, capacity targets, and service types for 2.7 GHz band deployment.</li>
 </ol>
-<p class="ab-p">   - Federal spectrum management authority</p>
-<p class="ab-p">   - Coordinates government spectrum use and commercial allocation decisions</p>
-<p class="ab-p">   - Manages relocation planning and interference analysis</p>
-<p class="ab-p">   - Works with FCC on spectrum sharing frameworks</p>
 
 <ol class="ab-ol">
-<li><strong>FCC (Federal Communications Commission)</strong></li>
+<li><strong>Federal Coordination</strong>: SAS-N queries FIPS database for federal incumbent locations, operational frequencies, and protection requirements within requested coverage area.</li>
 </ol>
-<p class="ab-p">   - Commercial spectrum licensing authority</p>
-<p class="ab-p">   - Designs auction mechanisms and service rules</p>
-<p class="ab-p">   - Establishes technical parameters (power limits, emission masks, guard bands)</p>
-<p class="ab-p">   - Enforces compliance and coordinates international spectrum policies</p>
 
 <ol class="ab-ol">
-<li><strong>Incumbent Government Users</strong></li>
+<li><strong>Interference Analysis</strong>: SAS-N performs Monte Carlo simulations calculating aggregate interference from proposed ng-gNB locations to federal receivers, considering terrain, propagation models, and atmospheric conditions.</li>
 </ol>
-<p class="ab-p">   - Department of Defense radar and satellite systems</p>
-<p class="ab-p">   - Aeronautical telemetry operations</p>
-<p class="ab-p">   - Federal satellite downlinks</p>
-<p class="ab-p">   - Require relocation or sharing coordination</p>
-
-<p class="ab-p"><strong>6G Network Architecture Components:</strong></p>
 
 <ol class="ab-ol">
-<li><strong>Radio Access Network (RAN) Elements</strong></li>
+<li><strong>Spectrum Grant Issuance</strong>: If interference thresholds are met, SAS-N issues SPECTRUM ACCESS GRANT with authorized frequency ranges (potentially non-contiguous), power levels, and operational constraints.</li>
 </ol>
-<p class="ab-p">   - Next-generation base stations (evolved gNB to potential "iNB" intelligent NodeB)</p>
-<p class="ab-p">   - Distributed Unit (DU), Centralized Unit (CU), and Radio Unit (RU) disaggregation</p>
-<p class="ab-p">   - Massive MIMO with 256-1024 antenna elements</p>
-<p class="ab-p">   - Reconfigurable Intelligent Surfaces (RIS) for signal propagation control</p>
 
 <ol class="ab-ol">
-<li><strong>Core Network Evolution</strong></li>
+<li><strong>ng-gNB Configuration</strong>: Operator configures ng-gNB with granted parameters, including carrier frequency (e.g., 2750 MHz), channel bandwidth (100 MHz), and maximum EIRP (typically 68 dBm/MHz for macro cells).</li>
 </ol>
-<p class="ab-p">   - Cloud-native, service-based architecture extending 5G SA core</p>
-<p class="ab-p">   - AI/ML integrated network functions for autonomous operations</p>
-<p class="ab-p">   - Distributed edge computing with sub-1ms latency</p>
-<p class="ab-p">   - Network slicing with deterministic QoS guarantees</p>
+
+<h3 class="ab-h3">Dynamic UE Connection on 2.7 GHz Carrier</h3>
 
 <ol class="ab-ol">
-<li><strong>Spectrum Coordination Systems</strong></li>
+<li><strong>Initial Access</strong>: UE performs cell search on n104 band, detecting Primary Synchronization Signal (PSS) and Secondary Synchronization Signal (SSS) on granted frequency.</li>
 </ol>
-<p class="ab-p">   - Dynamic Spectrum Sharing (DSS) evolved for multi-generational coexistence</p>
-<p class="ab-p">   - Spectrum Access Systems (SAS) for coordinated sharing with incumbents</p>
-<p class="ab-p">   - Cognitive radio capabilities with real-time sensing</p>
-<p class="ab-p">   - Geolocation databases for exclusion zone enforcement</p>
 
 <ol class="ab-ol">
-<li><strong>AI-Native Infrastructure</strong></li>
+<li><strong>System Information Acquisition</strong>: UE decodes Master Information Block (MIB) and System Information Blocks (SIB), learning spectrum grant expiration time and incumbent protection requirements.</li>
 </ol>
-<p class="ab-p">   - Distributed intelligence across RAN and core</p>
-<p class="ab-p">   - Real-time radio resource management</p>
-<p class="ab-p">   - Predictive maintenance and self-optimization</p>
-<p class="ab-p">   - Intent-based networking with closed-loop automation</p>
 
 <ol class="ab-ol">
-<li><strong>Sensing and Positioning Components</strong></li>
+<li><strong>Random Access Procedure</strong>: UE transmits PRACH preamble, receives Random Access Response (RAR), and completes RRC connection establishment.</li>
 </ol>
-<p class="ab-p">   - Integrated communication and sensing (ISAC) capabilities</p>
-<p class="ab-p">   - Sub-meter positioning accuracy leveraging carrier phase measurements</p>
-<p class="ab-p">   - Environmental sensing for smart city applications</p>
-<p class="ab-p">   - Multi-static radar configurations using network infrastructure</p>
 
-<h2 class="ab-h2">How It Works</h2>
-
-<p class="ab-p"><strong>Step-by-Step Spectrum Repurposing Process:</strong></p>
-
-<p class="ab-p"><strong>Phase 1: Analysis and Planning (Months 1-12)</strong></p>
 <ol class="ab-ol">
-<li>NTIA conducts comprehensive spectrum occupancy studies identifying current government users in 2.7 GHz band</li>
-<li>Technical working groups analyze interference scenarios between proposed commercial services and incumbent operations</li>
-<li>Economic analysis determines relocation costs versus spectrum value for commercial use</li>
-<li>Feasibility studies examine alternative spectrum for incumbent users or sharing frameworks</li>
-<li>International coordination begins with ITU and neighboring countries for border area considerations</li>
+<li><strong>Capability Exchange</strong>: UE reports 6G capabilities including support for rapid spectrum switching, beamformed MIMO, and incumbent detection capabilities.</li>
 </ol>
 
-<p class="ab-p"><strong>Phase 2: Incumbent Relocation Strategy (Months 12-36)</strong></p>
 <ol class="ab-ol">
-<li>NTIA identifies alternative spectrum for government users requiring relocation (e.g., moving satellite downlinks to C-band extensions or Ku-band)</li>
-<li>Engineering studies design new systems with equivalent or improved capabilities</li>
-<li>Budget allocation through Congressional appropriations for equipment replacement and system upgrades</li>
-<li>Phased transition timeline developed to maintain operational continuity</li>
-<li>Test and validation of new systems before decommissioning 2.7 GHz operations</li>
+<li><strong>Data Transmission</strong>: Uplink and downlink data flows on 2.7 GHz carrier with continuous spectrum monitoring by both ng-gNB and UE.</li>
 </ol>
 
-<p class="ab-p"><strong>Phase 3: Regulatory Framework Development (Months 24-42)</strong></p>
+<h3 class="ab-h3">Dynamic Spectrum Reconfiguration Event</h3>
+
 <ol class="ab-ol">
-<li>FCC proposes service rules through Notice of Proposed Rulemaking (NPRM)</li>
-<li>Industry stakeholders submit comments on technical standards, licensing structure, and deployment timelines</li>
-<li>FCC establishes technical parameters: maximum EIRP levels (typically 68-75 dBm/MHz), out-of-band emission limits, antenna height restrictions</li>
-<li>Licensing framework decided: geographic area licenses (PAL), shared spectrum approaches, or hybrid models</li>
-<li>Coordination procedures defined for areas near government installations requiring protection</li>
+<li><strong>Federal System Activation</strong>: Federal incumbent begins operations within protection zone, detected by FIPS environmental sensors.</li>
 </ol>
 
-<p class="ab-p"><strong>Phase 4: Auction and Allocation (Months 42-54)</strong></p>
 <ol class="ab-ol">
-<li>FCC designs auction mechanism (simultaneous multiple round, incentive auction, or innovative formats)</li>
-<li>Qualified bidders (mobile operators, satellite providers, neutral host networks) deposit participation funds</li>
-<li>Spectrum blocks defined: potentially 50 MHz channels for nationwide flexibility</li>
-<li>Auction proceeds according to designed rules with price discovery across multiple rounds</li>
-<li>Winning bidders receive licenses with buildout requirements and performance milestones</li>
+<li><strong>Emergency Notification</strong>: FIPS sends INCUMBENT ALERT to SAS-N with federal system parameters (frequency, location, protection radius).</li>
 </ol>
 
-<p class="ab-p"><strong>Phase 5: 6G Technology Deployment (Months 54+)</strong></p>
-
-<p class="ab-p"><strong>Network Planning:</strong></p>
 <ol class="ab-ol">
-<li>Operators perform RF propagation modeling using 2.7 GHz characteristics (free space path loss: FSPL(dB) = 32.45 + 20log₁₀(f_MHz) + 20log₁₀(d_km))</li>
-<li>Site acquisition identifying optimal base station locations balancing coverage and capacity</li>
-<li>Backhaul/fronthaul planning for high-capacity transport (100+ Gbps per site)</li>
-<li>Massive MIMO antenna system engineering with 3D beamforming</li>
+<li><strong>Interference Assessment</strong>: SAS-N calculates which ng-gNBs must reduce power or change frequency to maintain incumbent protection criteria.</li>
 </ol>
 
-<p class="ab-p"><strong>Radio Implementation:</strong></p>
 <ol class="ab-ol">
-<li>Base stations transmit reference signals allowing user devices to measure channel quality</li>
-<li>Advanced MIMO techniques apply: multi-user MIMO (MU-MIMO) serving 16-32 simultaneous users per cell, beamforming with 128-256 elements creating narrow beams (5-10 degrees)</li>
-<li>AI-driven resource allocation algorithms predict traffic patterns and pre-allocate resources</li>
-<li>Dynamic spectrum sharing if coexisting with 5G: resource blocks assigned based on demand per technology</li>
+<li><strong>Grant Modification</strong>: SAS-N sends updated SPECTRUM ACCESS GRANT to affected ng-gNBs, reducing authorized EIRP or mandating frequency change within 200ms.</li>
 </ol>
 
-<p class="ab-p"><strong>Advanced 6G Features:</strong></p>
 <ol class="ab-ol">
-<li>Integrated sensing uses communication waveforms for radar functionality—base station transmits known signal pattern, analyzes reflections for object detection</li>
-<li>Terahertz aggregation: 2.7 GHz provides control plane and coverage while mmWave/THz bands deliver ultra-high capacity when available</li>
-<li>Predictive QoS: AI predicts application needs milliseconds ahead, pre-allocates resources before requested</li>
-<li>Digital twin networks: virtual network replica enables testing configuration changes before deployment</li>
+<li><strong>Make-Before-Break Handover</strong>: ng-gNB signals UEs with FREQUENCY ASSIGNMENT COMMAND, moving active connections to alternate 2.7 GHz channels or different bands (e.g., n77, n79) before ceasing transmission on restricted frequency.</li>
 </ol>
 
-<p class="ab-p"><strong>Interference Management:</strong></p>
 <ol class="ab-ol">
-<li>Exclusion zones around protected government facilities maintained through geolocation enforcement in network equipment</li>
-<li>Dynamic power control reduces transmission power when devices approach restricted areas</li>
-<li>Coordinated scheduling prevents simultaneous transmission that would aggregate interference</li>
-<li>Advanced filters in government receivers improve rejection of adjacent-band commercial signals</li>
+<li><strong>Confirmation and Monitoring</strong>: ng-gNB sends COMPLIANCE ACKNOWLEDGMENT to SAS-N, then transmits periodic DYNAMIC SPECTRUM REPORTs proving continued adherence to modified grant.</li>
 </ol>
 
-<h2 class="ab-h2">Interview Questions — Beginner Level</h2>
+<h2 class="ab-h2">Key Parameters & Timers</h2>
 
-<p class="ab-p"><strong>Q1: What is the 2.7 GHz spectrum band and why is it considered important for 6G?</strong></p>
+<h3 class="ab-h3">Spectrum Coordination Parameters</h3>
 
-<p class="ab-p"><strong>A:</strong> The 2.7 GHz spectrum band (2690-2900 MHz) is a range of radio frequencies that was previously used primarily by government agencies but is now being made available for commercial wireless services to support 6G development. It's considered important for several reasons:</p>
+<p class="ab-p"><strong>MAX_EIRP_n104</strong>: Maximum Equivalent Isotropic Radiated Power for 2.7 GHz band</p>
+<ul class="ab-ul">
+<li>Macro cells: 68 dBm/MHz (conditional on distance from federal sites)</li>
+<li>Small cells: 47 dBm/MHz</li>
+<li>Indoor: 30 dBm/MHz</li>
+<li>Dynamically adjusted by SAS-N based on incumbent proximity</li>
+</ul>
 
-<p class="ab-p">First, it's "mid-band" spectrum, which means it offers a balanced combination of coverage and capacity. Low-band spectrum (like 600 MHz) travels far and penetrates buildings well but can't carry as much data. High-band spectrum (like 28 GHz mmWave) carries enormous amounts of data but doesn't travel far or penetrate obstacles. The 2.7 GHz band sits in the middle—it can cover reasonable distances (cell radii of 500 meters to 2 kilometers in urban areas) while still supporting multi-gigabit speeds.</p>
+<p class="ab-p"><strong>PROTECTION_THRESHOLD</strong>: Interference limit at federal receivers</p>
+<ul class="ab-ul">
+<li>Critical systems: -129 dBm (aggregate from all commercial sources)</li>
+<li>Secondary systems: -119 dBm</li>
+<li>Calculated using International Telecommunication Union (ITU) propagation models</li>
+</ul>
 
-<p class="ab-p">Second, with approximately 210 MHz of contiguous bandwidth available, this allocation provides sufficient spectrum for deploying advanced technologies like massive MIMO with hundreds of simultaneous data streams and ultra-low latency services that 6G promises.</p>
+<p class="ab-p"><strong>COORDINATION_ZONE_RADIUS</strong>: Geographic area requiring enhanced protection</p>
+<ul class="ab-ul">
+<li>Tier 1 (exclusion): 0-5 km from federal site, no commercial operation</li>
+<li>Tier 2 (coordination): 5-20 km, reduced power operation</li>
+<li>Tier 3 (notification): 20-50 km, monitoring requirements</li>
+</ul>
 
-<p class="ab-p">Third, the timing is strategic. As the telecommunications industry begins researching and standardizing 6G technologies (expected to launch commercially around 2030), having this spectrum available now allows American companies to test equipment, optimize networks, and establish leadership in 6G before widespread global deployment. This puts the US in a competitive position against other nations, particularly China, which has already allocated substantial mid-band spectrum for next-generation wireless.</p>
+<h3 class="ab-h3">Timers for Dynamic Spectrum Management</h3>
 
-<p class="ab-p"><strong>Q2: How does spectrum repurposing work when government agencies are currently using it?</strong></p>
+<p class="ab-p"><strong>T_GRANT_VALIDITY</strong>: Spectrum access grant duration</p>
+<ul class="ab-ul">
+<li>Default: 86400 seconds (24 hours)</li>
+<li>Renewable: Automatic renewal if no incumbent conflicts</li>
+<li>Minimum: 3600 seconds for dynamic allocation scenarios</li>
+</ul>
 
-<p class="ab-p"><strong>A:</strong> Spectrum repurposing is a complex process that carefully transitions radio frequencies from one use (typically government operations) to another use (commercial wireless services). Here's how it works:</p>
+<p class="ab-p"><strong>T_VACATION</strong>: Time allowed for frequency vacation after incumbent detection</p>
+<ul class="ab-ul">
+<li>Critical priority: 50 milliseconds (emergency federal operations)</li>
+<li>Standard priority: 200 milliseconds (scheduled federal usage)</li>
+<li>Non-real-time: 2000 milliseconds (planned reconfigurations)</li>
+</ul>
 
-<p class="ab-p"><strong>Step 1 - Analysis:</strong> The NTIA first studies exactly how government agencies are using the 2.7 GHz band. They identify which agencies operate in this spectrum, what equipment they use, where it's located, and how critical those operations are to national security or government functions.</p>
+<p class="ab-p"><strong>T_REPORT_INTERVAL</strong>: Periodic spectrum reporting to SAS-N</p>
+<ul class="ab-ul">
+<li>Active transmission: 300 seconds</li>
+<li>High-traffic periods: 60 seconds</li>
+<li>Post-reconfiguration: 10 seconds for compliance verification</li>
+</ul>
 
-<p class="ab-p"><strong>Step 2 - Finding Alternatives:</strong> The government then identifies alternative solutions. This might mean moving government users to different spectrum bands that are less valuable for commercial use, upgrading their technology to work in different frequencies, or implementing sharing arrangements where commercial and government users can coexist in the same band using coordination mechanisms.</p>
+<p class="ab-p"><strong>T_SENSING_CYCLE</strong>: Incumbent detection measurement periodicity</p>
+<ul class="ab-ul">
+<li>ng-gNB continuous monitoring: 100 milliseconds</li>
+<li>UE-assisted sensing: 1000 milliseconds during idle periods</li>
+<li>Environmental sensors: 10 milliseconds for critical detection</li>
+</ul>
 
-<p class="ab-p"><strong>Step 3 - Funding Relocation:</strong> Congress typically appropriates funding to pay for relocating government users. This covers costs of new equipment, system redesign, testing, and deployment. For example, if military radars currently use 2.7 GHz, the government might purchase new radar systems operating at different frequencies with equivalent or better performance.</p>
+<h3 class="ab-h3">Air Interface Parameters (n104 Band)</h3>
 
-<p class="ab-p"><strong>Step 4 - Transition Period:</strong> The repurposing doesn't happen overnight. There's usually a phased transition period of several years where government users gradually move to new spectrum or new systems while commercial users begin limited operations. Critical government functions are maintained throughout this process.</p>
+<p class="ab-p"><strong>CHANNEL_BANDWIDTH_n104</strong>: Supported bandwidth options</p>
+<ul class="ab-ul">
+<li>100 MHz (primary configuration for 6G)</li>
+<li>200 MHz (carrier aggregation or contiguous allocation)</li>
+<li>400 MHz (future 6G-Advanced target)</li>
+<li>Subcarrier spacing: 30 kHz (FR1 normal), 60 kHz (extended CP for high mobility)</li>
+</ul>
 
-<p class="ab-p"><strong>Step 5 - Commercial Licensing:</strong> Once the spectrum is cleared (or sharing mechanisms are established), the FCC designs licensing rules and typically conducts an auction where wireless carriers bid for rights to use the spectrum. Winners pay substantial sums (often billions of dollars) for these licenses, and that revenue goes to the US Treasury.</p>
+<p class="ab-p"><strong>MAX_UL_POWER</strong>: UE maximum transmission power</p>
+<ul class="ab-ul">
+<li>Power Class 1: 23 dBm (smartphones)</li>
+<li>Power Class 2: 26 dBm (high-power UE)</li>
+<li>Dynamic power control based on SAS-N restrictions and path loss</li>
+</ul>
 
-<p class="ab-p"><strong>Q3: What are the key differences between 5G and 6G that make new spectrum allocation necessary?</strong></p>
+<p class="ab-p"><strong>FREQUENCY_RANGE_n104</strong>: Operating band definition</p>
+<ul class="ab-ul">
+<li>Uplink: 2700-2840 MHz (140 MHz)</li>
+<li>Downlink: 2840-2980 MHz (140 MHz)</li>
+<li>TDD alternative: Full 2700-2980 MHz (280 MHz) with dynamic slot allocation</li>
+</ul>
 
-<p class="ab-p"><strong>A:</strong> While 6G standards are still being developed, several key differences from 5G are emerging that require additional spectrum like the 2.7 GHz band:</p>
+<h2 class="ab-h2">Protocol State Machine (if applicable)</h2>
 
-<p class="ab-p"><strong>Performance Requirements:</strong> 6G targets peak data rates of 1 Tbps (terabit per second), which is 100 times faster than 5G's 10 Gbps target. It aims for latency below 1 millisecond (5G targets 1-4 ms) and connection density of 10 million devices per square kilometer (10x more than 5G's 1 million). These dramatic improvements require more spectrum bandwidth to carry the additional data.</p>
+<h3 class="ab-h3">SAS-N Grant State Machine</h3>
 
-<p class="ab-p"><strong>New Use Cases:</strong> 6G is being designed for applications that don't exist yet or aren't feasible with 5G: holographic communications requiring 1+ Tbps, true digital twins with real-time synchronization, pervasive AI integration throughout the network, and multi-sensory extended reality (XR) experiences. These applications consume vastly more spectrum resources than today's video streaming and web browsing.</p>
+<p class="ab-p"><strong>IDLE State</strong></p>
+<ul class="ab-ul">
+<li>Initial state before spectrum request</li>
+<li>Transition: Upon receipt of SPECTRUM ACCESS REQUEST → EVALUATION</li>
+</ul>
 
-<p class="ab-p"><strong>Integrated Sensing:</strong> Unlike 5G which focuses purely on communication, 6G incorporates sensing capabilities—essentially using the same radio signals for both data transmission and environmental sensing (like radar). This "Integrated Sensing and Communication" (ISAC) requires additional spectrum resources to simultaneously support both functions.</p>
+<p class="ab-p"><strong>EVALUATION State</strong></p>
+<ul class="ab-ul">
+<li>SAS-N performing interference analysis and federal coordination</li>
+<li>Transition: </li>
+</ul>
+<p class="ab-p">  - Approval → GRANTED</p>
+<p class="ab-p">  - Denial → REJECTED</p>
+<p class="ab-p">  - Insufficient data → PENDING (request additional information)</p>
 
-<p class="ab-p"><strong>AI-Native Architecture:</strong> 6G networks will have artificial intelligence integrated at every layer—from radio resource management to traffic prediction to self-optimization. These AI functions generate additional signaling overhead and require spectrum for control channels and coordination.</p>
+<p class="ab-p"><strong>GRANTED State</strong></p>
+<ul class="ab-ul">
+<li>Active spectrum authorization with valid parameters</li>
+<li>Substates:</li>
+</ul>
+<p class="ab-p">  - NORMAL_OPERATION: Full grant parameters active</p>
+<p class="ab-p">  - MONITORING: Enhanced reporting required due to nearby federal activity</p>
+<ul class="ab-ul">
+<li>Transition:</li>
+</ul>
+<p class="ab-p">  - T_GRANT_VALIDITY expiration → RENEWAL_PENDING</p>
+<p class="ab-p">  - Federal incumbent detection → SUSPENDED</p>
+<p class="ab-p">  - Operator release → IDLE</p>
 
-<p class="ab-p"><strong>Spectrum Efficiency Limits:</strong> While each generation improves spectral efficiency (bits per second per hertz), physics imposes limits. 5G approaches theoretical Shannon limits in many scenarios. To achieve 100x performance improvement, 6G needs substantially more spectrum since efficiency gains alone can't bridge the gap.</p>
+<p class="ab-p"><strong>SUSPENDED State</strong></p>
+<ul class="ab-ul">
+<li>Temporary restriction due to incumbent protection requirements</li>
+<li>ng-gNB must cease transmission or reduce power</li>
+<li>Transition:</li>
+</ul>
+<p class="ab-p">  - Incumbent cessation → GRANTED (automatic restoration)</p>
+<p class="ab-p">  - Timeout (federal operation extended) → REVOKED</p>
 
-<p class="ab-p">Allocating the 2.7 GHz band provides the mid-band capacity necessary to support these advanced capabilities, complementing low-band coverage spectrum and high-band capacity spectrum in a multi-layered 6G network architecture.</p>
+<p class="ab-p"><strong>RENEWAL_PENDING State</strong></p>
+<ul class="ab-ul">
+<li>Automatic grant renewal evaluation before expiration</li>
+<li>Transition:</li>
+</ul>
+<p class="ab-p">  - Approval → GRANTED (new validity period)</p>
+<p class="ab-p">  - Changed conditions → EVALUATION (new analysis required)</p>
 
-<p class="ab-p"><strong>Q4: Why is this spectrum allocation considered important for US technological leadership?</strong></p>
+<p class="ab-p"><strong>REVOKED State</strong></p>
+<ul class="ab-ul">
+<li>Grant terminated due to compliance violation or persistent incumbent conflict</li>
+<li>Requires new SPECTRUM ACCESS REQUEST to obtain authorization</li>
+<li>Transition: After resolution period → IDLE</li>
+</ul>
 
-<p class="ab-p"><strong>A:</strong> The 2.7 GHz spectrum allocation is strategically important for US technological leadership for several interconnected reasons:</p>
+<h3 class="ab-h3">ng-gNB Operational State Machine</h3>
 
-<p class="ab-p"><strong>First-Mover Advantage:</strong> Telecommunications standards are largely set by companies and countries that lead in early development and deployment. By making 2.7 GHz spectrum available now—several years before 6G commercial launch—the US enables American companies (equipment manufacturers, chipset makers, network operators) to begin testing and developing 6G technologies earlier. This early experimentation influences international standards at the 3GPP (which develops global mobile standards), giving US technology approaches greater representation in final specifications.</p>
+<p class="ab-p"><strong>SPECTRUM_ACQUISITION State</strong></p>
+<ul class="ab-ul">
+<li>ng-gNB requesting frequency assignment from SAS-N</li>
+<li>Awaiting SPECTRUM ACCESS GRANT</li>
+<li>Cannot serve UEs on 2.7 GHz until granted</li>
+</ul>
 
-<p class="ab-p"><strong>Industry Ecosystem Development:</strong> Spectrum availability attracts investment and talent. When the US signals commitment to 6G through spectrum allocation, it encourages venture capital investment in 6G startups, incentivizes R&D spending by established companies, and attracts top engineering talent. This builds a robust ecosystem of innovation that compounds over time.</p>
+<p class="ab-p"><strong>NORMAL_OPERATION State</strong></p>
+<ul class="ab-ul">
+<li>Active transmission on authorized frequencies</li>
+<li>Continuous spectrum sensing and periodic reporting</li>
+<li>UE connections active with full throughput</li>
+</ul>
 
-<p class="ab-p"><strong>Competitive Positioning:</strong> China has made 6G development a national strategic priority, allocating significant government funding and spectrum resources. They aim to lead 6G standards as they were followers in 4G and co-leaders in 5G. By allocating the 2.7 GHz band, the US demonstrates comparable commitment and ensures American companies can compete on equal footing rather than playing catch-up.</p>
+<p class="ab-p"><strong>POWER_REDUCTION State</strong></p>
+<ul class="ab-ul">
+<li>Reduced EIRP due to incumbent proximity</li>
+<li>May require UE power reduction or cell edge throughput limitation</li>
+<li>Maintains connectivity but reduced coverage</li>
+</ul>
 
-<p class="ab-p"><strong>Economic Implications:</strong> Leadership in wireless technology translates to economic advantages. The country whose companies dominate equipment sales (like Ericsson, Nokia, Huawei, Samsung) captures substantial export revenue. Standards leadership also means domestic companies own key intellectual property and collect patent licensing fees globally. Estimates suggest 6G could enable $7-10 trillion in economic value by 2040.</p>
+<p class="ab-p"><strong>FREQUENCY_TRANSITION State</strong></p>
+<ul class="ab-ul">
+<li>Active handover of UEs to alternate frequencies</li>
+<li>Triggered by INCUMBENT PROTECTION NOTIFICATION</li>
+<li>Make-before-break procedures to minimize service disruption</li>
+</ul>
 
-<p class="ab-p"><strong>National Security:</strong> Telecommunications infrastructure is critical infrastructure. Depending on foreign equipment suppliers (particularly from geopolitical competitors) creates security vulnerabilities. By fostering domestic 6G leadership, the US ensures its networks can be built with trusted equipment and that sensitive communications remain secure.</p>
+<p class="ab-p"><strong>SILENT_MODE State</strong></p>
+<ul class="ab-ul">
+<li>Complete cessation of transmission on restricted frequency</li>
+<li>Triggered when T_VACATION expires without successful UE migration</li>
+<li>Emergency fallback to protect federal systems</li>
+</ul>
 
-<p class="ab-p">The 2.7 GHz allocation is thus more than a technical decision—it's strategic industrial policy designed to position the US advantageously in what many consider the most important technology race of the 2030s.</p>
+<h2 class="ab-h2">Comparison: Before vs After</h2>
 
-<h2 class="ab-h2">Interview Questions — Intermediate Level</h2>
+<div class="ab-table-wrap"><table class="ab-table">
+<thead><tr><th>Aspect</th><th>5G NR (Current)</th><th>6G n104 Band (2026+)</th></tr></thead>
+<tbody>
+<tr><td>**Spectrum Access**</td><td>Static auction allocation, exclusive use</td><td>Dynamic spectrum sharing with federal incumbents via SAS-N</td></tr>
+<tr><td>**Channel Bandwidth**</td><td>Up to 100 MHz typical in mid-band</td><td>100-400 MHz contiguous in 2.7 GHz with aggregation</td></tr>
+<tr><td>**Power Control**</td><td>Fixed maximum based on regulatory limits</td><td>AI-driven adaptive power based on real-time incumbent protection</td></tr>
+<tr><td>**Coordination Latency**</td><td>Manual coordination, days to weeks</td><td>Automated sub-second spectrum reconfiguration</td></tr>
+<tr><td>**Interference Management**</td><td>Inter-operator coordination via OAM</td><td>Multi-tier (federal, operator, inter-cell) real-time coordination</td></tr>
+<tr><td>**UE Awareness**</td><td>Unaware of spectrum sharing constraints</td><td>Incumbent protection timers in SIB, cooperative sensing</td></tr>
+<tr><td>**Handover Triggers**</td><td>Signal quality, load balancing</td><td>Additional trigger: spectrum grant expiration or revocation</td></tr>
+<tr><td>**Beamforming**</td><td>Static or semi-static beam patterns</td><td>AI-native adaptive beamforming avoiding federal receiver directions</td></tr>
+<tr><td>**Sensing Capability**</td><td>Basic RRM measurements</td><td>Advanced incumbent signal detection with ML classification</td></tr>
+<tr><td>**Grant Duration**</td><td>Perpetual license (10-30 years)</td><td>Dynamic grants (hours to days) with automatic renewal</td></tr>
+<tr><td>**Compliance Reporting**</td><td>Annual regulatory filings</td><td>Real-time telemetry to SAS-N (60-300 second intervals)</td></tr>
+<tr><td>**Protection Zones**</td><td>Fixed geographic exclusions</td><td>Dynamic, time-varying exclusion zones based on federal operations</td></tr>
+</tbody></table></div>
 
-<p class="ab-p"><strong>Q3: Explain the technical advantages and challenges of using 2.7 GHz spectrum specifically for 6G deployment compared to other frequency bands.</strong></p>
+<h2 class="ab-h2">Real-World Deployment Considerations</h2>
 
-<p class="ab-p"><strong>A:</strong> The 2.7 GHz band offers specific technical characteristics that make it valuable for 6G, though it also presents unique challenges:</p>
+<h3 class="ab-h3">Spectrum Acquisition Strategy</h3>
 
-<p class="ab-p"><strong>Technical Advantages:</strong></p>
+<p class="ab-p">Operators must develop sophisticated spectrum portfolio management for 2.7 GHz deployment. Unlike traditional exclusive licenses, the dynamic sharing model requires:</p>
 
-<p class="ab-p"><strong>Propagation Balance:</strong> At 2.7 GHz, the free-space path loss follows FSPL = 32.45 + 20log₁₀(2700) + 20log₁₀(d_km) = 101.1 + 20log₁₀(d_km) dB. This is significantly better than mmWave bands (28 GHz experiences ~20 dB more path loss at the same distance) while offering more capacity than low-band spectrum. For urban deployments, this translates to cell radii of 500-800 meters with modern massive MIMO, compared to 200-300 meters for mmWave and 2-5 kilometers for low-band. This "sweet spot" reduces the number of cell sites needed while maintaining high capacity.</p>
+<p class="ab-p"><strong>Geographic Prioritization</strong>: Focus initial SAS-N requests on areas with minimal federal presence. Urban centers may have more federal activity (military bases, government facilities), requiring operators to request lower power allocations or accept smaller coverage areas.</p>
 
-<p class="ab-p"><strong>MIMO Scalability:</strong> The wavelength at 2.7 GHz is approximately 11.1 cm (λ = c/f = 3×10⁸/2.7×10⁹). For massive MIMO antenna arrays with half-wavelength element spacing (λ/2 ≈ 5.5 cm), a 64-element array fits within approximately 35×35 cm, and a 256-element array within 70×70 cm—practical form factors for rooftop or tower mounting. This allows realistic deployment of massive MIMO systems with 64-256 antenna elements, enabling spatial multiplexing of 32-64 simultaneous users per cell sector.</p>
+<p class="ab-p"><strong>Multi-Band Fallback Architecture</strong>: Deploy 2.7 GHz as capacity layer over existing 5G coverage (n77, n41, n71). Ensure ng-gNB and core network can rapidly redirect traffic when spectrum grants are suspended. Typical deployment: n104 for 70% capacity, n77 for 20%, n71 for 10% baseline coverage.</p>
 
-<p class="ab-p"><strong>Penetration vs. Capacity Trade-off:</strong> Building penetration loss at 2.7 GHz averages 15-20 dB for typical commercial construction, compared to 5-8 dB at 700 MHz and 25-35 dB at 28 GHz. This means 2.7 GHz can provide meaningful indoor coverage from outdoor macro cells (though not as robustly as low-band), reducing the need for extensive indoor small cell deployments while still supporting gigabit-class services.</p>
+<p class="ab-p"><strong>Temporal Usage Patterns</strong>: Analyze federal incumbent operational schedules. Some government systems operate during business hours or specific events, creating predictable windows for commercial use. Request time-limited grants during low federal activity periods to obtain higher power authorizations.</p>
 
-<p class="ab-p"><strong>Bandwidth Availability:</strong> The full 2690-2900 MHz allocation provides 210 MHz of contiguous spectrum. With advanced modulation (potentially 1024-QAM or higher in 6G) and massive MIMO (spectral efficiency approaching 10-15 bps/Hz in favorable conditions), theoretical capacity approaches 2-3 Gbps per carrier. With carrier aggregation across the full 210 MHz, peak rates could exceed 20-30 Gbps per cell sector—sufficient for demanding 6G use cases.</p>
+<h3 class="ab-h3">Hardware Considerations</h3>
 
-<p class="ab-p"><strong>Technical Challenges:</strong></p>
+<p class="ab-p"><strong>Software-Defined Radio (SDR) Requirements</strong>: ng-gNB must support wideband tuning across 2700-2980 MHz with rapid frequency switching (<5ms reconfiguration time). Recommend field-programmable gate array (FPGA)-based platforms for real-time spectrum sensing parallel to active transmission.</p>
 
-<p class="ab-p"><strong>Incumbent Coordination:</strong> The band currently hosts government satellite downlinks and aeronautical telemetry. Geographic exclusion zones around military bases, airports, and satellite earth stations will likely restrict full-power operations in some areas. Dynamic spectrum sharing systems (evolved from CBRS SAS concepts) will add complexity to network planning and may require real-time power adjustments or frequency avoidance, reducing available capacity by 10-30% in affected areas.</p>
+<p class="ab-p"><strong>Antenna System Design</strong>: Implement advanced beamforming with null-steering capability to create interference nulls toward federal receiver locations. Typical configuration: 64T64R massive MIMO with per-element digital control, enabling 3D beam pattern shaping.</p>
 
-<p class="ab-p"><strong>Antenna Design Complexity:</strong> Operating at 2.7 GHz requires multiband antennas if operators want to support legacy 4G/5G bands simultaneously (common equipment sharing strategy). Designing antenna systems covering, for example, 1.7-2.7 GHz with acceptable performance across that range involves engineering trade-offs in gain, beamwidth, and cross-polarization discrimination. Active antenna systems (AAS) with integrated transceivers help but add cost.</p>
+<p class="ab-p"><strong>Spectrum Sensing Frontend</strong>: Dedicated RF chain for incumbent detection separate from commercial transmission/reception. Requirements: -130 dBm sensitivity, 50 MHz instantaneous bandwidth scanning, <1 dB frequency accuracy for federal signal identification.</p>
 
-<p class="ab-p"><em></em>Interference Management</p>
+<h3 class="ab-h3">Network Architecture Adaptations</h3>
+
+<p class="ab-p"><strong>Core Network Slicing</strong>: Create dedicated network slices for 2.7 GHz traffic with QoS policies understanding spectrum volatility. Critical services (URLLC) should have guaranteed fallback to stable bands, while eMBB traffic tolerates temporary disruptions during spectrum reconfiguration.</p>
+
+<p class="ab-p"><strong>Edge Computing Integration</strong>: Deploy Multi-Access Edge Computing (MEC) at ng-gNB sites for real-time AI/ML processing of spectrum sensing data and predictive modeling of federal incumbent activity patterns. Reduces coordination latency with centralized SAS-N.</p>
+
+<p class="ab-p"><strong>Transport Network</strong>: Ensure fronthaul/midhaul has sufficient capacity for enhanced spectrum reporting. Each ng-gNB generates 10-100 Mbps of telemetry data during high-activity periods. Consider dedicated VLANs for SAS-N coordination traffic separate from user plane.</p>
+
+<h3 class="ab-h3">Operational Procedures</h3>
+
+<p class="ab-p"><strong>Spectrum Grant Management</strong>: Establish Network Operations Center (NOC) procedures for monitoring grant status across all ng-gNB sites. Implement automated alerting when grants approach expiration or suspension occurs. Recommend staffing 24/7 spectrum coordinators initially until operational patterns stabilize.</p>
+
+<p class="ab-p"><strong>Performance Monitoring</strong>: Track new KPIs beyond traditional 5G metrics:</p>
+<ul class="ab-ul">
+<li>Spectrum availability percentage (target >95% in non-federal areas)</li>
+<li>Mean time between forced reconfigurations (target >12 hours)</li>
+<li>Successful vacation rate (target >99.9% within T_VACATION)</li>
+<li>Grant renewal failure rate (target <0.1%)</li>
+</ul>
+
+<p class="ab-p"><strong>Coordination Testing</strong>: Conduct quarterly exercises with NTIA and federal agencies to validate protection procedures. Simulate federal incumbent activation and measure commercial network response time and interference levels.</p>
+
+<h3 class="ab-h3">Regulatory Compliance</h3>
+
+<p class="ab-p"><strong>Record Keeping</strong>: Maintain detailed logs of all spectrum grants, reconfigurations, and compliance reports for minimum 3 years. FCC may audit to verify adherence to protection requirements and proper SAS-N coordination.</p>
+
+<p class="ab-p"><strong>Interference Resolution</strong>: Establish rapid response team for reported federal interference incidents. Must investigate within 24 hours and implement corrective actions within 72 hours or face potential spectrum access suspension.</p>
+
+<p class="ab-p"><strong>Continuous Certification</strong>: ng-gNB equipment requires specific certification for n104 band operation including demonstrated incumbent detection capability, vacation time compliance, and proper SAS-N protocol implementation.</p>
+
+<h2 class="ab-h2">Troubleshooting Tips</h2>
+
+<h3 class="ab-h3">Problem: Frequent Spectrum Grant Suspensions</h3>
+
+<p class="ab-p"><strong>Symptoms</strong>: ng-gNB receives repeated INCUMBENT PROTECTION NOTIFICATIONS, forcing UE handovers to alternate frequencies multiple times per hour.</p>
+
+<p class="ab-p"><strong>Diagnosis Steps</strong>:</p>
+<ol class="ab-ol">
+<li>Analyze DSR logs to identify federal system signatures and activation patterns</li>
+<li>Correlate suspension times with known federal operational schedules</li>
+<li>Review granted EIRP vs. actual transmission power for potential over-power conditions</li>
+<li>Check geographic coordinates in SAR—errors cause incorrect incumbent proximity calculations</li>
+</ol>
+
+<p class="ab-p"><strong>Solutions</strong>:</p>
+<ul class="ab-ul">
+<li>Request lower EIRP authorization to operate continuously rather than at high power intermittently</li>
+<li>Adjust antenna downtilt to reduce interference toward federal facilities</li>
+<li>Implement time-division approach: request high-power grants during predictable federal idle periods</li>
+<li>If false detections: Recalibrate spectrum sensing thresholds, update federal signal database</li>
+</ul>
+
+<h3 class="ab-h3">Problem: High UE Drop Rate During Frequency Transitions</h3>
+
+<p class="ab-p"><strong>Symptoms</strong>: Connection failures spike when ng-gNB executes make-before-break handover to comply with T_VACATION timer.</p>
+
+<p class="ab-p"><strong>Diagnosis Steps</strong>:</p>
+<ol class="ab-ol">
+<li>Measure handover execution time from FREQUENCY ASSIGNMENT COMMAND to UE successful connection on new frequency—should be <150ms for T_VACATION=200ms</li>
+<li>Check UE capability reports—older devices may not support rapid 6G spectrum switching</li>
+<li>Analyze RRC reconfig</li>
+</ol>
 </div><!-- /article-body -->
 
     </div>
@@ -617,9 +807,9 @@ footer{border-top:1px solid var(--border);padding:28px 0}
       <!-- Stats -->
       <div class="sidebar-card">
         <div class="sidebar-title">Article details</div>
-        <div class="stat-row"><span class="stat-key">Category</span><span class="stat-val blue" id="statCat">Interview Prep</span></div>
-        <div class="stat-row"><span class="stat-key">Published</span><span class="stat-val" id="statDate">Apr 25, 2026</span></div>
-        <div class="stat-row"><span class="stat-key">Read time</span><span class="stat-val" id="statRead">15 min</span></div>
+        <div class="stat-row"><span class="stat-key">Category</span><span class="stat-val blue" id="statCat">Protocol Deep Dive</span></div>
+        <div class="stat-row"><span class="stat-key">Published</span><span class="stat-val" id="statDate">Apr 30, 2026</span></div>
+        <div class="stat-row"><span class="stat-key">Read time</span><span class="stat-val" id="statRead">12 min</span></div>
         <div class="stat-row"><span class="stat-key">Source</span><span class="stat-val">3GPP / ITU</span></div>
       </div>
 
