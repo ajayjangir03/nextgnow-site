@@ -1,6 +1,20 @@
 {
   "articles": [
     {
+      "title": "U.S. Clears 2.7 GHz Band for 6G Leadership",
+      "slug": "us-clears-27-ghz-band-for-6g-leadership",
+      "url": "https://nextgnow.in/articles/us-clears-27-ghz-band-for-6g-leadership.html",
+      "category": "Protocol Deep Dive",
+      "excerpt": "The 2.7 GHz band 2700-2980 MHz represents a critical mid-band spectrum allocation for 6G deployment, bridging the gap between capacity and coverage. This\u2026",
+      "date": "Apr 30, 2026",
+      "tags": [
+        "Protocol Deep Dive",
+        "6G",
+        "telecom"
+      ],
+      "type": "auto"
+    },
+    {
       "title": "Rakuten Symphony Tests Open RAN Across Seven Global South Countries",
       "slug": "rakuten-symphony-tests-open-ran-across-seven-global-south-countries",
       "url": "https://nextgnow.in/articles/rakuten-symphony-tests-open-ran-across-seven-global-south-countries.html",
@@ -51,20 +65,6 @@
       "date": "Apr 26, 2026",
       "tags": [
         "Future Tech",
-        "6G",
-        "telecom"
-      ],
-      "type": "auto"
-    },
-    {
-      "title": "US Clears 2.7 GHz Band for 6G Leadership",
-      "slug": "us-clears-27-ghz-band-for-6g-leadership",
-      "url": "https://nextgnow.in/articles/us-clears-27-ghz-band-for-6g-leadership.html",
-      "category": "Interview Prep",
-      "excerpt": "Why is this topic important for telecom interviews? The NTIA's approval to repurpose the 2.7 GHz band represents a strategic inflection point in American\u2026",
-      "date": "Apr 25, 2026",
-      "tags": [
-        "Interview Prep",
         "6G",
         "telecom"
       ],
