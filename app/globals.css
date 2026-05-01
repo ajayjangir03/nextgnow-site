@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ── */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: #03060E;
+  color: #E2EAF6;
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── Mesh background ── */
+.ng-mesh {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59,130,246,.13), transparent),
+    linear-gradient(rgba(59,130,246,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,130,246,.025) 1px, transparent 1px);
+  background-size: 100% 100%, 56px 56px, 56px 56px;
+  background-attachment: fixed;
+}
+
+/* ── Gradient text ── */
+.grad-text {
+  background: linear-gradient(135deg, #3B82F6, #06B6D4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Gradient bg ── */
+.grad-bg { background: linear-gradient(135deg, #3B82F6, #06B6D4); }
+
+/* ── Glass card ── */
+.glass {
+  background: rgba(10, 22, 40, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ── Ticker animation ── */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-anim { animation: ticker 30s linear infinite; }
+.ticker-anim:hover { animation-play-state: paused; }
+
+/* ── Radar ── */
+@keyframes radarSpin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes ringPulse {
+  0%, 100% { opacity: .15; }
+  50%       { opacity: .35; }
+}
+@keyframes dotBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .3; }
+}
+@keyframes sweepFade {
+  0%   { opacity: .8; }
+  100% { opacity: 0; }
+}
+
+.radar-spin  { animation: radarSpin 5s linear infinite; transform-origin: center; }
+.ring-pulse  { animation: ringPulse 3s ease-in-out infinite; }
+.ring-pulse2 { animation: ringPulse 3s ease-in-out infinite .6s; }
+.ring-pulse3 { animation: ringPulse 3s ease-in-out infinite 1.2s; }
+.dot-blink   { animation: dotBlink 2s ease-in-out infinite; }
+
+/* ── Fade up ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp .5s ease both; }
+.fade-up-1 { animation: fadeUp .5s ease .1s both; }
+.fade-up-2 { animation: fadeUp .5s ease .2s both; }
+.fade-up-3 { animation: fadeUp .5s ease .3s both; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1C324F; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #3B82F6; }
+
+/* ── Card hover ── */
+.ng-card {
+  background: #0A1628;
+  border: 1px solid #132033;
+  border-radius: 16px;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+.ng-card:hover {
+  border-color: #1C324F;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.5);
+}
+
+/* ── Article card left accent ── */
+.article-card { position: relative; overflow: hidden; }
+.article-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #3B82F6, #06B6D4);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.article-card:hover::before { opacity: 1; }
+
+/* ── SpectrumAI glow ── */
+@keyframes spectrumGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(6,182,212,.3), 0 4px 20px rgba(59,130,246,.25); }
+  50%       { box-shadow: 0 0 36px rgba(6,182,212,.5), 0 4px 32px rgba(59,130,246,.4); }
+}
+.spectrum-glow { animation: spectrumGlow 3s ease-in-out infinite; }
+
+/* ── Search ── */
+.search-overlay {
+  position: fixed; inset: 0;
+  background: rgba(3,6,14,.92);
+  backdrop-filter: blur(12px);
+  z-index: 500;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 80px 20px;
+}
+
+/* ── Mobile nav ── */
+.mob-nav {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: min(320px, 90vw);
+  background: #060D1C;
+  border-left: 1px solid #132033;
+  z-index: 400;
+  transform: translateX(100%);
+  transition: transform .3s cubic-bezier(.16,1,.3,1);
+  overflow-y: auto;
+}
+.mob-nav.open { transform: translateX(0); }
+.mob-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.6);
+  z-index: 399;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s;
+}
+.mob-overlay.open { opacity: 1; pointer-events: all; }
+
+/* ── SpectrumAI Widget ── */
+.widget-panel {
+  position: fixed; bottom: 90px; right: 24px;
+  width: 380px; max-height: 560px;
+  background: #060D1C;
+  border: 1px solid #1C324F;
+  border-radius: 20px;
+  box-shadow: 0 24px 64px rgba(0,0,0,.8), 0 0 0 1px rgba(59,130,246,.08);
+  display: flex; flex-direction: column; overflow: hidden;
+  transform: translateY(12px) scale(.97);
+  opacity: 0; pointer-events: none;
+  transition: all .25s cubic-bezier(.16,1,.3,1);
+  z-index: 9001;
+}
+.widget-panel.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
+.widget-fab {
+  position: fixed; bottom: 24px; right: 24px;
+  z-index: 9000;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+  .widget-panel { right: 12px; left: 12px; width: auto; bottom: 82px; }
+}
