@@ -1,125 +1,167 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ── Reset ── */
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 
-body {
-  margin: 0;
-  background: #03060E;
-  color: #CBD5E1;
-  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 15px;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+body{
+  background:#080B14;
+  color:#C8D6F0;
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 
-/* ── Mesh background ── */
-.page-bg {
-  min-height: 100vh;
-  background-image:
-    radial-gradient(ellipse 900px 600px at 60% -100px, rgba(59,130,246,.09), transparent),
-    linear-gradient(rgba(59,130,246,.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,130,246,.02) 1px, transparent 1px);
-  background-size: 100%, 60px 60px, 60px 60px;
-  background-attachment: fixed;
+/* ── Page bg ── */
+.page-root{
+  min-height:100vh;
+  background:
+    radial-gradient(ellipse 1200px 700px at 55% -80px,rgba(99,102,241,.1),transparent),
+    radial-gradient(ellipse 600px 500px at 95% 50%,rgba(59,130,246,.06),transparent),
+    #080B14;
 }
 
-/* ── Typography ── */
-.font-display { font-family: 'Syne', sans-serif; }
-.font-mono    { font-family: 'JetBrains Mono', monospace; }
-
-/* ── Gradient ── */
-.grad-text {
-  background: linear-gradient(135deg, #3B82F6, #06B6D4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* ── Grad text ── */
+.gt{
+  background:linear-gradient(135deg,#60A5FA,#A78BFA);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
-.grad-bg { background: linear-gradient(135deg, #3B82F6, #06B6D4); }
-
-/* ── Card ── */
-.card {
-  background: #080F1E;
-  border: 1px solid #111E35;
-  border-radius: 14px;
-  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
-}
-.card:hover {
-  border-color: #1C3050;
-  transform: translateY(-2px);
-  box-shadow: 0 16px 48px rgba(0,0,0,.5);
+.gt-blue{
+  background:linear-gradient(135deg,#3B82F6,#06B6D4);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 
-/* ── Section divider ── */
-.section-divider {
-  border: none;
-  border-top: 1px solid #0F1D30;
-  margin: 0;
+/* ── Cards ── */
+.card{
+  background:rgba(15,20,40,.7);
+  border:1px solid rgba(99,102,241,.12);
+  border-radius:14px;
+  backdrop-filter:blur(12px);
+  transition:border-color .22s,box-shadow .22s,transform .22s;
+}
+.card:hover{
+  border-color:rgba(99,102,241,.28);
+  box-shadow:0 8px 40px rgba(99,102,241,.1),0 1px 0 rgba(255,255,255,.04) inset;
+  transform:translateY(-2px);
+}
+.card-blue:hover{
+  border-color:rgba(59,130,246,.35);
+  box-shadow:0 8px 40px rgba(59,130,246,.12);
 }
 
 /* ── Scrollbar ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #1C324F; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #3B82F6; }
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#1E2D50;border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:#3B82F6}
 
-/* ── Radar animations ── */
-@keyframes radarSpin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+/* ── 6G Visual animations ── */
+@keyframes orbit1{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes orbit2{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
+@keyframes glow{0%,100%{opacity:.5;filter:blur(1px)}50%{opacity:1;filter:blur(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes pulse-ring{0%,100%{opacity:.15;transform:scale(1)}50%{opacity:.4;transform:scale(1.04)}}
+@keyframes scanline{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes dotPop{0%,100%{transform:scale(.7);opacity:.4}50%{transform:scale(1.2);opacity:1}}
+
+.anim-up{animation:fadeUp .55s ease both}
+.anim-up-1{animation:fadeUp .55s .1s ease both}
+.anim-up-2{animation:fadeUp .55s .2s ease both}
+.anim-right{animation:slideIn .5s .25s ease both}
+.ticker-t{animation:ticker 40s linear infinite}
+.ticker-t:hover{animation-play-state:paused}
+.float{animation:float 4s ease-in-out infinite}
+
+/* ── Nav active indicator ── */
+.nav-active{
+  color:#fff !important;
+  position:relative;
 }
-@keyframes ringPulse {
-  0%, 100% { opacity: .1; }
-  50%       { opacity: .28; }
-}
-@keyframes nodeBlink {
-  0%, 100% { opacity: .9; }
-  50%       { opacity: .3; }
-}
-
-.radar-spin { animation: radarSpin 6s linear infinite; transform-origin: center; }
-.ring-p1    { animation: ringPulse 3.5s ease-in-out infinite 0s;    }
-.ring-p2    { animation: ringPulse 3.5s ease-in-out infinite .6s;   }
-.ring-p3    { animation: ringPulse 3.5s ease-in-out infinite 1.2s;  }
-.node-blink { animation: nodeBlink 3s ease-in-out infinite; }
-
-/* ── Ticker ── */
-@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.ticker-track { animation: ticker 40s linear infinite; }
-.ticker-track:hover { animation-play-state: paused; }
-
-/* ── Fade in ── */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.anim-in   { animation: fadeInUp .55s ease both; }
-.anim-in-1 { animation: fadeInUp .55s ease .1s both; }
-.anim-in-2 { animation: fadeInUp .55s ease .2s both; }
-
-/* ── Tag / badge ── */
-.tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid;
-  width: fit-content;
+.nav-active::after{
+  content:'';position:absolute;bottom:-2px;left:12px;right:12px;
+  height:2px;border-radius:2px;
+  background:linear-gradient(90deg,#3B82F6,#8B5CF6);
 }
 
-/* ── Responsive helpers ── */
-@media (max-width: 1024px) { .lg-hide { display: none !important; } }
-@media (max-width: 640px)  { .sm-hide { display: none !important; } }
+/* ── Category tags ── */
+.tag-6g{background:rgba(139,92,246,.15);color:#C4B5FD;border-color:rgba(139,92,246,.25)}
+.tag-5g{background:rgba(59,130,246,.15);color:#93C5FD;border-color:rgba(59,130,246,.25)}
+.tag-log{background:rgba(16,185,129,.15);color:#6EE7B7;border-color:rgba(16,185,129,.25)}
+.tag-3gpp{background:rgba(245,158,11,.15);color:#FCD34D;border-color:rgba(245,158,11,.25)}
+.tag-itu{background:rgba(236,72,153,.15);color:#F9A8D4;border-color:rgba(236,72,153,.25)}
+.tag-news{background:rgba(6,182,212,.15);color:#67E8F9;border-color:rgba(6,182,212,.25)}
+
+/* ── SpectrumAI panel ── */
+.spectrum-panel{
+  background:rgba(10,14,28,.95);
+  border:1px solid rgba(99,102,241,.2);
+  border-radius:16px;
+  backdrop-filter:blur(20px);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+
+/* ── Chat bubbles ── */
+.bubble-ai{
+  background:rgba(99,102,241,.12);
+  border:1px solid rgba(99,102,241,.18);
+  border-radius:12px;border-top-left-radius:4px;
+  padding:12px 14px;font-size:13.5px;line-height:1.6;color:#C8D6F0;
+}
+.bubble-user{
+  background:rgba(59,130,246,.18);
+  border:1px solid rgba(59,130,246,.25);
+  border-radius:12px;border-top-right-radius:4px;
+  padding:10px 14px;font-size:13.5px;color:#E2EEFF;
+}
+
+/* ── Chip ── */
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+  color:#94A3B8;font-size:12px;padding:5px 12px;border-radius:20px;cursor:pointer;
+  transition:all .15s;white-space:nowrap;
+}
+.chip:hover{background:rgba(99,102,241,.15);border-color:rgba(99,102,241,.35);color:#C4B5FD}
+
+/* ── Domain icon box ── */
+.domain-box{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  padding:20px 16px;border-radius:12px;
+  background:rgba(15,20,40,.5);border:1px solid rgba(99,102,241,.1);
+  transition:all .2s;cursor:pointer;text-align:center;
+}
+.domain-box:hover{background:rgba(99,102,241,.1);border-color:rgba(99,102,241,.3);transform:translateY(-2px)}
+
+/* ── Tool card ── */
+.tool-card{
+  background:rgba(12,17,35,.8);border:1px solid rgba(99,102,241,.12);
+  border-radius:14px;padding:20px;display:flex;align-items:flex-start;gap:16px;
+  transition:all .2s;
+}
+.tool-card:hover{border-color:rgba(59,130,246,.35);background:rgba(59,130,246,.05)}
+
+/* ── Article card ── */
+.article-card{
+  background:rgba(12,17,35,.8);border:1px solid rgba(99,102,241,.1);
+  border-radius:14px;overflow:hidden;transition:all .2s;display:flex;flex-direction:column;
+}
+.article-card:hover{border-color:rgba(99,102,241,.3);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.article-img{
+  width:100%;height:140px;display:flex;align-items:center;justify-content:center;
+  font-size:48px;position:relative;overflow:hidden;
+}
+
+/* ── Coming soon card ── */
+.cs-card{
+  background:rgba(12,17,35,.8);border:1px solid rgba(99,102,241,.12);
+  border-radius:14px;padding:20px;transition:all .2s;display:flex;align-items:center;gap:16px;
+}
+.cs-card:hover{border-color:rgba(99,102,241,.3)}
