@@ -2,238 +2,313 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import RadarAnimation from '@/components/RadarAnimation'
 
+/* ── Data ── */
 const DOMAINS = [
   {
-    icon: '🛰️', label: '6G + AI',
-    desc: 'AI-native networks, RIS, THz communications, ISAC and IMT-2030 research.',
-    tag: 'IMT-2030', tagColor: 'text-violet-400 bg-violet-500/10 border-violet-500/20',
-    accent: 'hover:border-violet-500/40 hover:shadow-[0_8px_32px_rgba(139,92,246,.12)]',
+    icon: '🛰️',
+    label: '6G + AI',
+    tag: 'IMT-2030',
+    tagColor: { color:'#A78BFA', background:'rgba(139,92,246,.1)', borderColor:'rgba(139,92,246,.2)' },
+    desc: 'AI-native networks, reconfigurable intelligent surfaces, THz communications and IMT-2030 research.',
+    accentColor: 'rgba(139,92,246,.12)',
+    hoverBorder: '#8B5CF6',
   },
   {
-    icon: '📡', label: '5G',
-    desc: 'Physical layer, massive MIMO, 5G Core, O-RAN, protocols and call flows.',
-    tag: '3GPP Rel-19', tagColor: 'text-blue-400 bg-blue-500/10 border-blue-500/20',
-    accent: 'hover:border-blue-500/40 hover:shadow-[0_8px_32px_rgba(59,130,246,.12)]',
+    icon: '📡',
+    label: '5G',
+    tag: '3GPP Rel-19',
+    tagColor: { color:'#60A5FA', background:'rgba(59,130,246,.1)', borderColor:'rgba(59,130,246,.2)' },
+    desc: 'NR physical layer, massive MIMO, 5G Core SBA, O-RAN, protocol stacks and detailed call flows.',
+    accentColor: 'rgba(59,130,246,.12)',
+    hoverBorder: '#3B82F6',
   },
   {
-    icon: '🔬', label: 'Log Analysis',
-    desc: 'Decode 5G NAS, RRC, NGAP and SBI protocol logs with AI-assisted analysis.',
-    tag: 'AI-Powered', tagColor: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
-    accent: 'hover:border-emerald-500/40 hover:shadow-[0_8px_32px_rgba(16,185,129,.12)]',
+    icon: '🔬',
+    label: 'Log Analysis',
+    tag: 'AI-Powered',
+    tagColor: { color:'#34D399', background:'rgba(16,185,129,.1)', borderColor:'rgba(16,185,129,.2)' },
+    desc: 'Decode 5G NAS, RRC, NGAP and SBI logs with AI-assisted protocol analysis and spec citations.',
+    accentColor: 'rgba(16,185,129,.12)',
+    hoverBorder: '#10B981',
   },
   {
-    icon: '📋', label: '3GPP Releases',
-    desc: 'Release 17, 18 and 19 features explained clearly for practising engineers.',
-    tag: 'Rel-17 → 19', tagColor: 'text-amber-400 bg-amber-500/10 border-amber-500/20',
-    accent: 'hover:border-amber-500/40 hover:shadow-[0_8px_32px_rgba(245,158,11,.12)]',
+    icon: '📋',
+    label: '3GPP Releases',
+    tag: 'Rel-17 → 19',
+    tagColor: { color:'#FCD34D', background:'rgba(245,158,11,.1)', borderColor:'rgba(245,158,11,.2)' },
+    desc: 'Release 17, 18 and 19 features explained clearly — what changed, why it matters, spec references.',
+    accentColor: 'rgba(245,158,11,.12)',
+    hoverBorder: '#F59E0B',
   },
 ]
 
 const TOOLS = [
-  { icon: '🤖', name: 'SpectrumAI',       desc: 'Your AI-powered 5G NR & 6G expert grounded in 3GPP specs.',  badge: 'Coming Soon' },
-  { icon: '🔍', name: 'Spec Decoder',     desc: 'Paste any 3GPP TS/TR clause, get plain-English expert decoding.', badge: 'Coming Soon' },
-  { icon: '📊', name: 'Log Analyzer',     desc: 'AI-assisted decoding of NAS, RRC, NGAP and SBI protocol logs.', badge: 'Coming Soon' },
-  { icon: '🔄', name: 'Call Flow Viewer', desc: 'Visual step-by-step 5G signalling: Registration, PDU Session, Handover.', badge: 'Coming Soon' },
+  { icon:'🤖', name:'SpectrumAI',       desc:'AI-powered 5G NR & 6G assistant grounded in 3GPP specifications.'  },
+  { icon:'🔍', name:'Spec Decoder',     desc:'Paste any 3GPP TS/TR clause — get plain-English expert decoding.'    },
+  { icon:'📊', name:'Log Analyzer',     desc:'Upload NAS, RRC or NGAP logs for AI-assisted protocol analysis.'     },
+  { icon:'🔄', name:'Call Flow Viewer', desc:'Visual step-by-step 5G signalling flows: Registration, PDU, Handover.'},
 ]
 
+const STATS = [
+  { value:'5G + 6G', label:'Core Focus'          },
+  { value:'Rel-19',  label:'3GPP Current'         },
+  { value:'Daily',   label:'New Content'          },
+  { value:'Free',    label:'Always Open'          },
+]
+
+/* ── Page ── */
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
+    <div className="page-bg" style={{minHeight:'100vh'}}>
       <Header />
 
-      <main className="relative z-10">
+      <main>
 
-        {/* ══ HERO ══ */}
-        <section className="pt-16 pb-14 overflow-hidden">
-          <div className="max-w-[1360px] mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_460px] gap-16 items-center">
+        {/* ═══════════════════════════════
+            HERO
+        ═══════════════════════════════ */}
+        <section style={{padding:'80px 0 72px', overflow:'hidden'}}>
+          <div style={{maxWidth:1280, margin:'0 auto', padding:'0 32px', display:'grid', gridTemplateColumns:'1fr', gap:48, alignItems:'center'}}
+            className="hero-grid">
+            <style>{`
+              @media(min-width:1024px){ .hero-grid{ grid-template-columns:1fr 420px !important; gap:80px !important; } }
+              @media(max-width:640px) { .hero-section-padding{ padding:56px 0 48px !important; } }
+            `}</style>
 
-              {/* Left */}
-              <div className="fade-up">
-                {/* Badge */}
-                <div className="inline-flex items-center gap-2.5 bg-[#3B82F6]/10 border border-[#3B82F6]/25 text-[#3B82F6] text-[11px] font-bold tracking-[.08em] uppercase px-4 py-1.5 rounded-full mb-7 font-['JetBrains_Mono']">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" style={{ boxShadow:'0 0 8px #10B981' }} />
+            {/* Left */}
+            <div className="anim-in">
+              {/* Eyebrow */}
+              <div style={{display:'inline-flex', alignItems:'center', gap:8, marginBottom:28}}>
+                <span style={{width:6, height:6, borderRadius:'50%', background:'#10B981', boxShadow:'0 0 10px #10B981', flexShrink:0, animation:'nodeBlink 2s ease-in-out infinite'}}/>
+                <span style={{fontFamily:'JetBrains Mono,monospace', fontSize:11, fontWeight:500, letterSpacing:'.08em', textTransform:'uppercase', color:'#64748B'}}>
                   Telecom Intelligence Platform
-                </div>
-
-                {/* Headline */}
-                <h1 className="font-['Syne'] font-extrabold text-[52px] leading-[1.05] tracking-[-1.5px] text-[#F8FAFC] mb-6">
-                  Tomorrow&apos;s{' '}
-                  <span className="grad-text">Telecom</span>
-                  <br />
-                  Explained{' '}
-                  <span className="grad-text">Today</span>
-                </h1>
-
-                <p className="text-[16px] text-[#94A3B8] leading-[1.8] font-light max-w-[460px] mb-10">
-                  Deep technical knowledge for 5G NR, 6G, O-RAN and 3GPP specifications — with AI-powered tools and real engineering insights.
-                </p>
-
-                {/* CTAs */}
-                <div className="flex gap-3 flex-wrap mb-12">
-                  <a href="#"
-                    className="inline-flex items-center gap-2 text-white font-semibold text-[14px] px-6 py-3.5 rounded-xl grad-bg btn-glow hover:-translate-y-0.5 transition-all duration-200">
-                    Explore Articles
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </a>
-                  <a href="#"
-                    className="inline-flex items-center gap-2 text-[#CBD5E1] font-medium text-[14px] px-6 py-3.5 rounded-xl border border-[#1C324F] bg-[#0A1628] hover:border-[#234070] hover:text-[#F8FAFC] transition-all duration-200">
-                    <svg className="w-4 h-4 text-[#06B6D4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                      <path d="M12 2a10 10 0 1 0 10 10"/><path d="m16 8 4-4m0 0-4 4m4-4v4m-4-4h4"/>
-                    </svg>
-                    Ask SpectrumAI
-                  </a>
-                </div>
-
-                {/* Stats */}
-                <div className="flex gap-8 pt-8 border-t border-[#132033] flex-wrap">
-                  {[
-                    { num: '5G+6G', lbl: 'Core Topics'       },
-                    { num: 'Daily', lbl: 'Fresh Content'      },
-                    { num: 'Rel-19', lbl: '3GPP Release'      },
-                    { num: 'Free',   lbl: 'Always'            },
-                  ].map((s) => (
-                    <div key={s.lbl}>
-                      <div className="font-['Syne'] font-extrabold text-[26px] text-[#3B82F6] leading-none">{s.num}</div>
-                      <div className="font-['JetBrains_Mono'] text-[10px] text-[#475569] mt-1.5 tracking-widest uppercase">{s.lbl}</div>
-                    </div>
-                  ))}
-                </div>
+                </span>
               </div>
 
-              {/* Right — Radar */}
-              <div className="hidden lg:block fade-up-1">
-                <RadarAnimation />
+              {/* Headline */}
+              <h1 style={{fontFamily:'Syne,sans-serif', fontWeight:800, fontSize:'clamp(38px,5vw,58px)', lineHeight:1.08, letterSpacing:'-1.5px', color:'#F8FAFC', marginBottom:20}}>
+                Tomorrow&apos;s<br/>
+                <span className="grad-text">Telecom</span>{' '}Explained<br/>
+                <span className="grad-text">Today</span>
+              </h1>
+
+              {/* Sub */}
+              <p style={{fontSize:16, fontWeight:300, color:'#94A3B8', lineHeight:1.8, maxWidth:480, marginBottom:36}}>
+                Deep technical knowledge for 5G NR, 6G, O-RAN and 3GPP specifications — with AI-powered tools and real engineering insights, published daily.
+              </p>
+
+              {/* CTAs */}
+              <div style={{display:'flex', gap:12, flexWrap:'wrap', marginBottom:48}}>
+                <a href="#articles" style={{
+                  display:'inline-flex', alignItems:'center', gap:8,
+                  background:'linear-gradient(135deg,#3B82F6,#06B6D4)',
+                  color:'#fff', fontWeight:600, fontSize:14, padding:'13px 24px',
+                  borderRadius:12, textDecoration:'none',
+                  boxShadow:'0 6px 24px rgba(59,130,246,.35)',
+                  transition:'all .2s ease',
+                }}>
+                  Explore Articles
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#tools" style={{
+                  display:'inline-flex', alignItems:'center', gap:8,
+                  background:'transparent', color:'#CBD5E1',
+                  fontWeight:500, fontSize:14, padding:'13px 24px',
+                  borderRadius:12, textDecoration:'none',
+                  border:'1px solid #1C324F',
+                  transition:'all .2s ease',
+                }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" strokeWidth="2.5" strokeLinecap="round">
+                    <path d="M12 2a10 10 0 1 0 10 10"/><path d="m16 8 4-4m0 0-4 4m4-4v4m-4-4h4"/>
+                  </svg>
+                  View Tools
+                </a>
               </div>
+
+              {/* Stats row */}
+              <div style={{display:'flex', gap:32, paddingTop:28, borderTop:'1px solid #0F1D30', flexWrap:'wrap'}}>
+                {STATS.map(s => (
+                  <div key={s.label}>
+                    <div style={{fontFamily:'Syne,sans-serif', fontWeight:800, fontSize:24, color:'#3B82F6', lineHeight:1}}>{s.value}</div>
+                    <div style={{fontFamily:'JetBrains Mono,monospace', fontSize:10, color:'#475569', marginTop:5, letterSpacing:'.07em', textTransform:'uppercase'}}>{s.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right — Radar (desktop only) */}
+            <div className="anim-in-1 lg-hide-radar">
+              <style>{`.lg-hide-radar { display:none; } @media(min-width:1024px){ .lg-hide-radar{ display:block !important; } }`}</style>
+              <RadarAnimation />
             </div>
           </div>
         </section>
 
-        {/* ══ DOMAINS ══ */}
-        <section className="py-14 border-t border-[#132033]">
-          <div className="max-w-[1360px] mx-auto px-6">
-            <div className="flex items-center gap-4 mb-10">
-              <div className="h-px flex-1 bg-[#132033]"/>
-              <span className="font-['JetBrains_Mono'] text-[11px] text-[#475569] tracking-widest uppercase px-2">Core Domains</span>
-              <div className="h-px flex-1 bg-[#132033]"/>
+        {/* ═══════════════════════════════
+            DOMAIN CARDS
+        ═══════════════════════════════ */}
+        <section style={{borderTop:'1px solid #0F1D30', padding:'64px 0'}}>
+          <div style={{maxWidth:1280, margin:'0 auto', padding:'0 32px'}}>
+
+            {/* Section label */}
+            <div style={{display:'flex', alignItems:'center', gap:16, marginBottom:40}}>
+              <div style={{height:1, flex:1, background:'#0F1D30'}}/>
+              <span style={{fontFamily:'JetBrains Mono,monospace', fontSize:11, color:'#334155', letterSpacing:'.1em', textTransform:'uppercase', whiteSpace:'nowrap'}}>
+                What we cover
+              </span>
+              <div style={{height:1, flex:1, background:'#0F1D30'}}/>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
-              {DOMAINS.map((d) => (
-                <div key={d.label} className={`ng-card p-6 flex flex-col gap-4 cursor-pointer ${d.accent} transition-all duration-200`}>
-                  <div className="text-[2rem] mb-1">{d.icon}</div>
-                  <div className={`font-['JetBrains_Mono'] text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded border w-fit ${d.tagColor}`}>
-                    {d.tag}
-                  </div>
-                  <h3 className="font-['Syne'] font-bold text-[16px] text-[#F8FAFC]">{d.label}</h3>
-                  <p className="text-[13px] text-[#64748B] leading-relaxed font-light">{d.desc}</p>
-                  <div className="flex items-center gap-1.5 text-[12px] font-medium text-[#3B82F6] mt-auto">
+
+            <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(240px,1fr))', gap:16}}>
+              {DOMAINS.map(d => (
+                <div
+                  key={d.label}
+                  className="card"
+                  style={{padding:24, cursor:'pointer', position:'relative', overflow:'hidden'}}
+                >
+                  {/* Top accent bar */}
+                  <div style={{position:'absolute', top:0, left:0, right:0, height:2,
+                    background:`linear-gradient(90deg,${d.hoverBorder},transparent)`, opacity:.6}}/>
+
+                  <div style={{fontSize:28, marginBottom:14}}>{d.icon}</div>
+
+                  <span className="tag" style={d.tagColor}>{d.tag}</span>
+
+                  <h3 style={{fontFamily:'Syne,sans-serif', fontWeight:700, fontSize:17, color:'#F1F5F9',
+                    margin:'12px 0 8px', letterSpacing:'-.3px'}}>{d.label}</h3>
+
+                  <p style={{fontSize:13.5, color:'#64748B', lineHeight:1.65, fontWeight:300, margin:'0 0 16px'}}>{d.desc}</p>
+
+                  <span style={{display:'inline-flex', alignItems:'center', gap:6, fontSize:12, fontWeight:500, color:d.hoverBorder}}>
                     Coming soon
-                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </div>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </span>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ══ ARTICLES PLACEHOLDER ══ */}
-        <section className="py-14 border-t border-[#132033]" id="articles">
-          <div className="max-w-[1360px] mx-auto px-6">
-            <div className="flex items-center justify-between mb-10 flex-wrap gap-4">
+        {/* ═══════════════════════════════
+            LATEST ARTICLES
+        ═══════════════════════════════ */}
+        <section id="articles" style={{borderTop:'1px solid #0F1D30', padding:'64px 0'}}>
+          <div style={{maxWidth:1280, margin:'0 auto', padding:'0 32px'}}>
+
+            {/* Header */}
+            <div style={{display:'flex', alignItems:'flex-end', justifyContent:'space-between', marginBottom:36, flexWrap:'wrap', gap:16}}>
               <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="h-px w-10" style={{ background:'linear-gradient(135deg,#3B82F6,#06B6D4)' }}/>
-                  <span className="font-['JetBrains_Mono'] text-[11px] text-[#475569] tracking-widest uppercase">Daily Intelligence</span>
+                <div style={{display:'flex', alignItems:'center', gap:10, marginBottom:8}}>
+                  <div style={{width:28, height:2, borderRadius:2, background:'linear-gradient(90deg,#3B82F6,#06B6D4)'}}/>
+                  <span style={{fontFamily:'JetBrains Mono,monospace', fontSize:11, color:'#475569', letterSpacing:'.08em', textTransform:'uppercase'}}>Daily Intelligence</span>
                 </div>
-                <h2 className="font-['Syne'] font-bold text-[28px] text-[#F8FAFC] tracking-tight">Latest Articles</h2>
+                <h2 style={{fontFamily:'Syne,sans-serif', fontWeight:700, fontSize:26, color:'#F1F5F9', letterSpacing:'-.5px', margin:0}}>Latest Articles</h2>
+              </div>
+              <div style={{display:'flex', alignItems:'center', gap:6}}>
+                <span style={{width:6, height:6, borderRadius:'50%', background:'#10B981', boxShadow:'0 0 8px #10B981'}}/>
+                <span style={{fontSize:12, color:'#475569', fontFamily:'JetBrains Mono,monospace'}}>Published daily</span>
               </div>
             </div>
 
-            {/* Empty state — clean, no filler content */}
-            <div className="ng-card p-16 text-center">
-              <div className="text-[48px] mb-5">📡</div>
-              <h3 className="font-['Syne'] font-bold text-[20px] text-[#94A3B8] mb-3">Articles Coming Soon</h3>
-              <p className="text-[14px] text-[#475569] max-w-[380px] mx-auto leading-relaxed font-light">
-                Daily 5G, 6G and 3GPP technical articles will appear here. Check back soon.
+            {/* Empty state */}
+            <div className="card" style={{padding:'72px 32px', textAlign:'center'}}>
+              <div style={{width:56, height:56, borderRadius:16, background:'rgba(59,130,246,.08)', border:'1px solid rgba(59,130,246,.15)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 20px', fontSize:24}}>
+                📡
+              </div>
+              <h3 style={{fontFamily:'Syne,sans-serif', fontWeight:700, fontSize:20, color:'#94A3B8', margin:'0 0 10px'}}>
+                Articles Coming Soon
+              </h3>
+              <p style={{fontSize:14, color:'#475569', maxWidth:360, margin:'0 auto', lineHeight:1.7, fontWeight:300}}>
+                Daily 5G, 6G and 3GPP technical articles will appear here. We publish every morning.
               </p>
             </div>
           </div>
         </section>
 
-        {/* ══ TOOLS ══ */}
-        <section className="py-14 border-t border-[#132033] bg-[#060D1C]" id="tools">
-          <div className="max-w-[1360px] mx-auto px-6">
-            <div className="mb-10">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="h-px w-10" style={{ background:'linear-gradient(135deg,#3B82F6,#06B6D4)' }}/>
-                <span className="font-['JetBrains_Mono'] text-[11px] text-[#475569] tracking-widest uppercase">Power Tools</span>
-              </div>
-              <h2 className="font-['Syne'] font-bold text-[28px] text-[#F8FAFC] tracking-tight">Tools for Engineers</h2>
+        {/* ═══════════════════════════════
+            TOOLS
+        ═══════════════════════════════ */}
+        <section id="tools" style={{borderTop:'1px solid #0F1D30', padding:'64px 0', background:'rgba(6,13,28,.5)'}}>
+          <div style={{maxWidth:1280, margin:'0 auto', padding:'0 32px'}}>
+
+            <div style={{display:'flex', alignItems:'center', gap:10, marginBottom:8}}>
+              <div style={{width:28, height:2, borderRadius:2, background:'linear-gradient(90deg,#3B82F6,#06B6D4)'}}/>
+              <span style={{fontFamily:'JetBrains Mono,monospace', fontSize:11, color:'#475569', letterSpacing:'.08em', textTransform:'uppercase'}}>Power Tools</span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
-              {TOOLS.map((t) => (
-                <div key={t.name} className="ng-card p-6 flex flex-col gap-4 opacity-70 cursor-not-allowed">
-                  <div className="flex items-start justify-between">
-                    <div className="text-[2rem]">{t.icon}</div>
-                    <span className="font-['JetBrains_Mono'] text-[9px] font-bold px-2 py-0.5 rounded border bg-[#101E38] text-[#475569] border-[#1C324F] tracking-wide uppercase">
-                      {t.badge}
-                    </span>
+            <h2 style={{fontFamily:'Syne,sans-serif', fontWeight:700, fontSize:26, color:'#F1F5F9', letterSpacing:'-.5px', margin:'0 0 36px'}}>Tools for Engineers</h2>
+
+            <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(240px,1fr))', gap:16}}>
+              {TOOLS.map(t => (
+                <div key={t.name} className="card" style={{padding:24, opacity:.65, cursor:'not-allowed'}}>
+                  <div style={{display:'flex', alignItems:'flex-start', justifyContent:'space-between', marginBottom:16}}>
+                    <div style={{fontSize:26}}>{t.icon}</div>
+                    <span className="tag" style={{color:'#475569', background:'rgba(255,255,255,.04)', borderColor:'#1C324F', fontSize:9}}>Coming Soon</span>
                   </div>
-                  <h3 className="font-['Syne'] font-bold text-[15px] text-[#94A3B8]">{t.name}</h3>
-                  <p className="text-[13px] text-[#475569] leading-relaxed font-light">{t.desc}</p>
+                  <h3 style={{fontFamily:'Syne,sans-serif', fontWeight:700, fontSize:16, color:'#94A3B8', margin:'0 0 8px', letterSpacing:'-.2px'}}>{t.name}</h3>
+                  <p style={{fontSize:13, color:'#475569', lineHeight:1.65, fontWeight:300, margin:0}}>{t.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ══ ABOUT ══ */}
-        <section className="py-14 border-t border-[#132033]" id="about">
-          <div className="max-w-[1360px] mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="fade-up">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-px w-10" style={{ background:'linear-gradient(135deg,#3B82F6,#06B6D4)' }}/>
-                  <span className="font-['JetBrains_Mono'] text-[11px] text-[#475569] tracking-widest uppercase">About NextGNow</span>
+        {/* ═══════════════════════════════
+            ABOUT
+        ═══════════════════════════════ */}
+        <section id="about" style={{borderTop:'1px solid #0F1D30', padding:'64px 0'}}>
+          <div style={{maxWidth:1280, margin:'0 auto', padding:'0 32px'}}>
+            <div style={{display:'grid', gridTemplateColumns:'1fr', gap:48}} className="about-grid">
+              <style>{`@media(min-width:1024px){ .about-grid{ grid-template-columns:1fr 1fr !important; gap:80px !important; align-items:center; } }`}</style>
+
+              {/* Text */}
+              <div>
+                <div style={{display:'flex', alignItems:'center', gap:10, marginBottom:8}}>
+                  <div style={{width:28, height:2, borderRadius:2, background:'linear-gradient(90deg,#3B82F6,#06B6D4)'}}/>
+                  <span style={{fontFamily:'JetBrains Mono,monospace', fontSize:11, color:'#475569', letterSpacing:'.08em', textTransform:'uppercase'}}>About NextGNow</span>
                 </div>
-                <h2 className="font-['Syne'] font-bold text-[30px] text-[#F8FAFC] tracking-tight mb-6 leading-tight">
+                <h2 style={{fontFamily:'Syne,sans-serif', fontWeight:700, fontSize:28, color:'#F1F5F9', letterSpacing:'-.5px', margin:'0 0 24px', lineHeight:1.2}}>
                   The Telecom<br/>Knowledge Platform
                 </h2>
-                <div className="space-y-4 text-[14px] text-[#94A3B8] leading-[1.85] font-light">
-                  <p>
-                    <strong className="text-[#F8FAFC] font-semibold">NextGNow</strong> is a modern telecom intelligence platform built for engineers, researchers and professionals who need to stay ahead of 5G NR, 6G and 3GPP developments.
+                <div style={{display:'flex', flexDirection:'column', gap:14}}>
+                  <p style={{fontSize:14.5, color:'#94A3B8', lineHeight:1.8, fontWeight:300, margin:0}}>
+                    <strong style={{color:'#F1F5F9', fontWeight:600}}>NextGNow</strong> is a modern telecom intelligence platform built for engineers, researchers and professionals who need to stay ahead of 5G NR, 6G and 3GPP developments.
                   </p>
-                  <p>
-                    We publish technical content covering everything from physical layer fundamentals to cutting-edge 6G research — explained clearly with real engineering depth.
+                  <p style={{fontSize:14.5, color:'#94A3B8', lineHeight:1.8, fontWeight:300, margin:0}}>
+                    We publish technical content covering everything from physical layer fundamentals to cutting-edge 6G research — explained with real engineering depth and zero jargon.
                   </p>
-                  <p>
-                    Our <span className="text-[#06B6D4] font-medium">SpectrumAI</span> assistant provides instant, spec-grounded answers powered by deep 3GPP knowledge across Release 15 through Release 19 and beyond.
+                  <p style={{fontSize:14.5, color:'#94A3B8', lineHeight:1.8, fontWeight:300, margin:0}}>
+                    Our <span style={{color:'#06B6D4', fontWeight:500}}>SpectrumAI</span> assistant provides instant, spec-grounded answers powered by deep 3GPP knowledge across Release 15 through Release 19 and beyond.
                   </p>
                 </div>
-                <div className="flex gap-3 mt-8 flex-wrap">
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-[#94A3B8] text-[13px] px-4 py-2.5 rounded-xl border border-[#1C324F] hover:border-[#3B82F6]/40 hover:text-[#3B82F6] transition-all">
-                    Follow on LinkedIn
-                  </a>
-                  <a href="mailto:hello@nextgnow.in"
-                    className="inline-flex items-center gap-2 text-[#94A3B8] text-[13px] px-4 py-2.5 rounded-xl border border-[#1C324F] hover:border-[#3B82F6]/40 hover:text-[#3B82F6] transition-all">
-                    Contact Us
-                  </a>
+                <div style={{display:'flex', gap:10, marginTop:28, flexWrap:'wrap'}}>
+                  {[
+                    { label:'Follow on LinkedIn', href:'https://linkedin.com' },
+                    { label:'Contact Us',         href:'mailto:hello@nextgnow.in' },
+                  ].map(l => (
+                    <a key={l.label} href={l.href}
+                      style={{
+                        fontSize:13, color:'#94A3B8', padding:'9px 18px',
+                        borderRadius:10, border:'1px solid #1C324F',
+                        textDecoration:'none', transition:'all .2s',
+                      }}>
+                      {l.label}
+                    </a>
+                  ))}
                 </div>
               </div>
 
               {/* Stat cards */}
-              <div className="grid grid-cols-2 gap-4 fade-up-1">
+              <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:12}}>
                 {[
-                  { num: '5G + 6G',  lbl: 'Core Technology Focus',  sub: 'From NR to IMT-2030',         color: 'text-[#3B82F6]' },
-                  { num: 'Daily',    lbl: 'Fresh Content',           sub: 'Technical depth every day',   color: 'text-[#06B6D4]' },
-                  { num: 'Rel-19',   lbl: 'Latest 3GPP Release',    sub: 'Always up to date',            color: 'text-violet-400' },
-                  { num: 'Free',     lbl: 'Always Open Access',      sub: 'No paywalls, ever',           color: 'text-[#10B981]' },
-                ].map((s) => (
-                  <div key={s.lbl} className="ng-card p-6">
-                    <div className={`font-['Syne'] font-extrabold text-[30px] leading-none mb-2 ${s.color}`}>{s.num}</div>
-                    <div className="text-[13px] font-semibold text-[#CBD5E1] mb-1">{s.lbl}</div>
-                    <div className="text-[11px] text-[#475569]">{s.sub}</div>
+                  { num:'5G+6G',  lbl:'Technology Focus',    sub:'From NR to IMT-2030',          color:'#3B82F6' },
+                  { num:'Daily',  lbl:'Fresh Content',        sub:'Technical depth every day',    color:'#06B6D4' },
+                  { num:'Rel-19', lbl:'3GPP Release',         sub:'Always up to date',            color:'#A78BFA' },
+                  { num:'Zero',   lbl:'Jargon or Fluff',      sub:'Plain English, always',        color:'#10B981' },
+                ].map(s => (
+                  <div key={s.lbl} className="card" style={{padding:20}}>
+                    <div style={{fontFamily:'Syne,sans-serif', fontWeight:800, fontSize:28, color:s.color, lineHeight:1, marginBottom:6}}>{s.num}</div>
+                    <div style={{fontSize:13, fontWeight:600, color:'#CBD5E1', marginBottom:3}}>{s.lbl}</div>
+                    <div style={{fontSize:11.5, color:'#475569', fontWeight:300}}>{s.sub}</div>
                   </div>
                 ))}
               </div>
