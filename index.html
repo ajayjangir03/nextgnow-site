@@ -382,6 +382,7 @@ footer{border-top:1px solid var(--border);padding:36px 0 28px}
       </div>
       <button class="nav-link" onclick="goLatestArticles()">Latest Articles</button>
       <button class="nav-link" onclick="scrollTo('about')">About</button>
+      <a class="nav-link" href="/ai-chat.html" style="color:#60a5fa;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.2);border-radius:8px">🤖 AI Assistant</a>
     </nav>
   </div>
 
@@ -396,6 +397,7 @@ footer{border-top:1px solid var(--border);padding:36px 0 28px}
     <div class="mobile-section">Pages</div>
     <div class="mobile-nav-item" onclick="goLatestArticles();closeMobileMenu()">📰 Latest Articles</div>
     <div class="mobile-nav-item" onclick="scrollTo('about');closeMobileMenu()">ℹ️ About</div>
+    <div class="mobile-nav-item" onclick="window.location='/ai-chat.html'">🤖 AI Assistant</div>
     <div class="mobile-section">Connect</div>
     <div style="display:flex;gap:10px;padding:8px 12px">
       <a class="social-icon" href="https://linkedin.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
@@ -786,5 +788,6 @@ function startVisitors(){
 
 init();
 </script>
+<script src="/telecomgpt-widget.js"></script>
 </body>
 </html>
